@@ -32,10 +32,11 @@
   margin-bottom: 12px;
 }
 
-.footer-logo-text {
-  color: #ffffff;
-  font-size: 1.05rem;
-  font-weight: 700;
+.footer-logo-img {
+  height: 65px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .footer-description {

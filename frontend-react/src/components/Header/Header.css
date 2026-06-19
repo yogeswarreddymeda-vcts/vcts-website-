@@ -79,3 +79,71 @@
         transform: none !important;
     }
 }
+/* ==========================================
+   Logo Styles (Add this at the very bottom)
+   ========================================== */
+.navbar-logo-img {
+  height: 65px;         /* Controls the size of the logo */
+  width: auto;          /* Keeps the logo proportions perfect */
+  display: block;
+  object-fit: contain;
+}
+
+/* Makes the logo slightly smaller on mobile screens */
+@media (max-width: 991.98px) {
+  .navbar-logo-img {
+    height: 38px;       
+  }
+}
+
+/* ========================================================
+   DROPDOWN MENU STYLING
+   ======================================================== */
+.dropdown-menu {
+    border: 1px solid var(--border-light) !important;
+    border-radius: 8px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(5, 27, 78, 0.08) !important;
+    padding: 0.5rem 0 !important;
+    min-width: 200px;
+    margin-top: 10px !important;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    color: var(--deep-navy) !important;
+    font-weight: 500 !important;
+    padding: 0.6rem 1.25rem !important;
+    transition: all 0.25s var(--ease-apple) !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(10, 54, 157, 0.05) !important;
+    color: var(--primary-cobalt) !important;
+    transform: translate3d(3px, 0, 0);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: var(--primary-cobalt) !important;
+    color: #ffffff !important;
+}
+
+/* Show dropdown on hover on desktop viewports */
+@media (min-width: 992px) {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block;
+        animation: navDropdownFade 0.25s var(--ease-apple) forwards;
+    }
+}
+
+@keyframes navDropdownFade {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
