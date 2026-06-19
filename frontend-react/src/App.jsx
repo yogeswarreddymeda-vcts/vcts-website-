@@ -1,15 +1,18 @@
-import Header from './components/Header/Header.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import './App.css'
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Embedded from "./pages/Embedded";
+import "./App.css";
 
 function App() {
   return (
     <>
       <Header />
-      <div style={{ flex: 1 }}></div>
+
+      <Embedded />
+
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

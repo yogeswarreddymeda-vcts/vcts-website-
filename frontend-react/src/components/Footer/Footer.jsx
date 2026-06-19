@@ -1,6 +1,6 @@
-import linkedInIcon from '../../assets/image/icons/Icon31.png';
-import twitterIcon from '../../assets/image/icons/Icon32.png';
-import youtubeIcon from '../../assets/image/icons/Icon33.png';
+import linkedInIcon from '../src/assets/image/icons/Icon31.png';
+import twitterIcon from '../src/assets/image/icons/Icon32.png';
+import youtubeIcon from '../src/assets/image/icons/Icon33.png';
 import './Footer.css';
 
 export default function Footer() {
