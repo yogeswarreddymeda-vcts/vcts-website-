@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import './Header.css';
+import logo from '../../assets/image/H ana F/New Logo Light.png';
 
-export default function Header() {
+export default function Header({ currentPage, setCurrentPage }) {
   const btnRef = useRef(null);
 
   useEffect(() => {
@@ -31,24 +32,85 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3">
       <div className="container-fluid">
-        <a className="navbar-brand d-flex align-items-center fw-bold fs-4 text-dark" href="#" style={{ letterSpacing: '-0.5px' }}>
-          <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="me-2">
-            <rect x="2" y="2" width="36" height="36" rx="4" stroke="#0A369D" strokeWidth="2.5" />
-            <rect x="9" y="9" width="22" height="22" rx="2" stroke="#051B4E" strokeWidth="1.5" />
-          </svg>
-          <div>
-            <span className="fw-bold fs-4 d-block lh-1" style={{ color: 'var(--deep-navy)' }}>VCTS</span>
-            <span className="text-muted d-block" style={{ fontSize: '0.65rem', letterSpacing: '0.5px' }}>Engineering Intelligence</span>
-          </div>
+        {/* logo */}
+        <a 
+          className="navbar-brand d-flex align-items-center py-0" 
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentPage('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
+          <img 
+            src={logo} 
+            alt="VConnectTech Logo" 
+            className="navbar-logo-img" 
+          />
         </a>
+        
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#vctsNavbar">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="vctsNavbar">
           <ul className="navbar-nav ms-auto align-items-center gap-3">
-            <li className="nav-item"><a className="nav-link" href="#">Home</a></li>
+            <li className="nav-item">
+              <a 
+                className={`nav-link ${currentPage === 'home' ? 'active' : ''}`} 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCurrentPage('home');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                Home
+              </a>
+            </li>
             <li className="nav-item"><a className="nav-link" href="#">About Us</a></li>
-            <li className="nav-item"><a className="nav-link active" href="#">Services</a></li>
+            
+            {/* Services Dropdown */}
+            <li className="nav-item dropdown">
+              <a 
+                className={`nav-link dropdown-toggle ${(currentPage === 'vlsi' || currentPage === 'embedded') ? 'active' : ''}`} 
+                href="#" 
+                id="servicesDropdown" 
+                role="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+              >
+                Services
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                <li>
+                  <a 
+                    className={`dropdown-item ${currentPage === 'vlsi' ? 'active' : ''}`} 
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage('vlsi');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    VLSI Engineering
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    className={`dropdown-item ${currentPage === 'embedded' ? 'active' : ''}`} 
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage('embedded');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Embedded Engineering
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li className="nav-item"><a className="nav-link" href="#">Technologies</a></li>
             <li className="nav-item"><a className="nav-link" href="#">Industries</a></li>
             <li className="nav-item"><a className="nav-link" href="#">Careers</a></li>

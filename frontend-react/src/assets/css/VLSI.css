@@ -1,0 +1,425 @@
+/* ========================================================
+   1. ADVANCED KINETIC TEXT REVEAL BLOCKS
+   ======================================================== */
+.kinetic-reveal-container {
+    overflow: hidden;
+    display: block;
+}
+
+.hero-reveal {
+    opacity: 0;
+    transform: translate3d(0, 35px, 0);
+    filter: blur(10px);
+    will-change: opacity, transform, filter;
+}
+
+.hero-reveal.active-reveal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+    transition: opacity 1.2s var(--ease-apple),
+                transform 1.2s var(--ease-apple),
+                filter 1.2s var(--ease-apple);
+}
+
+.hero-reveal:nth-child(1) { transition-delay: 40ms; }
+.hero-reveal:nth-child(2) { transition-delay: 120ms; }
+.hero-reveal:nth-child(3) { transition-delay: 200ms; }
+.hero-reveal:nth-child(4) { transition-delay: 280ms; }
+
+/* ========================================================
+   2. VIEWPORT OBSERVER ENTRANCE MOTOR
+   ======================================================== */
+.scroll-reveal-item {
+    opacity: 0;
+    transform: translate3d(0, 25px, 0);
+    filter: blur(8px);
+    transition: opacity 1.1s var(--ease-apple),
+                transform 1.1s var(--ease-apple),
+                filter 1.1s var(--ease-apple);
+    will-change: opacity, transform, filter;
+}
+
+.scroll-reveal-item.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+}
+
+/* ========================================================
+   4. SUBSYSTEMS MATRIX CONTAINER
+   ======================================================== */
+.subsystems-matrix-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important;
+}
+
+.enterprise-row-section {
+    position: relative;
+    background: var(--bg-pure-white);
+    border: 1px solid var(--border-light) !important;
+    border-radius: 14px;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 380px;
+    padding: 0 3rem !important;       /* vertical padding removed so columns fill full height */
+    display: flex;
+    align-items: stretch;             /* columns stretch to full card height */
+    transition: border-color 0.5s var(--ease-apple),
+                box-shadow 0.5s var(--ease-apple),
+                transform 0.5s var(--ease-apple);
+    will-change: transform, box-shadow, border-color;
+}
+
+@media (max-width: 992px) {
+    .enterprise-row-section {
+        height: auto !important;
+        min-height: unset !important;
+        padding: 0 2rem !important;
+    }
+}
+
+/* Proximity cursor specular ray tracking background */
+.enterprise-row-section::before, .showcase-card.anim-lift-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(
+        320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--laser-sky-blue) 0%,
+        var(--primary-cobalt) 65%,
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-linear);
+    pointer-events: none;
+    z-index: 3;
+    will-change: opacity;
+}
+
+.enterprise-row-section:hover, .showcase-card.anim-lift-card:hover {
+    transform: translate3d(0, -3px, 0);
+    border-color: rgba(56, 189, 248, 0.3) !important;
+    box-shadow: 0 20px 40px -12px rgba(5, 27, 78, 0.06);
+}
+
+.enterprise-row-section:hover::before, .showcase-card.anim-lift-card:hover::before {
+    opacity: 1;
+}
+
+/* Tech-list */
+.tech-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0 !important;
+}
+@media (min-width: 576px) {
+    .tech-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.tech-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.4rem;
+    text-align: left;
+}
+
+.tech-list li::before {
+    content: '\25a0';
+    position: absolute;
+    left: 0;
+    color: var(--primary-cobalt);
+    font-size: 0.45rem;
+    top: 2px;
+    transition: color 0.4s var(--ease-apple), transform 0.4s var(--ease-apple);
+    will-change: color, transform;
+}
+
+.enterprise-row-section:hover .tech-list li {
+    color: var(--deep-navy);
+    transform: translate3d(5px, 0, 0);
+}
+
+.enterprise-row-section:hover .tech-list li::before {
+    color: var(--laser-sky-blue);
+    transform: scale3d(1.15, 1.15, 1);
+}
+
+.enterprise-row-section:hover .tech-list li:nth-child(1) { transition-delay: 0ms; }
+.enterprise-row-section:hover .tech-list li:nth-child(2) { transition-delay: 30ms; }
+.enterprise-row-section:hover .tech-list li:nth-child(3) { transition-delay: 60ms; }
+.enterprise-row-section:hover .tech-list li:nth-child(4) { transition-delay: 90ms; }
+
+.enterprise-row-section h3, .enterprise-row-section p {
+    transition: color 0.4s var(--ease-apple);
+}
+.enterprise-row-section:hover h3 {
+    color: var(--primary-cobalt);
+}
+
+/* ========================================================
+   5. BUTTONS
+   ======================================================== */
+.btn-vcts-primary {
+    background-color: var(--primary-cobalt) !important;
+    border: 1px solid var(--primary-cobalt) !important;
+    color: var(--bg-pure-white) !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s var(--ease-linear);
+}
+
+.btn-vcts-primary:hover {
+    background-color: #072966 !important;
+    border-color: #072966 !important;
+    box-shadow: 0 10px 20px -5px rgba(10, 54, 157, 0.25);
+}
+
+.btn-vcts-outline {
+    background-color: transparent !important;
+    border: 1.5px solid var(--primary-cobalt) !important;
+    color: var(--primary-cobalt) !important;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s var(--ease-linear);
+}
+
+.btn-vcts-outline:hover {
+    background-color: rgba(10, 54, 157, 0.05) !important;
+    color: var(--primary-cobalt) !important;
+}
+
+.magnetic-btn-anchor {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.32, 1);
+    will-change: transform;
+}
+
+/* CTA Card */
+.cta-blue-card {
+    background: linear-gradient(90deg, rgba(5, 27, 78, 0.4) 0%, rgba(5, 27, 78, 0.8) 100%), url('../image/VLSI/M1.png') no-repeat center center / cover !important;
+    border-radius: 12px;
+    padding: 4rem;
+    color: var(--bg-pure-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-blue-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 200%; height: 100%;
+    background: linear-gradient(
+        115deg,
+        transparent 45%,
+        rgba(255, 255, 255, 0.12) 50%,
+        transparent 55%
+    );
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.cta-blue-card:hover::after {
+    transform: translate3d(50%, 0, 0);
+}
+
+/* ========================================================
+   6. ENGINEERING FLOW PIPELINE
+   ======================================================== */
+.flow-node-item { transition: transform 0.4s var(--ease-apple); will-change: transform; }
+.flow-node-circle { width: 54px; height: 54px; border: 1.5px solid var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--bg-pure-white); color: var(--primary-cobalt); font-size: 1.35rem; margin: 0 auto 0.75rem; transition: all 0.4s var(--ease-apple); will-change: background-color, border-color, color, box-shadow; }
+.flow-node-item:hover { transform: translate3d(0, -6px, 0); }
+.flow-node-item:hover .flow-node-circle { background-color: var(--primary-cobalt); border-color: var(--primary-cobalt); color: var(--bg-pure-white); box-shadow: 0 12px 24px -5px rgba(10, 54, 157, 0.25); }
+.flow-arrow-icon { color: var(--primary-cobalt); font-size: 0.85rem; opacity: 0.25; align-self: center; margin-bottom: 2rem; transition: all 0.3s ease; will-change: opacity, transform; }
+.flow-node-item:hover + .flow-arrow-icon { opacity: 0.8; transform: translate3d(3px, 0, 0); }
+.blue-icon-box { font-size: 2rem; color: var(--primary-cobalt); margin-bottom: 1rem; transition: all 0.4s var(--ease-apple); will-change: transform, color; }
+.showcase-card:hover .blue-icon-box { color: var(--laser-sky-blue); transform: scale3d(1.08, 1.08, 1); }
+
+/* Showcase / Expertise Cards */
+.showcase-card {
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background: var(--bg-pure-white);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: transform 0.35s var(--ease-apple),
+                box-shadow 0.35s var(--ease-apple),
+                border-color 0.35s var(--ease-apple);
+    will-change: transform, box-shadow;
+    position: relative;
+    overflow: hidden;
+}
+.showcase-card:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 16px 36px -8px rgba(10, 54, 157, 0.12);
+    border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* OUR EXPERTISE full-bleed section */
+.expertise-section {
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-off-white);
+    padding: 4rem 0;
+}
+.expertise-section .container-fluid {
+    max-width: 1200px;
+}
+
+/* ========================================================
+   7. HARDWARE SCREEN SCHEMATICS DIAGNOSTICS LAB
+   ======================================================== */
+.enterprise-row-section > .row {
+    align-self: stretch;
+    align-items: stretch !important;  /* override Bootstrap align-items-center */
+    min-height: 100%;
+    width: 100%;                       /* ensure row spans full card width */
+    margin: 0 !important;
+}
+.enterprise-row-section > .row > [class*="col-"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;           /* vertically center text within column */
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+/* Diagram column — no extra padding, box fills flush */
+.enterprise-row-section > .row > [class*="col-"].d-flex {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+.diagram-box {
+    border-radius: 10px;
+    flex: 1;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.hw-trace-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawTrace 3.5s var(--ease-apple) forwards;
+}
+@keyframes drawTrace { to { stroke-dashoffset: 0; } }
+
+.hw-pulse-center { animation: technicalGlow 4s ease-in-out infinite; transform-origin: 250px 200px; }
+@keyframes technicalGlow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4)); opacity: 0.8; transform: scale3d(0.98,0.98,1); }
+    50% { filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8)); opacity: 1; transform: scale3d(1.02, 1.02, 1); }
+}
+
+.alpha-badge { width: 34px; height: 34px; background-color: rgba(10, 54, 157, 0.05); color: var(--primary-cobalt); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; }
+.enterprise-row-section:hover .alpha-badge { background-color: var(--primary-cobalt); color: #ffffff; }
+.code-sim { color: #a5b4fc; text-align: left; width: 100%; line-height: 1.4; transition: color 0.3s ease; }
+.enterprise-row-section:hover .code-sim { color: #ffffff; }
+.svg-wireframe { width: 100%; height: 100%; max-height: 200px; object-fit: contain; display: block; }
+.metric-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 8px; width: 100%; text-align: left; }
+.metric-cell { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.06); padding: 0.45rem; border-radius: 6px; }
+
+/* ========================================================
+   9. SCROLL PROGRESS BAR
+   ======================================================== */
+#scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary-cobalt), var(--laser-sky-blue));
+    z-index: 9999;
+    transition: width 0.05s linear;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    will-change: width;
+}
+
+/* ========================================================
+   10. PREMIUM WORD-SPLIT TEXT ANIMATION (Subsystems Section)
+   ======================================================== */
+.word-clip {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    margin-right: 0.28em;
+}
+
+.word-inner {
+    display: inline-block;
+    opacity: 0;
+    transform: translate3d(0, 110%, 0);
+    will-change: opacity, transform;
+}
+
+.enterprise-row-section.text-revealed .word-inner {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.75s var(--ease-apple),
+                transform 0.75s var(--ease-apple);
+}
+
+.subsys-para { overflow: hidden; }
+.subsys-para-inner {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    will-change: opacity, transform;
+}
+.enterprise-row-section.text-revealed .subsys-para-inner {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.9s var(--ease-apple),
+                transform 0.9s var(--ease-apple);
+    transition-delay: 0.45s;
+}
+
+/* Tech-list items sweep from left */
+.tech-list li {
+    opacity: 0;
+    transform: translate3d(-18px, 0, 0);
+}
+.enterprise-row-section.text-revealed .tech-list li {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.75s var(--ease-apple),
+                transform 0.75s var(--ease-apple),
+                color 0.4s var(--ease-apple);
+}
+
+/* 11. 3D CARD TILT */
+.enterprise-row-section,
+.showcase-card.anim-lift-card {
+    transform-style: preserve-3d;
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .scroll-reveal-item, .navbar-nav .nav-link::after, .enterprise-row-section, .showcase-card, .cta-blue-card::after, .magnetic-btn-anchor, .diagram-box::before, .tech-list li, .flow-node-item, .word-inner, .subsys-para-inner {
+        animation: none !important; transition: none !important; transform: none !important; filter: none !important; opacity: 1 !important;
+    }
+    #scroll-progress-bar { transition: none !important; }
+}
+
+.hero-section { padding: 11rem 0 6rem; background: radial-gradient(circle at 80% 40%, rgba(10, 54, 157, 0.04) 0%, transparent 60%); }
+.hero-title { font-size: 3.5rem; font-weight: 700; line-height: 1.15; color: var(--deep-navy); }

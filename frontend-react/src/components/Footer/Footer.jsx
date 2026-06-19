@@ -1,20 +1,24 @@
-import linkedInIcon from '../src/assets/image/icons/Icon31.png';
-import twitterIcon from '../src/assets/image/icons/Icon32.png';
-import youtubeIcon from '../src/assets/image/icons/Icon33.png';
+import linkedInIcon from '../../assets/image/H ana F/Icon31.png';
+import twitterIcon from '../../assets/image/H ana F/Icon32.png';
+import youtubeIcon from '../../assets/image/H ana F/Icon33.png';
+import logo from '../../assets/image/H ana F/New Logo Light.png';
 import './Footer.css';
 
-export default function Footer() {
+export default function Footer({ setCurrentPage }) {
   return (
     <footer className="site-footer" data-testid="site-footer">
       <div className="footer-content">
         <div className="footer-grid">
           <section className="footer-brand" aria-label="Company information">
-            <div className="footer-logo">
-              <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="2" y="2" width="36" height="36" rx="4" stroke="#0A369D" strokeWidth="2.5" />
-                <rect x="9" y="9" width="22" height="22" rx="2" stroke="#051B4E" strokeWidth="1.5" />
-              </svg>
-              <span className="footer-logo-text">VCTS</span>
+            <div 
+              className="footer-logo" 
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setCurrentPage('home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <img src={logo} alt="VConnectTech Logo" className="footer-logo-img" />
             </div>
             <p className="footer-description">
               Engineering intelligent systems through semiconductor design and verification services for a smarter tomorrow.
@@ -29,9 +33,33 @@ export default function Footer() {
           <nav className="footer-column" aria-label="Quick links">
             <h5>Quick Links</h5>
             <ul>
-              <li><a href="#">Home</a></li>
+              <li>
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('home');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  Home
+                </a>
+              </li>
               <li><a href="#">About Us</a></li>
-              <li><a href="#">Services</a></li>
+              <li>
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('home');
+                    setTimeout(() => {
+                      document.getElementById('our-services')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 50);
+                  }}
+                >
+                  Services
+                </a>
+              </li>
               <li><a href="#">Technologies</a></li>
               <li><a href="#">Industries</a></li>
               <li><a href="#">Careers</a></li>
@@ -42,8 +70,30 @@ export default function Footer() {
           <nav className="footer-column" aria-label="Services">
             <h5>Our Services</h5>
             <ul>
-              <li><a href="#">VLSI Engineering</a></li>
-              <li><a href="#">Embedded Engineering</a></li>
+              <li>
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('vlsi');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  VLSI Engineering
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('embedded');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  Embedded Engineering
+                </a>
+              </li>
               <li><a href="#">Edge AI Engineering</a></li>
             </ul>
           </nav>

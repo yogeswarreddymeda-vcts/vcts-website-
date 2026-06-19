@@ -1,27 +1,97 @@
+/* BRAND COLOR PALETTE */
 :root {
-  --bg-pure-white: #ffffff;
-  --bg-off-white: #f8fafc;
-  --primary-cobalt: #0a369d;
-  --deep-navy: #051b4e;
-  --text-muted: #64748b;
-  --border-light: rgba(0, 0, 0, 0.08);
-  --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
-}
+    --bg-pure-white: #FFFFFF;
+    --bg-off-white: #F8FAFC;
+    --primary-cobalt: #0A369D;
+    --deep-navy: #051B4E;
+    --text-muted: #64748B;
+    --border-light: #E2E8F0;
+    --laser-sky-blue: #38BDF8;
 
-* {
-  box-sizing: border-box;
-}
+    --footer-obsidian: #020716;
+    --footer-border: #0f172a;
+    --text-footer-silver: #94A3B8;
 
-html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #0f172a;
-  background: #f8fafc;
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-linear: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body {
-  margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-pure-white);
+    color: var(--deep-navy);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: inherit;
+.container-fluid {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+/* ========================================================
+           1. ADVANCED KINETIC TEXT REVEAL BLOCKS
+           ======================================================== */
+.kinetic-reveal-container {
+    overflow: hidden;
+    display: block;
+}
+
+.hero-reveal {
+    opacity: 0;
+    transform: translate3d(0, 35px, 0);
+    filter: blur(10px);
+    will-change: opacity, transform, filter;
+}
+
+.hero-reveal.active-reveal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+    transition: opacity 1.2s var(--ease-apple),
+        transform 1.2s var(--ease-apple),
+        filter 1.2s var(--ease-apple);
+}
+
+.hero-reveal:nth-child(1) {
+    transition-delay: 40ms;
+}
+
+.hero-reveal:nth-child(2) {
+    transition-delay: 120ms;
+}
+
+.hero-reveal:nth-child(3) {
+    transition-delay: 200ms;
+}
+
+.hero-reveal:nth-child(4) {
+    transition-delay: 280ms;
+}
+
+/* ========================================================
+           2. VIEWPORT OBSERVER ENTRANCE MOTOR
+           ======================================================== */
+.scroll-reveal-item {
+    opacity: 0;
+    transform: translate3d(0, 25px, 0);
+    filter: blur(8px);
+    transition: opacity 1.1s var(--ease-apple),
+        transform 1.1s var(--ease-apple),
+        filter 1.1s var(--ease-apple);
+    will-change: opacity, transform, filter;
+}
+
+.scroll-reveal-item.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
 }
