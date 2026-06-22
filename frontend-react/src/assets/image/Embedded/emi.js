@@ -1,6 +1,7 @@
 // Hero
 import hero from "./hero.png";
-import letsBuild from "./lets-build.png";
+import letsBuild from "./fbanner.png";
+import mhero from "./mhero.png";
 
 // Service Images
 import m1 from "./services_images/m1.png";
@@ -39,6 +40,7 @@ import extra from "./icons/extra.png";
 export default {
     hero,
     letsBuild,
+    mhero,
 
     m1,
     m2,

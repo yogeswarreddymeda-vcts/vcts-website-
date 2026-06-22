@@ -3,25 +3,25 @@ import "../assets/css/Embedded.css";
 import Images from "../assets/image/Embedded/emi";
 
 const serviceAreas = [
-  ["Embedded Hardware", Images.i4],
-  ["Firmware Development", Images.i5],
-  ["BSP & Platform Enablement", Images.i6],
-  ["RTOS Solutions", Images.i7],
-  ["Embedded Linux", Images.i71],
-  ["Device Drivers", Images.i8],
-  ["Connectivity Solutions", Images.i9],
-  ["Automotive & Functional Safety", Images.i10],
-  ["Testing & Validation", Images.i11],
-  ["Manufacturing Support", Images.i12],
+  ["Embedded Hardware", Images.i12, "service-a"],
+  ["Firmware Development", Images.i10, "service-b"],
+  ["BSP & Platform Enablement", Images.i11, "service-c"],
+  ["RTOS Solutions", Images.i7, "service-d"],
+  ["Embedded Linux", Images.i13, "service-e"],
+  ["Device Drivers", Images.i14, "service-f"],
+  ["Connectivity Solutions", Images.i15, "service-g"],
+  ["Automotive & Functional Safety", Images.i16, "service-h"],
+  ["Testing & Validation", Images.i17, "service-i"],
+  ["Manufacturing Support", Images.i18, "service-j"],
 ];
 
 const processSteps = [
-  ["Requirement Analysis & Feasibility", Images.i13],
-  ["Architecture & System Design", Images.i14],
-  ["Firmware Development", Images.i5],
-  ["Integration & Testing", Images.i15],
-  ["Validation & Certification", Images.i16],
-  ["Sustenance & Product Evolution", Images.i17],
+  ["Requirement Analysis & Feasibility", Images.i4],
+  ["Architecture & System Design", Images.i5],
+  ["Firmware Development", Images.i10],
+  ["Integration & Testing", Images.i9],
+  ["Validation & Certification", Images.i71],
+  ["Sustenance & Product Evolution", Images.i8],
 ];
 
 const services = [
@@ -252,6 +252,32 @@ export default function Embedded() {
     root.querySelectorAll(".scroll-reveal-item").forEach((item) => revealObserver.observe(item));
     root.querySelectorAll(".enterprise-row-section").forEach((card) => textObserver.observe(card));
 
+    const mobileHoverObserver = new IntersectionObserver(
+      (entries) => {
+        if (window.innerWidth > 992) {
+          entries.forEach((entry) => {
+            entry.target.classList.remove("active-hover");
+          });
+          return;
+        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active-hover");
+          } else {
+            entry.target.classList.remove("active-hover");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "-25% 0px -25% 0px",
+      }
+    );
+
+    root.querySelectorAll(".showcase-card, .enterprise-row-section, .flow-node-item").forEach((el) => {
+      mobileHoverObserver.observe(el);
+    });
+
     const heroTimer = window.setTimeout(() => {
       root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
     }, 80);
@@ -268,8 +294,11 @@ export default function Embedded() {
     root.querySelectorAll(".magnetic-btn-anchor").forEach((btn) => {
       const handleMove = (event) => {
         const rect = btn.getBoundingClientRect();
-        const x = ((event.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
-        const y = ((event.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 5;
+        const touch = event.touches?.[0] || event.changedTouches?.[0];
+        const clientX = touch ? touch.clientX : event.clientX;
+        const clientY = touch ? touch.clientY : event.clientY;
+        const x = ((clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
+        const y = ((clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 5;
         btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       };
       const handleLeave = () => {
@@ -277,22 +306,33 @@ export default function Embedded() {
       };
       btn.addEventListener("mousemove", handleMove, { passive: true });
       btn.addEventListener("mouseleave", handleLeave);
+      btn.addEventListener("touchstart", handleMove, { passive: true });
+      btn.addEventListener("touchmove", handleMove, { passive: true });
+      btn.addEventListener("touchend", handleLeave, { passive: true });
+      btn.addEventListener("touchcancel", handleLeave, { passive: true });
       cleanups.push(() => {
         btn.removeEventListener("mousemove", handleMove);
         btn.removeEventListener("mouseleave", handleLeave);
+        btn.removeEventListener("touchstart", handleMove);
+        btn.removeEventListener("touchmove", handleMove);
+        btn.removeEventListener("touchend", handleLeave);
+        btn.removeEventListener("touchcancel", handleLeave);
       });
     });
 
     root.querySelectorAll(".enterprise-row-section, .showcase-card.anim-lift-card").forEach((card) => {
       const handleMove = (event) => {
         const rect = card.getBoundingClientRect();
-        const relX = (event.clientX - rect.left) / rect.width - 0.5;
-        const relY = (event.clientY - rect.top) / rect.height - 0.5;
+        const touch = event.touches?.[0] || event.changedTouches?.[0];
+        const clientX = touch ? touch.clientX : event.clientX;
+        const clientY = touch ? touch.clientY : event.clientY;
+        const relX = (clientX - rect.left) / rect.width - 0.5;
+        const relY = (clientY - rect.top) / rect.height - 0.5;
         card.style.transition =
           "transform 0.1s ease, border-color 0.5s var(--embedded-ease-apple), box-shadow 0.5s var(--embedded-ease-apple)";
-        card.style.transform = `perspective(900px) rotateX(${-relY * 4}deg) rotateY(${relX * 4}deg) translate3d(0,-3px,0)`;
-        card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
-        card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+        card.style.transform = `perspective(900px) rotateX(${-relY * 1}deg) rotateY(${relX * 1}deg) translate3d(0,-1px,0)`;
+        card.style.setProperty("--mouse-x", `${clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${clientY - rect.top}px`);
       };
       const handleLeave = () => {
         card.style.transition =
@@ -301,9 +341,17 @@ export default function Embedded() {
       };
       card.addEventListener("mousemove", handleMove, { passive: true });
       card.addEventListener("mouseleave", handleLeave);
+      card.addEventListener("touchstart", handleMove, { passive: true });
+      card.addEventListener("touchmove", handleMove, { passive: true });
+      card.addEventListener("touchend", handleLeave, { passive: true });
+      card.addEventListener("touchcancel", handleLeave, { passive: true });
       cleanups.push(() => {
         card.removeEventListener("mousemove", handleMove);
         card.removeEventListener("mouseleave", handleLeave);
+        card.removeEventListener("touchstart", handleMove);
+        card.removeEventListener("touchmove", handleMove);
+        card.removeEventListener("touchend", handleLeave);
+        card.removeEventListener("touchcancel", handleLeave);
       });
     });
 
@@ -312,6 +360,7 @@ export default function Embedded() {
       window.removeEventListener("scroll", updateProgress);
       revealObserver.disconnect();
       textObserver.disconnect();
+      mobileHoverObserver.disconnect();
       cleanups.forEach((cleanup) => cleanup());
     };
   }, []);
@@ -394,7 +443,10 @@ export default function Embedded() {
 
             <div className="embedded-hero-visual hero-reveal">
               <div className="hardware-stage">
-                <img src={Images.hero} alt="Embedded Engineering Solutions" />
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={Images.mhero} />
+                  <img src={Images.hero} alt="Embedded Engineering Solutions" />
+                </picture>
               </div>
             </div>
           </div>
@@ -402,37 +454,6 @@ export default function Embedded() {
       </section>
       {/* =========================
           Hero Section - End
-      ========================= */}
-
-      {/* =========================
-          Our Embedded Service Areas - Start
-      ========================= */}
-      <section className="expertise-section scroll-reveal-item">
-        <div className="embedded-container">
-          <div className="section-heading">
-            <span>Our Embedded Service Areas</span>
-            <i aria-hidden="true" />
-          </div>
-          <div className="service-area-grid">
-            {serviceAreas.map(([title, icon], index) => (
-              <div
-                className="service-area-col scroll-reveal-item"
-                style={{ transitionDelay: `${0.05 + index * 0.05}s` }}
-                key={title}
-              >
-                <div className="showcase-card anim-lift-card">
-                  <div className="blue-icon-box">
-                    <img src={icon} alt="" />
-                  </div>
-                  <h4>{title}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* =========================
-          Our Embedded Service Areas - End
       ========================= */}
 
       {/* =========================
@@ -461,6 +482,40 @@ export default function Embedded() {
       </section>
       {/* =========================
           Embedded Engineering Process - End
+      ========================= */}
+
+      {/* =========================
+          Our Embedded Service Areas - Start
+      ========================= */}
+      <section className="expertise-section scroll-reveal-item">
+        <div className="embedded-container">
+          <div className="section-heading">
+            <span>Our Embedded Service Areas</span>
+            <i aria-hidden="true" />
+          </div>
+          <div className="service-area-grid">
+            {serviceAreas.map(([title, icon, targetId], index) => (
+              <div
+                className="service-area-col scroll-reveal-item"
+                style={{ transitionDelay: `${0.05 + index * 0.05}s`, cursor: "pointer" }}
+                onClick={() =>
+                  document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                key={title}
+              >
+                <div className="showcase-card anim-lift-card">
+                  <div className="blue-icon-box">
+                    <img src={icon} alt="" />
+                  </div>
+                  <h4>{title}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* =========================
+          Our Embedded Service Areas - End
       ========================= */}
 
       {/* =========================
@@ -505,7 +560,11 @@ export default function Embedded() {
               );
 
               return (
-                <article className="enterprise-row-section scroll-reveal-item" key={service.letter}>
+                <article
+                  className="enterprise-row-section scroll-reveal-item"
+                  id={"service-" + service.letter.toLowerCase()}
+                  key={service.letter}
+                >
                   <div className={`enterprise-row ${service.reverse ? "is-reverse" : ""}`}>
                     {service.reverse ? imageColumn : textColumn}
                     {service.reverse ? textColumn : imageColumn}
