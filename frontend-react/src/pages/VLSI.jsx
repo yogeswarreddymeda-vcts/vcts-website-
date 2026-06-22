@@ -1,44 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../assets/css/VLSI.css';
 
-import s1 from '../assets/image/VLSI/s1.png';
-import s2 from '../assets/image/VLSI/s2.png';
-import s3 from '../assets/image/VLSI/s3.png';
-import s4 from '../assets/image/VLSI/s4.png';
-import s5 from '../assets/image/VLSI/s5.png';
-import s6 from '../assets/image/VLSI/s6.png';
-import s7 from '../assets/image/VLSI/s7.png';
-import s8 from '../assets/image/VLSI/s8.png';
-import s9 from '../assets/image/VLSI/s9.png';
-import s10 from '../assets/image/VLSI/s10.png';
-import s11 from '../assets/image/VLSI/s11.png';
-import s12 from '../assets/image/VLSI/s12.png';
-
-import M1 from '../assets/image/VLSI/M1.png';
-
-import Icon11 from '../assets/image/VLSI/icons/Icon11.png';
-import Icon12 from '../assets/image/VLSI/icons/Icon12.png';
-import Icon13 from '../assets/image/VLSI/icons/Icon13.png';
-import Icon14 from '../assets/image/VLSI/icons/Icon14.png';
-
-import Icon21 from '../assets/image/VLSI/icons/Icon21.png';
-import Icon22 from '../assets/image/VLSI/icons/Icon22.png';
-import Icon23 from '../assets/image/VLSI/icons/Icon23.png';
-import Icon24 from '../assets/image/VLSI/icons/Icon24.png';
-import Icon25 from '../assets/image/VLSI/icons/Icon25.png';
-import Icon26 from '../assets/image/VLSI/icons/Icon26.png';
-import Icon27 from '../assets/image/VLSI/icons/Icon27.png';
-import Icon28 from '../assets/image/VLSI/icons/Icon28.png';
+import vl from '../assets/image/VLSI/vl.js';
 
 const ICONS_MAP = {
-    '21': Icon21,
-    '22': Icon22,
-    '23': Icon23,
-    '24': Icon24,
-    '25': Icon25,
-    '26': Icon26,
-    '27': Icon27,
-    '28': Icon28
+    '21': vl.Icon21,
+    '22': vl.Icon22,
+    '23': vl.Icon23,
+    '24': vl.Icon24,
+    '25': vl.Icon25,
+    '26': vl.Icon26,
+    '27': vl.Icon27,
+    '28': vl.Icon28
 };
 
 // ==========================================
@@ -56,18 +29,18 @@ const EXPERTISE_DATA = [
 ];
 
 const FLOW_STEPS = [
-    { icon: 'bi-building', label: <>Architecture<br />Design</> },
-    { icon: 'bi-code-slash', label: <>RTL<br />Design</> },
-    { icon: 'bi-file-earmark-text', label: <>Functional<br />Verification</> },
-    { icon: 'bi-cpu', label: <>FPGA<br />Prototyping</> },
-    { icon: 'bi-gear-wide-connected', label: <>Synthesis<br />Optimization</> },
-    { icon: 'bi-shield-check', label: <>DFT<br />Implementation</> },
-    { icon: 'bi-grid-3x3-gap', label: <>Physical<br />Design</> },
-    { icon: 'bi-activity', label: <>Timing, Power<br />& Signoff</> },
-    { icon: 'bi-buildings', label: <>Fabrication<br />Support</> },
-    { icon: 'bi-box-seam', label: <>Packaging<br />& Assembly</> },
-    { icon: 'bi-usb-plug', label: <>Silicon Bring-Up<br />& Char.</> },
-    { icon: 'bi-clipboard2-check', label: <>Post-Silicon<br />Validation</> }
+    { icon: 'bi-building', label: <>Architecture<br />Design</>, targetId: 'service-a' },
+    { icon: 'bi-code-slash', label: <>RTL<br />Design</>, targetId: 'service-b' },
+    { icon: 'bi-file-earmark-text', label: <>Functional<br />Verification</>, targetId: 'service-c' },
+    { icon: 'bi-cpu', label: <>FPGA<br />Prototyping</>, targetId: 'service-d' },
+    { icon: 'bi-gear-wide-connected', label: <>Synthesis<br />Optimization</>, targetId: 'service-e' },
+    { icon: 'bi-shield-check', label: <>DFT<br />Implementation</>, targetId: 'service-f' },
+    { icon: 'bi-grid-3x3-gap', label: <>Physical<br />Design</>, targetId: 'service-g' },
+    { icon: 'bi-activity', label: <>Timing, Power<br />& Signoff</>, targetId: 'service-h' },
+    { icon: 'bi-buildings', label: <>Fabrication<br />Support</>, targetId: 'service-i' },
+    { icon: 'bi-box-seam', label: <>Packaging<br />& Assembly</>, targetId: 'service-j' },
+    { icon: 'bi-usb-plug', label: <>Silicon Bring-Up<br />& Char.</>, targetId: 'service-k' },
+    { icon: 'bi-clipboard2-check', label: <>Post-Silicon<br />Validation</>, targetId: 'service-l' }
 ];
 
 const SERVICES_DATA = [
@@ -84,7 +57,7 @@ const SERVICES_DATA = [
             'SystemC & TLM Modeling',
             'Virtual Prototyping'
         ],
-        image: s1,
+        image: vl.s1,
         isLeft: false
     },
     {
@@ -95,11 +68,11 @@ const SERVICES_DATA = [
             'RTL Architecture Development',
             'Verilog, VHDL & SystemVerilog Design',
             'Logic & FSM Design',
-            'IP & Subsystem Integration',
+            'IP & Subsystem Integratiion',
             'Clock Domain Crossing (CDC) & Reset Domain Crossing (RDC) Analysis',
             'Area & Power Optimization'
         ],
-        image: s2,
+        image: vl.s2,
         isLeft: true
     },
     {
@@ -114,7 +87,7 @@ const SERVICES_DATA = [
             'Regression Testing',
             'Protocol Verification (PCIe, DDR, USB, etc.)'
         ],
-        image: s3,
+        image: vl.s3,
         isLeft: false
     },
     {
@@ -129,7 +102,7 @@ const SERVICES_DATA = [
             'Timing Closure',
             'Hardware Validation'
         ],
-        image: s4,
+        image: vl.s4,
         isLeft: true
     },
     {
@@ -143,7 +116,7 @@ const SERVICES_DATA = [
             'Clock Gating',
             'Netlist Generation'
         ],
-        image: s5,
+        image: vl.s5,
         isLeft: false
     },
     {
@@ -156,7 +129,7 @@ const SERVICES_DATA = [
             'Boundary Scan (JTAG) Architecture',
             'ATPG & Fault Modeling'
         ],
-        image: s6,
+        image: vl.s6,
         isLeft: true
     },
     {
@@ -171,7 +144,7 @@ const SERVICES_DATA = [
             'Low-Power Design (UPF/CPF Integration)',
             'Timing Closure'
         ],
-        image: s7,
+        image: vl.s7,
         isLeft: false
     },
     {
@@ -187,7 +160,7 @@ const SERVICES_DATA = [
             'Logic Equivalence Checking (LEC)',
             'Tape-Out Readiness & Support'
         ],
-        image: s8,
+        image: vl.s8,
         isLeft: true
     },
     {
@@ -202,7 +175,7 @@ const SERVICES_DATA = [
             'Wafer Fabrication Monitoring',
             'Yield Estimation & Management'
         ],
-        image: s9,
+        image: vl.s9,
         isLeft: false
     },
     {
@@ -217,7 +190,7 @@ const SERVICES_DATA = [
             'Signal & Power Integrity Review',
             'Package Qualification Support'
         ],
-        image: s10,
+        image: vl.s10,
         isLeft: true
     },
     {
@@ -232,7 +205,7 @@ const SERVICES_DATA = [
             'Hardware Debug & Analysis',
             'ATE Test Program Development (Wafers/Package)'
         ],
-        image: s11,
+        image: vl.s11,
         isLeft: false
     },
     {
@@ -248,90 +221,112 @@ const SERVICES_DATA = [
             'Failure Analysis Support',
             'Production Readiness & Yield Optimization'
         ],
-        image: s12,
+        image: vl.s12,
         isLeft: true
     }
 ];
 
 export default function VLSI() {
-    const MAX_TILT = 4;
+    const MAX_TILT = 1;
 
-    // Unified States & Refs
-    const [scrollWidth, setScrollWidth] = useState(0);
-    const heroBtn1Ref = useRef(null);
-    const heroBtn2Ref = useRef(null);
-    const ctaBtnRef = useRef(null);
-
-    // Centralized Lifecycle System
     useEffect(() => {
-        // 1. Scroll Progress Bar Tracking
-        const handleScroll = () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            setScrollWidth(pct);
-        };
+        const root = document.querySelector(".vlsi-page");
+        if (!root) return undefined;
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const cleanups = [];
 
-        // 2. Hero Component Fade-In Trigger
-        const revealTimer = setTimeout(() => {
-            document.querySelectorAll('.hero-reveal').forEach((el) => {
-                el.classList.add('active-reveal');
-            });
+        if (reducedMotion) {
+            root.querySelectorAll(".scroll-reveal-item").forEach((el) => el.classList.add("active"));
+            root.querySelectorAll(".enterprise-row-section").forEach((el) => el.classList.add("text-revealed"));
+            root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
+            return undefined;
+        }
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle("active", entry.isIntersecting);
+                });
+            },
+            { threshold: 0, rootMargin: "0px 0px -60px 0px" },
+        );
+
+        const textObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle("text-revealed", entry.isIntersecting);
+                });
+            },
+            { threshold: 0, rootMargin: "0px 0px -80px 0px" },
+        );
+
+        root.querySelectorAll(".scroll-reveal-item").forEach((item) => revealObserver.observe(item));
+        root.querySelectorAll(".enterprise-row-section").forEach((card) => textObserver.observe(card));
+
+        const heroTimer = window.setTimeout(() => {
+            root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
         }, 80);
 
-        // 3. Centralized Interactive Magnetic Anchors Mapping
-        const magneticTargets = [heroBtn1Ref.current, heroBtn2Ref.current, ctaBtnRef.current];
+        const progressBar = root.querySelector(".scroll-progress-bar");
+        const updateProgress = () => {
+            if (!progressBar) return;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = `${docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0}%`;
+        };
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
 
-        const magneticCleanups = magneticTargets.map((btn) => {
-            if (!btn) return null;
-
-            const handleMouseMove = (e) => {
+        root.querySelectorAll(".magnetic-btn-anchor").forEach((btn) => {
+            const handleMove = (event) => {
                 const rect = btn.getBoundingClientRect();
-                const x = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
-                const y = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 5;
+                const x = ((event.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
+                const y = ((event.clientY - rect.top - rect.height / 2) / (event.height / 2)) * 5;
                 btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
             };
-
-            const handleMouseLeave = () => {
-                btn.style.transform = 'translate3d(0,0,0)';
+            const handleLeave = () => {
+                btn.style.transform = "translate3d(0,0,0)";
             };
-
-            btn.addEventListener('mousemove', handleMouseMove, { passive: true });
-            btn.addEventListener('mouseleave', handleMouseLeave);
-
-            return () => {
-                btn.removeEventListener('mousemove', handleMouseMove);
-                btn.removeEventListener('mouseleave', handleMouseLeave);
-            };
+            btn.addEventListener("mousemove", handleMove, { passive: true });
+            btn.addEventListener("mouseleave", handleLeave);
+            cleanups.push(() => {
+                btn.removeEventListener("mousemove", handleMove);
+                btn.removeEventListener("mouseleave", handleLeave);
+            });
         });
 
-        // Clean up all global hooks upon component unmounting
+        root.querySelectorAll(".enterprise-row-section, .showcase-card.anim-lift-card").forEach((card) => {
+            const handleMove = (event) => {
+                const rect = card.getBoundingClientRect();
+                const relX = (event.clientX - rect.left) / rect.width - 0.5;
+                const relY = (event.clientY - rect.top) / rect.height - 0.5;
+                card.style.transition =
+                    "transform 0.1s ease, border-color 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple)";
+                card.style.transform = `perspective(900px) rotateX(${-relY * MAX_TILT}deg) rotateY(${relX * MAX_TILT}deg) translate3d(0,-1px,0)`;
+                card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+                card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+            };
+            const handleLeave = () => {
+                card.style.transition =
+                    "transform 0.55s var(--ease-apple), border-color 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple)";
+                card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0)";
+            };
+            card.addEventListener("mousemove", handleMove, { passive: true });
+            card.addEventListener("mouseleave", handleLeave);
+            cleanups.push(() => {
+                card.removeEventListener("mousemove", handleMove);
+                card.removeEventListener("mouseleave", handleLeave);
+            });
+        });
+
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(revealTimer);
-            magneticCleanups.forEach((cleanup) => cleanup && cleanup());
+            window.clearTimeout(heroTimer);
+            window.removeEventListener("scroll", updateProgress);
+            revealObserver.disconnect();
+            textObserver.disconnect();
+            cleanups.forEach((cleanup) => cleanup());
         };
     }, []);
-
-    // Shared 3D Interactive Card Logic
-    const handleCard3DMove = (e, card) => {
-        const rect = card.getBoundingClientRect();
-        const relX = (e.clientX - rect.left) / rect.width - 0.5;
-        const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-        card.style.transition = 'transform 0.1s ease, border-color 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple)';
-        card.style.transform = `perspective(900px) rotateX(${-relY * MAX_TILT}deg) rotateY(${relX * MAX_TILT}deg) translate3d(0,-3px,0)`;
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    };
-
-    const handleCard3DLeave = (card) => {
-        card.style.transition = 'transform 0.55s var(--ease-apple), border-color 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple)';
-        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0)';
-    };
 
     const renderWords = (text) => {
         return text.trim().split(/\s+/).map((w, idx) => (
@@ -344,9 +339,9 @@ export default function VLSI() {
     };
 
     return (
-        <>
+        <div className="vlsi-page">
             {/* 1. SCROLL PROGRESS BAR */}
-            <div id="scroll-progress-bar" style={{ width: `${scrollWidth}%` }} />
+            <div className="scroll-progress-bar" />
 
             {/* 2. HERO SECTION */}
             <section className="hero-section">
@@ -371,40 +366,38 @@ export default function VLSI() {
                                 </div>
                             </div>
                             <div className="d-flex flex-wrap gap-3 mb-5 hero-reveal">
-                                <div className="magnetic-btn-anchor" ref={heroBtn1Ref}>
+                                <div className="magnetic-btn-anchor">
                                     <a href="#" className="btn btn-vcts-primary px-4 py-3">Explore Our Services</a>
                                 </div>
-                                <div className="magnetic-btn-anchor" ref={heroBtn2Ref}>
+                                <div className="magnetic-btn-anchor">
                                     <a href="#" className="btn btn-vcts-outline px-4 py-3">Talk to Our Experts</a>
                                 </div>
                             </div>
 
                             {/* Micro-Features Structural Row */}
-                            <div className="row g-4 pt-5 border-top border-light-subtle hero-reveal">
+                            <div className="row g-4 pt-5 hero-reveal">
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={Icon11} alt="Expert Engineering" className="me-2" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+                                    <img src={vl.Icon11} alt="Expert Engineering" className="hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Expert<br />Engineering</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={Icon12} alt="Proven Methodologies" className="me-2" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+                                    <img src={vl.Icon12} alt="Proven Methodologies" className="hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Proven<br />Methodologies</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={Icon13} alt="Quality & Reliability" className="me-2" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+                                    <img src={vl.Icon13} alt="Quality & Reliability" className="hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Quality &<br />Reliability</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={Icon14} alt="On-time Delivery" className="me-2" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+                                    <img src={vl.Icon14} alt="On-time Delivery" className="hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>On-time<br />Delivery</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Side Hardware Visual Layout */}
-                        <div className="col-xl-6 col-lg-5 text-center mt-5 mt-lg-0 hero-reveal">
-                            <div className="d-inline-block position-relative" id="hardwareInteractiveStage" style={{ maxWidth: '100%', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(10, 54, 157, 0.08)' }}>
-                                <img src={M1} alt="Semiconductor Design & Verification" className="img-fluid" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
-                            </div>
+                        <div className="col-xl-6 col-lg-5 text-center text-lg-end mt-5 mt-lg-0 hero-reveal">
+                            <img src={vl.hero1} alt="Semiconductor Design & Verification" className="img-fluid hero-main-img" />
                         </div>
                     </div>
                 </div>
@@ -421,16 +414,12 @@ export default function VLSI() {
                     <div className="row row-cols-2 row-cols-md-4 g-4 text-center">
                         {EXPERTISE_DATA.map((item) => (
                             <div key={item.id} className="col scroll-reveal-item" style={{ transitionDelay: item.delay }}>
-                                <div
-                                    className="showcase-card anim-lift-card py-4"
-                                    onMouseMove={(e) => handleCard3DMove(e, e.currentTarget)}
-                                    onMouseLeave={(e) => handleCard3DLeave(e.currentTarget)}
-                                >
+                                <div className="showcase-card anim-lift-card py-4">
                                     <div className="blue-icon-box">
                                         <img
                                             src={ICONS_MAP[item.id]}
                                             alt={item.title}
-                                            style={{ width: '48px', height: '48px', objectFit: 'contain' }}
+                                            className="expertise-card-icon"
                                         />
                                     </div>
                                     <h4 className="h6 fw-bold mb-0">{item.title}</h4>
@@ -452,7 +441,16 @@ export default function VLSI() {
                     <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 pt-3">
                         {FLOW_STEPS.map((step, idx) => (
                             <React.Fragment key={idx}>
-                                <div className="flow-node-item text-center flex-fill scroll-reveal-item" style={{ minWidth: '90px' }}>
+                                <div 
+                                    className="flow-node-item text-center flex-fill scroll-reveal-item" 
+                                    style={{ minWidth: '90px', cursor: 'pointer' }}
+                                    onClick={() => {
+                                        const el = document.getElementById(step.targetId);
+                                        if (el) {
+                                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                    }}
+                                >
                                     <div className="flow-node-circle">
                                         <i className={`bi ${step.icon}`}></i>
                                     </div>
@@ -484,33 +482,34 @@ export default function VLSI() {
                         {SERVICES_DATA.map((stage) => {
                             const textCol = (
                                 <div className="col-lg-6 p-0">
-                                    <div className="d-flex align-items-center gap-3 mb-2">
-                                        <div className="alpha-badge">{stage.letter}</div>
-                                        <h3 className="h5 fw-bold mb-0">{renderWords(stage.title)}</h3>
+                                    <div className="subsys-text-wrap">
+                                        <div className="d-flex align-items-center gap-3 mb-2">
+                                            <div className="alpha-badge">{stage.letter}</div>
+                                            <h3 className="h5 fw-bold mb-0">{renderWords(stage.title)}</h3>
+                                        </div>
+                                        <p className="text-secondary small mb-3 subsys-para">
+                                            <span className="subsys-para-inner" style={{ transitionDelay: '0.45s' }}>
+                                                {stage.desc}
+                                            </span>
+                                        </p>
+                                        <ul className="tech-list">
+                                            {stage.items.map((item, itemIdx) => (
+                                                <li key={itemIdx} style={{ transitionDelay: `${0.55 + itemIdx * 0.12}s` }}>
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
-                                    <p className="text-secondary small mb-3 subsys-para">
-                                        <span className="subsys-para-inner" style={{ transitionDelay: '0.45s' }}>
-                                            {stage.desc}
-                                        </span>
-                                    </p>
-                                    <ul className="tech-list">
-                                        {stage.items.map((item, itemIdx) => (
-                                            <li key={itemIdx} style={{ transitionDelay: `${0.55 + itemIdx * 0.12}s` }}>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
                                 </div>
                             );
 
                             const diagramCol = (
-                                <div className="col-lg-6 d-flex justify-content-center align-items-center p-0">
+                                <div className="col-lg-6 d-flex p-0">
                                     <div className="diagram-box">
                                         <img
                                             src={stage.image}
                                             alt={stage.title}
-                                            className="img-fluid"
-                                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                                            className="img-fluid diagram-box-img"
                                         />
                                     </div>
                                 </div>
@@ -519,11 +518,10 @@ export default function VLSI() {
                             return (
                                 <div
                                     key={stage.letter}
+                                    id={`service-${stage.letter.toLowerCase()}`}
                                     className="enterprise-row-section scroll-reveal-item"
-                                    onMouseMove={(e) => handleCard3DMove(e, e.currentTarget)}
-                                    onMouseLeave={(e) => handleCard3DLeave(e.currentTarget)}
                                 >
-                                    <div className="row align-items-center w-100 g-5 m-0">
+                                    <div className="row w-100 g-5 m-0">
                                         {stage.isLeft ? (
                                             <>
                                                 {diagramCol}
@@ -553,9 +551,9 @@ export default function VLSI() {
                                 <p className="mb-0 text-white-50">Partner with VCTS for innovative, reliable and silicon-proven solutions.</p>
                             </div>
                             <div className="col-lg-3 text-center text-lg-end mt-4 mt-lg-0">
-                                <div className="magnetic-btn-anchor" ref={ctaBtnRef}>
-                                    <a href="#" className="btn btn-vcts-primary bg-white text-dark py-3 px-4 fw-bold shadow-sm" style={{ fontSize: '0.9rem', borderRadius: '4px' }}>
-                                        Connect With Our Experts <i className="bi bi-arrow-right ms-1 text-primary"></i>
+                                <div className="magnetic-btn-anchor">
+                                    <a href="#" className="btn btn-vcts-cta-white py-3 px-4 fw-bold shadow-sm" style={{ fontSize: '0.9rem', borderRadius: '4px' }}>
+                                        Connect With Our Experts <i className="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
                             </div>
@@ -563,6 +561,6 @@ export default function VLSI() {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

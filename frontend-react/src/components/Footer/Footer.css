@@ -20,8 +20,8 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 1.5fr) repeat(3, minmax(160px, 1fr)) minmax(220px, 1.2fr);
-  gap: clamp(24px, 4vw, 56px);
+  grid-template-columns: minmax(200px, 1.5fr) repeat(3, minmax(120px, 1fr)) minmax(180px, 1.2fr);
+  gap: clamp(16px, 2.5vw, 40px);
   padding-bottom: 34px;
 }
 

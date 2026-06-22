@@ -89,13 +89,6 @@
   object-fit: contain;
 }
 
-/* Makes the logo slightly smaller on mobile screens */
-@media (max-width: 991.98px) {
-  .navbar-logo-img {
-    height: 38px;       
-  }
-}
-
 /* ========================================================
    DROPDOWN MENU STYLING
    ======================================================== */

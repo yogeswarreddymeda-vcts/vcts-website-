@@ -1,7 +1,7 @@
-import linkedInIcon from '../../assets/image/H ana F/Icon31.png';
-import twitterIcon from '../../assets/image/H ana F/Icon32.png';
-import youtubeIcon from '../../assets/image/H ana F/Icon33.png';
-import logo from '../../assets/image/H ana F/New Logo Light.png';
+import linkedInIcon from '../../assets/image/header_footer_img/Icon31.png';
+import twitterIcon from '../../assets/image/header_footer_img/Icon32.png';
+import youtubeIcon from '../../assets/image/header_footer_img/Icon33.png';
+import logo from '../../assets/image/header_footer_img/New Logo Light.png';
 import './Footer.css';
 
 export default function Footer({ setCurrentPage }) {

@@ -7,7 +7,21 @@ import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(() => {
+    const navigationEntries = performance.getEntriesByType('navigation');
+    const isReload = navigationEntries.length > 0
+      ? navigationEntries[0].type === 'reload'
+      : performance.navigation.type === 1;
+
+    if (isReload) {
+      return sessionStorage.getItem('vcts_current_page') || 'home';
+    }
+    return 'home';
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('vcts_current_page', currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

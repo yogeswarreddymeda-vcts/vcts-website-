@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Header.css';
-import logo from '../../assets/image/H ana F/New Logo Light.png';
+import logo from '../../assets/image/header_footer_img/New Logo Light.png';
 
 export default function Header({ currentPage, setCurrentPage }) {
   const btnRef = useRef(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const btn = btnRef.current;
@@ -29,6 +30,30 @@ export default function Header({ currentPage, setCurrentPage }) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest('#servicesDropdown') && !e.target.closest('.dropdown-menu')) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
+
+  const closeMenu = () => {
+    // Close Dropdown in React state
+    setDropdownOpen(false);
+
+    // Close mobile navbar collapse if open
+    const navbarCollapseEl = document.getElementById('vctsNavbar');
+    if (navbarCollapseEl && navbarCollapseEl.classList.contains('show') && window.bootstrap) {
+      const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(navbarCollapseEl);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      }
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3">
       <div className="container-fluid">
@@ -40,6 +65,7 @@ export default function Header({ currentPage, setCurrentPage }) {
             e.preventDefault();
             setCurrentPage('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeMenu();
           }}
         >
           <img 
@@ -62,6 +88,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                   e.preventDefault();
                   setCurrentPage('home');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
+                  closeMenu();
                 }}
               >
                 Home
@@ -72,16 +99,19 @@ export default function Header({ currentPage, setCurrentPage }) {
             {/* Services Dropdown */}
             <li className="nav-item dropdown">
               <a 
-                className={`nav-link dropdown-toggle ${(currentPage === 'vlsi' || currentPage === 'embedded') ? 'active' : ''}`} 
+                className={`nav-link dropdown-toggle ${(currentPage === 'vlsi' || currentPage === 'embedded') ? 'active' : ''} ${dropdownOpen ? 'show' : ''}`} 
                 href="#" 
                 id="servicesDropdown" 
                 role="button" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setDropdownOpen(!dropdownOpen);
+                }}
+                aria-expanded={dropdownOpen}
               >
                 Services
               </a>
-              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+              <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`} aria-labelledby="servicesDropdown">
                 <li>
                   <a 
                     className={`dropdown-item ${currentPage === 'vlsi' ? 'active' : ''}`} 
@@ -90,6 +120,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                       e.preventDefault();
                       setCurrentPage('vlsi');
                       window.scrollTo({ top: 0, behavior: 'smooth' });
+                      closeMenu();
                     }}
                   >
                     VLSI Engineering
@@ -103,6 +134,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                       e.preventDefault();
                       setCurrentPage('embedded');
                       window.scrollTo({ top: 0, behavior: 'smooth' });
+                      closeMenu();
                     }}
                   >
                     Embedded Engineering
