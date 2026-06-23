@@ -82,7 +82,7 @@ function App() {
       {currentPage === 'embedded' && <Embedded />}
       <Footer setCurrentPage={setCurrentPage} />
     </>
-  )
+  );
 }
 
 export default App
