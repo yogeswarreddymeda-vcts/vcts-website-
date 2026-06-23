@@ -26,19 +26,19 @@
 /* ========================================================
    1. ADVANCED KINETIC TEXT REVEAL BLOCKS
    ======================================================== */
-.kinetic-reveal-container {
+.vlsi-kinetic-reveal-container {
     overflow: hidden;
     display: block;
 }
 
-.hero-reveal {
+.vlsi-hero-reveal {
     opacity: 0;
     transform: translate3d(0, 35px, 0);
     filter: blur(10px);
     will-change: opacity, transform, filter;
 }
 
-.hero-reveal.active-reveal {
+.vlsi-hero-reveal.vlsi-active-reveal {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     filter: blur(0);
@@ -47,26 +47,26 @@
         filter 1.2s var(--ease-apple);
 }
 
-.hero-reveal:nth-child(1) {
+.vlsi-hero-reveal:nth-child(1) {
     transition-delay: 40ms;
 }
 
-.hero-reveal:nth-child(2) {
+.vlsi-hero-reveal:nth-child(2) {
     transition-delay: 120ms;
 }
 
-.hero-reveal:nth-child(3) {
+.vlsi-hero-reveal:nth-child(3) {
     transition-delay: 200ms;
 }
 
-.hero-reveal:nth-child(4) {
+.vlsi-hero-reveal:nth-child(4) {
     transition-delay: 280ms;
 }
 
 /* ========================================================
    2. VIEWPORT OBSERVER ENTRANCE MOTOR
    ======================================================== */
-.scroll-reveal-item {
+.vlsi-scroll-reveal-item {
     opacity: 0;
     transform: translate3d(0, 25px, 0);
     filter: blur(8px);
@@ -76,7 +76,7 @@
     will-change: opacity, transform, filter;
 }
 
-.scroll-reveal-item.active {
+.vlsi-scroll-reveal-item.vlsi-active {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     filter: blur(0);
@@ -85,13 +85,13 @@
 /* ========================================================
    4. SUBSYSTEMS MATRIX CONTAINER
    ======================================================== */
-.subsystems-matrix-container {
+.vlsi-subsystems-matrix-container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem !important;
 }
 
-.enterprise-row-section {
+.vlsi-enterprise-row-section.vlsi {
     position: relative;
     background: var(--bg-pure-white);
     border: 1px solid var(--border-light) !important;
@@ -110,7 +110,7 @@
 }
 
 @media (max-width: 992px) {
-    .enterprise-row-section {
+    .vlsi-enterprise-row-section.vlsi {
         height: auto !important;
         min-height: unset !important;
         padding: 0 2rem !important;
@@ -118,8 +118,8 @@
 }
 
 /* Proximity cursor specular ray tracking background */
-.enterprise-row-section::before,
-.showcase-card.anim-lift-card::before {
+.vlsi-enterprise-row-section.vlsi::before,
+.vlsi-showcase-card.vlsi-anim-lift-card::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -139,20 +139,20 @@
     will-change: opacity;
 }
 
-.enterprise-row-section:hover,
-.showcase-card.anim-lift-card:hover {
+.vlsi-enterprise-row-section.vlsi:hover,
+.vlsi-showcase-card.vlsi-anim-lift-card:hover {
     transform: translate3d(0, -1px, 0);
     border-color: rgba(56, 189, 248, 0.3) !important;
     box-shadow: 0 20px 40px -12px rgba(5, 27, 78, 0.06);
 }
 
-.enterprise-row-section:hover::before,
-.showcase-card.anim-lift-card:hover::before {
+.vlsi-enterprise-row-section.vlsi:hover::before,
+.vlsi-showcase-card.vlsi-anim-lift-card:hover::before {
     opacity: 1;
 }
 
 /* Tech-list */
-.tech-list {
+.vlsi-tech-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.35rem 1.5rem;
@@ -164,19 +164,19 @@
 }
 
 @media (min-width: 576px) {
-    .tech-list {
+    .vlsi-tech-list {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-.tech-list li {
+.vlsi-tech-list li {
     position: relative;
     padding-left: 1.25rem;
     margin-bottom: 0.4rem;
     text-align: left;
 }
 
-.tech-list li::before {
+.vlsi-tech-list li::before {
     content: '\25a0';
     position: absolute;
     left: 0;
@@ -187,45 +187,45 @@
     will-change: color, transform;
 }
 
-.enterprise-row-section:hover .tech-list li {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li {
     color: var(--deep-navy);
     transform: translate3d(5px, 0, 0);
 }
 
-.enterprise-row-section:hover .tech-list li::before {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li::before {
     color: var(--laser-sky-blue);
     transform: scale3d(1.15, 1.15, 1);
 }
 
-.enterprise-row-section:hover .tech-list li:nth-child(1) {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li:nth-child(1) {
     transition-delay: 0ms;
 }
 
-.enterprise-row-section:hover .tech-list li:nth-child(2) {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li:nth-child(2) {
     transition-delay: 30ms;
 }
 
-.enterprise-row-section:hover .tech-list li:nth-child(3) {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li:nth-child(3) {
     transition-delay: 60ms;
 }
 
-.enterprise-row-section:hover .tech-list li:nth-child(4) {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-tech-list li:nth-child(4) {
     transition-delay: 90ms;
 }
 
-.enterprise-row-section h3,
-.enterprise-row-section p {
+.vlsi-enterprise-row-section.vlsi h3,
+.vlsi-enterprise-row-section.vlsi p {
     transition: color 0.4s var(--ease-apple);
 }
 
-.enterprise-row-section:hover h3 {
+.vlsi-enterprise-row-section.vlsi:hover h3 {
     color: var(--primary-cobalt);
 }
 
 /* ========================================================
    5. BUTTONS
    ======================================================== */
-.btn-vcts-primary {
+.vlsi-btn-vcts-primary {
     background-color: var(--primary-cobalt) !important;
     border: 1px solid var(--primary-cobalt) !important;
     color: var(--bg-pure-white) !important;
@@ -234,13 +234,13 @@
     transition: all 0.3s var(--ease-linear);
 }
 
-.btn-vcts-primary:hover {
+.vlsi-btn-vcts-primary:hover {
     background-color: #072966 !important;
     border-color: #072966 !important;
     box-shadow: 0 10px 20px -5px rgba(10, 54, 157, 0.25);
 }
 
-.btn-vcts-outline {
+.vlsi-btn-vcts-outline {
     background-color: transparent !important;
     border: 1.5px solid var(--primary-cobalt) !important;
     color: var(--primary-cobalt) !important;
@@ -249,19 +249,19 @@
     transition: all 0.3s var(--ease-linear);
 }
 
-.btn-vcts-outline:hover {
+.vlsi-btn-vcts-outline:hover {
     background-color: rgba(10, 54, 157, 0.05) !important;
     color: var(--primary-cobalt) !important;
 }
 
-.magnetic-btn-anchor {
+.vlsi-magnetic-btn-anchor {
     display: inline-block;
     transition: transform 0.35s cubic-bezier(0.25, 1, 0.32, 1);
     will-change: transform;
 }
 
 /* CTA Card */
-.cta-blue-card {
+.vlsi-cta-blue-card {
     background-color: #002a65 !important;
     background-image: linear-gradient(90deg, transparent 0%, transparent 200px, #002a65 380px, #002a65 100%), url('../image/VLSI/M1.png') !important;
     background-repeat: no-repeat !important;
@@ -275,7 +275,7 @@
 }
 
 @media (max-width: 991.98px) {
-    .cta-blue-card {
+    .vlsi-cta-blue-card {
         background-image: linear-gradient(180deg, rgba(0, 42, 101, 0.85) 0%, #002a65 100%) !important;
         background-position: center center !important;
         background-size: cover !important;
@@ -283,7 +283,7 @@
     }
 }
 
-.btn-vcts-cta-white {
+.vlsi-btn-vcts-cta-white {
     background-color: #ffffff !important;
     border: 1px solid #ffffff !important;
     color: #002a65 !important;
@@ -291,7 +291,7 @@
     transition: all 0.3s ease;
 }
 
-.btn-vcts-cta-white:hover {
+.vlsi-btn-vcts-cta-white:hover {
     background-color: #f8f9fa !important;
     border-color: #f8f9fa !important;
     transform: translateY(-2px);
@@ -299,7 +299,7 @@
 }
 
 
-.cta-blue-card::after {
+.vlsi-cta-blue-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -316,19 +316,19 @@
     will-change: transform;
 }
 
-.cta-blue-card:hover::after {
+.vlsi-cta-blue-card:hover::after {
     transform: translate3d(50%, 0, 0);
 }
 
 /* ========================================================
    6. ENGINEERING FLOW PIPELINE
    ======================================================== */
-.flow-node-item {
+.vlsi-flow-node-item {
     transition: transform 0.4s var(--ease-apple);
     will-change: transform;
 }
 
-.flow-node-circle {
+.vlsi-flow-node-circle {
     width: 54px;
     height: 54px;
     border: 1.5px solid var(--border-light);
@@ -344,18 +344,18 @@
     will-change: background-color, border-color, color, box-shadow;
 }
 
-.flow-node-item:hover {
+.vlsi-flow-node-item:hover {
     transform: translate3d(0, -6px, 0);
 }
 
-.flow-node-item:hover .flow-node-circle {
+.vlsi-flow-node-item:hover .vlsi-flow-node-circle {
     background-color: var(--primary-cobalt);
     border-color: var(--primary-cobalt);
     color: var(--bg-pure-white);
     box-shadow: 0 12px 24px -5px rgba(10, 54, 157, 0.25);
 }
 
-.flow-arrow-icon {
+.vlsi-flow-arrow-icon {
     color: var(--primary-cobalt);
     font-size: 0.85rem;
     opacity: 0.25;
@@ -365,12 +365,43 @@
     will-change: opacity, transform;
 }
 
-.flow-node-item:hover+.flow-arrow-icon {
+.vlsi-flow-node-item:hover+.vlsi-flow-arrow-icon {
     opacity: 0.8;
     transform: translate3d(3px, 0, 0);
 }
 
-.blue-icon-box {
+/* ── Mobile: 3-column grid for flow pipeline ── */
+@media (max-width: 991.98px) {
+    .vlsi-flow-pipeline-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem 0.5rem;
+        justify-items: center;
+    }
+
+    .vlsi-flow-arrow-icon {
+        display: none !important;
+    }
+
+    .vlsi-flow-node-item {
+        min-width: unset !important;
+        width: 100%;
+    }
+
+    .vlsi-flow-node-circle {
+        width: 46px;
+        height: 46px;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .vlsi-flow-node-item p {
+        font-size: 0.68rem !important;
+        line-height: 1.3;
+    }
+}
+
+.vlsi-blue-icon-box {
     font-size: 2rem;
     color: var(--primary-cobalt);
     margin-bottom: 1rem;
@@ -378,13 +409,18 @@
     will-change: transform, color;
 }
 
-.showcase-card:hover .blue-icon-box {
+.vlsi-showcase-card:hover .vlsi-blue-icon-box {
     color: var(--laser-sky-blue);
     transform: scale3d(1.08, 1.08, 1);
 }
 
 /* Showcase / Expertise Cards */
-.showcase-card {
+.vlsi-showcase-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 1px solid var(--border-light);
     border-radius: 10px;
     background: var(--bg-pure-white);
@@ -398,28 +434,28 @@
     overflow: hidden;
 }
 
-.showcase-card:hover {
+.vlsi-showcase-card:hover {
     transform: translate3d(0, -6px, 0);
     box-shadow: 0 16px 36px -8px rgba(10, 54, 157, 0.12);
     border-color: rgba(56, 189, 248, 0.35);
 }
 
 /* OUR EXPERTISE full-bleed section */
-.expertise-section {
+.vlsi-expertise-section {
     border-top: 1px solid var(--border-light);
     border-bottom: 1px solid var(--border-light);
     background: var(--bg-off-white);
     padding: 4rem 0;
 }
 
-.expertise-section .container-fluid {
+.vlsi-expertise-section .container-fluid {
     max-width: 1200px;
 }
 
 /* ========================================================
    7. HARDWARE SCREEN SCHEMATICS DIAGNOSTICS LAB
    ======================================================== */
-.enterprise-row-section>.row {
+.vlsi-enterprise-row-section.vlsi>.row {
     align-self: stretch;
     align-items: stretch !important;
     /* override Bootstrap align-items-center */
@@ -430,7 +466,7 @@
 }
 
 /* Text columns */
-.enterprise-row-section>.row>[class*="col-"]:not(.d-flex) {
+.vlsi-enterprise-row-section.vlsi>.row>[class*="col-"]:not(.d-flex) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -443,8 +479,8 @@
    contained box with breathing room on all sides (matches the reference
    "Embedded Hardware Engineering" page look) instead of bleeding to the
    card's outer edge. */
-.enterprise-row-section>.row>[class*="col-disabled"].d-flex,
-.enterprise-row-section>.row>[class*="col-"].d-flex {
+.vlsi-enterprise-row-section.vlsi>.row>[class*="col-disabled"].d-flex,
+.vlsi-enterprise-row-section.vlsi>.row>[class*="col-"].d-flex {
     padding: 1.5rem !important;
     margin: 0 !important;
     flex-direction: column !important;
@@ -453,7 +489,7 @@
     order: 1; /* Always stack images on top on mobile viewports */
 }
 
-.diagram-box {
+.vlsi-diagram-box {
     width: 100%;
     max-width: 100%;
     aspect-ratio: 16 / 9;
@@ -476,13 +512,24 @@
     will-change: filter, opacity, transform;
 }
 
-.enterprise-row-section.text-revealed .diagram-box {
+.vlsi-enterprise-row-section.vlsi.vlsi-text-revealed .vlsi-diagram-box {
     opacity: 1;
     filter: blur(0);
     transform: scale(1) translate3d(0, 0, 0) translateZ(45px);
 }
 
-.hw-trace-path {
+/* On mobile, disable Z-depth to prevent GPU sub-pixel blur on text */
+@media (max-width: 992px) {
+    .vlsi-diagram-box {
+        transform: scale(0.9) translate3d(0, 30px, 0);
+        transform-style: flat;
+    }
+    .vlsi-enterprise-row-section.vlsi.vlsi-text-revealed .vlsi-diagram-box {
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+.vlsi-hw-trace-path {
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
     animation: drawTrace 3.5s var(--ease-apple) forwards;
@@ -494,7 +541,7 @@
     }
 }
 
-.hw-pulse-center {
+.vlsi-hw-pulse-center {
     animation: technicalGlow 4s ease-in-out infinite;
     transform-origin: 250px 200px;
 }
@@ -515,7 +562,7 @@
     }
 }
 
-.alpha-badge {
+.vlsi-alpha-badge {
     width: 34px;
     height: 34px;
     background-color: rgba(10, 54, 157, 0.05);
@@ -529,12 +576,12 @@
     transition: all 0.3s ease;
 }
 
-.enterprise-row-section:hover .alpha-badge {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-alpha-badge {
     background-color: var(--primary-cobalt);
     color: #ffffff;
 }
 
-.code-sim {
+.vlsi-code-sim {
     color: #a5b4fc;
     text-align: left;
     width: 100%;
@@ -542,11 +589,11 @@
     transition: color 0.3s ease;
 }
 
-.enterprise-row-section:hover .code-sim {
+.vlsi-enterprise-row-section.vlsi:hover .vlsi-code-sim {
     color: #ffffff;
 }
 
-.svg-wireframe {
+.vlsi-svg-wireframe {
     width: 100%;
     height: 100%;
     max-height: 200px;
@@ -554,7 +601,7 @@
     display: block;
 }
 
-.metric-grid {
+.vlsi-metric-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 8px;
@@ -562,7 +609,7 @@
     text-align: left;
 }
 
-.metric-cell {
+.vlsi-metric-cell {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.06);
     padding: 0.45rem;
@@ -572,7 +619,7 @@
 /* ========================================================
    9. SCROLL PROGRESS BAR
    ======================================================== */
-.scroll-progress-bar {
+.vlsi-scroll-progress-bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -589,28 +636,28 @@
 /* ========================================================
    10. PREMIUM WORD-SPLIT TEXT ANIMATION (Subsystems Section)
    ======================================================== */
-.word-clip {
+.vlsi-word-clip {
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
     margin-right: 0.28em;
 }
 
-.word-inner {
+.vlsi-word-inner {
     display: inline-block;
     opacity: 0;
     transform: translate3d(0, 110%, 0);
     will-change: opacity, transform;
 }
 
-.enterprise-row-section.text-revealed .word-inner {
+.vlsi-enterprise-row-section.vlsi.vlsi-text-revealed .vlsi-word-inner {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition: opacity 0.75s var(--ease-apple),
         transform 0.75s var(--ease-apple);
 }
 
-.subsys-para {
+.vlsi-subsys-para {
     overflow: hidden;
     color: #3b516b !important;
     font-size: 0.9rem !important;
@@ -618,13 +665,13 @@
     margin-bottom: 0.75rem !important;
 }
 
-.subsys-para-inner {
+.vlsi-subsys-para-inner {
     opacity: 0;
     transform: translate3d(0, 18px, 0);
     will-change: opacity, transform;
 }
 
-.enterprise-row-section.text-revealed .subsys-para-inner {
+.vlsi-enterprise-row-section.vlsi.vlsi-text-revealed .vlsi-subsys-para-inner {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition: opacity 0.9s var(--ease-apple),
@@ -633,7 +680,7 @@
 }
 
 /* Tech-list items sweep from left */
-.tech-list li {
+.vlsi-tech-list li {
     opacity: 0;
     transform: translate3d(-18px, 0, 0);
     color: #1b3152;
@@ -641,7 +688,7 @@
     margin-bottom: 0.35rem !important;
 }
 
-.enterprise-row-section.text-revealed .tech-list li {
+.vlsi-enterprise-row-section.vlsi.vlsi-text-revealed .vlsi-tech-list li {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition: opacity 0.75s var(--ease-apple),
@@ -649,35 +696,44 @@
         color 0.4s var(--ease-apple);
 }
 
-.subsys-text-wrap {
+.vlsi-subsys-text-wrap {
     transform: translateZ(30px);
     transform-style: preserve-3d;
 }
 
-/* 11. 3D CARD TILT */
-.enterprise-row-section,
-.enterprise-row-section>.row,
-.showcase-card.anim-lift-card {
-    transform-style: preserve-3d;
+@media (max-width: 992px) {
+    .vlsi-subsys-text-wrap {
+        transform: none;
+        transform-style: flat;
+    }
+}
+
+/* 11. 3D CARD TILT — only on desktop where GPU compositing is reliable */
+@media (min-width: 993px) {
+    .vlsi-enterprise-row-section.vlsi,
+    .vlsi-enterprise-row-section.vlsi>.row,
+    .vlsi-showcase-card.vlsi-anim-lift-card {
+        transform-style: preserve-3d;
+    }
 }
 
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
 
-    .hero-reveal,
-    .scroll-reveal-item,
+    .vlsi-hero-reveal,
+    .vlsi-scroll-reveal-item,
     .navbar-nav .nav-link::after,
-    .enterprise-row-section,
-    .showcase-card,
-    .cta-blue-card::after,
-    .magnetic-btn-anchor,
-    .diagram-box::before,
-    .tech-list li,
-    .flow-node-item,
-    .word-inner,
-    .subsys-para-inner,
-    .diagram-box,
-    .diagram-box-img {
+    .vlsi-enterprise-row-section.vlsi,
+    .vlsi-showcase-card,
+    .vlsi-cta-blue-card::after,
+    .vlsi-magnetic-btn-anchor,
+    .vlsi-diagram-box::before,
+    .vlsi-tech-list li,
+    .vlsi-flow-node-item,
+    .vlsi-word-inner,
+    .vlsi-subsys-para-inner,
+    .vlsi-diagram-box,
+    .vlsi-diagram-box-img {
         animation: none !important;
         transition: none !important;
         transform: none !important;
@@ -685,17 +741,17 @@
         opacity: 1 !important;
     }
 
-    .scroll-progress-bar {
+    .vlsi-scroll-progress-bar {
         transition: none !important;
     }
 }
 
-.hero-section {
+.vlsi-hero-section {
     padding: 11rem 0 6rem;
     background: radial-gradient(circle at 80% 40%, rgba(10, 54, 157, 0.04) 0%, transparent 60%);
 }
 
-.hero-title {
+.vlsi-hero-title {
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.15;
@@ -703,15 +759,113 @@
 }
 
 /* ========================================================
+   MOBILE HERO LAYOUT
+   ======================================================== */
+@media (max-width: 991.98px) {
+    .vlsi-hero-section {
+        padding: 6rem 0 3rem;
+    }
+
+    /* Image column comes FIRST on mobile */
+    .vlsi-hero-section .col-xl-6.col-lg-5 {
+        order: -1;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Text column stacks below */
+    .vlsi-hero-section .col-xl-6.col-lg-7 {
+        order: 1;
+        text-align: center;
+    }
+
+    /* Title size on mobile — large & bold */
+    .vlsi-hero-title {
+        font-size: 2.5rem;
+        line-height: 1.15;
+    }
+
+    /* Paragraph small on mobile */
+    .vlsi-hero-section .lead,
+    .vlsi-hero-section .fs-5 {
+        font-size: 0.82rem !important;
+        line-height: 1.6;
+    }
+
+    /* Center the label and paragraph */
+    .vlsi-hero-section .vlsi-kinetic-reveal-container,
+    .vlsi-hero-section [style*="maxWidth"] {
+        text-align: center;
+        max-width: 100% !important;
+    }
+
+    /* Buttons: full-width stacked column */
+    .vlsi-hero-section .d-flex.flex-wrap.gap-3 {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        width: 100%;
+    }
+
+    .vlsi-hero-section .vlsi-magnetic-btn-anchor {
+        width: 100%;
+        display: block;
+    }
+
+    .vlsi-hero-section .vlsi-magnetic-btn-anchor .btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border-radius: 8px !important;
+        font-size: 1rem;
+        padding: 0.9rem 1.5rem !important;
+    }
+
+    /* Badge grid: icon above text, 2-column centered */
+    .vlsi-hero-section .row.g-4.pt-5 {
+        padding-top: 1.5rem !important;
+        justify-content: center;
+    }
+
+    .vlsi-hero-section .row.g-4.pt-5 .col-6 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+        gap: 0.4rem;
+    }
+
+    .vlsi-hero-section .row.g-4.pt-5 .col-6 .vlsi-hero-badge-icon {
+        margin-right: 0 !important;
+        width: 44px;
+        height: 44px;
+    }
+
+    .vlsi-hero-section .row.g-4.pt-5 .col-6 span {
+        text-align: center;
+        font-size: 0.82rem !important;
+        line-height: 1.3;
+    }
+
+    /* Hero main image full width on mobile */
+    .vlsi-hero-main-img {
+        width: 88%;
+        max-width: 340px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* ========================================================
    12. IMAGE SIZING & OBJECT FITTING
    ======================================================== */
-.hero-badge-icon {
+.vlsi-hero-badge-icon {
     width: 38px;
     height: 38px;
     object-fit: contain;
 }
 
-.hero-main-img {
+.vlsi-hero-main-img {
     width: 85%;
     max-width: 600px;
     height: auto;
@@ -719,56 +873,56 @@
 }
 
 @media (min-width: 992px) {
-    .hero-main-img {
+    .vlsi-hero-main-img {
         margin-top: -40px;
     }
 }
 
-.expertise-card-icon {
+.vlsi-expertise-card-icon {
     width: 48px;
     height: 48px;
     object-fit: contain;
 }
 
-.diagram-box-img {
+.vlsi-diagram-box-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 @media (min-width: 992px) {
-    .enterprise-row-section>.row {
+    .vlsi-enterprise-row-section.vlsi>.row {
         justify-content: space-between !important;
     }
-    .enterprise-row-section>.row>[class*="col-"]:not(.d-flex) {
+    .vlsi-enterprise-row-section.vlsi>.row>[class*="col-"]:not(.d-flex) {
         width: 50% !important;
         order: unset; /* Restore natural DOM order on desktop */
     }
-    .enterprise-row-section>.row>[class*="col-"].d-flex {
+    .vlsi-enterprise-row-section.vlsi>.row>[class*="col-"].d-flex {
         width: 50% !important;
         order: unset; /* Restore natural DOM order on desktop */
     }
 
     /* Padding for text column on the left (when diagram is on the right) */
-    .enterprise-row-section>.row>:first-child:not(.d-flex) {
+    .vlsi-enterprise-row-section.vlsi>.row>:first-child:not(.d-flex) {
         padding-left: 2rem !important;
         padding-right: 1rem !important;
     }
 
     /* Padding for text column on the right (when diagram is on the left) */
-    .enterprise-row-section>.row>:last-child:not(.d-flex) {
+    .vlsi-enterprise-row-section.vlsi>.row>:last-child:not(.d-flex) {
         padding-right: 2rem !important;
         padding-left: 1rem !important;
     }
 
     /* Desktop diagram column padding */
-    .enterprise-row-section>.row>[class*="col-disabled"].d-flex,
-    .enterprise-row-section>.row>[class*="col-"].d-flex {
+    .vlsi-enterprise-row-section.vlsi>.row>[class*="col-disabled"].d-flex,
+    .vlsi-enterprise-row-section.vlsi>.row>[class*="col-"].d-flex {
         padding: 2rem !important;
     }
 
     /* Desktop diagram box sizing */
-    .diagram-box {
+    .vlsi-diagram-box {
         width: 80%;
         max-width: 80%;
     }

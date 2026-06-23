@@ -237,16 +237,16 @@ export default function VLSI() {
         const cleanups = [];
 
         if (reducedMotion) {
-            root.querySelectorAll(".scroll-reveal-item").forEach((el) => el.classList.add("active"));
-            root.querySelectorAll(".enterprise-row-section").forEach((el) => el.classList.add("text-revealed"));
-            root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
+            root.querySelectorAll(".vlsi-scroll-reveal-item").forEach((el) => el.classList.add("vlsi-active"));
+            root.querySelectorAll(".vlsi-enterprise-row-section").forEach((el) => el.classList.add("vlsi-text-revealed"));
+            root.querySelectorAll(".vlsi-hero-reveal").forEach((el) => el.classList.add("vlsi-active-reveal"));
             return undefined;
         }
 
         const revealObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    entry.target.classList.toggle("active", entry.isIntersecting);
+                    entry.target.classList.toggle("vlsi-active", entry.isIntersecting);
                 });
             },
             { threshold: 0, rootMargin: "0px 0px -60px 0px" },
@@ -255,20 +255,20 @@ export default function VLSI() {
         const textObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    entry.target.classList.toggle("text-revealed", entry.isIntersecting);
+                    entry.target.classList.toggle("vlsi-text-revealed", entry.isIntersecting);
                 });
             },
             { threshold: 0, rootMargin: "0px 0px -80px 0px" },
         );
 
-        root.querySelectorAll(".scroll-reveal-item").forEach((item) => revealObserver.observe(item));
-        root.querySelectorAll(".enterprise-row-section").forEach((card) => textObserver.observe(card));
+        root.querySelectorAll(".vlsi-scroll-reveal-item").forEach((item) => revealObserver.observe(item));
+        root.querySelectorAll(".vlsi-enterprise-row-section").forEach((card) => textObserver.observe(card));
 
         const heroTimer = window.setTimeout(() => {
-            root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
+            root.querySelectorAll(".vlsi-hero-reveal").forEach((el) => el.classList.add("vlsi-active-reveal"));
         }, 80);
 
-        const progressBar = root.querySelector(".scroll-progress-bar");
+        const progressBar = root.querySelector(".vlsi-scroll-progress-bar");
         const updateProgress = () => {
             if (!progressBar) return;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -277,7 +277,7 @@ export default function VLSI() {
         window.addEventListener("scroll", updateProgress, { passive: true });
         updateProgress();
 
-        root.querySelectorAll(".magnetic-btn-anchor").forEach((btn) => {
+        root.querySelectorAll(".vlsi-magnetic-btn-anchor").forEach((btn) => {
             const handleMove = (event) => {
                 const rect = btn.getBoundingClientRect();
                 const x = ((event.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
@@ -295,7 +295,7 @@ export default function VLSI() {
             });
         });
 
-        root.querySelectorAll(".enterprise-row-section, .showcase-card.anim-lift-card").forEach((card) => {
+        root.querySelectorAll(".vlsi-enterprise-row-section, .vlsi-showcase-card.vlsi-anim-lift-card").forEach((card) => {
             const handleMove = (event) => {
                 const rect = card.getBoundingClientRect();
                 const relX = (event.clientX - rect.left) / rect.width - 0.5;
@@ -330,8 +330,8 @@ export default function VLSI() {
 
     const renderWords = (text) => {
         return text.trim().split(/\s+/).map((w, idx) => (
-            <span className="word-clip" key={idx}>
-                <span className="word-inner" style={{ transitionDelay: `${0.05 + idx * 0.07}s` }}>
+            <span className="vlsi-word-clip" key={idx}>
+                <span className="vlsi-word-inner" style={{ transitionDelay: `${0.05 + idx * 0.07}s` }}>
                     {w}
                 </span>
             </span>
@@ -341,70 +341,70 @@ export default function VLSI() {
     return (
         <div className="vlsi-page">
             {/* 1. SCROLL PROGRESS BAR */}
-            <div className="scroll-progress-bar" />
+            <div className="vlsi-scroll-progress-bar" />
 
             {/* 2. HERO SECTION */}
-            <section className="hero-section">
+            <section className="vlsi-hero-section">
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-xl-6 col-lg-7">
-                            <div className="kinetic-reveal-container">
-                                <div className="hero-reveal">
+                            <div className="vlsi-kinetic-reveal-container">
+                                <div className="vlsi-hero-reveal">
                                     <span className="text-uppercase fw-bold small tracking-wider mb-2 d-block" style={{ color: 'var(--primary-cobalt)', fontSize: '0.8rem' }}>Semiconductor Design & Verification Services</span>
                                 </div>
                             </div>
-                            <div className="kinetic-reveal-container">
-                                <div className="hero-reveal">
-                                    <h1 className="hero-title mb-4">Design. Verify.<br />Deliver Silicon Excellence.</h1>
+                            <div className="vlsi-kinetic-reveal-container">
+                                <div className="vlsi-hero-reveal">
+                                    <h1 className="vlsi-hero-title mb-4">Design. Verify.<br />Deliver Silicon Excellence.</h1>
                                 </div>
                             </div>
-                            <div className="kinetic-reveal-container">
-                                <div className="hero-reveal">
+                            <div className="vlsi-kinetic-reveal-container">
+                                <div className="vlsi-hero-reveal">
                                     <p className="text-secondary lead fs-5 mb-4" style={{ maxWidth: '600px' }}>
                                         End-to-end semiconductor design and verification services that accelerate innovation and deliver reliable, high-performance silicon solutions from concept to production.
                                     </p>
                                 </div>
                             </div>
-                            <div className="d-flex flex-wrap gap-3 mb-5 hero-reveal">
-                                <div className="magnetic-btn-anchor">
-                                    <a href="#" className="btn btn-vcts-primary px-4 py-3">Explore Our Services</a>
+                            <div className="d-flex flex-wrap gap-3 mb-5 vlsi-hero-reveal">
+                                <div className="vlsi-magnetic-btn-anchor">
+                                    <a href="#" className="btn vlsi-btn-vcts-primary px-4 py-3">Explore Our Services</a>
                                 </div>
-                                <div className="magnetic-btn-anchor">
-                                    <a href="#" className="btn btn-vcts-outline px-4 py-3">Talk to Our Experts</a>
+                                <div className="vlsi-magnetic-btn-anchor">
+                                    <a href="#" className="btn vlsi-btn-vcts-outline px-4 py-3">Talk to Our Experts</a>
                                 </div>
                             </div>
 
                             {/* Micro-Features Structural Row */}
-                            <div className="row g-4 pt-5 hero-reveal">
+                            <div className="row g-4 pt-5 vlsi-hero-reveal">
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={vl.Icon11} alt="Expert Engineering" className="hero-badge-icon me-2" />
+                                    <img src={vl.Icon11} alt="Expert Engineering" className="vlsi-hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Expert<br />Engineering</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={vl.Icon12} alt="Proven Methodologies" className="hero-badge-icon me-2" />
+                                    <img src={vl.Icon12} alt="Proven Methodologies" className="vlsi-hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Proven<br />Methodologies</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={vl.Icon13} alt="Quality & Reliability" className="hero-badge-icon me-2" />
+                                    <img src={vl.Icon13} alt="Quality & Reliability" className="vlsi-hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>Quality &<br />Reliability</span>
                                 </div>
                                 <div className="col-6 col-sm-3 d-flex align-items-center">
-                                    <img src={vl.Icon14} alt="On-time Delivery" className="hero-badge-icon me-2" />
+                                    <img src={vl.Icon14} alt="On-time Delivery" className="vlsi-hero-badge-icon me-2" />
                                     <span className="small fw-semibold text-secondary" style={{ fontSize: '0.8rem', lineHeight: '1.2' }}>On-time<br />Delivery</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Side Hardware Visual Layout */}
-                        <div className="col-xl-6 col-lg-5 text-center text-lg-end mt-5 mt-lg-0 hero-reveal">
-                            <img src={vl.hero1} alt="Semiconductor Design & Verification" className="img-fluid hero-main-img" />
+                        <div className="col-xl-6 col-lg-5 text-center text-lg-end mt-5 mt-lg-0 vlsi-hero-reveal">
+                            <img src={vl.hero1} alt="Semiconductor Design & Verification" className="img-fluid vlsi-hero-main-img" />
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* 3. EXPERTISE SECTION */}
-            <section className="expertise-section scroll-reveal-item">
+            <section className="vlsi-expertise-section vlsi-scroll-reveal-item">
                 <div className="container-fluid">
                     <div className="text-center mb-5">
                         <span className="text-uppercase fw-bold small tracking-wider d-block mb-2" style={{ color: 'var(--primary-cobalt)', fontSize: '0.8rem' }}>Our Expertise</span>
@@ -413,13 +413,13 @@ export default function VLSI() {
 
                     <div className="row row-cols-2 row-cols-md-4 g-4 text-center">
                         {EXPERTISE_DATA.map((item) => (
-                            <div key={item.id} className="col scroll-reveal-item" style={{ transitionDelay: item.delay }}>
-                                <div className="showcase-card anim-lift-card py-4">
-                                    <div className="blue-icon-box">
+                            <div key={item.id} className="col vlsi-scroll-reveal-item" style={{ transitionDelay: item.delay }}>
+                                <div className="vlsi-showcase-card vlsi-anim-lift-card py-4">
+                                    <div className="vlsi-blue-icon-box">
                                         <img
                                             src={ICONS_MAP[item.id]}
                                             alt={item.title}
-                                            className="expertise-card-icon"
+                                            className="vlsi-expertise-card-icon"
                                         />
                                     </div>
                                     <h4 className="h6 fw-bold mb-0">{item.title}</h4>
@@ -432,26 +432,26 @@ export default function VLSI() {
 
             {/* 4. FLOW PIPELINE SECTION */}
             <section className="py-5 bg-white">
-                <div className="container-fluid scroll-reveal-item">
+                <div className="container-fluid vlsi-scroll-reveal-item">
                     <div className="text-center mb-5">
                         <span className="text-uppercase fw-bold small tracking-wider d-block mb-2" style={{ color: 'var(--primary-cobalt)', fontSize: '0.8rem' }}>Our Semiconductor Engineering Flow</span>
                         <div style={{ width: '45px', height: '3px', backgroundColor: 'var(--primary-cobalt)', margin: '0 auto' }}></div>
                     </div>
 
-                    <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 pt-3">
+                    <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 pt-3 vlsi-flow-pipeline-grid">
                         {FLOW_STEPS.map((step, idx) => (
                             <React.Fragment key={idx}>
-                                <div 
-                                    className="flow-node-item text-center flex-fill scroll-reveal-item" 
+                                <div
+                                    className="vlsi-flow-node-item text-center flex-fill vlsi-scroll-reveal-item"
                                     style={{ minWidth: '90px', cursor: 'pointer' }}
                                     onClick={() => {
                                         const el = document.getElementById(step.targetId);
                                         if (el) {
-                                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                         }
                                     }}
                                 >
-                                    <div className="flow-node-circle">
+                                    <div className="vlsi-flow-node-circle">
                                         <i className={`bi ${step.icon}`}></i>
                                     </div>
                                     <p className="fw-bold text-secondary text-center" style={{ fontSize: '0.72rem', lineHeight: '1.3' }}>
@@ -459,7 +459,7 @@ export default function VLSI() {
                                     </p>
                                 </div>
                                 {idx < FLOW_STEPS.length - 1 && (
-                                    <div className="flow-arrow-icon d-none d-xl-block">
+                                    <div className="vlsi-flow-arrow-icon d-none d-xl-block">
                                         <i className="bi bi-arrow-right"></i>
                                     </div>
                                 )}
@@ -478,21 +478,21 @@ export default function VLSI() {
                         <div style={{ width: '55px', height: '3px', backgroundColor: 'var(--primary-cobalt)', margin: '0.75rem auto 0' }}></div>
                     </div>
 
-                    <div className="subsystems-matrix-container">
+                    <div className="vlsi-subsystems-matrix-container">
                         {SERVICES_DATA.map((stage) => {
                             const textCol = (
                                 <div className="col-lg-6 p-0">
-                                    <div className="subsys-text-wrap">
+                                    <div className="vlsi-subsys-text-wrap">
                                         <div className="d-flex align-items-center gap-3 mb-2">
-                                            <div className="alpha-badge">{stage.letter}</div>
+                                            <div className="vlsi-alpha-badge">{stage.letter}</div>
                                             <h3 className="h5 fw-bold mb-0">{renderWords(stage.title)}</h3>
                                         </div>
-                                        <p className="text-secondary small mb-3 subsys-para">
-                                            <span className="subsys-para-inner" style={{ transitionDelay: '0.45s' }}>
+                                        <p className="text-secondary small mb-3 vlsi-subsys-para">
+                                            <span className="vlsi-subsys-para-inner" style={{ transitionDelay: '0.45s' }}>
                                                 {stage.desc}
                                             </span>
                                         </p>
-                                        <ul className="tech-list">
+                                        <ul className="vlsi-tech-list">
                                             {stage.items.map((item, itemIdx) => (
                                                 <li key={itemIdx} style={{ transitionDelay: `${0.55 + itemIdx * 0.12}s` }}>
                                                     {item}
@@ -505,11 +505,11 @@ export default function VLSI() {
 
                             const diagramCol = (
                                 <div className="col-lg-6 d-flex p-0">
-                                    <div className="diagram-box">
+                                    <div className="vlsi-diagram-box">
                                         <img
                                             src={stage.image}
                                             alt={stage.title}
-                                            className="img-fluid diagram-box-img"
+                                            className="img-fluid vlsi-diagram-box-img"
                                         />
                                     </div>
                                 </div>
@@ -519,7 +519,7 @@ export default function VLSI() {
                                 <div
                                     key={stage.letter}
                                     id={`service-${stage.letter.toLowerCase()}`}
-                                    className="enterprise-row-section scroll-reveal-item"
+                                    className="vlsi-enterprise-row-section vlsi-scroll-reveal-item vlsi"
                                 >
                                     <div className="row w-100 g-5 m-0">
                                         {stage.isLeft ? (
@@ -544,15 +544,15 @@ export default function VLSI() {
             {/* 6. CTA BANNER SECTION */}
             <section className="py-5 bg-white">
                 <div className="container-fluid">
-                    <div className="cta-blue-card shadow-sm">
+                    <div className="vlsi-cta-blue-card shadow-sm">
                         <div className="row align-items-center position-relative" style={{ zIndex: 2 }}>
                             <div className="col-lg-6 offset-lg-3 text-center text-lg-start">
                                 <h3 className="fw-bold mb-2 fs-3 text-white">Let's Build the Future of Semiconductor Together</h3>
                                 <p className="mb-0 text-white-50">Partner with VCTS for innovative, reliable and silicon-proven solutions.</p>
                             </div>
                             <div className="col-lg-3 text-center text-lg-end mt-4 mt-lg-0">
-                                <div className="magnetic-btn-anchor">
-                                    <a href="#" className="btn btn-vcts-cta-white py-3 px-4 fw-bold shadow-sm" style={{ fontSize: '0.9rem', borderRadius: '4px' }}>
+                                <div className="vlsi-magnetic-btn-anchor">
+                                    <a href="#" className="btn vlsi-btn-vcts-cta-white py-3 px-4 fw-bold shadow-sm" style={{ fontSize: '0.9rem', borderRadius: '4px' }}>
                                         Connect With Our Experts <i className="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
