@@ -205,8 +205,8 @@ const services = [
 
 function titleWords(title) {
   return title.split(/\s+/).map((word, index) => (
-    <span className="word-clip" key={`${word}-${index}`}>
-      <span className="word-inner" style={{ transitionDelay: `${0.05 + index * 0.07}s` }}>
+    <span className="embpg-word-clip" key={`${word}-${index}`}>
+      <span className="embpg-word-inner" style={{ transitionDelay: `${0.05 + index * 0.07}s` }}>
         {word}
       </span>
     </span>
@@ -218,23 +218,23 @@ export default function Embedded() {
       Animations - Start
   ========================= */}
   useEffect(() => {
-    const root = document.querySelector(".embedded-page");
+    const root = document.querySelector(".embpg-embedded-page");
     if (!root) return undefined;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const cleanups = [];
 
     if (reducedMotion) {
-      root.querySelectorAll(".scroll-reveal-item").forEach((el) => el.classList.add("active"));
-      root.querySelectorAll(".enterprise-row-section").forEach((el) => el.classList.add("text-revealed"));
-      root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
+      root.querySelectorAll(".embpg-scroll-reveal-item").forEach((el) => el.classList.add("embpg-active"));
+      root.querySelectorAll(".embpg-enterprise-row-section").forEach((el) => el.classList.add("embpg-text-revealed"));
+      root.querySelectorAll(".embpg-hero-reveal").forEach((el) => el.classList.add("embpg-active-reveal"));
       return undefined;
     }
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("active", entry.isIntersecting);
+          entry.target.classList.toggle("embpg-active", entry.isIntersecting);
         });
       },
       { threshold: 0, rootMargin: "0px 0px -60px 0px" },
@@ -243,28 +243,28 @@ export default function Embedded() {
     const textObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("text-revealed", entry.isIntersecting);
+          entry.target.classList.toggle("embpg-text-revealed", entry.isIntersecting);
         });
       },
       { threshold: 0, rootMargin: "0px 0px -80px 0px" },
     );
 
-    root.querySelectorAll(".scroll-reveal-item").forEach((item) => revealObserver.observe(item));
-    root.querySelectorAll(".enterprise-row-section").forEach((card) => textObserver.observe(card));
+    root.querySelectorAll(".embpg-scroll-reveal-item").forEach((item) => revealObserver.observe(item));
+    root.querySelectorAll(".embpg-enterprise-row-section").forEach((card) => textObserver.observe(card));
 
     const mobileHoverObserver = new IntersectionObserver(
       (entries) => {
         if (window.innerWidth > 992) {
           entries.forEach((entry) => {
-            entry.target.classList.remove("active-hover");
+            entry.target.classList.remove("embpg-active-hover");
           });
           return;
         }
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("active-hover");
+            entry.target.classList.add("embpg-active-hover");
           } else {
-            entry.target.classList.remove("active-hover");
+            entry.target.classList.remove("embpg-active-hover");
           }
         });
       },
@@ -274,15 +274,15 @@ export default function Embedded() {
       }
     );
 
-    root.querySelectorAll(".showcase-card, .enterprise-row-section, .flow-node-item").forEach((el) => {
+    root.querySelectorAll(".embpg-showcase-card, .embpg-enterprise-row-section, .embpg-flow-node-item").forEach((el) => {
       mobileHoverObserver.observe(el);
     });
 
     const heroTimer = window.setTimeout(() => {
-      root.querySelectorAll(".hero-reveal").forEach((el) => el.classList.add("active-reveal"));
+      root.querySelectorAll(".embpg-hero-reveal").forEach((el) => el.classList.add("embpg-active-reveal"));
     }, 80);
 
-    const progressBar = root.querySelector(".scroll-progress-bar");
+    const progressBar = root.querySelector(".embpg-scroll-progress-bar");
     const updateProgress = () => {
       if (!progressBar) return;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -291,7 +291,7 @@ export default function Embedded() {
     window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
 
-    root.querySelectorAll(".magnetic-btn-anchor").forEach((btn) => {
+    root.querySelectorAll(".embpg-magnetic-btn-anchor").forEach((btn) => {
       const handleMove = (event) => {
         const rect = btn.getBoundingClientRect();
         const touch = event.touches?.[0] || event.changedTouches?.[0];
@@ -320,7 +320,7 @@ export default function Embedded() {
       });
     });
 
-    root.querySelectorAll(".enterprise-row-section, .showcase-card.anim-lift-card").forEach((card) => {
+    root.querySelectorAll(".embpg-enterprise-row-section, .embpg-showcase-card.embpg-anim-lift-card").forEach((card) => {
       const handleMove = (event) => {
         const rect = card.getBoundingClientRect();
         const touch = event.touches?.[0] || event.changedTouches?.[0];
@@ -330,7 +330,7 @@ export default function Embedded() {
         const relY = (clientY - rect.top) / rect.height - 0.5;
         card.style.transition =
           "transform 0.1s ease, border-color 0.5s var(--embedded-ease-apple), box-shadow 0.5s var(--embedded-ease-apple)";
-        card.style.transform = `perspective(900px) rotateX(${-relY * 1}deg) rotateY(${relX * 1}deg) translate3d(0,-1px,0)`;
+        card.style.transform = `perspective(900px) rotateX(${-relY * 1.5}deg) rotateY(${relX * 1.5}deg) translate3d(0,-8px,0)`;
         card.style.setProperty("--mouse-x", `${clientX - rect.left}px`);
         card.style.setProperty("--mouse-y", `${clientY - rect.top}px`);
       };
@@ -369,52 +369,52 @@ export default function Embedded() {
   ========================= */}
 
   return (
-    <main className="embedded-page">
-      <div className="scroll-progress-bar" />
+    <main className="embpg-embedded-page">
+      <div className="embpg-scroll-progress-bar" />
 
       {/* =========================
           Hero Section - Start
       ========================= */}
-      <section className="embedded-hero-section">
-        <div className="embedded-container">
-          <div className="embedded-hero-grid">
-            <div className="embedded-hero-copy">
-              <div className="kinetic-reveal-container">
-                <div className="hero-reveal">
-                  <span className="embedded-kicker">Embedded Engineering Services</span>
+      <section className="embpg-embedded-hero-section">
+        <div className="embpg-embedded-container">
+          <div className="embpg-embedded-hero-grid">
+            <div className="embpg-embedded-hero-copy">
+              <div className="embpg-kinetic-reveal-container">
+                <div className="embpg-hero-reveal">
+                  <span className="embpg-embedded-kicker">Embedded Engineering Services</span>
                 </div>
               </div>
-              <div className="kinetic-reveal-container">
-                <div className="hero-reveal">
-                  <h1 className="embedded-hero-title">
+              <div className="embpg-kinetic-reveal-container">
+                <div className="embpg-hero-reveal">
+                  <h1 className="embpg-embedded-hero-title">
                     End-to-End Embedded
                     <br />
                     Engineering <span>Solutions.</span>
                   </h1>
                 </div>
               </div>
-              <div className="kinetic-reveal-container">
-                <div className="hero-reveal">
-                  <p className="embedded-hero-description">
+              <div className="embpg-kinetic-reveal-container">
+                <div className="embpg-hero-reveal">
+                  <p className="embpg-embedded-hero-description">
                     From hardware to firmware and connectivity to validation&mdash;we build reliable, secure, and
                     high-performance embedded systems that power real-world applications.
                   </p>
                 </div>
               </div>
-              <div className="embedded-hero-actions hero-reveal">
-                <div className="hero-btn-anchor">
-                  <a href="#embedded-services" className="embedded-btn embedded-btn-primary">
+              <div className="embpg-embedded-hero-actions embpg-hero-reveal">
+                <div className="embpg-hero-btn-anchor">
+                  <a href="#embedded-services" className="embpg-embedded-btn embpg-embedded-btn-primary">
                     Explore Our Services
                   </a>
                 </div>
-                <div className="hero-btn-anchor">
-                  <a href="#embedded-cta" className="embedded-btn embedded-btn-outline">
+                <div className="embpg-hero-btn-anchor">
+                  <a href="#embedded-cta" className="embpg-embedded-btn embpg-embedded-btn-outline">
                     Talk to Our Experts
                   </a>
                 </div>
               </div>
-              <div className="embedded-hero-features hero-reveal">
-                <div className="embedded-feature">
+              <div className="embpg-embedded-hero-features embpg-hero-reveal">
+                <div className="embpg-embedded-feature">
                   <img src={Images.i1} alt="" />
                   <span>
                     Deep Domain
@@ -422,7 +422,7 @@ export default function Embedded() {
                     Expertise
                   </span>
                 </div>
-                <div className="embedded-feature">
+                <div className="embpg-embedded-feature">
                   <img src={Images.i2} alt="" />
                   <span>
                     Agile & Scalable
@@ -430,7 +430,7 @@ export default function Embedded() {
                     Delivery
                   </span>
                 </div>
-                <div className="embedded-feature">
+                <div className="embpg-embedded-feature">
                   <img src={Images.i3} alt="" />
                   <span>
                     Quality &
@@ -441,10 +441,10 @@ export default function Embedded() {
               </div>
             </div>
 
-            <div className="embedded-hero-visual hero-reveal">
-              <div className="hardware-stage">
+            <div className="embpg-embedded-hero-visual embpg-hero-reveal">
+              <div className="embpg-hardware-stage">
                 <picture>
-                  <source media="(max-width: 768px)" srcSet={Images.mhero} />
+                  <source media="(max-width: 992px)" srcSet={Images.mhero} />
                   <img src={Images.hero} alt="Embedded Engineering Solutions" />
                 </picture>
               </div>
@@ -459,22 +459,22 @@ export default function Embedded() {
       {/* =========================
           Embedded Engineering Process - Start
       ========================= */}
-      <section className="process-section">
-        <div className="embedded-container scroll-reveal-item">
-          <div className="section-heading">
+      <section className="embpg-process-section">
+        <div className="embpg-embedded-container embpg-scroll-reveal-item">
+          <div className="embpg-section-heading">
             <span>Our Embedded Engineering Process</span>
             <i aria-hidden="true" />
           </div>
-          <div className="process-flow">
+          <div className="embpg-process-flow">
             {processSteps.map(([title, icon], index) => (
-              <div className="process-pair" key={title}>
-                <div className="flow-node-item scroll-reveal-item">
-                  <div className="flow-node-circle">
+              <div className="embpg-process-pair" key={title}>
+                <div className="embpg-flow-node-item embpg-scroll-reveal-item">
+                  <div className="embpg-flow-node-circle">
                     <img src={icon} alt="" />
                   </div>
                   <p>{title}</p>
                 </div>
-                {index < processSteps.length - 1 && <div className="flow-arrow-icon">→</div>}
+                {index < processSteps.length - 1 && <div className="embpg-flow-arrow-icon">→</div>}
               </div>
             ))}
           </div>
@@ -487,24 +487,24 @@ export default function Embedded() {
       {/* =========================
           Our Embedded Service Areas - Start
       ========================= */}
-      <section className="expertise-section scroll-reveal-item">
-        <div className="embedded-container">
-          <div className="section-heading">
+      <section className="embpg-expertise-section embpg-scroll-reveal-item">
+        <div className="embpg-embedded-container">
+          <div className="embpg-section-heading">
             <span>Our Embedded Service Areas</span>
             <i aria-hidden="true" />
           </div>
-          <div className="service-area-grid">
+          <div className="embpg-service-area-grid">
             {serviceAreas.map(([title, icon, targetId], index) => (
               <div
-                className="service-area-col scroll-reveal-item"
+                className="embpg-service-area-col embpg-scroll-reveal-item"
                 style={{ transitionDelay: `${0.05 + index * 0.05}s`, cursor: "pointer" }}
                 onClick={() =>
                   document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
                 key={title}
               >
-                <div className="showcase-card anim-lift-card">
-                  <div className="blue-icon-box">
+                <div className="embpg-showcase-card embpg-anim-lift-card">
+                  <div className="embpg-blue-icon-box">
                     <img src={icon} alt="" />
                   </div>
                   <h4>{title}</h4>
@@ -521,27 +521,27 @@ export default function Embedded() {
       {/* =========================
           Technical Services - Start
       ========================= */}
-      <section className="services-matrix-section" id="embedded-services">
-        <div className="embedded-container embedded-container-narrow">
-          <div className="section-heading matrix-heading">
+      <section className="embpg-services-matrix-section" id="embedded-services">
+        <div className="embpg-embedded-container embpg-embedded-container-narrow">
+          <div className="embpg-section-heading embpg-matrix-heading">
             <span>Technical Services</span>
             <h2>Our Embedded Engineering Services</h2>
             <i aria-hidden="true" />
           </div>
 
-          <div className="subsystems-matrix-container">
+          <div className="embpg-subsystems-matrix-container">
             {services.map((service) => {
               const textColumn = (
-                <div className="service-copy">
-                  <div className="service-title-row">
-                    <div className="alpha-badge">{service.letter}</div>
+                <div className={`embpg-service-copy${service.reverse ? " embpg-is-reverse" : ""}`}>
+                  <div className="embpg-service-title-row">
+                    <div className="embpg-alpha-badge">{service.letter}</div>
                     <h3>{titleWords(service.title)}</h3>
                   </div>
-                  <p className="subsys-para">
-                    <span className="subsys-para-inner">{service.description}</span>
+                  <p className="embpg-subsys-para">
+                    <span className="embpg-subsys-para-inner">{service.description}</span>
                   </p>
-                  <span className="deliver-label">What We Deliver</span>
-                  <ul className="tech-list">
+                  <span className="embpg-deliver-label">What We Deliver</span>
+                  <ul className="embpg-tech-list">
                     {service.items.map((item, index) => (
                       <li style={{ transitionDelay: `${0.55 + index * 0.12}s` }} key={item}>
                         {item}
@@ -552,8 +552,8 @@ export default function Embedded() {
               );
 
               const imageColumn = (
-                <div className="service-image-wrap">
-                  <div className="diagram-box">
+                <div className="embpg-service-image-wrap">
+                  <div className="embpg-diagram-box">
                     <img src={service.image} alt={service.title} />
                   </div>
                 </div>
@@ -561,11 +561,11 @@ export default function Embedded() {
 
               return (
                 <article
-                  className="enterprise-row-section scroll-reveal-item"
+                  className="embpg-enterprise-row-section embpg-scroll-reveal-item"
                   id={"service-" + service.letter.toLowerCase()}
                   key={service.letter}
                 >
-                  <div className={`enterprise-row ${service.reverse ? "is-reverse" : ""}`}>
+                  <div className={`embpg-enterprise-row ${service.reverse ? "embpg-is-reverse" : ""}`}>
                     {service.reverse ? imageColumn : textColumn}
                     {service.reverse ? textColumn : imageColumn}
                   </div>
@@ -582,10 +582,10 @@ export default function Embedded() {
       {/* =========================
           Call To Action (CTA) - Start
       ========================= */}
-      <section className="cta-section" id="embedded-cta">
-        <div className="embedded-container">
-          <div className="cta-blue-card">
-            <div className="cta-content">
+      <section className="embpg-cta-section" id="embedded-cta">
+        <div className="embpg-embedded-container">
+          <div className="embpg-cta-blue-card">
+            <div className="embpg-cta-content">
               <div>
                 <h3>Let&apos;s Build Intelligent Embedded Products Together</h3>
                 <p>
@@ -593,8 +593,8 @@ export default function Embedded() {
                   innovation from concept to deployment.
                 </p>
               </div>
-              <div className="magnetic-btn-anchor">
-                <a href="#" className="embedded-btn cta-btn">
+              <div className="embpg-magnetic-btn-anchor">
+                <a href="#" className="embpg-embedded-btn embpg-cta-btn">
                   Talk to Our Experts <span aria-hidden="true">→</span>
                 </a>
               </div>
