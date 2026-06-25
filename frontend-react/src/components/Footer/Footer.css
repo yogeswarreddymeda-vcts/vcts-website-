@@ -336,8 +336,6 @@
   .site-footer {
     padding: 50px 24px 15px 24px;
     /* Reduced bottom padding for mobile */
-    background-size: 400px auto, cover;
-    background-position: -40px 105%, center;
   }
 
   .footer-grid {
