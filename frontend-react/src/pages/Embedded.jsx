@@ -1,36 +1,70 @@
-import { useEffect } from "react";
+import React from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/css/Embedded.css";
-import Images from "../assets/image/Embedded/emi";
+import EmbeddedImages from "../assets/image/Embedded/emi.js";
 
-const serviceAreas = [
-  ["Embedded Hardware", Images.i12, "service-a"],
-  ["Firmware Development", Images.i10, "service-b"],
-  ["BSP & Platform Enablement", Images.i11, "service-c"],
-  ["RTOS Solutions", Images.i7, "service-d"],
-  ["Embedded Linux", Images.i13, "service-e"],
-  ["Device Drivers", Images.i14, "service-f"],
-  ["Connectivity Solutions", Images.i15, "service-g"],
-  ["Automotive & Functional Safety", Images.i16, "service-h"],
-  ["Testing & Validation", Images.i17, "service-i"],
-  ["Manufacturing Support", Images.i18, "service-j"],
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const processSteps = [
-  ["Requirement Analysis & Feasibility", Images.i4],
-  ["Architecture & System Design", Images.i5],
-  ["Firmware Development", Images.i10],
-  ["Integration & Testing", Images.i9],
-  ["Validation & Certification", Images.i71],
-  ["Sustenance & Product Evolution", Images.i8],
-];
+/* ============ PROJECT DETAILS DATA ============ */
+const PROJECT_DETAILS = {
+  "Industrial IoT": {
+    tag: "Industrial IoT",
+    title: "Sub-metering gateway with edge inference",
+    desc: "A smart power-monitoring node designed for industrial factory grids, providing sub-phase granularity analysis directly at the edge.",
+    specs: ["Dual-core Cortex-M33 (160MHz)", "802.15.4 Mesh & LTE-M Fallback", "Class 0.2S Metrology Core"],
+    challenge: "Developing a robust power supply capable of utilizing a small supercapacitor array to provide 10 seconds of 'last-gasp' telemetry when grid power fails.",
+    stack: ["FreeRTOS", "Zephyr RTOS", "C / C++", "Altium Designer"]
+  },
+  "Healthcare": {
+    tag: "Healthcare",
+    title: "Wearable health monitoring, made simple",
+    desc: "A medical-grade continuous health tracker capable of monitoring ECG, PPG, and temperature waveforms for clinical patients.",
+    specs: ["Ultra-low power BLE 5.3 SoC", "High-Resolution Analog Front End", "14-Day Rechargeable Battery Life"],
+    challenge: "Filtering human motion artifacts from the raw ECG sensor waveforms in real-time using a mathematical filter optimized for micro-watt computing budgets.",
+    stack: ["Nordic SDK", "Bare-Metal C", "ARM CMSIS-DSP", "KiCad Pro"]
+  },
+  "Automotive": {
+    tag: "Automotive",
+    title: "Smart control for electric vehicles",
+    desc: "High-performance motor controller and vehicle supervisory control unit (VCU) for next-generation light electric vehicles.",
+    specs: ["Dual-MCU Lockstep Architecture", "CAN FD & Automotive Ethernet", "ISO-26262 ASIL-D Compliance"],
+    challenge: "Maintaining low throttle latency (sub-millisecond) while protecting telemetry data against intense electro-magnetic interference (EMI) inside the motor bay.",
+    stack: ["Bare-Metal C++", "STM32 Automotive MCUs", "Altium Designer", "MATLAB Simulink"]
+  },
+  "Consumer": {
+    tag: "Consumer",
+    title: "Everyday tech, designed to feel effortless",
+    desc: "A smart home control module supporting the latest cross-vendor smart home standards for instant, local responsiveness.",
+    specs: ["Matter over Thread Protocol", "Capacitive Touch Front Glass", "Universal Mains Voltage Input"],
+    challenge: "Shrinking the switching power supply and the wireless antenna layout to fit inside standard junction boxes while keeping thermal dissipation under 40°C.",
+    stack: ["ESP-IDF", "C Language", "Thread Protocol Stack", "SolidWorks Integration"]
+  },
+  "Aerospace": {
+    tag: "Aerospace",
+    title: "Built to perform in extreme conditions",
+    desc: "High-altitude telemetry and sensor acquisition module certified for low-orbit launch vehicles and aerospace tracking.",
+    specs: ["MIL-STD-810H Certified", "High-g Vibration Telemetry System", "Extended Temp Range (-40°C to +85°C)"],
+    challenge: "Mitigating structural clock oscillator frequency drift and thermal spikes during atmospheric escape conditions.",
+    stack: ["RT-Thread OS", "Bare-Metal Assembly & C", "High-Frequency RF Layout", "Ansys RFSS"]
+  },
+  "Edge AI": {
+    tag: "Edge AI",
+    title: "Intelligence that runs at the edge",
+    desc: "A standalone vision and acoustic classification board that processes intelligence directly at the sensor without relying on cloud computation.",
+    specs: ["NPU-Accelerated Cortex-M55", "TensorFlow Lite Micro Ready", "2.5 TOPS Computing Power"],
+    challenge: "Quantizing and compressing complex deep learning models to fit inside 512KB of ultra-fast internal SRAM with zero drop in accuracy.",
+    stack: ["C++", "CMSIS-NN", "TensorFlow Lite", "Edge Impulse Studio"]
+  }
+};
+/* ============ END PROJECT DETAILS DATA ============ */
 
-const services = [
+/* ============ SERVICES DATA ============ */
+const SERVICES_DATA = [
   {
     letter: "A",
     title: "Embedded Hardware Engineering",
-    description:
-      "We design and develop production-ready embedded hardware platforms optimized for performance, reliability, manufacturability, and long-term product scalability.",
-    image: Images.m1,
+    description: "We design and develop production-ready embedded hardware platforms optimized for performance, reliability, manufacturability, and long-term product scalability.",
     items: [
       "Architecture & Hardware Planning",
       "Component Selection & BOM Engineering",
@@ -39,16 +73,13 @@ const services = [
       "Sensor & MCU Integration",
       "Board Bring-Up & Validation",
       "DFM & DFT Implementation",
-      "EMI/EMC, Thermal & Signal Integrity Analysis",
-    ],
+      "EMI/EMC, Thermal & Signal Integrity Analysis"
+    ]
   },
   {
     letter: "B",
     title: "Bare-Metal & Firmware Development",
-    description:
-      "We develop efficient firmware and low-level software that provide deterministic control, optimized resource utilization, and seamless hardware interaction.",
-    image: Images.m2,
-    reverse: true,
+    description: "We develop efficient firmware and low-level software that provide deterministic control, optimized resource utilization, and seamless hardware interaction.",
     items: [
       "Firmware Architecture & Development",
       "Embedded C/C++ Programming",
@@ -57,16 +88,13 @@ const services = [
       "BSP & HAL Development",
       "Peripheral Integration",
       "Algorithm Implementation",
-      "Code, Memory & Performance Optimization",
-      "Unit Testing, Debugging & Validation",
-    ],
+      "Code, Memory & Performance Optimization"
+    ]
   },
   {
     letter: "C",
     title: "BSP Development & Platform Enablement",
-    description:
-      "We enable custom hardware platforms through BSP development, hardware abstraction, platform bring-up, and system-level integration.",
-    image: Images.m3,
+    description: "We enable custom hardware platforms through BSP development, hardware abstraction, platform bring-up, and system-level integration.",
     items: [
       "BSP Architecture & Development",
       "Board Bring-Up & Platform Enablement",
@@ -75,16 +103,13 @@ const services = [
       "Peripheral & Interface Enablement",
       "Hardware-Software Integration",
       "Middleware Integration",
-      "Platform Performance Optimization",
-    ],
+      "Platform Performance Optimization"
+    ]
   },
   {
     letter: "D",
     title: "Real-Time Operating Systems (RTOS)",
-    description:
-      "We build deterministic real-time systems that deliver predictable task execution, low-latency response, and reliable multitasking performance.",
-    image: Images.m4,
-    reverse: true,
+    description: "We build deterministic real-time systems that deliver predictable task execution, low-latency response, and reliable multitasking performance.",
     items: [
       "RTOS Architecture & Integration",
       "Task Scheduling & Prioritization",
@@ -93,15 +118,13 @@ const services = [
       "Multi-Threaded System Design",
       "Deterministic Control Implementation",
       "Memory & Resource Management",
-      "Real-Time Performance Optimization",
-    ],
+      "Real-Time Performance Optimization"
+    ]
   },
   {
     letter: "E",
     title: "Embedded Linux & High-Level OS",
-    description:
-      "We customize and optimize embedded operating systems to deliver stable, scalable, and feature-rich software platforms.",
-    image: Images.m5,
+    description: "We customize and optimize embedded operating systems to deliver stable, scalable, and feature-rich software platforms.",
     items: [
       "Embedded Linux Porting & Customization",
       "Yocto & Buildroot Development",
@@ -110,16 +133,13 @@ const services = [
       "Root Filesystem Optimization",
       "System Services Development",
       "Networking & File System Integration",
-      "Secure Boot & OTA Enablement",
-    ],
+      "Secure Boot & OTA Enablement"
+    ]
   },
   {
     letter: "F",
     title: "Device Drivers Development",
-    description:
-      "We develop robust device drivers that ensure reliable communication between hardware peripherals and software applications.",
-    image: Images.m6,
-    reverse: true,
+    description: "We develop robust device drivers that ensure reliable communication between hardware peripherals and software applications.",
     items: [
       "Peripheral Driver Development",
       "Sensor & Actuator Driver Integration",
@@ -128,15 +148,13 @@ const services = [
       "RTOS Device Drivers",
       "Driver Porting & Adaptation",
       "Low-Power Driver Optimization",
-      "Driver Debugging & Verification",
-    ],
+      "Driver Debugging & Verification"
+    ]
   },
   {
     letter: "G",
     title: "Wireless & Wired Connectivity",
-    description:
-      "We implement secure and reliable connectivity solutions that enable seamless communication between devices, gateways, cloud platforms, and enterprise systems.",
-    image: Images.m7,
+    description: "We implement secure and reliable connectivity solutions that enable seamless communication between devices, gateways, cloud platforms, and enterprise systems.",
     items: [
       "BLE, Wi-Fi, Zigbee, Thread & Matter Integration",
       "LoRaWAN, NB-IoT & LTE-M Solutions",
@@ -145,16 +163,13 @@ const services = [
       "IoT Gateway Development",
       "Edge-to-Cloud Connectivity",
       "Edge AI Enablement",
-      "Cloud & Embedded UI Integration",
-    ],
+      "Cloud & Embedded UI Integration"
+    ]
   },
   {
     letter: "H",
     title: "Automotive & Functional Safety",
-    description:
-      "We develop automotive and safety-critical embedded systems with a focus on reliability, compliance, diagnostics, and real-time operation.",
-    image: Images.m8,
-    reverse: true,
+    description: "We develop automotive and safety-critical embedded systems with a focus on reliability, compliance, diagnostics, and real-time operation.",
     items: [
       "Automotive ECU Development",
       "CAN/LIN & UDS Integration",
@@ -163,15 +178,13 @@ const services = [
       "Functional Safety Architecture",
       "Hazard & Risk Analysis (FMEA, FMEDA, HARA)",
       "Secure Boot & Firmware Security",
-      "Certification & Compliance Support",
-    ],
+      "Certification & Compliance Support"
+    ]
   },
   {
     letter: "I",
     title: "Testing, Validation & Embedded CI/CD",
-    description:
-      "We establish structured verification and validation workflows to improve software quality, accelerate development cycles, and ensure production-ready embedded systems.",
-    image: Images.m9,
+    description: "We establish structured verification and validation workflows to improve software quality, accelerate development cycles, and ensure production-ready embedded systems.",
     items: [
       "Unit & Integration Testing",
       "System-Level Validation",
@@ -180,431 +193,1134 @@ const services = [
       "Embedded CI/CD Pipeline Development",
       "Performance & Stress Testing",
       "Test Framework Development",
-      "Root Cause Analysis & Defect Resolution",
-    ],
+      "Root Cause Analysis & Defect Resolution"
+    ]
   },
   {
     letter: "J",
     title: "Manufacturing & Production Support",
-    description:
-      "We support the transition from prototype to production through manufacturing readiness, test infrastructure, programming workflows, and production engineering support.",
-    image: Images.m10,
-    reverse: true,
+    description: "We support the transition from prototype to production through manufacturing readiness, test infrastructure, programming workflows, and production engineering support.",
     items: [
       "DFM & DFT Review",
       "Test Fixture & Programming Jig Design",
       "In-System Programming (ISP)",
       "Production Test Planning",
       "Manufacturing Documentation",
-      "Contract Manufacturer Support",
-      "Yield Optimization",
-      "Failure Analysis & Production Validation",
-    ],
-  },
+      "Contract Manufacturer Support"
+    ]
+  }
 ];
 
-function titleWords(title) {
-  return title.split(/\s+/).map((word, index) => (
-    <span className="embpg-word-clip" key={`${word}-${index}`}>
-      <span className="embpg-word-inner" style={{ transitionDelay: `${0.05 + index * 0.07}s` }}>
-        {word}
-      </span>
-    </span>
+const TABS_ACCENTS = ["#1c75bc", "#0ea5e9", "#06b6d4"];
+/* ============ END SERVICES DATA ============ */
+
+/* ============ SERVICE DIAGRAM COMPONENT ============ */
+function ServiceDiagram({ letter, accent }) {
+  const horizontalLines = Array.from({ length: 6 }).map((_, i) => (
+    <line key={`h-${i}`} x1="0" y1={40 + i * 44} x2="400" y2={40 + i * 44} />
   ));
+  const verticalLines = Array.from({ length: 8 }).map((_, i) => (
+    <line key={`v-${i}`} x1={30 + i * 48} y1="0" x2={30 + i * 48} y2="300" />
+  ));
+
+  return (
+    <svg className="svc-illustration" viewBox="0 0 400 300" fill="none">
+      <rect width="400" height="300" rx="14" fill="#fbfdff" />
+      <g stroke={accent} strokeOpacity="0.06">
+        {horizontalLines}
+        {verticalLines}
+      </g>
+      <path
+        d="M40 150h90l40-40h70l35 35h30"
+        stroke={accent}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M70 200h60l35 35h80l25-25"
+        stroke={accent}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeDasharray="4 3"
+        strokeOpacity="0.6"
+      />
+      <rect x="210" y="80" width="90" height="52" rx="8" fill="#fff" stroke={accent} strokeWidth="1.8" />
+      <text
+        x="255"
+        y="111"
+        fill={accent}
+        fontSize="12"
+        fontWeight="700"
+        textAnchor="middle"
+        fontFamily="Inter, sans-serif"
+      >
+        {letter}-CORE
+      </text>
+      <circle cx="180" cy="104" r="4" fill={accent}>
+        <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="320" cy="150" r="4" fill={accent} fillOpacity="0.7" />
+      <circle cx="345" cy="190" r="4" fill="#10b981" />
+      <text
+        x="20"
+        y="26"
+        fill="#94a3b8"
+        fontSize="9"
+        fontFamily="Inter, sans-serif"
+      >
+        MODULE_{letter}: ACTIVE
+      </text>
+    </svg>
+  );
 }
+/* ============ FAQ DATA ============ */
+const FAQ_DATA = [
+  {
+    q: "Can VConnectTech support a project from concept through production?",
+    a: "Yes. We cover hardware architecture and PCB design, firmware and BSP development, RTOS and embedded Linux, connectivity integration, testing and validation, and production support — so you can bring us in at any stage, from a blank sheet to a design that's ready to ship."
+  },
+  {
+    q: "Do you work on both bare-metal firmware and embedded Linux systems?",
+    a: "Yes. We handle the full spectrum — from bare-metal C/C++ and RTOS-based firmware to full embedded Linux platforms built with Yocto or Buildroot, depending on what your product needs."
+  },
+  {
+    q: "Which communication protocols and connectivity standards do you support?",
+    a: "We work across I²C, SPI, UART, CAN, and LIN at the hardware level, and BLE, Wi-Fi, Zigbee, Matter, MQTT, and CoAP for wireless and cloud connectivity."
+  },
+  {
+    q: "Can you join only one phase of an existing project?",
+    a: "Yes. We regularly step into partially built projects — auditing existing hardware or firmware, identifying gaps, and continuing development without requiring a full restart."
+  },
+  {
+    q: "Do you support manufacturing and production testing?",
+    a: "Yes. We handle DFM/DFT reviews, production test development, programming workflows, and failure analysis to help your design move smoothly from prototype to volume manufacturing."
+  },
+  {
+    q: "How do we start a new engagement?",
+    a: "Tell us what you're building through the contact form or by emailing us directly. We take on a small, deliberate number of engagements each quarter, and reply within two working days with a preliminary read on your project."
+  }
+];
+/* ============ END FAQ DATA ============ */
 
+/* ============ MAIN COMPONENT ============ */
 export default function Embedded() {
-  {/* =========================
-      Animations - Start
-  ========================= */}
-  useEffect(() => {
-    const root = document.querySelector(".embpg-embedded-page");
-    if (!root) return undefined;
+  const [activeService, setActiveService] = React.useState("A");
+  const [counts, setCounts] = React.useState({ phase: 0, capability: 0 });
+  const [activeProject, setActiveProject] = React.useState(null);
+  const [activeFaq, setActiveFaq] = React.useState(null);
+  const [formSent, setFormSent] = React.useState(false);
+  const scrollContainerRef = React.useRef(null);
+  const glassCardRef = React.useRef(null);
+  const mouseRef = React.useRef({ x: -1000, y: -1000 });
+  const canvasRef = React.useRef(null);
+  const stageRef = React.useRef(null);
+  const overImgRef = React.useRef(null);
+  const ringRef = React.useRef(null);
+  const isAlignedRef = React.useRef(false);
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cleanups = [];
+  /* ============ GSAP SCRAMBLE & SCROLL ALIGNMENT ANIMATION ============ */
+  React.useEffect(() => {
+    const cards = gsap.utils.toArray(".work-item");
+    const innerCards = gsap.utils.toArray(".work-item-inner");
+    if (!cards.length) return;
 
-    if (reducedMotion) {
-      root.querySelectorAll(".embpg-scroll-reveal-item").forEach((el) => el.classList.add("embpg-active"));
-      root.querySelectorAll(".embpg-enterprise-row-section").forEach((el) => el.classList.add("embpg-text-revealed"));
-      root.querySelectorAll(".embpg-hero-reveal").forEach((el) => el.classList.add("embpg-active-reveal"));
-      return undefined;
-    }
+    // Store random offsets per card so they stay consistent on reverse
+    const randomOffsets = cards.map(() => ({
+      x: gsap.utils.random(-140, 140),
+      y: gsap.utils.random(80, 130),
+      rotation: gsap.utils.random(-6, 6),
+    }));
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("embpg-active", entry.isIntersecting);
-        });
-      },
-      { threshold: 0, rootMargin: "0px 0px -60px 0px" },
-    );
-
-    const textObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("embpg-text-revealed", entry.isIntersecting);
-        });
-      },
-      { threshold: 0, rootMargin: "0px 0px -80px 0px" },
-    );
-
-    root.querySelectorAll(".embpg-scroll-reveal-item").forEach((item) => revealObserver.observe(item));
-    root.querySelectorAll(".embpg-enterprise-row-section").forEach((card) => textObserver.observe(card));
-
-    const mobileHoverObserver = new IntersectionObserver(
-      (entries) => {
-        if (window.innerWidth > 992) {
-          entries.forEach((entry) => {
-            entry.target.classList.remove("embpg-active-hover");
-          });
-          return;
-        }
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("embpg-active-hover");
-          } else {
-            entry.target.classList.remove("embpg-active-hover");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "-25% 0px -25% 0px",
-      }
-    );
-
-    root.querySelectorAll(".embpg-showcase-card, .embpg-enterprise-row-section, .embpg-flow-node-item").forEach((el) => {
-      mobileHoverObserver.observe(el);
+    // 1. Initial State: Scrambled, slightly blurred, but visible
+    cards.forEach((card, i) => {
+      gsap.set(card, {
+        x: randomOffsets[i].x,
+        y: randomOffsets[i].y,
+        rotation: randomOffsets[i].rotation,
+        scale: 0.92,
+        opacity: 0.5,
+        filter: "blur(3px)"
+      });
     });
 
-    const heroTimer = window.setTimeout(() => {
-      root.querySelectorAll(".embpg-hero-reveal").forEach((el) => el.classList.add("embpg-active-reveal"));
-    }, 80);
+    let floatTweens = [];
 
-    const progressBar = root.querySelector(".embpg-scroll-progress-bar");
-    const updateProgress = () => {
-      if (!progressBar) return;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = `${docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0}%`;
+    const startFloating = () => {
+      if (!isAlignedRef.current) return;
+      // Clear existing tweens to avoid duplicates
+      floatTweens.forEach((t) => t.kill());
+      gsap.killTweensOf(innerCards);
+      floatTweens = innerCards.map((innerCard) => {
+        return gsap.to(innerCard, {
+          y: -3,
+          duration: gsap.utils.random(8, 10),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: gsap.utils.random(0, 4)
+        });
+      });
     };
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
 
-    root.querySelectorAll(".embpg-magnetic-btn-anchor").forEach((btn) => {
-      const handleMove = (event) => {
-        const rect = btn.getBoundingClientRect();
-        const touch = event.touches?.[0] || event.changedTouches?.[0];
-        const clientX = touch ? touch.clientX : event.clientX;
-        const clientY = touch ? touch.clientY : event.clientY;
-        const x = ((clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 5;
-        const y = ((clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 5;
-        btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      };
-      const handleLeave = () => {
-        btn.style.transform = "translate3d(0,0,0)";
-      };
-      btn.addEventListener("mousemove", handleMove, { passive: true });
-      btn.addEventListener("mouseleave", handleLeave);
-      btn.addEventListener("touchstart", handleMove, { passive: true });
-      btn.addEventListener("touchmove", handleMove, { passive: true });
-      btn.addEventListener("touchend", handleLeave, { passive: true });
-      btn.addEventListener("touchcancel", handleLeave, { passive: true });
-      cleanups.push(() => {
-        btn.removeEventListener("mousemove", handleMove);
-        btn.removeEventListener("mouseleave", handleLeave);
-        btn.removeEventListener("touchstart", handleMove);
-        btn.removeEventListener("touchmove", handleMove);
-        btn.removeEventListener("touchend", handleLeave);
-        btn.removeEventListener("touchcancel", handleLeave);
-      });
-    });
+    const stopFloating = () => {
+      floatTweens.forEach((t) => t.kill());
+      floatTweens = [];
+      gsap.killTweensOf(innerCards);
+      gsap.to(innerCards, { y: 0, duration: 0.6, ease: "power3.out" });
+    };
 
-    root.querySelectorAll(".embpg-enterprise-row-section, .embpg-showcase-card.embpg-anim-lift-card").forEach((card) => {
-      const handleMove = (event) => {
-        const rect = card.getBoundingClientRect();
-        const touch = event.touches?.[0] || event.changedTouches?.[0];
-        const clientX = touch ? touch.clientX : event.clientX;
-        const clientY = touch ? touch.clientY : event.clientY;
-        const relX = (clientX - rect.left) / rect.width - 0.5;
-        const relY = (clientY - rect.top) / rect.height - 0.5;
-        card.style.transition =
-          "transform 0.1s ease, border-color 0.5s var(--embedded-ease-apple), box-shadow 0.5s var(--embedded-ease-apple)";
-        card.style.transform = `perspective(900px) rotateX(${-relY * 1.5}deg) rotateY(${relX * 1.5}deg) translate3d(0,-8px,0)`;
-        card.style.setProperty("--mouse-x", `${clientX - rect.left}px`);
-        card.style.setProperty("--mouse-y", `${clientY - rect.top}px`);
-      };
-      const handleLeave = () => {
-        card.style.transition =
-          "transform 0.55s var(--embedded-ease-apple), border-color 0.5s var(--embedded-ease-apple), box-shadow 0.5s var(--embedded-ease-apple)";
-        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0)";
-      };
-      card.addEventListener("mousemove", handleMove, { passive: true });
-      card.addEventListener("mouseleave", handleLeave);
-      card.addEventListener("touchstart", handleMove, { passive: true });
-      card.addEventListener("touchmove", handleMove, { passive: true });
-      card.addEventListener("touchend", handleLeave, { passive: true });
-      card.addEventListener("touchcancel", handleLeave, { passive: true });
-      cleanups.push(() => {
-        card.removeEventListener("mousemove", handleMove);
-        card.removeEventListener("mouseleave", handleLeave);
-        card.removeEventListener("touchstart", handleMove);
-        card.removeEventListener("touchmove", handleMove);
-        card.removeEventListener("touchend", handleLeave);
-        card.removeEventListener("touchcancel", handleLeave);
+    // 2. Play Alignment animation forward when entering, reverse when leaving
+    const alignForward = () => {
+      if (isAlignedRef.current) return;
+      isAlignedRef.current = true;
+      stopFloating();
+      gsap.killTweensOf(cards);
+      gsap.to(cards, {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 2.5,
+        stagger: 0.15,
+        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+        onComplete: startFloating
       });
+    };
+
+    const scatterBack = () => {
+      if (!isAlignedRef.current) return;
+      isAlignedRef.current = false;
+      stopFloating();
+      gsap.killTweensOf(cards);
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          x: randomOffsets[i].x,
+          y: randomOffsets[i].y,
+          rotation: randomOffsets[i].rotation,
+          scale: 0.92,
+          opacity: 0.5,
+          filter: "blur(3px)",
+          duration: 2.2,
+          delay: i * 0.09,
+          ease: "power3.inOut"
+        });
+      });
+    };
+
+    // Use invalidateOnRefresh so trigger recalculates after services pin adds scroll height
+    const trigger = ScrollTrigger.create({
+      trigger: ".work-section",
+      start: "top 80%",
+      end: "bottom 20%",
+      invalidateOnRefresh: true,
+      refreshPriority: -1, // Ensure pinned sections calculate before this trigger refreshes
+      onEnter: () => alignForward(),
+      onEnterBack: () => alignForward(),
+      onLeave: () => scatterBack(),
+      onLeaveBack: () => scatterBack(),
     });
 
     return () => {
-      window.clearTimeout(heroTimer);
-      window.removeEventListener("scroll", updateProgress);
-      revealObserver.disconnect();
-      textObserver.disconnect();
-      mobileHoverObserver.disconnect();
-      cleanups.forEach((cleanup) => cleanup());
+      trigger.kill();
+      floatTweens.forEach((t) => t.kill());
+      cards.forEach((card) => gsap.killTweensOf(card));
+      innerCards.forEach((innerCard) => gsap.killTweensOf(innerCard));
+      isAlignedRef.current = false;
     };
   }, []);
-  {/* =========================
-      Animations - End
-  ========================= */}
+  /* ============ END GSAP SCRAMBLE & SCROLL ALIGNMENT ANIMATION ============ */
+
+  /* ============ HERO X-RAY MASK EFFECT ============ */
+  React.useEffect(() => {
+    const stage = stageRef.current;
+    const overImg = overImgRef.current;
+    const ring = ringRef.current;
+    if (!stage || !overImg || !ring) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hasHover = window.matchMedia("(hover: hover)").matches;
+
+    let radius = 130;
+    let mx = -500, my = 0, tx = -500, ty = 0;
+    let idle = true;
+    let revealed = false;
+    let touchTimer = null;
+    let animationFrameId = null;
+    let introSweep = true;
+    let introTimer = 0;
+
+    function sizeStage() {
+      const r = stage.getBoundingClientRect();
+      radius = Math.max(80, Math.min(260, r.width * 0.28));
+      stage.style.setProperty("--r", radius + "px");
+      if (idle) {
+        tx = -radius * 3;
+        ty = r.height / 2;
+      }
+    }
+    sizeStage();
+    window.addEventListener("resize", sizeStage);
+
+    function setRevealed(state) {
+      if (state === revealed) return;
+      revealed = state;
+    }
+
+    const handlePointerEnter = () => {
+      introSweep = false;
+      idle = false;
+      ring.style.opacity = "1";
+    };
+
+    const handlePointerMove = (e) => {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+      introSweep = false;
+      idle = false;
+      const r = stage.getBoundingClientRect();
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+      setRevealed(true);
+    };
+
+    const handlePointerLeave = () => {
+      const r = stage.getBoundingClientRect();
+      tx = -radius * 3;
+      ty = r.height / 2;
+      ring.style.opacity = "0";
+      setRevealed(false);
+    };
+
+    const handlePointerDown = (e) => {
+      introSweep = false;
+      idle = false;
+      const r = stage.getBoundingClientRect();
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+      setRevealed(true);
+      ring.style.opacity = "1";
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => {
+        idle = true;
+        ring.style.opacity = "0";
+        setRevealed(false);
+      }, 2200);
+    };
+
+    if (hasHover) {
+      stage.addEventListener("pointerenter", handlePointerEnter);
+      stage.addEventListener("pointermove", handlePointerMove);
+      stage.addEventListener("pointerleave", handlePointerLeave);
+      stage.addEventListener("pointerdown", () => { idle = false; });
+    } else {
+      stage.addEventListener("pointerdown", handlePointerDown);
+    }
+
+    function loop(t) {
+      const elapsed = t / 1000;
+      const r = stage.getBoundingClientRect();
+
+      if (introSweep && !reduceMotion) {
+        introTimer += 0.016;
+        const progress = Math.min(1, introTimer / 2.2); // 2.2s intro sweep
+        tx = r.width * 0.1 + Math.sin(progress * Math.PI) * r.width * 0.8;
+        ty = r.height * 0.5;
+        if (ring) {
+          ring.style.opacity = "1";
+        }
+        setRevealed(true);
+        if (progress >= 1) {
+          introSweep = false;
+        }
+      } else if (idle && !reduceMotion) {
+        tx = r.width * 0.5 + Math.cos(elapsed * 0.5) * r.width * 0.32;
+        ty = r.height * 0.5 + Math.sin(elapsed * 0.8) * r.height * 0.22;
+        if (!ring.dataset.shown) {
+          ring.style.opacity = "1";
+          ring.dataset.shown = "1";
+        }
+        setRevealed(true);
+      } else if (idle && reduceMotion) {
+        setRevealed(false);
+      }
+
+      mx += (tx - mx) * (reduceMotion ? 1 : 0.14);
+      my += (ty - my) * (reduceMotion ? 1 : 0.14);
+
+      overImg.style.setProperty("--mx", mx + "px");
+      overImg.style.setProperty("--my", my + "px");
+      ring.style.left = mx + "px";
+      ring.style.top = my + "px";
+
+      animationFrameId = requestAnimationFrame(loop);
+    }
+    animationFrameId = requestAnimationFrame(loop);
+
+    return () => {
+      window.removeEventListener("resize", sizeStage);
+      if (hasHover) {
+        if (stage) {
+          stage.removeEventListener("pointerenter", handlePointerEnter);
+          stage.removeEventListener("pointermove", handlePointerMove);
+          stage.removeEventListener("pointerleave", handlePointerLeave);
+        }
+      } else {
+        if (stage) {
+          stage.removeEventListener("pointerdown", handlePointerDown);
+        }
+      }
+      clearTimeout(touchTimer);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+  /* ============ END HERO X-RAY MASK EFFECT ============ */
+
+  /* ============ GSAP HERO INTRO ANIMATION ============ */
+  React.useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    // 1. Initial fade-in of wrappers to prevent layout flashing
+    tl.to(".hero-eyebrow, .hero-display-title, .hero-lede-para, .hero-stats-row, .hero-action-buttons, .hero-mask-visual", {
+      opacity: 1,
+      duration: 0.05
+    });
+
+    // 2. Staggered sliding entrance animations
+    tl.fromTo(".hero-eyebrow",
+      { y: 25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.1 },
+      "0.15"
+    );
+
+    tl.fromTo(".hero-display-title",
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.4 },
+      "-=0.9"
+    );
+
+    tl.fromTo(".hero-lede-para",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.1 },
+      "-=1.0"
+    );
+
+    tl.fromTo(".hero-action-buttons",
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.0 },
+      "-=0.95"
+    );
+
+    const counterObj = { phase: 0, capability: 0 };
+    tl.fromTo(".hero-stats-row",
+      { y: 15, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.0,
+        onStart: () => {
+          gsap.to(counterObj, {
+            phase: 6,
+            capability: 10,
+            duration: 1.8,
+            ease: "power2.out",
+            onUpdate: () => {
+              setCounts({
+                phase: Math.floor(counterObj.phase),
+                capability: Math.floor(counterObj.capability)
+              });
+            }
+          });
+        }
+      },
+      "-=0.85"
+    );
+
+    tl.fromTo(".hero-mask-visual",
+      { x: 120, opacity: 0, scale: 0.96 },
+      { x: 0, opacity: 1, scale: 1, duration: 1.8, ease: "cubic-bezier(0.16, 1, 0.3, 1)" },
+      "-=1.6"
+    );
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
+  /* ============ SERVICES GSAP SCROLL PINNING & TAB CYCLING ============ */
+  React.useEffect(() => {
+    const card = glassCardRef.current;
+    if (!card) return;
+
+    let mm = gsap.matchMedia();
+    mm.add("(min-width: 991px)", () => {
+      const trigger = ScrollTrigger.create({
+        id: "services-trigger",
+        trigger: card,
+        start: "top 70px",
+        end: "+=1200",
+        pin: true,
+        pinSpacing: true,
+        scrub: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const idx = Math.min(
+            SERVICES_DATA.length - 1,
+            Math.floor(progress * SERVICES_DATA.length)
+          );
+          setActiveService(SERVICES_DATA[idx].letter);
+        }
+      });
+      return () => trigger.kill();
+    });
+
+    return () => mm.revert();
+  }, []);
+  /* ============ END SERVICES GSAP SCROLL PINNING & TAB CYCLING ============ */
+
+
+
+
+  /* ============ MOUSE TRACKING ============ */
+  React.useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+  /* ============ END MOUSE TRACKING ============ */
+
+  /* ============ SCROLL REVEAL OBSERVER ============ */
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    const elements = document.querySelectorAll(".reveal:not(.work-item)");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+  /* ============ END SCROLL REVEAL OBSERVER ============ */
+
+  /* ============ BACKGROUND CANVAS ANIMATION ============ */
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let animationFrameId;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    let nodes = [];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resize = () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + "px";
+      canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = Math.max(22, Math.min(60, Math.floor((W * H) / 32000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+      }));
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      const mouse = mouseRef.current;
+
+      nodes.forEach((n) => {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+
+        const dx = n.x - mouse.x;
+        const dy = n.y - mouse.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 120 && d > 0.1) {
+          n.x += (dx / d) * 0.5;
+          n.y += (dy / d) * 0.5;
+        }
+      });
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 150) {
+            ctx.strokeStyle = `rgba(27, 109, 224, ${(1 - d / 150) * 0.28})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach((n) => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(27, 109, 224, 0.55)";
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+  /* ============ END BACKGROUND CANVAS ANIMATION ============ */
+
+  /* ============ TAB CLICK HANDLER ============ */
+  const handleTabClick = (letter) => {
+    const idx = SERVICES_DATA.findIndex((s) => s.letter === letter);
+    if (idx === -1) return;
+
+    const trigger = ScrollTrigger.getById("services-trigger");
+    if (trigger && window.innerWidth > 990) {
+      // Calculate scroll position corresponding to the index
+      const proportion = idx / (SERVICES_DATA.length - 1);
+      const targetScroll = trigger.start + proportion * 1200;
+
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth"
+      });
+    } else {
+      // Fallback for mobile
+      setActiveService(letter);
+    }
+  };
+  /* ============ END TAB CLICK HANDLER ============ */
+
+  /* ============ CARD INTERACTIVE SPOTLIGHT HANDLER ============ */
+  const handleCardMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty("--x", `${x}px`);
+    card.style.setProperty("--y", `${y}px`);
+  };
+  /* ============ END CARD INTERACTIVE SPOTLIGHT HANDLER ============ */
 
   return (
-    <main className="embpg-embedded-page">
-      <div className="embpg-scroll-progress-bar" />
+    <div className="embpg-embedded-page">
 
-      {/* =========================
-          Hero Section - Start
-      ========================= */}
-      <section className="embpg-embedded-hero-section">
-        <div className="embpg-embedded-container">
-          <div className="embpg-embedded-hero-grid">
-            <div className="embpg-embedded-hero-copy">
-              <div className="embpg-kinetic-reveal-container">
-                <div className="embpg-hero-reveal">
-                  <span className="embpg-embedded-kicker">Embedded Engineering Services</span>
-                </div>
+      {/* ============ BACKGROUND LAYER ============ */}
+      <div className="bg-layer" aria-hidden="true">
+        <canvas ref={canvasRef} className="embpg-bg-canvas" />
+        <div className="noise" />
+      </div>
+      {/* ============ END BACKGROUND LAYER ============ */}
+
+      <section className="hero-section" id="top">
+        <div className="hero-content-wrapper">
+          <div className="hero-copy-wrap">
+            <p className="hero-eyebrow">
+              <span className="blue-dot"></span>
+              EMBEDDED ENGINEERING
+            </p>
+            <h1 className="hero-display-title">
+              The quiet <span className="blue-highlight">intelligence</span> inside every <span className="blue-highlight">connected product.</span>
+            </h1>
+            <p className="hero-lede-para">
+              We design the hardware, firmware, connectivity and validation systems that let ambitious products ship on time — and stay working, quietly, for a decade.
+            </p>
+            <div className="hero-action-buttons">
+              <a href="#capabilities" className="hero-btn-primary">
+                Explore Services <span className="arrow">→</span>
+              </a>
+              <a href="#contact" className="hero-btn-ghost">
+                Talk to an engineer <span className="arrow">→</span>
+              </a>
+            </div>
+            <div className="hero-stats-row">
+              <div className="stat-item">
+                <span className="stat-num">{String(counts.phase).padStart(2, '0')}</span>
+                <span className="stat-label">Main Industry<br />Phases</span>
               </div>
-              <div className="embpg-kinetic-reveal-container">
-                <div className="embpg-hero-reveal">
-                  <h1 className="embpg-embedded-hero-title">
-                    End-to-End Embedded
-                    <br />
-                    Engineering <span>Solutions.</span>
-                  </h1>
-                </div>
-              </div>
-              <div className="embpg-kinetic-reveal-container">
-                <div className="embpg-hero-reveal">
-                  <p className="embpg-embedded-hero-description">
-                    From hardware to firmware and connectivity to validation&mdash;we build reliable, secure, and
-                    high-performance embedded systems that power real-world applications.
-                  </p>
-                </div>
-              </div>
-              <div className="embpg-embedded-hero-actions embpg-hero-reveal">
-                <div className="embpg-hero-btn-anchor">
-                  <a href="#embedded-services" className="embpg-embedded-btn embpg-embedded-btn-primary">
-                    Explore Our Services
-                  </a>
-                </div>
-                <div className="embpg-hero-btn-anchor">
-                  <a href="#embedded-cta" className="embpg-embedded-btn embpg-embedded-btn-outline">
-                    Talk to Our Experts
-                  </a>
-                </div>
-              </div>
-              <div className="embpg-embedded-hero-features embpg-hero-reveal">
-                <div className="embpg-embedded-feature">
-                  <img src={Images.i1} alt="" />
-                  <span>
-                    Deep Domain
-                    <br />
-                    Expertise
-                  </span>
-                </div>
-                <div className="embpg-embedded-feature">
-                  <img src={Images.i2} alt="" />
-                  <span>
-                    Agile & Scalable
-                    <br />
-                    Delivery
-                  </span>
-                </div>
-                <div className="embpg-embedded-feature">
-                  <img src={Images.i3} alt="" />
-                  <span>
-                    Quality &
-                    <br />
-                    Reliability
-                  </span>
-                </div>
+              <div className="stat-item">
+                <span className="stat-num">{String(counts.capability).padStart(2, '0')}</span>
+                <span className="stat-label">Core Engineering<br />Services</span>
               </div>
             </div>
-
-            <div className="embpg-embedded-hero-visual embpg-hero-reveal">
-              <div className="embpg-hardware-stage">
-                <picture>
-                  <source media="(max-width: 992px)" srcSet={Images.mhero} />
-                  <img src={Images.hero} alt="Embedded Engineering Solutions" />
-                </picture>
-              </div>
+          </div>
+          <div className="hero-mask-visual">
+            <div className="device-stage" id="stage" ref={stageRef}>
+              <img className="d-layer d-under" src={EmbeddedImages.after} alt="Internal hardware of the fanless embedded enclosure" draggable="false" />
+              <img className="d-layer d-over" id="overImg" ref={overImgRef} src={EmbeddedImages.before} alt="Assembled fanless embedded enclosure" draggable="false" />
+              <div className="reveal-ring" id="ring" ref={ringRef} aria-hidden="true"></div>
+            </div>
+            <div className="stage-hint">
+              <span className="hint-pulse"></span>
+              <span>Hover stage to expose internal hardware architecture</span>
             </div>
           </div>
         </div>
       </section>
-      {/* =========================
-          Hero Section - End
-      ========================= */}
+      {/* ============ END HERO SECTION ============ */}
 
-      {/* =========================
-          Embedded Engineering Process - Start
-      ========================= */}
-      <section className="embpg-process-section">
-        <div className="embpg-embedded-container embpg-scroll-reveal-item">
-          <div className="embpg-section-heading">
-            <span>Our Embedded Engineering Process</span>
-            <i aria-hidden="true" />
+      {/* ============ MARQUEE SECTION ============ */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          <span>MCU</span><i>·</i>
+          <span>RTOS</span><i>·</i>
+          <span>Embedded Linux</span><i>·</i>
+          <span>BLE / Wi-Fi</span><i>·</i>
+          <span>CAN / LIN</span><i>·</i>
+          <span>Yocto</span><i>·</i>
+          <span>OTA</span><i>·</i>
+          <span>Zigbee</span><i>·</i>
+          <span>Matter</span><i>·</i>
+          <span>Bootloaders</span><i>·</i>
+          <span>HAL / BSP</span><i>·</i>
+          <span>MQTT</span><i>·</i>
+          <span>Functional Safety</span><i>·</i>
+          <span>MCU</span><i>·</i>
+          <span>RTOS</span><i>·</i>
+          <span>Embedded Linux</span><i>·</i>
+          <span>BLE / Wi-Fi</span><i>·</i>
+          <span>CAN / LIN</span><i>·</i>
+          <span>Yocto</span><i>·</i>
+          <span>OTA</span><i>·</i>
+          <span>Zigbee</span><i>·</i>
+          <span>Matter</span><i>·</i>
+          <span>Bootloaders</span><i>·</i>
+          <span>HAL / BSP</span><i>·</i>
+          <span>MQTT</span><i>·</i>
+          <span>Functional Safety</span><i>·</i>
+        </div>
+      </div>
+      {/* ============ END MARQUEE SECTION ============ */}
+
+      {/* ============ SERVICES SECTION ============ */}
+      <div ref={scrollContainerRef} className="services-scroll-container">
+        <section className="section services" id="capabilities">
+          <div className="container container-narrow mb-4">
+            <div className="section-head reveal center">
+
+              <h2 className="display-2">
+                Our <span className="blue-highlight">Embedded Engineering</span> Services
+              </h2>
+              <p className="section-subtitle">
+                From initial schematic design to low-level driver porting and system bring-up, we deliver end-to-end expertise at every layer of the hardware-software stack.
+              </p>
+            </div>
           </div>
-          <div className="embpg-process-flow">
-            {processSteps.map(([title, icon], index) => (
-              <div className="embpg-process-pair" key={title}>
-                <div className="embpg-flow-node-item embpg-scroll-reveal-item">
-                  <div className="embpg-flow-node-circle">
-                    <img src={icon} alt="" />
-                  </div>
-                  <p>{title}</p>
-                </div>
-                {index < processSteps.length - 1 && <div className="embpg-flow-arrow-icon">→</div>}
+          <div ref={glassCardRef} className="container container-narrow services-glass-wrapper">
+            <div className="svc-layout reveal">
+              <div className="svc-tabs">
+                {SERVICES_DATA.map((s) => {
+                  const isActive = activeService === s.letter;
+                  return (
+                    <button
+                      key={s.letter}
+                      className={`svc-tab${isActive ? " active" : ""}`}
+                      onClick={() => handleTabClick(s.letter)}
+                    >
+                      <span className="letter">{s.letter}</span>
+                      <span>{s.title}</span>
+                    </button>
+                  );
+                })}
               </div>
-            ))}
+              <div className={`svc-panel align-${["A", "B", "C"].includes(activeService) ? "start" :
+                ["D", "E", "F", "G"].includes(activeService) ? "center" : "end"
+                }`}>
+                {SERVICES_DATA.map((s, idx) => {
+                  if (activeService !== s.letter) return null;
+                  const accent = TABS_ACCENTS[idx % TABS_ACCENTS.length];
+                  return (
+                    <div key={s.letter} className="svc-panel-grid">
+                      <div className="svc-panel-copy">
+                        <div className="service-title-row">
+                          <div className="alpha-badge">{s.letter}</div>
+                          <h3>{s.title}</h3>
+                        </div>
+                        <p className="service-desc">{s.description}</p>
+                        <span className="deliver-label">What We Deliver</span>
+                        <ul className="tech-list">
+                          {s.items.map((item, itemIdx) => (
+                            <li key={itemIdx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="svc-illustration-wrap">
+                        {s.letter === "A" ? (
+                          <img
+                            src={EmbeddedImages.test}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "B" ? (
+                          <img
+                            src={EmbeddedImages.m2}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "C" ? (
+                          <img
+                            src={EmbeddedImages.m3}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "D" ? (
+                          <img
+                            src={EmbeddedImages.m4}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "E" ? (
+                          <img
+                            src={EmbeddedImages.m5}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "F" ? (
+                          <img
+                            src={EmbeddedImages.m6}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "G" ? (
+                          <img
+                            src={EmbeddedImages.m7}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "H" ? (
+                          <img
+                            src={EmbeddedImages.m8}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "I" ? (
+                          <img
+                            src={EmbeddedImages.m9}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : s.letter === "J" ? (
+                          <img
+                            src={EmbeddedImages.m10}
+                            alt={s.title}
+                            className="svc-illustration-img"
+                          />
+                        ) : (
+                          <ServiceDiagram letter={s.letter} accent={accent} />
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      {/* ============ END SERVICES SECTION ============ */}
+
+      {/* ============ WORK SECTION ============ */}
+      <section className="section work-section" id="work">
+        <div className="container">
+          <div className="section-head reveal center">
+
+            <h2 className="display-2">
+              Industries We've <span className="blue-highlight">Engineered</span> For
+            </h2>
+            <p className="section-subtitle">
+              Delivering robust embedded solutions across diverse sectors—from high-reliability aerospace to high-volume automotive platforms.
+            </p>
+          </div>
+          <div className="work-grid">
+            <a
+              className="work-item w-tall"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Industrial IoT"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.industry})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Industrial IoT</span>
+                    <h3>Sub-metering gateway with edge inference</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
+            <a
+              className="work-item w-wide"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Healthcare"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.watch})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Healthcare</span>
+                    <h3>Wearable health monitoring, made simple</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
+            <a
+              className="work-item"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Automotive"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.automo})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Automotive</span>
+                    <h3>Smart control for electric vehicles</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
+            <a
+              className="work-item"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Consumer"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.home})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Consumer</span>
+                    <h3>Everyday tech, designed to feel effortless</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
+            <a
+              className="work-item w-wide"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Aerospace"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.aero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Aerospace</span>
+                    <h3>Built to perform in extreme conditions</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
+            <a
+              className="work-item"
+              href="#work"
+              onClick={(e) => { e.preventDefault(); setActiveProject("Edge AI"); }}
+              onMouseMove={handleCardMouseMove}
+            >
+              <div className="work-item-inner">
+                <div className="border-glow" aria-hidden="true" />
+                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.edge})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="work-meta">
+                  <div>
+                    <span className="tag">Edge AI</span>
+                    <h3>Intelligence that runs at the edge</h3>
+                  </div>
+                  <span className="arrow">↗</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
-      {/* =========================
-          Embedded Engineering Process - End
-      ========================= */}
+      {/* ============ END WORK SECTION ============ */}
 
-      {/* =========================
-          Our Embedded Service Areas - Start
-      ========================= */}
-      <section className="embpg-expertise-section embpg-scroll-reveal-item">
-        <div className="embpg-embedded-container">
-          <div className="embpg-section-heading">
-            <span>Our Embedded Service Areas</span>
-            <i aria-hidden="true" />
-          </div>
-          <div className="embpg-service-area-grid">
-            {serviceAreas.map(([title, icon, targetId], index) => (
-              <div
-                className="embpg-service-area-col embpg-scroll-reveal-item"
-                style={{ transitionDelay: `${0.05 + index * 0.05}s`, cursor: "pointer" }}
-                onClick={() =>
-                  document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-                key={title}
-              >
-                <div className="embpg-showcase-card embpg-anim-lift-card">
-                  <div className="embpg-blue-icon-box">
-                    <img src={icon} alt="" />
-                  </div>
-                  <h4>{title}</h4>
-                </div>
-              </div>
-            ))}
+      {/* ============ CTA SECTION ============ */}
+      <section className="cta" id="cta">
+        <div className="container reveal">
+          <h2 className="display-2">
+            Have a custom silicon project that needs
+            <br />
+            <em>real</em> engineering underneath it?
+          </h2>
+          <p>
+            We take on a small, deliberate number of engagements each quarter. Tell us what you're
+            building — we'll reply within two working days with a preliminary read.
+          </p>
+          <form
+            className="cta-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setFormSent(true);
+            }}
+          >
+            <input type="email" placeholder="your@work-email.com" required />
+            <button type="submit">{formSent ? "Sent · we'll be in touch" : "Talk to us →"}</button>
+          </form>
+          <div className="cta-alt">
+            or write directly to <a href="mailto:hello@vconnectech.com">hello@vconnectech.com</a>
           </div>
         </div>
       </section>
-      {/* =========================
-          Our Embedded Service Areas - End
-      ========================= */}
+      {/* ============ END CTA SECTION ============ */}
 
-      {/* =========================
-          Technical Services - Start
-      ========================= */}
-      <section className="embpg-services-matrix-section" id="embedded-services">
-        <div className="embpg-embedded-container embpg-embedded-container-narrow">
-          <div className="embpg-section-heading embpg-matrix-heading">
-            <span>Technical Services</span>
-            <h2>Our Embedded Engineering Services</h2>
-            <i aria-hidden="true" />
+      {/* ============ PLAIN CARD SECTION ============ */}
+      <section className="plain-card-section">
+        <div className="container container-narrow mb-4">
+          <div className="section-head reveal center">
+            <h2 className="display-2">
+              <span className="blue-highlight">Build with Confidence</span>
+            </h2>
+          </div>
+        </div>
+        <div className="container container-narrow">
+          <div
+            className="plain-horizontal-card reveal"
+            style={{
+              backgroundImage: `url(${EmbeddedImages.brochb})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 40%',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="brochure-card-content">
+              <h3 className="brochure-card-heading">
+                Download our <span className="blue-highlight">Embedded Engineering</span> Capability Brochure
+              </h3>
+              <p className="brochure-card-subtext">
+                Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
+              </p>
+              <a href="/brochure.pdf" download className="brochure-download-link">
+                download brochure <span className="arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ============ END PLAIN CARD SECTION ============ */}
+
+      {/* ============ FAQ SECTION ============ */}
+      <section className="faq-section" id="faq">
+        <div className="container">
+
+          <div className="faq-header-grid">
+            <div className="faq-header-left">
+              <h2 className="display-2 questions-title">
+                Questions before <br />
+                we <span className="blue-highlight">start engineering?</span>
+              </h2>
+            </div>
           </div>
 
-          <div className="embpg-subsystems-matrix-container">
-            {services.map((service) => {
-              const textColumn = (
-                <div className={`embpg-service-copy${service.reverse ? " embpg-is-reverse" : ""}`}>
-                  <div className="embpg-service-title-row">
-                    <div className="embpg-alpha-badge">{service.letter}</div>
-                    <h3>{titleWords(service.title)}</h3>
-                  </div>
-                  <p className="embpg-subsys-para">
-                    <span className="embpg-subsys-para-inner">{service.description}</span>
-                  </p>
-                  <span className="embpg-deliver-label">What We Deliver</span>
-                  <ul className="embpg-tech-list">
-                    {service.items.map((item, index) => (
-                      <li style={{ transitionDelay: `${0.55 + index * 0.12}s` }} key={item}>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-
-              const imageColumn = (
-                <div className="embpg-service-image-wrap">
-                  <div className="embpg-diagram-box">
-                    <img src={service.image} alt={service.title} />
-                  </div>
-                </div>
-              );
-
+          <div className="faq-list">
+            {FAQ_DATA.map((faq, index) => {
+              const isOpen = activeFaq === index;
               return (
-                <article
-                  className="embpg-enterprise-row-section embpg-scroll-reveal-item"
-                  id={"service-" + service.letter.toLowerCase()}
-                  key={service.letter}
+                <div
+                  key={index}
+                  className={`faq-item ${isOpen ? 'open' : ''}`}
+                  onMouseEnter={() => setActiveFaq(index)}
+                  onMouseLeave={() => setActiveFaq(null)}
                 >
-                  <div className={`embpg-enterprise-row ${service.reverse ? "embpg-is-reverse" : ""}`}>
-                    {service.reverse ? imageColumn : textColumn}
-                    {service.reverse ? textColumn : imageColumn}
+                  <div className="faq-question-row">
+                    <h3 className="faq-question">{faq.q}</h3>
+                    <div className={`faq-icon-box ${isOpen ? 'active' : ''}`}>
+                      {isOpen ? '−' : '+'}
+                    </div>
                   </div>
-                </article>
+                  <div className="faq-answer-wrapper">
+                    <p className="faq-answer">{faq.a}</p>
+                  </div>
+                </div>
               );
             })}
           </div>
+
         </div>
       </section>
-      {/* =========================
-          Technical Services - End
-      ========================= */}
+      {/* ============ END FAQ SECTION ============ */}
 
-      {/* =========================
-          Call To Action (CTA) - Start
-      ========================= */}
-      <section className="embpg-cta-section" id="embedded-cta">
-        <div className="embpg-embedded-container">
-          <div className="embpg-cta-blue-card">
-            <div className="embpg-cta-content">
-              <div>
-                <h3>Let&apos;s Build Intelligent Embedded Products Together</h3>
-                <p>
-                  Partner with VCTS for reliable, scalable, and production-ready embedded solutions that accelerate
-                  innovation from concept to deployment.
-                </p>
+      {/* ============ PROJECT DETAIL MODAL ============ */}
+      {activeProject && (
+        <div className="project-detail-overlay active" onClick={() => setActiveProject(null)}>
+          <div className="project-detail-drawer" onClick={(e) => e.stopPropagation()}>
+            <button className="detail-close-btn" onClick={() => setActiveProject(null)}>
+              ✕
+            </button>
+            <div className="detail-content">
+              <span className="detail-tag">{PROJECT_DETAILS[activeProject].tag}</span>
+              <h2 className="detail-title">{PROJECT_DETAILS[activeProject].title}</h2>
+              <p className="detail-desc">{PROJECT_DETAILS[activeProject].desc}</p>
+              <div className="detail-grid">
+                <div className="detail-block">
+                  <h4>Technical Specs</h4>
+                  <ul>
+                    {PROJECT_DETAILS[activeProject].specs.map((spec, i) => (
+                      <li key={i}>{spec}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="detail-block">
+                  <h4>The Engineering Challenge</h4>
+                  <p>{PROJECT_DETAILS[activeProject].challenge}</p>
+                </div>
               </div>
-              <div className="embpg-magnetic-btn-anchor">
-                <a href="#" className="embpg-embedded-btn embpg-cta-btn">
-                  Talk to Our Experts <span aria-hidden="true">→</span>
-                </a>
+              <div className="detail-tech-stack">
+                <h4>Technology Stack</h4>
+                <div className="tech-pills">
+                  {PROJECT_DETAILS[activeProject].stack.map((tech, i) => (
+                    <span key={i} className="tech-pill">{tech}</span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      {/* =========================
-          Call To Action (CTA) - End
-      ========================= */}
-    </main>
+      )}
+      {/* ============ END PROJECT DETAIL MODAL ============ */}
+
+    </div>
   );
 }
+/* ============ END MAIN COMPONENT ============ */
