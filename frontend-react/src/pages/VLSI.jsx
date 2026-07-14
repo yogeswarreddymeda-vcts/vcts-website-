@@ -1007,6 +1007,32 @@ export default function Vlsi() {
         </div>
       </section>
 
+      <section className="brochure-section">
+        <div className="container">
+          <div className="brochure-card reveal">
+            <div className="brochure-content">
+              <h3 className="brochure-title">
+                <em>Semiconductor Engineering</em> Capability Brochure
+              </h3>
+              <p className="brochure-description">
+                Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
+              </p>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="btn btn-primary brochure-btn"
+              >
+                <span className="btn__label">Download Brochure</span>
+                <span className="btn__icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <div className="brochure-visual">
+              <img src={imageUrl("semiconductor_brochure.jpg")} alt="Semiconductor engineering wafer probing" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section faq-section" id="faq">
         <div className="container">
           <div className="section-head split reveal">
@@ -1040,32 +1066,6 @@ export default function Vlsi() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="brochure-section">
-        <div className="container">
-          <div className="brochure-card reveal">
-            <div className="brochure-content">
-              <h3 className="brochure-title">
-                <em>Semiconductor Engineering</em> Capability Brochure
-              </h3>
-              <p className="brochure-description">
-                Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
-              </p>
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="btn btn-primary brochure-btn"
-              >
-                <span className="btn__label">Download Brochure</span>
-                <span className="btn__icon" aria-hidden="true">↓</span>
-              </a>
-            </div>
-            <div className="brochure-visual">
-              <img src={imageUrl("semiconductor_brochure.jpg")} alt="Semiconductor engineering wafer probing" />
-            </div>
           </div>
         </div>
       </section>

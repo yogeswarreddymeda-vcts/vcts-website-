@@ -3,6 +3,7 @@ import Header from './components/Header/Header.jsx'
 import Home from './pages/Home.jsx'
 import VLSI from './pages/VLSI.jsx'
 import Embedded from './pages/Embedded.jsx'
+import Technologies from './pages/Technologies.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
@@ -80,10 +81,10 @@ function App() {
       {currentPage === 'home' && <Home setCurrentPage={setCurrentPage} />}
       {currentPage === 'vlsi' && <VLSI />}
       {currentPage === 'embedded' && <Embedded />}
+      {currentPage === 'technologies' && <Technologies />}
       <Footer setCurrentPage={setCurrentPage} />
     </>
   );
 }
 
 export default App
-
