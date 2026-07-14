@@ -295,6 +295,10 @@ const allServices = [
   ...services.postsilicon
 ];
 
+const serviceImageFiles = [
+  ...new Set(allServices.flatMap(({ image, hoverImage }) => [image, hoverImage].filter(Boolean)))
+];
+
 export default function Vlsi() {
   const rootRef = useRef(null);
   const tiltRef = useRef(null);
@@ -323,6 +327,23 @@ export default function Vlsi() {
       isNavigatingRef.current = false;
     }, 1000);
   };
+
+  useEffect(() => {
+    const preloadedImages = serviceImageFiles.map((fileName) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = imageUrl(fileName);
+      img.decode?.().catch(() => {});
+      return img;
+    });
+
+    return () => {
+      preloadedImages.forEach((img) => {
+        img.onload = null;
+        img.onerror = null;
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
