@@ -3,6 +3,79 @@ import "../assets/css/VLSI.css";
 
 const imageUrl = (fileName) => new URL(`../assets/image/VLSI/${fileName}`, import.meta.url).href;
 
+// ==========================================
+// 1. HERO SECTION DATA & CONSTANTS
+// ==========================================
+const heroData = {
+  eyebrow: "Semiconductor Engineering",
+  titleLine1: "End-to-End",
+  titleLine2: "Semiconductor",
+  titleHighlight: "Solutions.",
+  lede: "From Architecture to Production-Ready Silicon — delivering specialized front-end design, back-end physical design, and post-silicon validation services.",
+  stats: [
+    {
+      value: "03",
+      labelLine1: "Main service",
+      labelLine2: "phases"
+    },
+    {
+      value: "12",
+      labelLine1: "Core engineering",
+      labelLine2: "capabilities"
+    }
+  ],
+  image: "hero_chip.png",
+  caption: {
+    fig: "Fig. 001",
+    title: "Custom Silicon — 7nm Architecture",
+    loc: "In-house lab · Bengaluru"
+  },
+  badge: {
+    title: "Silicon Success",
+    subtitle: "100% tapeout rate · 7nm / 5nm / 3nm"
+  }
+};
+
+// ==========================================
+// 2. MARQUEE BANNER SECTION DATA & COMPONENTS
+// ==========================================
+const marqueeItems = [
+  "RISC-V & ARM",
+  "SystemC & TLM",
+  "Verilog / VHDL",
+  "UVM Methodology",
+  "FPGA Emulation",
+  "RTL-to-GDSII",
+  "DFT / ATPG",
+  "Logic Synthesis",
+  "Floorplanning",
+  "CTS",
+  "Static Timing Analysis",
+  "FinFET / GAA",
+  "2.5D / 3D Packaging",
+  "Silicon Bring-Up",
+];
+
+function Marquee() {
+  const loop = [...marqueeItems, ...marqueeItems];
+
+  return (
+    <div className="marquee" aria-hidden="true">
+      <div className="marquee-track">
+        {loop.map((item, index) => (
+          <Fragment key={`${item}-${index}`}>
+            <span>{item}</span>
+            <i>·</i>
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 3. CAPABILITIES SECTION DATA & COMPONENTS
+// ==========================================
 const phases = [
   { id: "frontend", label: "Front-End Design" },
   { id: "backend", label: "Back-End Design" },
@@ -210,23 +283,37 @@ const services = {
   ],
 };
 
-const marqueeItems = [
-  "RISC-V & ARM",
-  "SystemC & TLM",
-  "Verilog / VHDL",
-  "UVM Methodology",
-  "FPGA Emulation",
-  "RTL-to-GDSII",
-  "DFT / ATPG",
-  "Logic Synthesis",
-  "Floorplanning",
-  "CTS",
-  "Static Timing Analysis",
-  "FinFET / GAA",
-  "2.5D / 3D Packaging",
-  "Silicon Bring-Up",
+const allServices = [
+  ...services.frontend,
+  ...services.backend,
+  ...services.postsilicon
 ];
 
+const serviceImageFiles = [
+  ...new Set(allServices.flatMap(({ image, hoverImage }) => [image, hoverImage].filter(Boolean)))
+];
+
+function ServiceCard({ service, isActive }) {
+  return (
+    <article className={`service-card ${service.cardClass} ${isActive ? "is-active" : ""}`}>
+      <div className="service-card__bg">
+        {service.image && <img className="service-card__bg-mask" src={imageUrl(service.image)} alt="" />}
+        <img className="service-card__bg-hover" src={imageUrl(service.hoverImage)} alt="" />
+      </div>
+      <h3>{service.title}</h3>
+      <p className="card-desc">{service.desc}</p>
+      <ul>
+        {service.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+// ==========================================
+// 4. FAQ SECTION DATA & COMPONENTS
+// ==========================================
 const faqItems = [
   {
     q: "Can VCTS support a project from architecture through production?",
@@ -254,51 +341,6 @@ const faqItems = [
   }
 ];
 
-function ServiceCard({ service, isActive }) {
-  return (
-    <article className={`service-card ${service.cardClass} ${isActive ? "is-active" : ""}`}>
-      <div className="service-card__bg">
-        {service.image && <img className="service-card__bg-mask" src={imageUrl(service.image)} alt="" />}
-        <img className="service-card__bg-hover" src={imageUrl(service.hoverImage)} alt="" />
-      </div>
-      <h3>{service.title}</h3>
-      <p className="card-desc">{service.desc}</p>
-      <ul>
-        {service.items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-function Marquee() {
-  const loop = [...marqueeItems, ...marqueeItems];
-
-  return (
-    <div className="marquee" aria-hidden="true">
-      <div className="marquee-track">
-        {loop.map((item, index) => (
-          <Fragment key={`${item}-${index}`}>
-            <span>{item}</span>
-            <i>·</i>
-          </Fragment>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const allServices = [
-  ...services.frontend,
-  ...services.backend,
-  ...services.postsilicon
-];
-
-const serviceImageFiles = [
-  ...new Set(allServices.flatMap(({ image, hoverImage }) => [image, hoverImage].filter(Boolean)))
-];
-
 export default function Vlsi() {
   const rootRef = useRef(null);
   const tiltRef = useRef(null);
@@ -306,6 +348,8 @@ export default function Vlsi() {
   const scrollWrapperRef = useRef(null);
   const gridRef = useRef(null);
   const activePhaseRef = useRef("frontend");
+  const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
   const [activePhase, setActivePhase] = useState("frontend");
   const [activeIndex, setActiveIndex] = useState(0);
   const activeIndexRef = useRef(0);
@@ -423,7 +467,7 @@ export default function Vlsi() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root || !("IntersectionObserver" in window)) {
-      root?.querySelectorAll(".reveal").forEach((element) => element.classList.add("in"));
+      root?.querySelectorAll(".vlsipg-reveal").forEach((element) => element.classList.add("in"));
       return undefined;
     }
 
@@ -438,7 +482,7 @@ export default function Vlsi() {
       { threshold: 0.08, rootMargin: "0px 100px -40px 100px" }
     );
 
-    root.querySelectorAll(".reveal:not(.in)").forEach((element) => observer.observe(element));
+    root.querySelectorAll(".vlsipg-reveal:not(.in)").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
 
@@ -464,6 +508,166 @@ export default function Vlsi() {
     return () => {
       parent.removeEventListener("mousemove", onMouseMove);
       parent.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, []);
+
+  /* ============ MOUSE TRACKING ============ */
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  /* ============ BACKGROUND CANVAS ANIMATION ============ */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let animationFrameId;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    let nodes = [];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resize = () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + "px";
+      canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = Math.max(25, Math.min(65, Math.floor((W * H) / 28000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        radius: Math.random() * 2 + 1.5,
+        pulseOffset: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.03 + Math.random() * 0.03
+      }));
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    let lastTime = 0;
+    const draw = (timestamp) => {
+      if (!lastTime) lastTime = timestamp;
+      const dt = (timestamp - lastTime) / 16.666;
+      lastTime = timestamp;
+
+      const scrollY = window.scrollY || window.pageYOffset;
+      const startFade = 50;
+      const endFade = window.innerHeight * 0.85;
+      let opacity = 0;
+      if (scrollY > startFade) {
+        opacity = Math.min(1, (scrollY - startFade) / (endFade - startFade));
+      }
+      canvas.style.opacity = opacity;
+
+      if (opacity === 0) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+
+      ctx.clearRect(0, 0, W, H);
+      const mouse = mouseRef.current;
+
+      // Draw subtle background circuit grid
+      ctx.strokeStyle = "rgba(15, 58, 133, 0.02)";
+      ctx.lineWidth = 0.5;
+      const gridSize = 80;
+      for (let x = 0; x < W; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, H);
+        ctx.stroke();
+      }
+      for (let y = 0; y < H; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.stroke();
+      }
+
+      nodes.forEach((n) => {
+        n.x += n.vx * dt;
+        n.y += n.vy * dt;
+
+        if (n.x < 0) { n.x = 0; n.vx *= -1; }
+        if (n.x > W) { n.x = W; n.vx *= -1; }
+        if (n.y < 0) { n.y = 0; n.vy *= -1; }
+        if (n.y > H) { n.y = H; n.vy *= -1; }
+
+        const dx = n.x - mouse.x;
+        const dy = n.y - mouse.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 150 && d > 0.1) {
+          const force = (150 - d) / 150;
+          n.x += (dx / d) * force * 1.5;
+          n.y += (dy / d) * force * 1.5;
+        }
+      });
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 160) {
+            const alpha = (1 - d / 160) * 0.35;
+            
+            ctx.strokeStyle = `rgba(15, 58, 133, ${alpha * 0.5})`;
+            ctx.lineWidth = 1;
+            
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+
+            const time = (timestamp * 0.001 * (0.8 + a.pulseSpeed)) % 1;
+            let px = a.x;
+            let py = a.y;
+
+            if (time < 0.5) {
+              const t = time * 2;
+              px = a.x + (b.x - a.x) * t;
+              py = a.y;
+            } else {
+              const t = (time - 0.5) * 2;
+              px = b.x;
+              py = a.y + (b.y - a.y) * t;
+            }
+
+            ctx.beginPath();
+            ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(15, 58, 133, ${alpha * 0.8})`;
+            ctx.fill();
+          }
+        }
+      }
+
+      nodes.forEach((n) => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(15, 58, 133, 0.35)";
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    animationFrameId = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
@@ -849,6 +1053,7 @@ export default function Vlsi() {
   return (
     <main className="vlsi-page" ref={rootRef}>
       <div className="bg-layer" aria-hidden="true">
+        <canvas ref={canvasRef} className="vlsipg-bg-canvas" />
         <div className="blob blob-1" />
         <div className="blob blob-2" />
         <div className="blob blob-3" />
@@ -856,66 +1061,58 @@ export default function Vlsi() {
         <div className="noise" />
       </div>
 
-      <section className="hero" id="top">
-        <div className="grid-overlay" />
-        <div className="hero-grid container">
-          <div className="hero-left reveal">
-            <div className="eyebrow">
-              <span className="dot" /> Semiconductor Engineering
+      <section className="vlsipg-hero" id="top">
+        <div className="vlsipg-hero-grid container">
+          <div className="vlsipg-hero-left">
+            <div className="vlsipg-eyebrow vlsipg-reveal">
+              <span className="vlsipg-dot" /> {heroData.eyebrow}
             </div>
-            <h1 className="display">
-              End-to-End
+            <h1 className="vlsipg-display vlsipg-reveal vlsipg-delay-1">
+              {heroData.titleLine1}
               <br />
-              Semiconductor
+              {heroData.titleLine2}
               <br />
-              <span className="hl">Solutions.</span>
+              <span className="vlsipg-hl">{heroData.titleHighlight}</span>
             </h1>
-            <p className="lede">
-              From Architecture to Production-Ready Silicon — delivering specialized front-end design,
-              back-end physical design, and post-silicon validation services.
+            <p className="vlsipg-lede vlsipg-reveal vlsipg-delay-2">
+              {heroData.lede}
             </p>
-            <div className="hero-actions">
-              <a href="#capabilities" className="btn btn-primary">
-                <span className="btn__label">Explore</span>
-                <span className="btn__icon" aria-hidden="true">→</span>
+            <div className="vlsipg-hero-actions vlsipg-reveal vlsipg-delay-3">
+              <a href="#capabilities" className="vlsipg-btn vlsipg-btn-primary">
+                <span className="vlsipg-btn__label">Explore Services</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">→</span>
               </a>
-              <a href="#cta" className="btn btn-ghost">
+              <a href="#cta" className="vlsipg-btn vlsipg-btn-ghost">
                 Talk to an engineer
               </a>
             </div>
-            <dl className="hero-meta">
-              <div>
-                <dt>03</dt>
-                <dd>
-                  Main service
-                  <br />
-                  phases
-                </dd>
-              </div>
-              <div>
-                <dt>12</dt>
-                <dd>
-                  Core engineering
-                  <br />
-                  capabilities
-                </dd>
-              </div>
+            <dl className="vlsipg-hero-meta vlsipg-reveal vlsipg-delay-4">
+              {heroData.stats.map((stat, idx) => (
+                <div key={idx}>
+                  <dt>{stat.value}</dt>
+                  <dd>
+                    {stat.labelLine1}
+                    <br />
+                    {stat.labelLine2}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </div>
-          <div className="hero-right reveal delay-1">
-            <figure className="hero-figure tilt" ref={tiltRef}>
-              <img src={imageUrl("hero_chip.png")} alt="Macro photograph of a silicon microchip" />
+          <div className="vlsipg-hero-right vlsipg-reveal vlsipg-delay-5">
+            <figure className="vlsipg-hero-figure tilt" ref={tiltRef}>
+              <img src={imageUrl(heroData.image)} alt="Macro photograph of a silicon microchip" />
               <figcaption>
-                <span className="cap-line">Fig. 001</span>
-                <span className="cap-title">Custom Silicon — 7nm Architecture</span>
-                <span className="cap-loc">In-house lab · Bengaluru</span>
+                <span className="vlsipg-cap-line">{heroData.caption.fig}</span>
+                <span className="vlsipg-cap-title">{heroData.caption.title}</span>
+                <span className="vlsipg-cap-loc">{heroData.caption.loc}</span>
               </figcaption>
             </figure>
-            <div className="hero-badge floaty">
-              <span className="pulse" />
+            <div className="vlsipg-hero-badge vlsipg-floaty">
+              <span className="vlsipg-pulse" />
               <div>
-                <strong>Silicon Success</strong>
-                <small>100% tapeout rate · 7nm / 5nm / 3nm</small>
+                <strong>{heroData.badge.title}</strong>
+                <small>{heroData.badge.subtitle}</small>
               </div>
             </div>
           </div>
@@ -932,16 +1129,16 @@ export default function Vlsi() {
           <div className="container">
             <div className="cap-head">
               <div className="cap-title-block">
-                <h2 className="display-2 capabilities-title">
+                <h2 className="vlsipg-display-2 capabilities-title">
                   Comprehensive
                   <br />
                   Across the <em>Chip</em> Lifecycle
                 </h2>
               </div>
-              <p className="section-note reveal">Deep expertise at every stage—from silicon concept to production scale.</p>
+              <p className="section-note vlsipg-reveal">Deep expertise at every stage—from silicon concept to production scale.</p>
             </div>
 
-            <div className="cap-nav-block reveal">
+            <div className="cap-nav-block vlsipg-reveal">
               <div className="caps-tabs">
                 {phases.map((phase) => (
                   <button
@@ -981,8 +1178,8 @@ export default function Vlsi() {
       </section>
 
       <section className="cta" id="cta">
-        <div className="container reveal">
-          <h2 className="display-2">
+        <div className="container vlsipg-reveal">
+          <h2 className="vlsipg-display-2">
             Have a custom silicon project that needs
             <br />
             <em>real</em> engineering underneath it?
@@ -1007,16 +1204,42 @@ export default function Vlsi() {
         </div>
       </section>
 
+      <section className="brochure-section">
+        <div className="container">
+          <div className="brochure-card vlsipg-reveal">
+            <div className="brochure-content">
+              <h3 className="brochure-title">
+                <em>Semiconductor Engineering</em> Capability Brochure
+              </h3>
+              <p className="brochure-description">
+                Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
+              </p>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="vlsipg-btn vlsipg-btn-primary brochure-btn"
+              >
+                <span className="vlsipg-btn__label">Download Brochure</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <div className="brochure-visual">
+              <img src={imageUrl("semiconductor_brochure.jpg")} alt="Semiconductor engineering wafer probing" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section faq-section" id="faq">
         <div className="container">
-          <div className="section-head split reveal">
+          <div className="section-head split vlsipg-reveal">
             <div>
-              <h2 className="display-2">Answers before<br /><em>we start engineering</em></h2>
+              <h2 className="vlsipg-display-2">Answers before<br /><em>we start engineering</em></h2>
             </div>
             <p className="section-note">A quick view of how VCTS engages across ASIC, FPGA, physical design, and post-silicon programs.</p>
           </div>
 
-          <div className="faq-list reveal">
+          <div className="faq-list vlsipg-reveal">
             {faqItems.map((item, index) => {
               const isOpen = activeFaqIndex === index;
               return (
@@ -1040,32 +1263,6 @@ export default function Vlsi() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="brochure-section">
-        <div className="container">
-          <div className="brochure-card reveal">
-            <div className="brochure-content">
-              <h3 className="brochure-title">
-                <em>Semiconductor Engineering</em> Capability Brochure
-              </h3>
-              <p className="brochure-description">
-                Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
-              </p>
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="btn btn-primary brochure-btn"
-              >
-                <span className="btn__label">Download Brochure</span>
-                <span className="btn__icon" aria-hidden="true">↓</span>
-              </a>
-            </div>
-            <div className="brochure-visual">
-              <img src={imageUrl("semiconductor_brochure.jpg")} alt="Semiconductor engineering wafer probing" />
-            </div>
           </div>
         </div>
       </section>

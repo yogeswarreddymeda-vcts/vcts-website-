@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx'
 import VLSI from './pages/VLSI.jsx'
 import Embedded from './pages/Embedded.jsx'
 import EdgeAI from './pages/edgeai.jsx'
+import Technologies from './pages/Technologies.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
@@ -82,10 +83,10 @@ function App() {
       {currentPage === 'vlsi' && <VLSI />}
       {currentPage === 'embedded' && <Embedded />}
       {currentPage === 'edgeai' && <EdgeAI />}
-      <Footer setCurrentPage={setCurrentPage} />
+      {currentPage === 'technologies' && <Technologies />}
+  <Footer setCurrentPage={setCurrentPage} />
     </>
   );
 }
 
 export default App
-

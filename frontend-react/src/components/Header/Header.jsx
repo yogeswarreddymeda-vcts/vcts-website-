@@ -162,7 +162,20 @@ export default function Header({ currentPage, setCurrentPage }) {
                 </ul>
               </li>
 
-              <li className="nav-item"><a className="nav-link" href="#">Technologies</a></li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${currentPage === 'technologies' ? 'active' : ''}`}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('technologies');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    closeMenu();
+                  }}
+                >
+                  Technologies
+                </a>
+              </li>
               <li className="nav-item"><a className="nav-link" href="#">Industries</a></li>
               <li className="nav-item"><a className="nav-link" href="#">Careers</a></li>
               <li className="nav-item header-contact-margin-desktop"><a className="nav-link" href="#">Contact Us</a></li>
