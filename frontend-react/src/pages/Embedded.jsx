@@ -320,8 +320,8 @@ export default function Embedded() {
 
   /* ============ GSAP SCRAMBLE & SCROLL ALIGNMENT ANIMATION ============ */
   React.useEffect(() => {
-    const cards = gsap.utils.toArray(".work-item");
-    const innerCards = gsap.utils.toArray(".work-item-inner");
+    const cards = gsap.utils.toArray(".embpg-work-item");
+    const innerCards = gsap.utils.toArray(".embpg-work-item-inner");
     if (!cards.length) return;
 
     // Store random offsets per card so they stay consistent on reverse
@@ -411,7 +411,7 @@ export default function Embedded() {
 
     // Use invalidateOnRefresh so trigger recalculates after services pin adds scroll height
     const trigger = ScrollTrigger.create({
-      trigger: ".work-section",
+      trigger: ".embpg-work-section",
       start: "top 80%",
       end: "bottom 20%",
       invalidateOnRefresh: true,
@@ -581,38 +581,38 @@ export default function Embedded() {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
     // 1. Initial fade-in of wrappers to prevent layout flashing
-    tl.to(".hero-eyebrow, .hero-display-title, .hero-lede-para, .hero-stats-row, .hero-action-buttons, .hero-mask-visual", {
+    tl.to(".embpg-hero-eyebrow, .embpg-hero-display-title, .embpg-hero-lede-para, .embpg-hero-stats-row, .embpg-hero-action-buttons, .embpg-hero-mask-visual", {
       opacity: 1,
       duration: 0.05
     });
 
     // 2. Staggered sliding entrance animations
-    tl.fromTo(".hero-eyebrow",
+    tl.fromTo(".embpg-hero-eyebrow",
       { y: 25, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.1 },
       "0.15"
     );
 
-    tl.fromTo(".hero-display-title",
+    tl.fromTo(".embpg-hero-display-title",
       { y: 40, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.4 },
       "-=0.9"
     );
 
-    tl.fromTo(".hero-lede-para",
+    tl.fromTo(".embpg-hero-lede-para",
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.1 },
       "-=1.0"
     );
 
-    tl.fromTo(".hero-action-buttons",
+    tl.fromTo(".embpg-hero-action-buttons",
       { y: 15, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.0 },
       "-=0.95"
     );
 
     const counterObj = { phase: 0, capability: 0 };
-    tl.fromTo(".hero-stats-row",
+    tl.fromTo(".embpg-hero-stats-row",
       { y: 15, opacity: 0 },
       {
         y: 0,
@@ -628,7 +628,7 @@ export default function Embedded() {
               setCounts({
                 phase: Math.floor(counterObj.phase),
                 capability: Math.floor(counterObj.capability)
-              });
+               });
             }
           });
         }
@@ -636,7 +636,7 @@ export default function Embedded() {
       "-=0.85"
     );
 
-    tl.fromTo(".hero-mask-visual",
+    tl.fromTo(".embpg-hero-mask-visual",
       { x: 120, opacity: 0, scale: 0.96 },
       { x: 0, opacity: 1, scale: 1, duration: 1.8, ease: "cubic-bezier(0.16, 1, 0.3, 1)" },
       "-=1.6"
@@ -705,7 +705,7 @@ export default function Embedded() {
       { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
     );
 
-    const elements = document.querySelectorAll(".reveal:not(.work-item)");
+    const elements = document.querySelectorAll(".reveal:not(.embpg-work-item)");
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -837,52 +837,52 @@ export default function Embedded() {
     <div className="embpg-embedded-page">
 
       {/* ============ BACKGROUND LAYER ============ */}
-      <div className="bg-layer" aria-hidden="true">
+      <div className="embpg-bg-layer" aria-hidden="true">
         <canvas ref={canvasRef} className="embpg-bg-canvas" />
-        <div className="noise" />
+        <div className="embpg-noise" />
       </div>
       {/* ============ END BACKGROUND LAYER ============ */}
 
-      <section className="hero-section" id="top">
-        <div className="hero-content-wrapper">
-          <div className="hero-copy-wrap">
-            <p className="hero-eyebrow">
-              <span className="blue-dot"></span>
+      <section className="embpg-hero-section" id="top">
+        <div className="embpg-hero-content-wrapper">
+          <div className="embpg-hero-copy-wrap">
+            <p className="embpg-hero-eyebrow">
+              <span className="embpg-blue-dot"></span>
               EMBEDDED ENGINEERING
             </p>
-            <h1 className="hero-display-title">
-              The quiet <span className="blue-highlight">intelligence</span> inside every <span className="blue-highlight">connected product.</span>
+            <h1 className="embpg-hero-display-title">
+              The quiet <span className="embpg-blue-highlight">intelligence</span> inside every <span className="embpg-blue-highlight">connected product.</span>
             </h1>
-            <p className="hero-lede-para">
+            <p className="embpg-hero-lede-para">
               We design the hardware, firmware, connectivity and validation systems that let ambitious products ship on time — and stay working, quietly, for a decade.
             </p>
-            <div className="hero-action-buttons">
-              <a href="#capabilities" className="hero-btn-primary">
-                Explore Services <span className="arrow">→</span>
+            <div className="embpg-hero-action-buttons">
+              <a href="#capabilities" className="embpg-hero-btn-primary">
+                Explore Services <span className="embpg-arrow">→</span>
               </a>
-              <a href="#contact" className="hero-btn-ghost">
-                Talk to an engineer <span className="arrow">→</span>
+              <a href="#contact" className="embpg-hero-btn-ghost">
+                Talk to an engineer <span className="embpg-arrow">→</span>
               </a>
             </div>
-            <div className="hero-stats-row">
-              <div className="stat-item">
-                <span className="stat-num">{String(counts.phase).padStart(2, '0')}</span>
-                <span className="stat-label">Main Industry<br />Phases</span>
+            <div className="embpg-hero-stats-row">
+              <div className="embpg-stat-item">
+                <span className="embpg-stat-num">{String(counts.phase).padStart(2, '0')}</span>
+                <span className="embpg-stat-label">Main Industry<br />Phases</span>
               </div>
-              <div className="stat-item">
-                <span className="stat-num">{String(counts.capability).padStart(2, '0')}</span>
-                <span className="stat-label">Core Engineering<br />Services</span>
+              <div className="embpg-stat-item">
+                <span className="embpg-stat-num">{String(counts.capability).padStart(2, '0')}</span>
+                <span className="embpg-stat-label">Core Engineering<br />Services</span>
               </div>
             </div>
           </div>
-          <div className="hero-mask-visual">
-            <div className="device-stage" id="stage" ref={stageRef}>
-              <img className="d-layer d-under" src={EmbeddedImages.after} alt="Internal hardware of the fanless embedded enclosure" draggable="false" />
-              <img className="d-layer d-over" id="overImg" ref={overImgRef} src={EmbeddedImages.before} alt="Assembled fanless embedded enclosure" draggable="false" />
-              <div className="reveal-ring" id="ring" ref={ringRef} aria-hidden="true"></div>
+          <div className="embpg-hero-mask-visual">
+            <div className="embpg-device-stage" id="stage" ref={stageRef}>
+              <img className="embpg-d-layer embpg-d-under" src={EmbeddedImages.after} alt="Internal hardware of the fanless embedded enclosure" draggable="false" />
+              <img className="embpg-d-layer embpg-d-over" id="overImg" ref={overImgRef} src={EmbeddedImages.before} alt="Assembled fanless embedded enclosure" draggable="false" />
+              <div className="embpg-reveal-ring" id="ring" ref={ringRef} aria-hidden="true"></div>
             </div>
-            <div className="stage-hint">
-              <span className="hint-pulse"></span>
+            <div className="embpg-stage-hint">
+              <span className="embpg-hint-pulse"></span>
               <span>Hover stage to expose internal hardware architecture</span>
             </div>
           </div>
@@ -891,8 +891,8 @@ export default function Embedded() {
       {/* ============ END HERO SECTION ============ */}
 
       {/* ============ MARQUEE SECTION ============ */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
+      <div className="embpg-marquee" aria-hidden="true">
+        <div className="embpg-marquee-track">
           <span>MCU</span><i>·</i>
           <span>RTOS</span><i>·</i>
           <span>Embedded Linux</span><i>·</i>
@@ -924,117 +924,117 @@ export default function Embedded() {
       {/* ============ END MARQUEE SECTION ============ */}
 
       {/* ============ SERVICES SECTION ============ */}
-      <div ref={scrollContainerRef} className="services-scroll-container">
-        <section className="section services" id="capabilities">
+      <div ref={scrollContainerRef} className="embpg-services-scroll-container">
+        <section className="embpg-section embpg-services" id="capabilities">
           <div className="container container-narrow mb-4">
-            <div className="section-head reveal center">
+            <div className="embpg-section-head reveal center">
 
               <h2 className="display-2">
-                Our <span className="blue-highlight">Embedded Engineering</span> Services
+                Our <span className="embpg-blue-highlight">Embedded Engineering</span> Services
               </h2>
-              <p className="section-subtitle">
+              <p className="embpg-section-subtitle">
                 From initial schematic design to low-level driver porting and system bring-up, we deliver end-to-end expertise at every layer of the hardware-software stack.
               </p>
             </div>
           </div>
-          <div ref={glassCardRef} className="container container-narrow services-glass-wrapper">
-            <div className="svc-layout reveal">
-              <div className="svc-tabs">
+          <div ref={glassCardRef} className="container container-narrow embpg-services-glass-wrapper">
+            <div className="embpg-svc-layout reveal">
+              <div className="embpg-svc-tabs">
                 {SERVICES_DATA.map((s) => {
                   const isActive = activeService === s.letter;
                   return (
                     <button
                       key={s.letter}
-                      className={`svc-tab${isActive ? " active" : ""}`}
+                      className={`embpg-svc-tab${isActive ? " active" : ""}`}
                       onClick={() => handleTabClick(s.letter)}
                     >
-                      <span className="letter">{s.letter}</span>
+                      <span className="embpg-letter">{s.letter}</span>
                       <span>{s.title}</span>
                     </button>
                   );
                 })}
               </div>
-              <div className={`svc-panel align-${["A", "B", "C"].includes(activeService) ? "start" :
+              <div className={`embpg-svc-panel embpg-align-${["A", "B", "C"].includes(activeService) ? "start" :
                 ["D", "E", "F", "G"].includes(activeService) ? "center" : "end"
                 }`}>
                 {SERVICES_DATA.map((s, idx) => {
                   if (activeService !== s.letter) return null;
                   const accent = TABS_ACCENTS[idx % TABS_ACCENTS.length];
                   return (
-                    <div key={s.letter} className="svc-panel-grid">
-                      <div className="svc-panel-copy">
-                        <div className="service-title-row">
-                          <div className="alpha-badge">{s.letter}</div>
+                    <div key={s.letter} className="embpg-svc-panel-grid">
+                      <div className="embpg-svc-panel-copy">
+                        <div className="embpg-service-title-row">
+                          <div className="embpg-alpha-badge">{s.letter}</div>
                           <h3>{s.title}</h3>
                         </div>
-                        <p className="service-desc">{s.description}</p>
-                        <span className="deliver-label">What We Deliver</span>
-                        <ul className="tech-list">
+                        <p className="embpg-service-desc">{s.description}</p>
+                        <span className="embpg-deliver-label">What We Deliver</span>
+                        <ul className="embpg-tech-list">
                           {s.items.map((item, itemIdx) => (
                             <li key={itemIdx}>{item}</li>
                           ))}
                         </ul>
                       </div>
-                      <div className="svc-illustration-wrap">
+                      <div className="embpg-svc-illustration-wrap">
                         {s.letter === "A" ? (
                           <img
                             src={EmbeddedImages.test}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "B" ? (
                           <img
                             src={EmbeddedImages.m2}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "C" ? (
                           <img
                             src={EmbeddedImages.m3}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "D" ? (
                           <img
                             src={EmbeddedImages.m4}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "E" ? (
                           <img
                             src={EmbeddedImages.m5}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "F" ? (
                           <img
                             src={EmbeddedImages.m6}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "G" ? (
                           <img
                             src={EmbeddedImages.m7}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "H" ? (
                           <img
                             src={EmbeddedImages.m8}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "I" ? (
                           <img
                             src={EmbeddedImages.m9}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : s.letter === "J" ? (
                           <img
                             src={EmbeddedImages.m10}
                             alt={s.title}
-                            className="svc-illustration-img"
+                            className="embpg-svc-illustration-img"
                           />
                         ) : (
                           <ServiceDiagram letter={s.letter} accent={accent} />
@@ -1051,123 +1051,123 @@ export default function Embedded() {
       {/* ============ END SERVICES SECTION ============ */}
 
       {/* ============ WORK SECTION ============ */}
-      <section className="section work-section" id="work">
+      <section className="embpg-section embpg-work-section" id="work">
         <div className="container">
-          <div className="section-head reveal center">
+          <div className="embpg-section-head reveal center">
 
             <h2 className="display-2">
-              Industries We've <span className="blue-highlight">Engineered</span> For
+              Industries We've <span className="embpg-blue-highlight">Engineered</span> For
             </h2>
-            <p className="section-subtitle">
+            <p className="embpg-section-subtitle">
               Delivering robust embedded solutions across diverse sectors—from high-reliability aerospace to high-volume automotive platforms.
             </p>
           </div>
-          <div className="work-grid">
+          <div className="embpg-work-grid">
             <a
-              className="work-item w-tall"
+              className="embpg-work-item embpg-w-tall"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Industrial IoT"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.industry})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.industry})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Industrial IoT</span>
+                    <span className="embpg-tag">Industrial IoT</span>
                     <h3>Sub-metering gateway with edge inference</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
             <a
-              className="work-item w-wide"
+              className="embpg-work-item embpg-w-wide"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Healthcare"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.watch})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.watch})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Healthcare</span>
+                    <span className="embpg-tag">Healthcare</span>
                     <h3>Wearable health monitoring, made simple</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
             <a
-              className="work-item"
+              className="embpg-work-item"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Automotive"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.automo})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.automo})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Automotive</span>
+                    <span className="embpg-tag">Automotive</span>
                     <h3>Smart control for electric vehicles</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
             <a
-              className="work-item"
+              className="embpg-work-item"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Consumer"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.home})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.home})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Consumer</span>
+                    <span className="embpg-tag">Consumer</span>
                     <h3>Everyday tech, designed to feel effortless</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
             <a
-              className="work-item w-wide"
+              className="embpg-work-item embpg-w-wide"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Aerospace"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.aero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.aero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Aerospace</span>
+                    <span className="embpg-tag">Aerospace</span>
                     <h3>Built to perform in extreme conditions</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
             <a
-              className="work-item"
+              className="embpg-work-item"
               href="#work"
               onClick={(e) => { e.preventDefault(); setActiveProject("Edge AI"); }}
               onMouseMove={handleCardMouseMove}
             >
-              <div className="work-item-inner">
-                <div className="border-glow" aria-hidden="true" />
-                <div className="work-img" style={{ backgroundImage: `url(${EmbeddedImages.edge})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                <div className="work-meta">
+              <div className="embpg-work-item-inner">
+                <div className="embpg-border-glow" aria-hidden="true" />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.edge})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-meta">
                   <div>
-                    <span className="tag">Edge AI</span>
+                    <span className="embpg-tag">Edge AI</span>
                     <h3>Intelligence that runs at the edge</h3>
                   </div>
-                  <span className="arrow">↗</span>
+                  <span className="embpg-arrow">↗</span>
                 </div>
               </div>
             </a>
@@ -1177,7 +1177,7 @@ export default function Embedded() {
       {/* ============ END WORK SECTION ============ */}
 
       {/* ============ CTA SECTION ============ */}
-      <section className="cta" id="cta">
+      <section className="embpg-cta" id="cta">
         <div className="container reveal">
           <h2 className="display-2">
             Have a custom silicon project that needs
@@ -1189,7 +1189,7 @@ export default function Embedded() {
             building — we'll reply within two working days with a preliminary read.
           </p>
           <form
-            className="cta-form"
+            className="embpg-cta-form"
             onSubmit={(event) => {
               event.preventDefault();
               setFormSent(true);
@@ -1198,7 +1198,7 @@ export default function Embedded() {
             <input type="email" placeholder="your@work-email.com" required />
             <button type="submit">{formSent ? "Sent · we'll be in touch" : "Talk to us →"}</button>
           </form>
-          <div className="cta-alt">
+          <div className="embpg-cta-alt">
             or write directly to <a href="mailto:hello@vconnectech.com">hello@vconnectech.com</a>
           </div>
         </div>
@@ -1206,17 +1206,17 @@ export default function Embedded() {
       {/* ============ END CTA SECTION ============ */}
 
       {/* ============ PLAIN CARD SECTION ============ */}
-      <section className="plain-card-section">
+      <section className="embpg-plain-card-section">
         <div className="container container-narrow mb-4">
-          <div className="section-head reveal center">
+          <div className="embpg-section-head reveal center">
             <h2 className="display-2">
-              <span className="blue-highlight">Build with Confidence</span>
+              <span className="embpg-blue-highlight">Build with Confidence</span>
             </h2>
           </div>
         </div>
         <div className="container container-narrow">
           <div
-            className="plain-horizontal-card reveal"
+            className="embpg-plain-horizontal-card reveal"
             style={{
               backgroundImage: `url(${EmbeddedImages.brochb})`,
               backgroundSize: 'cover',
@@ -1224,15 +1224,15 @@ export default function Embedded() {
               backgroundRepeat: 'no-repeat'
             }}
           >
-            <div className="brochure-card-content">
-              <h3 className="brochure-card-heading">
-                Download our <span className="blue-highlight">Embedded Engineering</span> Capability Brochure
+            <div className="embpg-brochure-card-content">
+              <h3 className="embpg-brochure-card-heading">
+                Download our <span className="embpg-blue-highlight">Embedded Engineering</span> Capability Brochure
               </h3>
-              <p className="brochure-card-subtext">
+              <p className="embpg-brochure-card-subtext">
                 Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
               </p>
-              <a href="/brochure.pdf" download className="brochure-download-link">
-                download brochure <span className="arrow">→</span>
+              <a href="/brochure.pdf" download className="embpg-brochure-download-link">
+                download brochure <span className="embpg-arrow">→</span>
               </a>
             </div>
           </div>
@@ -1241,36 +1241,36 @@ export default function Embedded() {
       {/* ============ END PLAIN CARD SECTION ============ */}
 
       {/* ============ FAQ SECTION ============ */}
-      <section className="faq-section" id="faq">
+      <section className="embpg-faq-section" id="faq">
         <div className="container">
 
-          <div className="faq-header-grid">
-            <div className="faq-header-left">
-              <h2 className="display-2 questions-title">
+          <div className="embpg-faq-header-grid">
+            <div className="embpg-faq-header-left">
+              <h2 className="display-2 embpg-questions-title">
                 Questions before <br />
-                we <span className="blue-highlight">start engineering?</span>
+                we <span className="embpg-blue-highlight">start engineering?</span>
               </h2>
             </div>
           </div>
 
-          <div className="faq-list">
+          <div className="embpg-faq-list">
             {FAQ_DATA.map((faq, index) => {
               const isOpen = activeFaq === index;
               return (
                 <div
                   key={index}
-                  className={`faq-item ${isOpen ? 'open' : ''}`}
+                  className={`embpg-faq-item ${isOpen ? 'open' : ''}`}
                   onMouseEnter={() => setActiveFaq(index)}
                   onMouseLeave={() => setActiveFaq(null)}
                 >
-                  <div className="faq-question-row">
-                    <h3 className="faq-question">{faq.q}</h3>
-                    <div className={`faq-icon-box ${isOpen ? 'active' : ''}`}>
+                  <div className="embpg-faq-question-row">
+                    <h3 className="embpg-faq-question">{faq.q}</h3>
+                    <div className={`embpg-faq-icon-box ${isOpen ? 'active' : ''}`}>
                       {isOpen ? '−' : '+'}
                     </div>
                   </div>
-                  <div className="faq-answer-wrapper">
-                    <p className="faq-answer">{faq.a}</p>
+                  <div className="embpg-faq-answer-wrapper">
+                    <p className="embpg-faq-answer">{faq.a}</p>
                   </div>
                 </div>
               );
@@ -1283,17 +1283,17 @@ export default function Embedded() {
 
       {/* ============ PROJECT DETAIL MODAL ============ */}
       {activeProject && (
-        <div className="project-detail-overlay active" onClick={() => setActiveProject(null)}>
-          <div className="project-detail-drawer" onClick={(e) => e.stopPropagation()}>
-            <button className="detail-close-btn" onClick={() => setActiveProject(null)}>
+        <div className="embpg-project-detail-overlay active" onClick={() => setActiveProject(null)}>
+          <div className="embpg-project-detail-drawer" onClick={(e) => e.stopPropagation()}>
+            <button className="embpg-detail-close-btn" onClick={() => setActiveProject(null)}>
               ✕
             </button>
-            <div className="detail-content">
-              <span className="detail-tag">{PROJECT_DETAILS[activeProject].tag}</span>
-              <h2 className="detail-title">{PROJECT_DETAILS[activeProject].title}</h2>
-              <p className="detail-desc">{PROJECT_DETAILS[activeProject].desc}</p>
-              <div className="detail-grid">
-                <div className="detail-block">
+            <div className="embpg-detail-content">
+              <span className="embpg-detail-tag">{PROJECT_DETAILS[activeProject].tag}</span>
+              <h2 className="embpg-detail-title">{PROJECT_DETAILS[activeProject].title}</h2>
+              <p className="embpg-detail-desc">{PROJECT_DETAILS[activeProject].desc}</p>
+              <div className="embpg-detail-grid">
+                <div className="embpg-detail-block">
                   <h4>Technical Specs</h4>
                   <ul>
                     {PROJECT_DETAILS[activeProject].specs.map((spec, i) => (
@@ -1301,16 +1301,16 @@ export default function Embedded() {
                     ))}
                   </ul>
                 </div>
-                <div className="detail-block">
+                <div className="embpg-detail-block">
                   <h4>The Engineering Challenge</h4>
                   <p>{PROJECT_DETAILS[activeProject].challenge}</p>
                 </div>
               </div>
-              <div className="detail-tech-stack">
+              <div className="embpg-detail-tech-stack">
                 <h4>Technology Stack</h4>
-                <div className="tech-pills">
+                <div className="embpg-tech-pills">
                   {PROJECT_DETAILS[activeProject].stack.map((tech, i) => (
-                    <span key={i} className="tech-pill">{tech}</span>
+                    <span key={i} className="embpg-tech-pill">{tech}</span>
                   ))}
                 </div>
               </div>

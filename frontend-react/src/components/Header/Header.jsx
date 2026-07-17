@@ -104,7 +104,7 @@ export default function Header({ currentPage, setCurrentPage }) {
               {/* Services Dropdown */}
               <li className="nav-item dropdown">
                 <a
-                  className={`nav-link dropdown-toggle ${(currentPage === 'vlsi' || currentPage === 'embedded') ? 'active' : ''} ${dropdownOpen ? 'show' : ''}`}
+                  className={`nav-link dropdown-toggle ${(currentPage === 'vlsi' || currentPage === 'embedded' || currentPage === 'edgeai') ? 'active' : ''} ${dropdownOpen ? 'show' : ''}`}
                   href="#"
                   id="servicesDropdown"
                   role="button"
@@ -147,10 +147,12 @@ export default function Header({ currentPage, setCurrentPage }) {
                   </li>
                   <li>
                     <a
-                      className="dropdown-item"
+                      className={`dropdown-item ${currentPage === 'edgeai' ? 'active' : ''}`}
                       href="#"
                       onClick={(e) => {
                         e.preventDefault();
+                        setCurrentPage('edgeai');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         closeMenu();
                       }}
                     >
