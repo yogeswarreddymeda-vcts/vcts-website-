@@ -233,13 +233,13 @@
 }
 
 .contact-list a {
-  color: #ffffff;
+  color: #ffffff !important;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .contact-list a:hover {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .map-bg {

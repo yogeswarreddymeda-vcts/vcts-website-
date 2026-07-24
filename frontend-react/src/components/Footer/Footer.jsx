@@ -43,8 +43,8 @@ export default function Footer({ setCurrentPage }) {
             </h3>
             <ul className="links-list">
               <li>
-                <a
-                  href="#"
+                <a 
+                  href="/"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('home');
@@ -56,8 +56,8 @@ export default function Footer({ setCurrentPage }) {
               </li>
               <li><a href="#">About Us <span className="chevron">&gt;</span></a></li>
               <li>
-                <a
-                  href="#"
+                <a 
+                  href="/"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('home');
@@ -71,7 +71,7 @@ export default function Footer({ setCurrentPage }) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/technologies"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('technologies');
@@ -79,6 +79,18 @@ export default function Footer({ setCurrentPage }) {
                   }}
                 >
                   Technologies <span className="chevron">&gt;</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/hackathon"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('hackathon');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  Hackathon <span className="chevron">&gt;</span>
                 </a>
               </li>
               <li><a href="#">Industries <span className="chevron">&gt;</span></a></li>
@@ -95,8 +107,8 @@ export default function Footer({ setCurrentPage }) {
             </h3>
             <ul className="links-list">
               <li>
-                <a
-                  href="#"
+                <a 
+                  href="/vlsi"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('vlsi');
@@ -107,8 +119,8 @@ export default function Footer({ setCurrentPage }) {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <a 
+                  href="/embedded"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('embedded');
@@ -120,7 +132,7 @@ export default function Footer({ setCurrentPage }) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/edgeai"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('edgeai');
@@ -158,7 +170,7 @@ export default function Footer({ setCurrentPage }) {
             <ul className="contact-list">
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 00 2 2z"></path></svg>
-                <a href="mailto:info@vctech.com">info@vctech.com</a>
+                <a href="mailto:hello@vconnectech.com" style={{ color: '#ffffff' }}>hello@vconnectech.com</a>
               </li>
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>

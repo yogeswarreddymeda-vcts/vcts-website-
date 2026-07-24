@@ -61,7 +61,7 @@ export default function Header({ currentPage, setCurrentPage }) {
         <div className="header-logo-block">
           <a
             className="navbar-brand d-flex align-items-center py-0"
-            href="#"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               setCurrentPage('home');
@@ -88,7 +88,7 @@ export default function Header({ currentPage, setCurrentPage }) {
               <li className="nav-item">
                 <a
                   className={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
-                  href="#"
+                  href="/"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('home');
@@ -120,7 +120,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                   <li>
                     <a
                       className={`dropdown-item ${currentPage === 'vlsi' ? 'active' : ''}`}
-                      href="#"
+                      href="/vlsi"
                       onClick={(e) => {
                         e.preventDefault();
                         setCurrentPage('vlsi');
@@ -134,7 +134,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                   <li>
                     <a
                       className={`dropdown-item ${currentPage === 'embedded' ? 'active' : ''}`}
-                      href="#"
+                      href="/embedded"
                       onClick={(e) => {
                         e.preventDefault();
                         setCurrentPage('embedded');
@@ -148,7 +148,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                   <li>
                     <a
                       className={`dropdown-item ${currentPage === 'edgeai' ? 'active' : ''}`}
-                      href="#"
+                      href="/edgeai"
                       onClick={(e) => {
                         e.preventDefault();
                         setCurrentPage('edgeai');
@@ -165,7 +165,7 @@ export default function Header({ currentPage, setCurrentPage }) {
               <li className="nav-item">
                 <a
                   className={`nav-link ${currentPage === 'technologies' ? 'active' : ''}`}
-                  href="#"
+                  href="/technologies"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPage('technologies');
@@ -174,6 +174,20 @@ export default function Header({ currentPage, setCurrentPage }) {
                   }}
                 >
                   Technologies
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${currentPage === 'hackathon' ? 'active' : ''}`}
+                  href="/hackathon"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('hackathon');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    closeMenu();
+                  }}
+                >
+                  Hackathon
                 </a>
               </li>
               <li className="nav-item"><a className="nav-link" href="#">Industries</a></li>

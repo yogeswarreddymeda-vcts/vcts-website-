@@ -1776,8 +1776,8 @@ body {
 }
 
 .cta-alt a {
-    color: var(--sky-200);
-    border-bottom: 1px solid rgba(142, 197, 255, .4)
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .6)
 }
 
 

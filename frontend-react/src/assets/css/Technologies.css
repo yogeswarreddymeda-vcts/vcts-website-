@@ -2716,7 +2716,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../image/VLSI/vlsi_blueprint_bg.png") no-repeat center center / cover;
+  background: url("../image/Teachnologies/tech_blueprint.png") no-repeat center center / cover;
   opacity: .34;
   pointer-events: none;
   z-index: 0;
@@ -2882,8 +2882,8 @@
 }
 
 .techpg-cta-alt a {
-  color: var(--sky-200);
-  border-bottom: 1px solid rgba(142, 197, 255, .4);
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .6);
 }
 
 /* ============ BROCHURE SECTION ============ */

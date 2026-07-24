@@ -1,25 +1,54 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Header from './components/Header/Header.jsx'
 import Home from './pages/Home.jsx'
 import VLSI from './pages/VLSI.jsx'
 import Embedded from './pages/Embedded.jsx'
 import EdgeAI from './pages/edgeai.jsx'
 import Technologies from './pages/Technologies.jsx'
+import Hackathon from './pages/Hackathon.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
-function App() {
-  const [currentPage, setCurrentPage] = useState(() => {
-    const navigationEntries = performance.getEntriesByType('navigation');
-    const isReload = navigationEntries.length > 0
-      ? navigationEntries[0].type === 'reload'
-      : performance.navigation.type === 1;
+const pageRoutes = {
+  '/': 'home',
+  '/vlsi': 'vlsi',
+  '/embedded': 'embedded',
+  '/edgeai': 'edgeai',
+  '/technologies': 'technologies',
+  '/hackathon': 'hackathon'
+};
 
-    if (isReload) {
-      return sessionStorage.getItem('vcts_current_page') || 'home';
+const routePaths = Object.entries(pageRoutes).reduce((paths, [path, page]) => {
+  paths[page] = path;
+  return paths;
+}, {});
+
+const getCurrentRoutePage = () => {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  return pageRoutes[normalizedPath] || 'home';
+};
+
+function App() {
+  const [currentPage, setCurrentPageState] = useState(getCurrentRoutePage);
+
+  const setCurrentPage = useCallback((page) => {
+    const nextPath = routePaths[page] || '/';
+    setCurrentPageState(page);
+
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({ page }, '', nextPath);
     }
-    return 'home';
-  });
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPageState(getCurrentRoutePage());
+      window.scrollTo({ top: 0 });
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   useEffect(() => {
     sessionStorage.setItem('vcts_current_page', currentPage);
@@ -84,7 +113,8 @@ function App() {
       {currentPage === 'embedded' && <Embedded />}
       {currentPage === 'edgeai' && <EdgeAI />}
       {currentPage === 'technologies' && <Technologies />}
-  <Footer setCurrentPage={setCurrentPage} />
+      {currentPage === 'hackathon' && <Hackathon />}
+      <Footer setCurrentPage={setCurrentPage} />
     </>
   );
 }
