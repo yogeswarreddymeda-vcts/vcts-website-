@@ -1,4 +1,4 @@
-import logo from '../../assets/image/header_footer_img/footer_logo.png';
+import logo from '../../assets/image/header_footer_img/footer_logo.webp';
 import './Footer.css';
 
 export default function Footer({ setCurrentPage }) {

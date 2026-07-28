@@ -373,6 +373,8 @@ body {
     position: relative;
     z-index: 1;
     color: inherit;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .vlsipg-btn__icon {
@@ -1619,7 +1621,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("../image/VLSI/vlsi_blueprint_bg.png") no-repeat center center / cover;
+    background: url("../image/VLSI/vlsi_blueprint_bg.webp") no-repeat center center / cover;
     opacity: .34;
     pointer-events: none;
     z-index: 0;
@@ -1702,17 +1704,19 @@ body {
     gap: 10px;
     max-width: 520px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, .15);
     backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, .15);
+    border: 1.5px solid rgba(255, 255, 255, .35);
     border-radius: 999px;
     padding: 6px;
-    transition: border-color .3s, background .3s
+    transition: border-color .3s, background .3s, box-shadow .3s;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
 .cta-form:focus-within {
-    border-color: var(--sky-300);
-    background: rgba(255, 255, 255, .14)
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, .22);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .cta-form input {
@@ -1720,13 +1724,14 @@ body {
     background: transparent;
     border: 0;
     padding: 12px 20px;
-    color: #fff;
+    color: #ffffff;
     font-size: 15px;
     outline: none
 }
 
 .cta-form input::placeholder {
-    color: rgba(255, 255, 255, .5)
+    color: rgba(255, 255, 255, .88);
+    font-weight: 400;
 }
 
 .cta-form button {
@@ -1746,6 +1751,17 @@ body {
 .cta-form button:hover {
     transform: translateY(-1px);
     box-shadow: 0 12px 32px -8px rgba(255, 255, 255, .4)
+}
+
+/* Chrome & Edge Autofill Fix */
+.cta-form input:-webkit-autofill,
+.cta-form input:-webkit-autofill:hover, 
+.cta-form input:-webkit-autofill:focus, 
+.cta-form input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #0c3370 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    transition: background-color 50000s ease-in-out 0s;
+    border-radius: 999px 0 0 999px !important;
 }
 
 @media (max-width: 640px) {
@@ -1771,13 +1787,36 @@ body {
 .cta-alt {
     margin-top: 22px;
     font-family: var(--mono);
-    font-size: 12px;
-    color: rgba(255, 255, 255, .6)
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: -0.01em;
 }
 
 .cta-alt a {
     color: #ffffff !important;
-    border-bottom: 1px solid rgba(255, 255, 255, .6)
+    font-weight: 500;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+}
+
+.cta-alt a::after {
+    content: "→";
+    font-size: 13px;
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cta-alt a:hover {
+    color: #7dd3fc !important;
+}
+
+.cta-alt a:hover::after {
+    transform: translateX(4px);
+    opacity: 1;
 }
 
 
@@ -1808,7 +1847,7 @@ body {
 }
 
 .brochure-title {
-    font-size: clamp(22px, 2.5vw, 32px);
+    font-size: clamp(28px, 3.2vw, 42px);
     font-family: var(--display);
     font-weight: 700;
     line-height: 1.25;
@@ -1827,12 +1866,12 @@ body {
 }
 
 .brochure-description {
-    font-size: clamp(14px, 1.15vw, 16px);
+    font-size: clamp(16px, 1.35vw, 19px);
     line-height: 1.6;
     color: #475569;
     /* Muted dark gray */
     margin: 0 0 25px 0;
-    max-width: 520px;
+    max-width: 580px;
 }
 
 .brochure-btn {

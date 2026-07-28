@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import './Header.css';
-import logo from '../../assets/image/header_footer_img/header_logo.png';
+import logo from '../../assets/image/header_footer_img/header_logo.webp';
 
 export default function Header({ currentPage, setCurrentPage }) {
   const btnRef = useRef(null);

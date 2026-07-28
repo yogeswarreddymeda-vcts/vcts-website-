@@ -2,13 +2,14 @@ import React from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/css/edgeai.css";
-import edaHeroImg from "../assets/image/edgeai/eda_hero.jpeg";
-import edas1 from "../assets/image/edgeai/edaservice_img/edas1.jpeg";
-import edas2 from "../assets/image/edgeai/edaservice_img/edas2.jpeg";
-import edas3 from "../assets/image/edgeai/edaservice_img/edas3.jpeg";
-import edas4 from "../assets/image/edgeai/edaservice_img/edas4.jpeg";
-import edas5 from "../assets/image/edgeai/edaservice_img/edas5.jpeg";
-import edas6 from "../assets/image/edgeai/edaservice_img/edas6.jpeg";
+import edaHeroImg from "../assets/image/edgeai/eda_hero.webp";
+import edas1 from "../assets/image/edgeai/edaservice_img/edas1.webp";
+import edas2 from "../assets/image/edgeai/edaservice_img/edas2.webp";
+import edas3 from "../assets/image/edgeai/edaservice_img/edas3.webp";
+import edas4 from "../assets/image/edgeai/edaservice_img/edas4.webp";
+import edas5 from "../assets/image/edgeai/edaservice_img/edas5.webp";
+import edas6 from "../assets/image/edgeai/edaservice_img/edas6.webp";
+import edasB from "../assets/image/edgeai/edaservice_img/edas_b.webp";
 import EmbeddedImages from "../assets/image/Embedded/emi.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,6 +51,7 @@ export default function EdgeAI() {
   const [formSent, setFormSent] = React.useState(false);
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     gsap.set(".edega-hero-badge", { opacity: 0, y: -20 });
     gsap.set(".edega-hero-title", { opacity: 0, y: 30 });
     gsap.set(".edega-hero-desc", { opacity: 0, y: 20 });
@@ -58,15 +60,15 @@ export default function EdgeAI() {
     gsap.set(".edega-hero-right", { opacity: 0, scale: 0.95, x: 30 });
     gsap.set(".edega-ticker-section", { opacity: 0, y: 15 });
 
-    const heroTL = gsap.timeline({ delay: 0.25 });
+    const heroTL = gsap.timeline({ delay: 0.15 });
     heroTL
-      .to(".edega-hero-badge", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })
-      .to(".edega-hero-title", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }, "-=0.4")
-      .to(".edega-hero-desc", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-      .to(".edega-hero-right", { opacity: 1, scale: 1, x: 0, duration: 0.9, ease: "power3.out" }, "-=0.8")
-      .to(".edega-hero-actions", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.6")
-      .to(".edega-hero-stats", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.5")
-      .to(".edega-ticker-section", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.4");
+      .to(".edega-hero-badge", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" })
+      .to(".edega-hero-title", { opacity: 1, y: 0, duration: 0.6, ease: "power4.out" }, "-=0.3")
+      .to(".edega-hero-desc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.45")
+      .to(".edega-hero-right", { opacity: 1, scale: 1, x: 0, duration: 0.65, ease: "power3.out" }, "-=0.5")
+      .to(".edega-hero-actions", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, "-=0.45")
+      .to(".edega-hero-stats", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, "-=0.35")
+      .to(".edega-ticker-section", { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.3");
 
     return () => heroTL.kill();
   }, []);
@@ -131,22 +133,7 @@ export default function EdgeAI() {
         }
       });
 
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 150) {
-            bctx.strokeStyle = `rgba(30, 107, 230, ${(1 - d / 150) * 0.14})`;
-            bctx.lineWidth = 1;
-            bctx.beginPath();
-            bctx.moveTo(a.x, a.y);
-            bctx.lineTo(b.x, a.y);
-            bctx.lineTo(b.x, b.y);
-            bctx.stroke();
-          }
-        }
-      }
+      /* Background connecting lines removed as requested */
 
       nodes.forEach((n) => {
         bctx.beginPath();
@@ -194,11 +181,11 @@ export default function EdgeAI() {
 
     const revealTimeline = gsap.timeline({ paused: true });
     revealTimeline
-      .to(".edega-ecosystem-section .edega-section-tag", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0)
-      .to(".edega-ecosystem-section .edega-section-title", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.4)
-      .to(".edega-ecosystem-section .edega-section-subtitle", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.8)
-      .to(".edega-section-glow-line", { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 1.4)
-      .to(revealWrappers, { opacity: 1, y: 0, duration: 0.8, stagger: 0.25, ease: "power3.out" }, 2.2);
+      .to(".edega-ecosystem-section .edega-section-tag", { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0)
+      .to(".edega-ecosystem-section .edega-section-title", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.15)
+      .to(".edega-ecosystem-section .edega-section-subtitle", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.28)
+      .to(".edega-section-glow-line", { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 0.45)
+      .to(revealWrappers, { opacity: 1, y: 0, duration: 0.6, stagger: 0.14, ease: "power3.out" }, 0.65);
 
     const revealTrigger = ScrollTrigger.create({
       trigger: ".edega-ecosystem-section",
@@ -630,11 +617,11 @@ export default function EdgeAI() {
 
         morphST = ScrollTrigger.create({
           trigger: section,
-          start: "top -180px",
-          end: `+=${window.innerHeight * 2}`,
+          start: "top top",
+          end: `+=${window.innerHeight * 0.8}`,
           pin: true,
           pinSpacing: true,
-          scrub: 1,
+          scrub: 0.5,
           animation: morphTL,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -738,18 +725,33 @@ export default function EdgeAI() {
     ];
 
     const activeIntervals = [];
-    function typewriterLine(text, cssClass) {
-      if (!cursor || !terminalBody) return;
+
+    function addTerminalLine(idx) {
+      if (!cursor || !terminalBody || !stepLogs[idx]) return;
+      let existing = terminalBody.querySelector(`[data-terminal-step="${idx}"]`);
+      if (existing) return;
+
       const line = document.createElement("div");
-      line.className = `edega-terminal-line ${cssClass}`;
+      line.className = `edega-terminal-line ${stepLogs[idx].cls}`;
+      line.setAttribute("data-terminal-step", idx);
       terminalBody.insertBefore(line, cursor);
+
+      const text = stepLogs[idx].text;
       let i = 0;
-      const speed = Math.max(16, Math.floor(900 / text.length));
+      const speed = Math.max(12, Math.floor(600 / text.length));
       const iv = setInterval(() => {
         line.textContent += text[i++];
         if (i >= text.length) clearInterval(iv);
       }, speed);
       activeIntervals.push(iv);
+    }
+
+    function removeTerminalLine(idx) {
+      if (!terminalBody) return;
+      const existing = terminalBody.querySelector(`[data-terminal-step="${idx}"]`);
+      if (existing) {
+        existing.remove();
+      }
     }
 
     function getDotY(idx) {
@@ -763,74 +765,93 @@ export default function EdgeAI() {
 
     const headerChildren = headerEl ? Array.from(headerEl.children) : [];
     gsap.set(headerChildren, { opacity: 0, y: 20 });
+    gsap.set(timelineLine, { scaleY: 0, transformOrigin: "top center" });
+    gsap.set(steps, { opacity: 0, y: 24 });
+    gsap.set(pipelineDot, { opacity: 0, y: getDotY(0) });
+    if (terminalWrap) {
+      gsap.set(terminalWrap, { opacity: 0, y: 35, scale: 0.96 });
+    }
+
     const headerST = ScrollTrigger.create({
       trigger: section,
       start: "top 75%",
       toggleActions: "play none none none",
       onEnter: () => {
         gsap.to(headerChildren, {
-          opacity: 1, y: 0, duration: 0.7, stagger: 0.18, ease: "power3.out"
+          opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power3.out"
         });
+        gsap.to(timelineLine, {
+          scaleY: 1, duration: 0.8, ease: "power2.out"
+        });
+        gsap.to(pipelineDot, {
+          opacity: 1, duration: 0.4, ease: "power2.out"
+        });
+        if (terminalWrap) {
+          gsap.to(terminalWrap, {
+            opacity: 1, y: 0, scale: 1, duration: 0.85, ease: "power3.out"
+          });
+        }
       }
     });
-
-    gsap.set(timelineLine, { scaleY: 0 });
-    gsap.set(steps, { opacity: 0, y: 18 });
-    gsap.set(pipelineDot, { opacity: 0, y: getDotY(0) });
 
     const revealedSteps = new Set();
 
     const scrubTL = gsap.timeline({ paused: true });
 
-    scrubTL.to(timelineLine, {
-      scaleY: 1, duration: 1, ease: "none"
-    }, 0);
-
-    scrubTL.to(pipelineDot, { opacity: 1, duration: 0.3, ease: "none" }, 0.3);
-
     const STEP_GAP = 1.4;
-    const STEP_START = 0.6;
+    const STEP_START = 0.1;
 
     steps.forEach((step, idx) => {
       const t = STEP_START + idx * STEP_GAP;
 
+      // Animate pipeline dot movement to this step node
       scrubTL.to(pipelineDot, {
         y: () => getDotY(idx),
-        duration: idx === 0 ? 0.4 : 0.9,
+        duration: idx === 0 ? 0.2 : 0.8,
         ease: "power2.inOut",
       }, t);
 
-      scrubTL.fromTo(step,
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" },
-        t + 0.2
-      );
+      // Reveal each timeline step one by one on scroll
+      scrubTL.to(step, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out"
+      }, t);
     });
 
-    const totalDuration = STEP_START + steps.length * STEP_GAP + 0.8;
+    const totalDuration = STEP_START + steps.length * STEP_GAP + 0.4;
 
     const scrubST = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: `+=${window.innerHeight * 1.8}`,
+      end: `+=${window.innerHeight * 2.2}`,
       pin: true,
       pinSpacing: true,
-      scrub: 1.2,
+      scrub: 1.0,
       animation: scrubTL,
       onUpdate: (self) => {
         const progress = self.progress;
+        let activeIdx = -1;
+
         steps.forEach((step, idx) => {
-          const stepProgress = (STEP_START + idx * STEP_GAP + 0.2) / totalDuration;
-          if (progress >= stepProgress && !revealedSteps.has(idx)) {
-            revealedSteps.add(idx);
-            steps.forEach(s => s.classList.remove("edega-step-active"));
-            step.classList.add("edega-step-active");
-            if (stepLogs[idx]) {
-              typewriterLine(stepLogs[idx].text, stepLogs[idx].cls);
+          const stepProgress = Math.max(0, (STEP_START + idx * STEP_GAP - 0.05) / totalDuration);
+          if (progress >= stepProgress) {
+            activeIdx = idx;
+            if (!revealedSteps.has(idx)) {
+              revealedSteps.add(idx);
+              addTerminalLine(idx);
+            }
+          } else {
+            if (revealedSteps.has(idx)) {
+              revealedSteps.delete(idx);
+              removeTerminalLine(idx);
             }
           }
-          const latestRevealed = Math.max(-1, ...Array.from(revealedSteps));
-          if (idx === latestRevealed) {
+        });
+
+        steps.forEach((step, idx) => {
+          if (idx === activeIdx) {
             step.classList.add("edega-step-active");
           } else {
             step.classList.remove("edega-step-active");
@@ -968,7 +989,7 @@ export default function EdgeAI() {
   }, []);
 
   return (
-    <div className="eaipg-edgeai-page edega-page-wrapper" ref={rootRef}>
+    <div className="eaipg-edgeai-page edega-page-wrapper embpg-embedded-page" ref={rootRef}>
       <div className="bg-layer" aria-hidden="true">
         <div className="blob blob-1" />
         <div className="blob blob-2" />
@@ -998,12 +1019,12 @@ export default function EdgeAI() {
                 and energy-efficient intelligence.
               </p>
               <div className="edega-hero-actions">
-                <button className="edega-btn-primary">
-                  Explore <span className="edega-btn-arrow">→</span>
-                </button>
-                <button className="edega-btn-secondary">
-                  Talk to an engineer
-                </button>
+                <a href="#capabilities" className="edega-btn-primary">
+                  Explore Services <span className="edega-btn-arrow">→</span>
+                </a>
+                <a href="#contact" className="edega-btn-secondary">
+                  Talk to an engineer <span className="edega-btn-arrow">→</span>
+                </a>
               </div>
               <div className="edega-hero-stats">
                 <div className="edega-stat-item">
@@ -1174,15 +1195,15 @@ export default function EdgeAI() {
       {/* ============ JOURNEY SECTION ============ */}
       <section className="edega-journey-section" id="edega-journey-section">
         <div className="edega-section-container">
+          <div className="edega-section-header" id="edega-journey-header">
+            <span className="edega-section-tag">DATA PIPELINE</span>
+            <h2 className="edega-section-title">From Edge to <span className="edega-title-highlight">Intelligence</span></h2>
+            <p className="edega-section-subtitle">
+              A seamless logical sequence that unlocks raw hardware capability and transforms data into real-time business action.
+            </p>
+          </div>
           <div className="edega-journey-grid">
             <div className="edega-journey-left">
-              <div className="edega-section-header align-left" id="edega-journey-header">
-                <span className="edega-section-tag">DATA PIPELINE</span>
-                <h2 className="edega-section-title">From Edge to <span className="edega-title-highlight">Intelligence</span></h2>
-                <p className="edega-section-subtitle">
-                  A seamless logical sequence that unlocks raw hardware capability and transforms data into real-time business action.
-                </p>
-              </div>
               <div className="edega-timeline-wrapper" id="edega-timeline-wrapper">
                 <div className="edega-timeline-line" id="edega-timeline-line"></div>
                 <div className="edega-pipeline-dot" id="edega-pipeline-dot"></div>
@@ -1412,25 +1433,21 @@ export default function EdgeAI() {
           </div>
         </div>
         <div className="container container-narrow">
-          <div
-            className="embpg-plain-horizontal-card reveal"
-            style={{
-              backgroundImage: `url(${EmbeddedImages.brochb})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 40%',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
+          <div className="embpg-plain-horizontal-card reveal">
             <div className="embpg-brochure-card-content">
               <h3 className="embpg-brochure-card-heading">
-                Download our <span className="embpg-blue-highlight">Edge AI Engineering</span> Capability Brochure
+                <span style={{ whiteSpace: "nowrap" }}>Download our <span className="embpg-blue-highlight">Edge AI Engineering</span></span> Capability Brochure
               </h3>
               <p className="embpg-brochure-card-subtext">
                 Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
               </p>
               <a href="/brochure.pdf" download className="embpg-brochure-download-link">
-                download brochure <span className="embpg-arrow">→</span>
+                <span className="vlsipg-btn__label">Download Brochure</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">↓</span>
               </a>
+            </div>
+            <div className="embpg-brochure-visual">
+              <img src={edasB} alt="Edge AI Engineering Capability Brochure visual" />
             </div>
           </div>
         </div>
@@ -1461,7 +1478,15 @@ export default function EdgeAI() {
                   <div className="embpg-faq-question-row">
                     <h3 className="embpg-faq-question">{faq.q}</h3>
                     <div className={`embpg-faq-icon-box ${isOpen ? 'active' : ''}`}>
-                      {isOpen ? '−' : '+'}
+                      {isOpen ? (
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2.5 6H9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 2.5V9.5M2.5 6H9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
                     </div>
                   </div>
                   <div className="embpg-faq-answer-wrapper">

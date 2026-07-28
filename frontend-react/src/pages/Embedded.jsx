@@ -628,7 +628,7 @@ export default function Embedded() {
               setCounts({
                 phase: Math.floor(counterObj.phase),
                 capability: Math.floor(counterObj.capability)
-               });
+              });
             }
           });
         }
@@ -693,6 +693,7 @@ export default function Embedded() {
 
   /* ============ SCROLL REVEAL OBSERVER ============ */
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -1089,7 +1090,7 @@ export default function Embedded() {
             >
               <div className="embpg-work-item-inner">
                 <div className="embpg-border-glow" aria-hidden="true" />
-                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.watch})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.watch})`, backgroundSize: 'cover', backgroundPosition: 'center 35%' }} />
                 <div className="embpg-work-meta">
                   <div>
                     <span className="embpg-tag">Healthcare</span>
@@ -1138,16 +1139,16 @@ export default function Embedded() {
             <a
               className="embpg-work-item embpg-w-wide"
               href="#work"
-              onClick={(e) => { e.preventDefault(); setActiveProject("Aerospace"); }}
+              onClick={(e) => { e.preventDefault(); setActiveProject("Edge AI"); }}
               onMouseMove={handleCardMouseMove}
             >
               <div className="embpg-work-item-inner">
                 <div className="embpg-border-glow" aria-hidden="true" />
-                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.aero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.edge})`, backgroundSize: 'cover', backgroundPosition: 'center 40%' }} />
                 <div className="embpg-work-meta">
                   <div>
-                    <span className="embpg-tag">Aerospace</span>
-                    <h3>Built to perform in extreme conditions</h3>
+                    <span className="embpg-tag">Edge AI</span>
+                    <h3>Intelligence that runs at the edge</h3>
                   </div>
                   <span className="embpg-arrow">↗</span>
                 </div>
@@ -1156,16 +1157,16 @@ export default function Embedded() {
             <a
               className="embpg-work-item"
               href="#work"
-              onClick={(e) => { e.preventDefault(); setActiveProject("Edge AI"); }}
+              onClick={(e) => { e.preventDefault(); setActiveProject("Aerospace"); }}
               onMouseMove={handleCardMouseMove}
             >
               <div className="embpg-work-item-inner">
                 <div className="embpg-border-glow" aria-hidden="true" />
-                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.edge})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                <div className="embpg-work-img" style={{ backgroundImage: `url(${EmbeddedImages.aero})`, backgroundSize: 'cover', backgroundPosition: 'center 45%' }} />
                 <div className="embpg-work-meta">
                   <div>
-                    <span className="embpg-tag">Edge AI</span>
-                    <h3>Intelligence that runs at the edge</h3>
+                    <span className="embpg-tag">Aerospace</span>
+                    <h3>Built to perform in extreme conditions</h3>
                   </div>
                   <span className="embpg-arrow">↗</span>
                 </div>
@@ -1215,25 +1216,21 @@ export default function Embedded() {
           </div>
         </div>
         <div className="container container-narrow">
-          <div
-            className="embpg-plain-horizontal-card reveal"
-            style={{
-              backgroundImage: `url(${EmbeddedImages.brochb})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 40%',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
+          <div className="embpg-plain-horizontal-card reveal">
             <div className="embpg-brochure-card-content">
               <h3 className="embpg-brochure-card-heading">
-                Download our <span className="embpg-blue-highlight">Embedded Engineering</span> Capability Brochure
+                <span style={{ whiteSpace: "nowrap" }}>Download our <span className="embpg-blue-highlight">Embedded Engineering</span></span> Capability Brochure
               </h3>
               <p className="embpg-brochure-card-subtext">
                 Learn about our complete engineering workflow, technologies, development process, industries, and project delivery approach.
               </p>
               <a href="/brochure.pdf" download className="embpg-brochure-download-link">
-                download brochure <span className="embpg-arrow">→</span>
+                <span className="vlsipg-btn__label">Download Brochure</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">↓</span>
               </a>
+            </div>
+            <div className="embpg-brochure-visual">
+              <img src={EmbeddedImages.brochure} alt="Embedded Engineering Capability Brochure visual" />
             </div>
           </div>
         </div>
@@ -1266,7 +1263,15 @@ export default function Embedded() {
                   <div className="embpg-faq-question-row">
                     <h3 className="embpg-faq-question">{faq.q}</h3>
                     <div className={`embpg-faq-icon-box ${isOpen ? 'active' : ''}`}>
-                      {isOpen ? '−' : '+'}
+                      {isOpen ? (
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2.5 6H9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 2.5V9.5M2.5 6H9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
                     </div>
                   </div>
                   <div className="embpg-faq-answer-wrapper">

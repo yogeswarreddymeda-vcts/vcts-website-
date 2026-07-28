@@ -27,27 +27,28 @@ import {
 } from 'lucide-react'
 
 // Assets
-import imgIdea from '../assets/image/Hackathon/hero-idea.png'
-import imgPrototype from '../assets/image/Hackathon/hero-prototype.png'
-import imgProduct from '../assets/image/Hackathon/hero-product.png'
-import imgMentors from '../assets/image/Hackathon/mentors-makerspace.png'
-import imgTeam from '../assets/image/Hackathon/engineering-team.png'
-import imgEdgeAI from '../assets/image/Hackathon/domain-edge-ai.png'
-import imgSmartRetail from '../assets/image/Hackathon/domain-smart-retail.png'
-import imgSurveillance from '../assets/image/Hackathon/domain-surveillance.png'
-import imgSmartParking from '../assets/image/Hackathon/domain-smart-parking.png'
-import imgSemiconductor from '../assets/image/Hackathon/domain-semiconductor.png'
-import imgAutomation from '../assets/image/Hackathon/domain-automation.png'
-import imgProductEng from '../assets/image/Hackathon/domain-product-engineering.png'
-import mountainImage from '../assets/image/Hackathon/journey-mountain.png'
-import whyPrototypeImage from '../assets/image/Hackathon/Why_join_car.png'
-import whyNetworkingImage from '../assets/image/Hackathon/why_join_communication.png'
-import whyGroupImage from '../assets/image/Hackathon/why_join_group.png'
-import whyPrizeImage from '../assets/image/Hackathon/why_join_money.png'
-import whySketchImage from '../assets/image/Hackathon/why_join_sketch.png'
-import imgGoldTrophyPodium from '../assets/image/Hackathon/gold_trophy_podium.png'
-import imgSilverTrophyPodium from '../assets/image/Hackathon/silver_trophy_podium.png'
-import imgBronzeTrophyPodium from '../assets/image/Hackathon/bronze_trophy_podium.png'
+import imgIdea from '../assets/image/Hackathon/hero-idea.webp'
+import imgPrototype from '../assets/image/Hackathon/hero-prototype.webp'
+import imgProduct from '../assets/image/Hackathon/hero-product.webp'
+import imgMentors from '../assets/image/Hackathon/mentors-makerspace.webp'
+import imgTeam from '../assets/image/Hackathon/engineering-team.webp'
+import imgEdgeAI from '../assets/image/Hackathon/domain-edge-ai.webp'
+import imgSmartRetail from '../assets/image/Hackathon/domain-smart-retail.webp'
+import imgSurveillance from '../assets/image/Hackathon/domain-surveillance.webp'
+import imgSmartParking from '../assets/image/Hackathon/domain-smart-parking.webp'
+import imgSemiconductor from '../assets/image/Hackathon/domain-semiconductor.webp'
+import imgAutomation from '../assets/image/Hackathon/domain-automation.webp'
+import imgProductEng from '../assets/image/Hackathon/domain-product-engineering.webp'
+import mountainImage from '../assets/image/Hackathon/journey-mountain.webp'
+import whyPrototypeImage from '../assets/image/Hackathon/Why_join_car.webp'
+import whyNetworkingImage from '../assets/image/Hackathon/why_join_communication.webp'
+import whyGroupImage from '../assets/image/Hackathon/why_join_group.webp'
+import whyPrizeImage from '../assets/image/Hackathon/why_join_money.webp'
+import whySketchImage from '../assets/image/Hackathon/why_join_sketch.webp'
+import imgGoldTrophyPodium from '../assets/image/Hackathon/gold_trophy_podium.webp'
+import imgSilverTrophyPodium from '../assets/image/Hackathon/silver_trophy_podium.webp'
+import imgBronzeTrophyPodium from '../assets/image/Hackathon/bronze_trophy_podium.webp'
+import qrCodeImg from '../assets/image/qr_code.png'
 import '../assets/css/Hackathon.css'
 
 // ==========================================
@@ -388,13 +389,13 @@ function ModesSection() {
 // 7. INNOVATION DOMAINS
 // ==========================================
 const domains = [
-  { id: 'D.04', label: 'D.04 — FEATURED TRACK', title: 'Edge AI', img: imgEdgeAI, alt: 'Edge AI vision sensor inspecting a component', featured: true },
-  { id: 'D.01', label: 'D.01', title: 'Smart Retail', img: imgSmartRetail, alt: 'Sensor-equipped smart retail shelf' },
-  { id: 'D.02', label: 'D.02', title: 'Smart Surveillance', img: imgSurveillance, alt: 'Smart surveillance camera at a modern campus' },
-  { id: 'D.03', label: 'D.03', title: 'Smart Parking', img: imgSmartParking, alt: 'Smart parking bays with occupancy sensors' },
-  { id: 'D.05', label: 'D.05', title: 'Semiconductor Engineering', img: imgSemiconductor, alt: 'Engineer inspecting a semiconductor wafer' },
-  { id: 'D.06', label: 'D.06', title: 'Industrial Automation', img: imgAutomation, alt: 'Industrial robotic arm handling precision components' },
-  { id: 'D.07', label: 'D.07', title: 'Product Engineering', img: imgProductEng, alt: 'Product engineers reviewing a hardware prototype' },
+  { id: 'edge-ai', title: 'Edge AI', img: imgEdgeAI, alt: 'Edge AI vision sensor inspecting a component', featured: true },
+  { id: 'smart-retail', title: 'Smart Retail', img: imgSmartRetail, alt: 'Sensor-equipped smart retail shelf' },
+  { id: 'smart-surveillance', title: 'Smart Surveillance', img: imgSurveillance, alt: 'Smart surveillance camera at a modern campus' },
+  { id: 'smart-parking', title: 'Smart Parking', img: imgSmartParking, alt: 'Smart parking bays with occupancy sensors' },
+  { id: 'semiconductor', title: 'Semiconductor Engineering', img: imgSemiconductor, alt: 'Engineer inspecting a semiconductor wafer' },
+  { id: 'automation', title: 'Industrial Automation', img: imgAutomation, alt: 'Industrial robotic arm handling precision components' },
+  { id: 'product-eng', title: 'Product Engineering', img: imgProductEng, alt: 'Product engineers reviewing a hardware prototype' },
 ]
 
 function DomainsSection() {
@@ -410,7 +411,7 @@ function DomainsSection() {
         <div className="domain-grid" style={{ marginTop: '40px' }}>
           {domains.map((d) => (
             <div className={`brk domain-card reveal${d.featured ? ' featured' : ''}`} key={d.id}>
-              <span className="idx">{d.label}</span>
+              {d.label && <span className="idx">{d.label}</span>}
               <img className="domain-image" src={d.img} alt={d.alt} loading="lazy" decoding="async" />
               <h3>{d.title}</h3>
             </div>
@@ -970,7 +971,7 @@ function RegisterSection() {
             <div className="register-qr-col">
               <div className="register-qr-card">
                 <div className="qr-img-wrapper">
-                  <QrSvg />
+                  <img src={qrCodeImg} alt="Register QR Code" className="qr-code-img" />
                 </div>
                 <div className="qr-label-pill">
                   <span className="pulse-dot" aria-hidden="true" />

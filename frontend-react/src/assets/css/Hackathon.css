@@ -2200,14 +2200,17 @@ h2.section-title {
   color: #fff;
   isolation: isolate;
   box-shadow: 0 14px 34px rgba(24, 27, 32, .14);
-  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  will-change: transform;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
 /* LEFT side hero card animation (Edge AI) */
 .domain-card.featured.reveal {
   opacity: 0;
-  transform: perspective(1000px) translateX(-54px) rotateY(12deg) scale(0.96);
+  transform: translateX(-54px) scale(0.96);
   transition:
     opacity 0.5s ease-out,
     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2216,14 +2219,14 @@ h2.section-title {
 
 .domain-card.featured.reveal.in {
   opacity: 1;
-  transform: perspective(1000px) translateX(0) rotateY(0deg) scale(1);
+  transform: translateX(0) scale(1);
   transition-delay: 0.04s;
 }
 
 /* RIGHT side grid cards animation (Cards 2 - 7) */
 .domain-card:not(.featured).reveal {
   opacity: 0;
-  transform: perspective(1000px) rotateX(14deg) rotateY(-8deg) translateY(32px) scale(0.96);
+  transform: translateY(32px) scale(0.96);
   transition:
     opacity 0.4s ease-out,
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2232,7 +2235,7 @@ h2.section-title {
 
 .domain-card:not(.featured).reveal.in {
   opacity: 1;
-  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1);
+  transform: translateY(0) scale(1);
 }
 
 .domain-card:nth-child(2).reveal {
@@ -2310,37 +2313,17 @@ h2.section-title {
 }
 
 .domain-card:hover {
-  transform: translateY(-8px) scale(1.015);
+  transform: translateY(-8px);
   box-shadow: 0 24px 50px rgba(10, 20, 40, .28);
 }
 
 .domain-card.reveal.in:hover {
-  transform: translateY(-8px) scale(1.015);
+  transform: translateY(-8px);
   transition-delay: 0s;
 }
 
 .domain-card .idx {
-  position: absolute;
-  left: 22px;
-  bottom: 58px;
-  z-index: 2;
-  margin: 0;
-  width: max-content;
-  padding: 7px 10px;
-  border: 1px solid var(--domain-accent);
-  border-radius: 999px;
-  background: rgba(14, 16, 19, .62);
-  color: #fff;
-  font-family: 'JetBrains Mono';
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .09em;
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.domain-card:hover .idx {
-  transform: translateY(-2px);
+  display: none !important;
 }
 
 .domain-card h3 {
@@ -2353,6 +2336,9 @@ h2.section-title {
   color: #fff;
   font-size: 18px;
   line-height: 1.15;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
 }
 
 .domain-image {
@@ -2373,8 +2359,9 @@ h2.section-title {
   transform: scale(1);
 }
 
-.domain-card:hover .domain-image {
-  transform: scale(1.06);
+.domain-card:hover .domain-image,
+.domain-card.reveal.in:hover .domain-image {
+  transform: scale(1.08);
   filter: saturate(1) contrast(1.05);
 }
 
@@ -3362,10 +3349,11 @@ h2.section-title {
 }
 
 .prizes-title .title-hl {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #0b7bf0 0%, #00d2ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .prizes-tagline {
@@ -4557,36 +4545,38 @@ h2.section-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 28px 20px;
-  border-radius: 22px;
+  padding: 30px 36px 24px;
+  border-radius: 28px;
   background: #ffffff;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
   border: 3px solid rgba(255, 255, 255, 0.95);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .register-qr-card:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.45);
 }
 
+.qr-img-wrapper img,
 .qr-img-wrapper svg {
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   display: block;
+  object-fit: contain;
 }
 
 .qr-label-pill {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
-  padding: 6px 14px;
+  margin-top: 20px;
+  padding: 8px 18px;
   border-radius: 999px;
   background: #f0f6ff;
   color: #07193d;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }

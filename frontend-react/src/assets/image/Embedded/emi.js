@@ -1,23 +1,24 @@
-import embBeforeImg from "./icons/emb_before.jpeg";
-import embAfterImg from "./icons/emb_after.jpeg";
-import embIndustryImg from "./icons/emb_industry.jpeg";
-import embHomeImg from "./icons/emb_home.jpeg";
-import embWatchImg from "./icons/emb_watch.jpeg";
-import embAeroImg from "./icons/emb_aero.jpeg";
-import embAutomoImg from "./icons/emb_automo.jpeg";
-import embEdgeImg from "./icons/emb_edge.jpeg";
-import embTestImg from "./icons/emb_test.jpeg";
-import fbannerImg from "./fbanner.png";
-import embM2Img from "./services_images/emb_m2.png";
-import embM3Img from "./services_images/emb_m3.jpeg";
-import embM4Img from "./services_images/emb_m4.png";
-import embM5Img from "./services_images/emb_m5.jpeg";
-import embM6Img from "./services_images/emb_m6.jpeg";
-import embM7Img from "./services_images/emb_m7.jpeg";
-import embM8Img from "./services_images/emb_m8.jpeg";
-import embM9Img from "./services_images/emb_m9.png";
-import embM10Img from "./services_images/emb_m10.jpeg";
-import embBrochbImg from "./emb_brochb.png";
+import embBeforeImg from "./icons/emb_before(2).webp";
+import embAfterImg from "./icons/emb_after(2).webp";
+import embIndustryImg from "./icons/emb_industry.webp";
+import embHomeImg from "./icons/emb_home.webp";
+import embWatchImg from "./icons/emb_watch.webp";
+import embAeroImg from "./icons/emb_aero.webp";
+import embAutomoImg from "./icons/emb_automo.webp";
+import embEdgeImg from "./icons/emb_edge.webp";
+import embTestImg from "./icons/emb_test.webp";
+import embBrochureImg from "./icons/emb_brochure.webp";
+import fbannerImg from "./fbanner.webp";
+import embM2Img from "./services_images/emb_m2.webp";
+import embM3Img from "./services_images/emb_m3.webp";
+import embM4Img from "./services_images/emb_m4.webp";
+import embM5Img from "./services_images/emb_m5.webp";
+import embM6Img from "./services_images/emb_m6.webp";
+import embM7Img from "./services_images/emb_m7.webp";
+import embM8Img from "./services_images/emb_m8.webp";
+import embM9Img from "./services_images/emb_m9.webp";
+import embM10Img from "./services_images/emb_m10.webp";
+import embBrochbImg from "./emb_brochb.webp";
 
 export default class EmbeddedImages {
   static before = embBeforeImg;
@@ -29,6 +30,7 @@ export default class EmbeddedImages {
   static automo = embAutomoImg;
   static edge = embEdgeImg;
   static test = embTestImg;
+  static brochure = embBrochureImg;
   static banner = fbannerImg;
   static m2 = embM2Img;
   static m3 = embM3Img;
@@ -41,3 +43,4 @@ export default class EmbeddedImages {
   static m10 = embM10Img;
   static brochb = embBrochbImg;
 }
+

@@ -24,7 +24,7 @@ const heroData = {
       labelLine2: "capabilities"
     }
   ],
-  image: "hero_chip.png",
+  image: "hero_chip.webp",
   caption: {
     fig: "Fig. 001",
     title: "Custom Silicon — 7nm Architecture",
@@ -89,8 +89,8 @@ const services = {
       cardClass: "card-a",
       title: "Architecture Design & System Modeling",
       desc: "Designing scalable semiconductor architectures and intelligent system-level platforms.",
-      image: "chip_card_a_hover.png",
-      hoverImage: "s1.png",
+      image: "chip_card_a_hover.webp",
+      hoverImage: "s1.webp",
       items: [
         "System & SoC Architecture",
         "ARM & RISC-V Platform Design",
@@ -106,8 +106,8 @@ const services = {
       cardClass: "card-b",
       title: "RTL Design & Digital Design",
       desc: "Developing optimized RTL solutions for high-performance ASIC and FPGA designs.",
-      image: "chip_card_b_hover1.png",
-      hoverImage: "s2.png",
+      image: "chip_card_b_hover1.webp",
+      hoverImage: "s2.webp",
       items: [
         "RTL Architecture Development",
         "Verilog, VHDL & SystemVerilog Design",
@@ -122,8 +122,8 @@ const services = {
       cardClass: "card-c",
       title: "Functional Verification",
       desc: "Ensuring functional correctness and design reliability using advanced verification methodologies.",
-      image: "chip_card_c_hover.png",
-      hoverImage: "s3.png",
+      image: "chip_card_c_hover.webp",
+      hoverImage: "s3.webp",
       items: [
         "UVM-Based Verification",
         "Testbench Development",
@@ -138,8 +138,8 @@ const services = {
       cardClass: "card-d",
       title: "FPGA Design, Prototyping & Emulation",
       desc: "Accelerating development through FPGA implementation and enterprise hardware emulation.",
-      image: "chip_card_d_hover.png",
-      hoverImage: "s4.png",
+      image: "chip_card_d_hover.webp",
+      hoverImage: "s4.webp",
       items: [
         "FPGA RTL Design",
         "FPGA Prototyping & Enterprise Emulation",
@@ -156,8 +156,8 @@ const services = {
       cardClass: "card-e",
       title: "Synthesis & Netlist Optimization",
       desc: "Transforming RTL into optimized gate-level implementations for performance and power targets.",
-      image: "chip_card_e_hover.png",
-      hoverImage: "s5.png",
+      image: "chip_card_e_hover.webp",
+      hoverImage: "s5.webp",
       items: [
         "RTL-to-Gate-Level Synthesis",
         "Timing Constraint Optimization",
@@ -171,8 +171,8 @@ const services = {
       cardClass: "card-f",
       title: "Design for Testability (DFT)",
       desc: "Enhancing silicon testability and manufacturing readiness through robust DFT methodologies.",
-      image: "chip_card_f_hover2.png",
-      hoverImage: "s6.png",
+      image: "chip_card_f_hover2.webp",
+      hoverImage: "s6.webp",
       items: [
         "Scan Insertion & Compression",
         "Memory BIST (MBIST) & Logic BIST (LBIST)",
@@ -185,8 +185,8 @@ const services = {
       cardClass: "card-g",
       title: "Physical Design Implementation",
       desc: "Executing complete RTL-to-GDSII implementation flows with a focus on timing and physical convergence.",
-      image: "chip_card_g_hover.png",
-      hoverImage: "s7.png",
+      image: "chip_card_g_hover.webp",
+      hoverImage: "s7.webp",
       items: [
         "Floorplanning & Partitioning",
         "Placement & Routing (P&R)",
@@ -201,8 +201,8 @@ const services = {
       cardClass: "card-h",
       title: "Timing, Power, Signoff & Tapeout Support",
       desc: "Delivering tape-out-ready designs through comprehensive timing, reliability, and physical signoff analysis.",
-      image: "chip_card_h_hover.png",
-      hoverImage: "s8.png",
+      image: "chip_card_h_hover.webp",
+      hoverImage: "s8.webp",
       items: [
         "Static Timing Analysis (STA)",
         "Power Integrity & EM/IR-Drop Analysis",
@@ -220,8 +220,8 @@ const services = {
       cardClass: "card-i",
       title: "Fabrication Support",
       desc: "Supporting seamless transition from tapeout to wafer fabrication through foundry engagement and manufacturing coordination.",
-      image: "chip_card_i_hover.png",
-      hoverImage: "s9.png",
+      image: "chip_card_i_hover.webp",
+      hoverImage: "s9.webp",
       items: [
         "Foundry Coordination",
         "Process Technology Support (FinFET/GAA)",
@@ -236,8 +236,8 @@ const services = {
       cardClass: "card-j",
       title: "Semiconductor Packaging & Assembly Support",
       desc: "Enabling reliable device packaging, assembly, and advanced integration for production deployment.",
-      image: "chip_card_j_hover1.png",
-      hoverImage: "s10.png",
+      image: "chip_card_j_hover1.webp",
+      hoverImage: "s10.webp",
       items: [
         "Package Selection & Planning",
         "Advanced Packaging Support (2.5D, 3D IC, Chiplets)",
@@ -252,8 +252,8 @@ const services = {
       cardClass: "card-k",
       title: "Silicon Bring-Up & Characterization",
       desc: "Enabling first-silicon validation and device characterization for functional and performance verification.",
-      image: "chip_card_k_hover.png",
-      hoverImage: "s11.png",
+      image: "chip_card_k_hover.webp",
+      hoverImage: "s11.webp",
       items: [
         "Silicon Bring-Up & First-Silicon Validation",
         "Device Characterization",
@@ -268,8 +268,8 @@ const services = {
       cardClass: "card-l",
       title: "Post-Silicon Validation & Production Readiness",
       desc: "Validating silicon functionality, software stack, reliability, and production readiness for successful deployment.",
-      image: "chip_card_l_hover.png",
-      hoverImage: "s12.png",
+      image: "chip_card_l_hover.webp",
+      hoverImage: "s12.webp",
       items: [
         "Functional & System-Level Validation",
         "Firmware, Driver & SDK Development",
@@ -1224,7 +1224,7 @@ export default function Vlsi() {
               </a>
             </div>
             <div className="brochure-visual">
-              <img src={imageUrl("semiconductor_brochure.jpg")} alt="Semiconductor engineering wafer probing" />
+              <img src={imageUrl("semiconductor_brochure.webp")} alt="Semiconductor engineering wafer probing" />
             </div>
           </div>
         </div>

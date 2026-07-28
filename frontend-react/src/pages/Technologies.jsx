@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/css/Technologies.css";
-import techStackVisual from '../assets/image/Teachnologies/tech_stack_visual.png';
-import technologiesBrochure from '../assets/image/Teachnologies/technologies_brochure.jpg';
-import semiconductorDomainImg from '../assets/image/Teachnologies/semiconductor_domain.png';
-import embeddedDomainImg from '../assets/image/Teachnologies/embedded_domain.png';
-import automotiveDomainImg from '../assets/image/Teachnologies/automotive_domain.png';
-import edgeaiDomainImg from '../assets/image/Teachnologies/edgeai_domain.png';
+import techStackVisual from '../assets/image/Teachnologies/tech_stack_visual.webp';
+import technologiesBrochure from '../assets/image/Teachnologies/technologies_brochure.webp';
+import semiconductorDomainImg from '../assets/image/Teachnologies/semiconductor_domain.webp';
+import embeddedDomainImg from '../assets/image/Teachnologies/embedded_domain.webp';
+import automotiveDomainImg from '../assets/image/Teachnologies/automotive_domain.webp';
+import edgeaiDomainImg from '../assets/image/Teachnologies/edgeai_domain.webp';
 
 const clampDomainProgress = (value) => Math.min(1, Math.max(0, value));
 
@@ -703,10 +703,7 @@ export default function Technologies() {
           <div className="techpg-domain-row techpg-reveal">
 
             <div className="techpg-domain-left">
-              <div className="techpg-domain-indicator-wrap">
-                <span className="techpg-domain-indicator">DOMAIN 01</span>
-                <span className="techpg-domain-indicator-line" />
-              </div>
+
               <div className="techpg-domain-header-row">
                 <div className="techpg-domain-symbol">
                   <svg className="techpg-domain-symbol-svg" viewBox="0 0 24 24" fill="none" stroke="url(#domain-symbol-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -956,10 +953,7 @@ export default function Technologies() {
           <div className="techpg-domain-row techpg-reveal">
 
             <div className="techpg-domain-left">
-              <div className="techpg-domain-indicator-wrap">
-                <span className="techpg-domain-indicator">DOMAIN 02</span>
-                <span className="techpg-domain-indicator-line" />
-              </div>
+
               <div className="techpg-domain-header-row">
                 <div className="techpg-domain-symbol">
                   <svg className="techpg-domain-symbol-svg" viewBox="0 0 24 24" fill="none" stroke="url(#domain-symbol-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1246,10 +1240,7 @@ export default function Technologies() {
           <div className="techpg-domain-row techpg-reveal">
 
             <div className="techpg-domain-left">
-              <div className="techpg-domain-indicator-wrap">
-                <span className="techpg-domain-indicator">DOMAIN 03</span>
-                <span className="techpg-domain-indicator-line" />
-              </div>
+
               <div className="techpg-domain-header-row">
                 <div className="techpg-domain-symbol">
                   <svg className="techpg-domain-symbol-svg" viewBox="0 0 24 24" fill="none" stroke="url(#domain-symbol-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1469,10 +1460,7 @@ export default function Technologies() {
           <div className="techpg-domain-row techpg-reveal">
 
             <div className="techpg-domain-left">
-              <div className="techpg-domain-indicator-wrap">
-                <span className="techpg-domain-indicator">DOMAIN 04</span>
-                <span className="techpg-domain-indicator-line" />
-              </div>
+
               <div className="techpg-domain-header-row">
                 <div className="techpg-domain-symbol">
                   <svg className="techpg-domain-symbol-svg" viewBox="0 0 24 24" fill="none" stroke="url(#domain-symbol-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1987,7 +1975,8 @@ export default function Technologies() {
                 onClick={(e) => e.preventDefault()}
                 className="techpg-btn techpg-btn-primary techpg-brochure-btn"
               >
-                Download Brochure <span style={{ marginLeft: "4px" }}>↓</span>
+                <span className="vlsipg-btn__label">Download Brochure</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">↓</span>
               </a>
             </div>
             <div className="techpg-brochure-visual">

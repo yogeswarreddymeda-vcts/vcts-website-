@@ -15,7 +15,7 @@
   transform: none;
   width: 100%;
   max-width: 100%;
-  background: rgba(255, 255, 255, 0.72) !important;
+  background: #ffffff !important;
   backdrop-filter: blur(16px) saturate(120%);
   -webkit-backdrop-filter: blur(16px) saturate(120%);
   border-radius: 0;
@@ -39,7 +39,7 @@
 /* Left Section: Logo block with diagonal cut */
 .header-logo-block {
   position: relative;
-  background: transparent !important;
+  background: #ffffff !important;
   padding: 0 3.5rem 0 2rem;
   display: flex;
   align-items: center;
@@ -54,7 +54,7 @@
   right: 0;
   bottom: 0;
   width: 45px;
-  background: rgba(255, 255, 255, 0.3) !important;
+  background: #ffffff !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transform: skewX(-22deg);
@@ -74,7 +74,7 @@
 
 /* Middle Section: Pill navigation menu */
 .header-nav-pill-wrapper {
-  background: rgba(255, 255, 255, 0.45) !important;
+  background: #ffffff !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(28, 117, 188, 0.12) !important;
