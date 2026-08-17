@@ -52,23 +52,38 @@ export default function EdgeAI() {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    gsap.set(".edega-hero-badge", { opacity: 0, y: -20 });
-    gsap.set(".edega-hero-title", { opacity: 0, y: 30 });
-    gsap.set(".edega-hero-desc", { opacity: 0, y: 20 });
-    gsap.set(".edega-hero-actions", { opacity: 0, y: 20 });
-    gsap.set(".edega-hero-stats", { opacity: 0, y: 20 });
-    gsap.set(".edega-hero-right", { opacity: 0, scale: 0.95, x: 30 });
+    gsap.set(".edega-hero-badge", { opacity: 0, y: 12 });
+    gsap.set(".edega-line-inner", { opacity: 0, yPercent: 110 });
+    gsap.set(".edega-hero-desc", { opacity: 0, y: 16 });
+    gsap.set(".edega-hero-actions", { opacity: 0, y: 14 });
+    gsap.set(".edega-hero-stats", { opacity: 0, y: 14 });
+    gsap.set(".edega-hero-right", { opacity: 0, y: 20 });
+    gsap.set(".edega-hero-image", { scale: 1.1, filter: "brightness(0.92)" });
     gsap.set(".edega-ticker-section", { opacity: 0, y: 15 });
 
-    const heroTL = gsap.timeline({ delay: 0.15 });
+    const heroTL = gsap.timeline({
+      delay: 0.05,
+      onComplete: () => {
+        gsap.set([".edega-hero-badge", ".edega-line-inner", ".edega-hero-desc", ".edega-hero-actions", ".edega-hero-stats", ".edega-hero-right", ".edega-ticker-section"], {
+          clearProps: "transform,filter,willChange,perspective,scale"
+        });
+      }
+    });
     heroTL
-      .to(".edega-hero-badge", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" })
-      .to(".edega-hero-title", { opacity: 1, y: 0, duration: 0.6, ease: "power4.out" }, "-=0.3")
-      .to(".edega-hero-desc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.45")
-      .to(".edega-hero-right", { opacity: 1, scale: 1, x: 0, duration: 0.65, ease: "power3.out" }, "-=0.5")
-      .to(".edega-hero-actions", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, "-=0.45")
-      .to(".edega-hero-stats", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, "-=0.35")
-      .to(".edega-ticker-section", { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.3");
+      .to(".edega-hero-badge", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
+      .to(".edega-line-inner", {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power4.out"
+      }, "-=0.2")
+      .to(".edega-hero-right", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.55")
+      .to(".edega-hero-image", { scale: 1, filter: "brightness(1)", duration: 0.8, ease: "power2.out" }, "-=0.65")
+      .to(".edega-hero-desc", { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.5")
+      .to(".edega-hero-actions", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.35")
+      .to(".edega-hero-stats", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.3")
+      .to(".edega-ticker-section", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.25");
 
     return () => heroTL.kill();
   }, []);
@@ -1007,11 +1022,17 @@ export default function EdgeAI() {
                 <span className="edega-badge-bullet"></span> SEMICONDUCTOR & EDGE AI
               </div>
               <h1 className="edega-hero-title">
-                Real-Time
+                <span className="edega-title-line">
+                  <span className="edega-line-inner">Real-Time</span>
+                </span>
                 <br />
-                Intelligence at the
+                <span className="edega-title-line">
+                  <span className="edega-line-inner">Intelligence at the</span>
+                </span>
                 <br />
-                <span className="edega-hero-title-highlight">Intelligent Edge.</span>
+                <span className="edega-title-line">
+                  <span className="edega-line-inner edega-hero-title-highlight">Intelligent Edge.</span>
+                </span>
               </h1>
               <p className="edega-hero-desc">
                 From high-performance hardware acceleration to optimized model deployment —

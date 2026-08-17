@@ -468,16 +468,32 @@ body {
     transform: translateY(0)
 }
 
+@keyframes vlsipgHeroImgPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.035);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .vlsipg-hero-figure img {
     width: 100%;
     aspect-ratio: 4/5;
     object-fit: cover;
     max-height: min(710px, calc(100svh - 205px));
-    transition: transform .8s var(--ease)
+    transition: transform 0.8s var(--ease), filter 0.8s var(--ease);
+    animation: vlsipgHeroImgPulse 10s ease-in-out infinite;
+    will-change: transform;
 }
 
 .vlsipg-hero-figure:hover img {
-    transform: scale(1.04)
+    animation-play-state: paused;
+    transform: scale(1.06);
+    filter: brightness(1.05) contrast(1.02);
 }
 
 .vlsipg-hero-figure figcaption {
@@ -1755,8 +1771,8 @@ body {
 
 /* Chrome & Edge Autofill Fix */
 .cta-form input:-webkit-autofill,
-.cta-form input:-webkit-autofill:hover, 
-.cta-form input:-webkit-autofill:focus, 
+.cta-form input:-webkit-autofill:hover,
+.cta-form input:-webkit-autofill:focus,
 .cta-form input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px #0c3370 inset !important;
     -webkit-text-fill-color: #ffffff !important;
@@ -2544,27 +2560,30 @@ body {
     }
 }
 
-/* Premium Entrance Animations for VLSI Hero Section */
-.vlsipg-hero-left .vlsipg-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.vlsipg-hero-left .vlsipg-reveal.in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* Premium Entrance Animations & Overlays for VLSI Hero Section */
+/* Hero section reveal elements managed cleanly by GSAP without side shifts */
+.vlsipg-hero-left .vlsipg-reveal,
 .vlsipg-hero-right.vlsipg-reveal {
-    opacity: 0;
-    transform: translateX(40px) scale(0.96) rotate(-1deg);
-    transition: opacity 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: none;
 }
 
-.vlsipg-hero-right.vlsipg-reveal.in {
-    opacity: 1;
-    transform: translateX(0) scale(1) rotate(0deg);
+.vlsipg-hero-figure {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Line mask typography reveal */
+.vlsipg-title-line {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-bottom: 2px;
+}
+
+.vlsipg-line-inner {
+    display: inline-block;
+    will-change: transform, opacity;
+    transform-origin: 0% 100%;
 }
 
 @keyframes vlsipgGridEntrance {

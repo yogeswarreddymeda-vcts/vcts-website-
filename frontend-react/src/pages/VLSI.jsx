@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import "../assets/css/VLSI.css";
 
 const imageUrl = (fileName) => new URL(`../assets/image/VLSI/${fileName}`, import.meta.url).href;
@@ -377,7 +378,7 @@ export default function Vlsi() {
       const img = new Image();
       img.decoding = "async";
       img.src = imageUrl(fileName);
-      img.decode?.().catch(() => {});
+      img.decode?.().catch(() => { });
       return img;
     });
 
@@ -466,9 +467,55 @@ export default function Vlsi() {
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || !("IntersectionObserver" in window)) {
+    if (!root) return undefined;
+
+    window.scrollTo(0, 0);
+
+    const heroFigure = root.querySelector(".vlsipg-hero-figure");
+    if (heroFigure) {
+      heroFigure.classList.remove("vlsipg-scanned");
+    }
+
+    // Set initial states for clean vertical text entrance & image lens zoom
+    gsap.set(".vlsipg-eyebrow", { opacity: 0, y: 12 });
+    gsap.set(".vlsipg-line-inner", { opacity: 0, yPercent: 110 });
+    gsap.set(".vlsipg-lede", { opacity: 0, y: 16 });
+    gsap.set(".vlsipg-hero-actions", { opacity: 0, y: 14 });
+    gsap.set(".vlsipg-hero-meta", { opacity: 1, transform: "none" });
+    gsap.set(".vlsipg-hero-meta > div", { opacity: 0, y: 14 });
+    gsap.set(".vlsipg-hero-right", { opacity: 0, y: 20 });
+    gsap.set(".vlsipg-hero-badge", { opacity: 0, y: 14 });
+    gsap.set(".vlsipg-hero-figure img", { scale: 1.1, filter: "brightness(0.92)" });
+
+    const heroTL = gsap.timeline({
+      delay: 0.05,
+      onComplete: () => {
+        root.querySelectorAll(".vlsipg-hero .vlsipg-reveal").forEach((el) => el.classList.add("in"));
+        gsap.set([".vlsipg-eyebrow", ".vlsipg-line-inner", ".vlsipg-lede", ".vlsipg-hero-actions", ".vlsipg-hero-meta", ".vlsipg-hero-meta > div", ".vlsipg-hero-right", ".vlsipg-hero-badge", ".vlsipg-hero-figure img"], {
+          clearProps: "transform,filter,willChange,perspective,scale"
+        });
+      }
+    });
+
+    heroTL
+      .to(".vlsipg-eyebrow", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
+      .to(".vlsipg-line-inner", {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power4.out"
+      }, "-=0.2")
+      .to(".vlsipg-hero-right", { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" }, "-=0.6")
+      .to(".vlsipg-hero-figure img", { scale: 1, filter: "brightness(1)", duration: 0.8, ease: "power2.out" }, "-=0.75")
+      .to(".vlsipg-lede", { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.55")
+      .to(".vlsipg-hero-actions", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.35")
+      .to(".vlsipg-hero-meta > div", { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: "power2.out" }, "-=0.25")
+      .to(".vlsipg-hero-badge", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.25");
+
+    if (!("IntersectionObserver" in window)) {
       root?.querySelectorAll(".vlsipg-reveal").forEach((element) => element.classList.add("in"));
-      return undefined;
+      return () => heroTL.kill();
     }
 
     const observer = new IntersectionObserver(
@@ -482,8 +529,12 @@ export default function Vlsi() {
       { threshold: 0.08, rootMargin: "0px 100px -40px 100px" }
     );
 
-    root.querySelectorAll(".vlsipg-reveal:not(.in)").forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    root.querySelectorAll(".vlsipg-reveal:not(.vlsipg-hero *):not(.in)").forEach((element) => observer.observe(element));
+
+    return () => {
+      heroTL.kill();
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -621,10 +672,10 @@ export default function Vlsi() {
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 160) {
             const alpha = (1 - d / 160) * 0.35;
-            
+
             ctx.strokeStyle = `rgba(15, 58, 133, ${alpha * 0.5})`;
             ctx.lineWidth = 1;
-            
+
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, a.y);
@@ -1067,12 +1118,18 @@ export default function Vlsi() {
             <div className="vlsipg-eyebrow vlsipg-reveal">
               <span className="vlsipg-dot" /> {heroData.eyebrow}
             </div>
-            <h1 className="vlsipg-display vlsipg-reveal vlsipg-delay-1">
-              {heroData.titleLine1}
+            <h1 className="vlsipg-display">
+              <span className="vlsipg-title-line">
+                <span className="vlsipg-line-inner">{heroData.titleLine1}</span>
+              </span>
               <br />
-              {heroData.titleLine2}
+              <span className="vlsipg-title-line">
+                <span className="vlsipg-line-inner">{heroData.titleLine2}</span>
+              </span>
               <br />
-              <span className="vlsipg-hl">{heroData.titleHighlight}</span>
+              <span className="vlsipg-title-line">
+                <span className="vlsipg-line-inner vlsipg-hl">{heroData.titleHighlight}</span>
+              </span>
             </h1>
             <p className="vlsipg-lede vlsipg-reveal vlsipg-delay-2">
               {heroData.lede}
