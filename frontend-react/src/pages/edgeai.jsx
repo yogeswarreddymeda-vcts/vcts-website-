@@ -1484,6 +1484,7 @@ export default function EdgeAI() {
                 we <span className="embpg-blue-highlight">start engineering?</span>
               </h2>
             </div>
+            <p className="embpg-faq-note">A quick view of common questions about our Edge AI Engineering engagements.</p>
           </div>
           <div className="embpg-faq-list">
             {FAQ_DATA.map((faq, index) => {

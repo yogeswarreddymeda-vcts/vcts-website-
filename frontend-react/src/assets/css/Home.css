@@ -434,8 +434,11 @@
 .home-engagement-image { height: 205px; margin: 49px 0 44px; overflow: hidden; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); background: #5d88b3; }
 .home-engagement-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
 .home-engagement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-.home-engagement-card { min-height: 191px; padding: 29px 27px 26px; border: 1px solid #aeb8c2; border-radius: 0; background: #fff; box-shadow: 0 12px 28px rgba(20, 48, 76, 0.12); }
-.home-engagement-label { margin-bottom: 15px; color: #075ee6; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+.home-engagement-card { --engagement-accent: #075ee6; min-height: 191px; padding: 29px 27px 26px 24px; border: 1px solid #aeb8c2; border-left: 4px solid var(--engagement-accent); border-radius: 0; background: linear-gradient(110deg, color-mix(in srgb, var(--engagement-accent) 5%, #fff) 0, #fff 34%); box-shadow: 0 12px 28px rgba(20, 48, 76, 0.12); }
+.home-engagement-card:nth-child(2) { --engagement-accent: #08a8e9; }
+.home-engagement-card--gold { --engagement-accent: #38bdf8; }
+.home-engagement-card--navy { --engagement-accent: #0a369d; }
+.home-engagement-label { margin-bottom: 15px; color: var(--engagement-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
 .home-engagement-card h3 { margin: 0 0 15px; color: #092653; font-family: 'Space Grotesk', sans-serif; font-size: 17px; line-height: 1.25; }
 .home-engagement-card p { margin: 0; color: #234675; font-size: 14px; line-height: 1.6; }
 
@@ -492,6 +495,8 @@
   .home-animate-capabilities.is-visible .home-capability-card:nth-child(1) { --drop-delay: 100ms; --float-duration: 5.8s; --float-y: -11px; --float-mid: -6px; }
   .home-animate-capabilities.is-visible .home-capability-card:nth-child(2) { --drop-delay: 340ms; --float-duration: 6.4s; --float-y: -15px; --float-mid: -8px; }
   .home-animate-capabilities.is-visible .home-capability-card:nth-child(3) { --drop-delay: 580ms; --float-duration: 6.1s; --float-y: -13px; --float-mid: -7px; }
+  .home-animate-capabilities.is-visible .home-capability-card:hover,
+  .home-animate-capabilities.is-visible .home-capability-card:focus-within { animation-play-state: paused; }
 
   .home-animate-engagement:not(.is-visible) .home-engagement-heading { opacity: 0; transform: translate3d(0, 18px, 0); }
   .home-animate-engagement .home-engagement-heading { transition: opacity 500ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }

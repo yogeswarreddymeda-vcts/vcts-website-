@@ -350,14 +350,14 @@ export default function Embedded() {
       // Clear existing tweens to avoid duplicates
       floatTweens.forEach((t) => t.kill());
       gsap.killTweensOf(innerCards);
-      floatTweens = innerCards.map((innerCard) => {
+      floatTweens = innerCards.map((innerCard, index) => {
         return gsap.to(innerCard, {
           y: -3,
-          duration: gsap.utils.random(8, 10),
+          duration: 5.5,
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
-          delay: gsap.utils.random(0, 4)
+          delay: index * 0.25
         });
       });
     };
@@ -366,7 +366,7 @@ export default function Embedded() {
       floatTweens.forEach((t) => t.kill());
       floatTweens = [];
       gsap.killTweensOf(innerCards);
-      gsap.to(innerCards, { y: 0, duration: 0.6, ease: "power3.out" });
+      gsap.to(innerCards, { y: 0, duration: 0.35, ease: "power3.out" });
     };
 
     // 2. Play Alignment animation forward when entering, reverse when leaving
@@ -382,8 +382,8 @@ export default function Embedded() {
         scale: 1,
         opacity: 1,
         filter: "blur(0px)",
-        duration: 2.5,
-        stagger: 0.15,
+        duration: 1.55,
+        stagger: 0.1,
         ease: "cubic-bezier(0.22, 1, 0.36, 1)",
         onComplete: startFloating
       });
@@ -402,8 +402,8 @@ export default function Embedded() {
           scale: 0.92,
           opacity: 0.5,
           filter: "blur(3px)",
-          duration: 2.2,
-          delay: i * 0.09,
+          duration: 1.35,
+          delay: i * 0.07,
           ease: "power3.inOut"
         });
       });
@@ -1258,6 +1258,7 @@ export default function Embedded() {
                 we <span className="embpg-blue-highlight">start engineering?</span>
               </h2>
             </div>
+            <p className="embpg-faq-note">A quick view of common questions about our Embedded Engineering engagements.</p>
           </div>
 
           <div className="embpg-faq-list">
