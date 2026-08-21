@@ -564,6 +564,9 @@ export default function Technologies() {
                   src={techStackVisual}
                   alt="Isometric render of a multi-layer technology stack displaying silicon, embedded, and Edge AI layers"
                   className="techpg-hero-img"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <figcaption>
@@ -718,7 +721,7 @@ export default function Technologies() {
                 From architecture definition through silicon signoff — full-stack chip design and verification.
               </p>
               <div className="techpg-domain-visual">
-                <img src={semiconductorDomainImg} alt="Semiconductor Engineering chip layout and design verification visualization" loading="lazy" decoding="async" />
+                <img src={semiconductorDomainImg} alt="Semiconductor Engineering chip layout and design verification visualization" decoding="async" />
               </div>
             </div>
 
@@ -969,7 +972,7 @@ export default function Technologies() {
                 Building reliable, close-to-metal software and robust hardware solutions that connect physical systems with intelligent control.
               </p>
               <div className="techpg-domain-visual">
-                <img src={embeddedDomainImg} alt="Embedded Systems cloud connected microcontroller sensor board design visualization" loading="lazy" decoding="async" />
+                <img src={embeddedDomainImg} alt="Embedded Systems cloud connected microcontroller sensor board design visualization" decoding="async" />
               </div>
             </div>
 
@@ -1255,7 +1258,7 @@ export default function Technologies() {
                 Designing safety-critical, standard-compliant automotive systems that power modern electric, connected, and autonomous vehicles.
               </p>
               <div className="techpg-domain-visual">
-                <img src={automotiveDomainImg} alt="Automotive and Functional Safety autonomous car engineering and ADAS wiring system representation" loading="lazy" decoding="async" />
+                <img src={automotiveDomainImg} alt="Automotive and Functional Safety autonomous car engineering and ADAS wiring system representation" decoding="async" />
               </div>
             </div>
 
@@ -1477,7 +1480,7 @@ export default function Technologies() {
                 Optimizing and deploying advanced deep learning models directly on low-power, constrained microcontrollers and edge hardware.
               </p>
               <div className="techpg-domain-visual">
-                <img src={edgeaiDomainImg} alt="Edge AI Engineering intelligent industrial automation robotic arm and computer vision visualization" loading="lazy" decoding="async" />
+                <img src={edgeaiDomainImg} alt="Edge AI Engineering intelligent industrial automation robotic arm and computer vision visualization" decoding="async" />
               </div>
             </div>
 
@@ -1980,7 +1983,7 @@ export default function Technologies() {
               </a>
             </div>
             <div className="techpg-brochure-visual">
-              <img src={technologiesBrochure} alt="VCTS Technology & Engineering Capability Brochure visual" />
+              <img src={technologiesBrochure} alt="VCTS Technology & Engineering Capability Brochure visual" decoding="async" />
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ import whySketchImage from '../assets/image/Hackathon/why_join_sketch.webp'
 import imgGoldTrophyPodium from '../assets/image/Hackathon/gold_trophy_podium.webp'
 import imgSilverTrophyPodium from '../assets/image/Hackathon/silver_trophy_podium.webp'
 import imgBronzeTrophyPodium from '../assets/image/Hackathon/bronze_trophy_podium.webp'
-import qrCodeImg from '../assets/image/qr_code.png'
+import qrCodeImg from '../assets/image/qr_code.webp'
 import '../assets/css/Hackathon.css'
 
 // ==========================================
@@ -252,7 +252,6 @@ function AboutSection() {
                 className="section-photo"
                 src={imgMentors}
                 alt="A mentor guides engineering students building robotics prototypes in a makerspace"
-                loading="lazy"
                 decoding="async"
               />
             </div>
@@ -412,7 +411,7 @@ function DomainsSection() {
           {domains.map((d) => (
             <div className={`brk domain-card reveal${d.featured ? ' featured' : ''}`} key={d.id}>
               {d.label && <span className="idx">{d.label}</span>}
-              <img className="domain-image" src={d.img} alt={d.alt} loading="lazy" decoding="async" />
+              <img className="domain-image" src={d.img} alt={d.alt} decoding="async" />
               <h3>{d.title}</h3>
             </div>
           ))}
@@ -521,7 +520,7 @@ function JourneySection() {
 
           <div className="journey-visual reveal">
             <div className="journey-map">
-              <img src={mountainImage} alt="A mountain ascent representing the innovation journey" />
+              <img src={mountainImage} alt="A mountain ascent representing the innovation journey" decoding="async" />
 
               <svg className="journey-route" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M60 521 C125 521 135 459 200 459 S265 409 320 409 S395 347 450 347 S505 298 560 298 S615 248 670 248 S725 192 780 192 S825 125 880 125" />
@@ -674,7 +673,7 @@ function ProgramPrizes() {
           </div>
           <p className="prize-amount">₹75,000</p>
           <div className="podium-graphic-wrap">
-            <img src={imgSilverTrophyPodium} alt="Runner-Up 2nd Place Silver Trophy" className="real-podium-img" />
+            <img src={imgSilverTrophyPodium} alt="Runner-Up 2nd Place Silver Trophy" className="real-podium-img" decoding="async" />
           </div>
         </article>
 
@@ -689,7 +688,7 @@ function ProgramPrizes() {
           </div>
           <p className="prize-amount winner-amount">₹1,50,000</p>
           <div className="podium-graphic-wrap">
-            <img src={imgGoldTrophyPodium} alt="Winner 1st Place Gold Trophy" className="real-podium-img" />
+            <img src={imgGoldTrophyPodium} alt="Winner 1st Place Gold Trophy" className="real-podium-img" decoding="async" />
           </div>
         </article>
 
@@ -704,7 +703,7 @@ function ProgramPrizes() {
           </div>
           <p className="prize-amount">₹50,000</p>
           <div className="podium-graphic-wrap">
-            <img src={imgBronzeTrophyPodium} alt="Second Runner-Up 3rd Place Bronze Trophy" className="real-podium-img" />
+            <img src={imgBronzeTrophyPodium} alt="Second Runner-Up 3rd Place Bronze Trophy" className="real-podium-img" decoding="async" />
           </div>
         </article>
 
@@ -787,7 +786,7 @@ function FeatureCard({ className = '', icon, title, image, imagePosition }) {
         <span className="why-feature-icon">{whyIcons[icon]}</span>
         <h3>{title}</h3>
       </div>
-      <img src={image} alt={`${title} at the innovation bootcamp`} loading="lazy" decoding="async" style={imagePosition ? { objectPosition: imagePosition } : undefined} />
+      <img src={image} alt={`${title} at the innovation bootcamp`} decoding="async" style={imagePosition ? { objectPosition: imagePosition } : undefined} />
     </article>
   )
 }
@@ -817,13 +816,13 @@ function WhyJoinSection() {
           <div className="why-center">
             <div className="why-main-visual reveal">
               <div className="why-main-image">
-                <img src={workshopImage} alt="Engineering students collaborating on a robotics prototype" loading="lazy" decoding="async" />
+                <img src={workshopImage} alt="Engineering students collaborating on a robotics prototype" decoding="async" />
               </div>
               <div className="why-mini-photo why-mini-photo-top" aria-hidden="true">
-                <img src={engineeringTeam} alt="" />
+                <img src={engineeringTeam} alt="" decoding="async" />
               </div>
               <div className="why-mini-photo why-mini-photo-bottom" aria-hidden="true">
-                <img src={productTeamImage} alt="" />
+                <img src={productTeamImage} alt="" decoding="async" />
               </div>
               <p className="why-hand-note">
                 Real experience.<br />Real impact.
@@ -896,7 +895,6 @@ function CareerSection() {
                 <img
                   src={imgTeam}
                   alt="VConnecTech engineers reviewing a robotics prototype together"
-                  loading="lazy"
                   decoding="async"
                 />
               </div>
@@ -971,7 +969,7 @@ function RegisterSection() {
             <div className="register-qr-col">
               <div className="register-qr-card">
                 <div className="qr-img-wrapper">
-                  <img src={qrCodeImg} alt="Register QR Code" className="qr-code-img" />
+                  <img src={qrCodeImg} alt="Register QR Code" className="qr-code-img" decoding="async" />
                 </div>
                 <div className="qr-label-pill">
                   <span className="pulse-dot" aria-hidden="true" />

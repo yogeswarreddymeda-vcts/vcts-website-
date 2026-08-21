@@ -192,7 +192,20 @@ export default function Header({ currentPage, setCurrentPage }) {
               </li>
               <li className="nav-item"><a className="nav-link" href="#">Industries</a></li>
               <li className="nav-item"><a className="nav-link" href="#">Careers</a></li>
-              <li className="nav-item header-contact-margin-desktop"><a className="nav-link" href="#">Contact Us</a></li>
+              <li className="nav-item header-contact-margin-desktop">
+                <a
+                  className={`nav-link ${currentPage === 'contact' ? 'active' : ''}`}
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    closeMenu();
+                  }}
+                >
+                  Contact Us
+                </a>
+              </li>
 
               {/* Mobile Only Login Link */}
               <li className="nav-item header-mobile-only mt-2 w-100">

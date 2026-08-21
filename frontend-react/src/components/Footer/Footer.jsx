@@ -17,7 +17,7 @@ export default function Footer({ setCurrentPage }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <img src={logo} alt="VConnectTech Logo" className="footer-logo-img" />
+              <img src={logo} alt="VConnectTech Logo" className="footer-logo-img" decoding="async" />
             </div>
             <p className="footer-description">
               Engineering intelligent systems through semiconductor design and verification services for a smarter tomorrow.
@@ -95,7 +95,18 @@ export default function Footer({ setCurrentPage }) {
               </li>
               <li><a href="#">Industries <span className="chevron">&gt;</span></a></li>
               <li><a href="#">Careers <span className="chevron">&gt;</span></a></li>
-              <li><a href="#">Contact Us <span className="chevron">&gt;</span></a></li>
+              <li>
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  Contact Us <span className="chevron">&gt;</span>
+                </a>
+              </li>
             </ul>
           </nav>
 

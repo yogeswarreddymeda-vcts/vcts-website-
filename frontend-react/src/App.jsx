@@ -6,6 +6,7 @@ import Embedded from './pages/Embedded.jsx'
 import EdgeAI from './pages/edgeai.jsx'
 import Technologies from './pages/Technologies.jsx'
 import Hackathon from './pages/Hackathon.jsx'
+import Contact from './pages/Contact.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
@@ -15,7 +16,8 @@ const pageRoutes = {
   '/embedded': 'embedded',
   '/edgeai': 'edgeai',
   '/technologies': 'technologies',
-  '/hackathon': 'hackathon'
+  '/hackathon': 'hackathon',
+  '/contact': 'contact'
 };
 
 const routePaths = Object.entries(pageRoutes).reduce((paths, [path, page]) => {
@@ -114,6 +116,7 @@ function App() {
       {currentPage === 'edgeai' && <EdgeAI />}
       {currentPage === 'technologies' && <Technologies />}
       {currentPage === 'hackathon' && <Hackathon />}
+      {currentPage === 'contact' && <Contact />}
       <Footer setCurrentPage={setCurrentPage} />
     </>
   );

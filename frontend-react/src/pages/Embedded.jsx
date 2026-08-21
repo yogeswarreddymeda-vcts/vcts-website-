@@ -878,8 +878,8 @@ export default function Embedded() {
           </div>
           <div className="embpg-hero-mask-visual">
             <div className="embpg-device-stage" id="stage" ref={stageRef}>
-              <img className="embpg-d-layer embpg-d-under" src={EmbeddedImages.after} alt="Internal hardware of the fanless embedded enclosure" draggable="false" />
-              <img className="embpg-d-layer embpg-d-over" id="overImg" ref={overImgRef} src={EmbeddedImages.before} alt="Assembled fanless embedded enclosure" draggable="false" />
+              <img className="embpg-d-layer embpg-d-under" src={EmbeddedImages.after} alt="Internal hardware of the fanless embedded enclosure" draggable="false" loading="eager" fetchPriority="high" decoding="async" />
+              <img className="embpg-d-layer embpg-d-over" id="overImg" ref={overImgRef} src={EmbeddedImages.before} alt="Assembled fanless embedded enclosure" draggable="false" loading="eager" fetchPriority="high" decoding="async" />
               <div className="embpg-reveal-ring" id="ring" ref={ringRef} aria-hidden="true"></div>
             </div>
             <div className="embpg-stage-hint">
@@ -982,60 +982,70 @@ export default function Embedded() {
                             src={EmbeddedImages.test}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "B" ? (
                           <img
                             src={EmbeddedImages.m2}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "C" ? (
                           <img
                             src={EmbeddedImages.m3}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "D" ? (
                           <img
                             src={EmbeddedImages.m4}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "E" ? (
                           <img
                             src={EmbeddedImages.m5}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "F" ? (
                           <img
                             src={EmbeddedImages.m6}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "G" ? (
                           <img
                             src={EmbeddedImages.m7}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "H" ? (
                           <img
                             src={EmbeddedImages.m8}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "I" ? (
                           <img
                             src={EmbeddedImages.m9}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : s.letter === "J" ? (
                           <img
                             src={EmbeddedImages.m10}
                             alt={s.title}
                             className="embpg-svc-illustration-img"
+                            decoding="async"
                           />
                         ) : (
                           <ServiceDiagram letter={s.letter} accent={accent} />
@@ -1230,7 +1240,7 @@ export default function Embedded() {
               </a>
             </div>
             <div className="embpg-brochure-visual">
-              <img src={EmbeddedImages.brochure} alt="Embedded Engineering Capability Brochure visual" />
+              <img src={EmbeddedImages.brochure} alt="Embedded Engineering Capability Brochure visual" decoding="async" />
             </div>
           </div>
         </div>

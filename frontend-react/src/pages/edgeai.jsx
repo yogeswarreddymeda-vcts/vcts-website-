@@ -10,7 +10,6 @@ import edas4 from "../assets/image/edgeai/edaservice_img/edas4.webp";
 import edas5 from "../assets/image/edgeai/edaservice_img/edas5.webp";
 import edas6 from "../assets/image/edgeai/edaservice_img/edas6.webp";
 import edasB from "../assets/image/edgeai/edaservice_img/edas_b.webp";
-import EmbeddedImages from "../assets/image/Embedded/emi.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1060,7 +1059,7 @@ export default function EdgeAI() {
             </div>
             <div className="edega-hero-right">
               <figure className="edega-image-container edega-hero-figure tilt" ref={tiltRef}>
-                <img src={edaHeroImg} alt="Edge Deployment" className="edega-hero-image" />
+                <img src={edaHeroImg} alt="Edge Deployment" className="edega-hero-image" loading="eager" fetchPriority="high" decoding="async" />
                 <figcaption className="edega-image-overlay">
                   <span className="edega-image-fig">Fig. 001</span>
                   <span className="edega-image-title">Edge Deployment — Low-Power Inference</span>
@@ -1396,7 +1395,7 @@ export default function EdgeAI() {
                 }
               ].map((service, idx) => (
                 <div className="edega-service-card" key={idx}>
-                  <img src={service.image} alt={service.title} className="edega-service-card-image" />
+                  <img src={service.image} alt={service.title} className="edega-service-card-image" decoding="async" />
                   <div className="edega-service-icon-box">
                     {service.icon}
                   </div>
@@ -1468,7 +1467,7 @@ export default function EdgeAI() {
               </a>
             </div>
             <div className="embpg-brochure-visual">
-              <img src={edasB} alt="Edge AI Engineering Capability Brochure visual" />
+              <img src={edasB} alt="Edge AI Engineering Capability Brochure visual" decoding="async" />
             </div>
           </div>
         </div>

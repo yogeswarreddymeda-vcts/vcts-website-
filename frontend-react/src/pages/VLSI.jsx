@@ -290,16 +290,12 @@ const allServices = [
   ...services.postsilicon
 ];
 
-const serviceImageFiles = [
-  ...new Set(allServices.flatMap(({ image, hoverImage }) => [image, hoverImage].filter(Boolean)))
-];
-
 function ServiceCard({ service, isActive }) {
   return (
     <article className={`service-card ${service.cardClass} ${isActive ? "is-active" : ""}`}>
       <div className="service-card__bg">
-        {service.image && <img className="service-card__bg-mask" src={imageUrl(service.image)} alt="" />}
-        <img className="service-card__bg-hover" src={imageUrl(service.hoverImage)} alt="" />
+        {service.image && <img className="service-card__bg-mask" src={imageUrl(service.image)} alt="" decoding="async" />}
+        <img className="service-card__bg-hover" src={imageUrl(service.hoverImage)} alt="" decoding="async" />
       </div>
       <h3>{service.title}</h3>
       <p className="card-desc">{service.desc}</p>
@@ -372,23 +368,6 @@ export default function Vlsi() {
       isNavigatingRef.current = false;
     }, 1000);
   };
-
-  useEffect(() => {
-    const preloadedImages = serviceImageFiles.map((fileName) => {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = imageUrl(fileName);
-      img.decode?.().catch(() => { });
-      return img;
-    });
-
-    return () => {
-      preloadedImages.forEach((img) => {
-        img.onload = null;
-        img.onerror = null;
-      });
-    };
-  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -1158,7 +1137,7 @@ export default function Vlsi() {
           </div>
           <div className="vlsipg-hero-right vlsipg-reveal vlsipg-delay-5">
             <figure className="vlsipg-hero-figure tilt" ref={tiltRef}>
-              <img src={imageUrl(heroData.image)} alt="Macro photograph of a silicon microchip" />
+              <img src={imageUrl(heroData.image)} alt="Macro photograph of a silicon microchip" loading="eager" fetchPriority="high" decoding="async" />
               <figcaption>
                 <span className="vlsipg-cap-line">{heroData.caption.fig}</span>
                 <span className="vlsipg-cap-title">{heroData.caption.title}</span>
@@ -1281,7 +1260,7 @@ export default function Vlsi() {
               </a>
             </div>
             <div className="brochure-visual">
-              <img src={imageUrl("semiconductor_brochure.webp")} alt="Semiconductor engineering wafer probing" />
+              <img src={imageUrl("semiconductor_brochure.webp")} alt="Semiconductor engineering wafer probing" decoding="async" />
             </div>
           </div>
         </div>
