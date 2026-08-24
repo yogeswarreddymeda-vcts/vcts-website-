@@ -181,15 +181,15 @@ export default function Footer({ setCurrentPage }) {
             <ul className="contact-list">
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 00 2 2z"></path></svg>
-                <a href="mailto:hello@vconnectech.com" style={{ color: '#ffffff' }}>hello@vconnectech.com</a>
+                <a href="mailto:hr@vconnectech.in" style={{ color: '#ffffff' }}>hr@vconnectech.in</a>
               </li>
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+917032305762">+91 7032305762</a>
               </li>
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <span>VConnect Tech Systems Pvt. Ltd.<br />Bengaluru, India</span>
+                <span>VConnectTech Systems<br />4th floor, Plot No:6, Sector-3, HUDA Techno Enclave, Madhapur, Hyderabad, Telangana, India - 500081</span>
               </li>
             </ul>
             <div className="map-bg"></div>
