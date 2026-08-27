@@ -59,13 +59,12 @@ export default function Home({ setCurrentPage }) {
         <div className="home-hero-glow" aria-hidden="true" />
         <div className="home-hero-shell">
           <div className="home-hero-copy">
-            <div className="home-hero-eyebrow">Silicon <span>•</span> System <span>•</span> Edge</div>
+            <div className="home-hero-eyebrow">From Silicon to Intelligent Edge</div>
             <h1 id="home-hero-title">
-              <span className="home-hero-title-line">From Silicon to</span>
-              <strong className="home-hero-title-line">Intelligent</strong>
-              <strong className="home-hero-title-line">Edge.</strong>
+              <span className="home-hero-title-line">Engineering the Future.</span>
+              <strong className="home-hero-title-line">From the Inside Out.</strong>
             </h1>
-            <p>We engineer custom ASIC/FPGA designs, high-performance embedded systems, and optimized Edge AI hardware. Partner with us to accelerate your next-generation hardware lifecycle from concept to production-ready system.</p>
+            <p>Best-in-class engineering for complex systems, intelligent products, and real-world applications.</p>
             <div className="home-hero-actions">
               <button type="button" className="home-hero-button home-hero-button--primary" onClick={() => openPage('contact')}>Talk to an Engineering Architect <ArrowRight aria-hidden="true" /></button>
               <button type="button" className="home-hero-button home-hero-button--secondary" onClick={() => openPage('technologies')}>Download Capabilities Deck <Download aria-hidden="true" /></button>
@@ -82,7 +81,7 @@ export default function Home({ setCurrentPage }) {
 
       <section className="home-trust-section home-animated-section home-animate-trust" aria-labelledby="home-trust-title">
         <div className="home-trust-shell">
-          <h2 id="home-trust-title">Trusted Engineering Partners for Industry Pioneers</h2>
+          <h2 id="home-trust-title">Trusted Engineering Partner for Industry Pioneers</h2>
           <p>Powering mission-critical electronics across Semiconductor, Automotive, Industrial IoT,<br className="home-trust-break" /> and MedTech sectors.</p>
           <div className="home-trust-pillars">
             <div className="home-trust-pillar"><Cpu aria-hidden="true" /><span>Semiconductor</span></div>

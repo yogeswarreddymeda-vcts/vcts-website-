@@ -50,6 +50,7 @@ export default function Header({ currentPage, setCurrentPage }) {
   const closeTimerRef = useRef(null);
   const [megaOpen, setMegaOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
+  const [activeCompanyCategory, setActiveCompanyCategory] = useState('about');
   const [activeCategory, setActiveCategory] = useState('services');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState(null);
@@ -87,6 +88,7 @@ export default function Header({ currentPage, setCurrentPage }) {
     openTimerRef.current = window.setTimeout(() => {
       setMegaOpen(false);
       setCompanyOpen(true);
+      setActiveCompanyCategory(currentPage === 'careers' ? 'careers' : 'about');
     }, 120);
   };
 
@@ -144,6 +146,7 @@ export default function Header({ currentPage, setCurrentPage }) {
   };
 
   const whatWeDoActive = ['vlsi', 'embedded', 'edgeai', 'technologies'].includes(currentPage);
+  const companyActive = ['about', 'careers'].includes(currentPage);
   return (
     <header
       className="site-header"
@@ -178,7 +181,7 @@ export default function Header({ currentPage, setCurrentPage }) {
             <div className="desktop-nav-group company-nav-group" onMouseEnter={openCompanyWithDelay}>
               <button
                 type="button"
-                className={`desktop-nav-link nav-trigger ${companyOpen ? 'is-open' : ''}`}
+                className={`desktop-nav-link nav-trigger ${companyActive ? 'is-active' : ''} ${companyOpen ? 'is-open' : ''}`}
                 aria-expanded={companyOpen}
                 aria-controls="company-menu"
                 onClick={() => {
@@ -257,15 +260,54 @@ export default function Header({ currentPage, setCurrentPage }) {
         <section className="mega-menu" aria-label="Company menu">
           <div className="header-container mega-menu-grid">
             <nav className="mega-index" aria-label="Company category">
-              <button type="button" onClick={(event) => navigate(event, null)}>
+              <button type="button" className={activeCompanyCategory === 'about' ? 'is-active' : ''} aria-current={currentPage === 'about' ? 'page' : undefined} onMouseEnter={() => setActiveCompanyCategory('about')} onFocus={() => setActiveCompanyCategory('about')} onClick={(event) => navigate(event, 'about')}>
                 <span>About Us</span>
                 <ArrowRight />
               </button>
-              <button type="button" onClick={(event) => navigate(event, null)}>
+              <button type="button" className={activeCompanyCategory === 'careers' ? 'is-active' : ''} aria-current={currentPage === 'careers' ? 'page' : undefined} onMouseEnter={() => setActiveCompanyCategory('careers')} onFocus={() => setActiveCompanyCategory('careers')} onClick={(event) => navigate(event, 'careers')}>
                 <span>Careers</span>
                 <ArrowRight />
               </button>
+              <button type="button" className={activeCompanyCategory === 'blog' ? 'is-active' : ''} onMouseEnter={() => setActiveCompanyCategory('blog')} onFocus={() => setActiveCompanyCategory('blog')} onClick={() => setActiveCompanyCategory('blog')}>
+                <span>Blog</span>
+                <ArrowRight />
+              </button>
             </nav>
+            <aside className="mega-detail company-mega-detail" aria-label={`${activeCompanyCategory} section`}>
+              <div className="mega-detail-copy">
+                {activeCompanyCategory === 'careers' ? (
+                  <>
+                    <span className="mega-eyebrow">CAREERS AT VCONNECTTECH SYSTEMS</span>
+                    <h2>Find your next opportunity.</h2>
+                    <p>Build your career, work with great people, and make an impact on the engineering challenges that matter.</p>
+                    <a href="/careers" onClick={(event) => navigate(event, 'careers')}>
+                      Explore Careers <ArrowRight />
+                    </a>
+                  </>
+                ) : activeCompanyCategory === 'blog' ? (
+                  <>
+                    <span className="mega-eyebrow">VCONNECTTECH INSIGHTS</span>
+                    <h2>Ideas, insights, and engineering in motion.</h2>
+                    <p>Explore practical perspectives on systems engineering, intelligent products, and the technologies shaping what comes next.</p>
+                    <a href="#" onClick={(event) => event.preventDefault()}>
+                      Explore the Blog <ArrowRight />
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <span className="mega-eyebrow">ABOUT VCONNECTTECH SYSTEMS</span>
+                    <h2>Engineering ideas into real-world impact.</h2>
+                    <p>
+                      Discover our purpose, engineering expertise, leadership, and the people building reliable
+                      technology solutions for complex challenges.
+                    </p>
+                    <a href="/about" onClick={(event) => navigate(event, 'about')}>
+                      Explore About Us <ArrowRight />
+                    </a>
+                  </>
+                )}
+              </div>
+            </aside>
           </div>
         </section>
       </div>
@@ -343,8 +385,9 @@ export default function Header({ currentPage, setCurrentPage }) {
               Company <ChevronDown />
             </button>
             <div className={`mobile-accordion-panel ${mobileSection === 'company' ? 'is-open' : ''}`} id="mobile-company-menu">
-              <a href="#" onClick={(event) => navigate(event, null)}>About Us</a>
-              <a href="#" onClick={(event) => navigate(event, null)}>Careers</a>
+              <a href="/about" aria-current={currentPage === 'about' ? 'page' : undefined} onClick={(event) => navigate(event, 'about')}>About Us</a>
+              <a href="/careers" aria-current={currentPage === 'careers' ? 'page' : undefined} onClick={(event) => navigate(event, 'careers')}>Careers</a>
+              <a href="#" onClick={(event) => navigate(event, null)}>Blog</a>
             </div>
           </div>
 

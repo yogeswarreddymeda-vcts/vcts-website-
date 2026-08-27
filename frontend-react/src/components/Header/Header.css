@@ -192,7 +192,35 @@
 }
 
 .company-mega-shell .mega-menu {
-  height: 150px;
+  height: 230px;
+}
+
+.mega-detail.company-mega-detail {
+  padding: 20px clamp(42px, 5vw, 78px);
+}
+
+.mega-detail.company-mega-detail .mega-detail-copy {
+  max-width: 760px;
+}
+
+.mega-detail.company-mega-detail .mega-eyebrow {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+
+.mega-detail.company-mega-detail h2 {
+  font-size: clamp(23px, 2vw, 31px);
+}
+
+.mega-detail.company-mega-detail p {
+  max-width: 720px;
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mega-detail.company-mega-detail a {
+  font-size: 13px;
 }
 
 .secondary-nav {

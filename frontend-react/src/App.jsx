@@ -7,6 +7,8 @@ import EdgeAI from './pages/edgeai.jsx'
 import Technologies from './pages/Technologies.jsx'
 import Hackathon from './pages/Hackathon.jsx'
 import Contact from './pages/Contact.jsx'
+import About from './pages/About.jsx'
+import Careers from './pages/Careers.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
 
@@ -17,7 +19,9 @@ const pageRoutes = {
   '/edgeai': 'edgeai',
   '/technologies': 'technologies',
   '/hackathon': 'hackathon',
-  '/contact': 'contact'
+  '/contact': 'contact',
+  '/about': 'about',
+  '/careers': 'careers'
 };
 
 const routePaths = Object.entries(pageRoutes).reduce((paths, [path, page]) => {
@@ -117,6 +121,8 @@ function App() {
       {currentPage === 'technologies' && <Technologies />}
       {currentPage === 'hackathon' && <Hackathon />}
       {currentPage === 'contact' && <Contact />}
+      {currentPage === 'about' && <About setCurrentPage={setCurrentPage} />}
+      {currentPage === 'careers' && <Careers />}
       <Footer setCurrentPage={setCurrentPage} />
     </>
   );

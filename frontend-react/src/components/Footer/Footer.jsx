@@ -54,7 +54,18 @@ export default function Footer({ setCurrentPage }) {
                   Home <span className="chevron">&gt;</span>
                 </a>
               </li>
-              <li><a href="#">About Us <span className="chevron">&gt;</span></a></li>
+              <li>
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('about');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  About Us <span className="chevron">&gt;</span>
+                </a>
+              </li>
               <li>
                 <a 
                   href="/"
@@ -94,7 +105,18 @@ export default function Footer({ setCurrentPage }) {
                 </a>
               </li>
               <li><a href="#">Industries <span className="chevron">&gt;</span></a></li>
-              <li><a href="#">Careers <span className="chevron">&gt;</span></a></li>
+              <li>
+                <a
+                  href="/careers"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage('careers');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  Careers <span className="chevron">&gt;</span>
+                </a>
+              </li>
               <li>
                 <a
                   href="/contact"
