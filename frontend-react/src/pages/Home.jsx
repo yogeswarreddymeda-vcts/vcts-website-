@@ -1,3 +1,10 @@
+/**
+ * Home Page
+ *
+ * Introduces VConnectTech Systems, its engineering value proposition,
+ * capabilities, engagement model, industries, and primary calls to action.
+ */
+
 import '../assets/css/Home.css'
 import { useEffect } from 'react'
 import { Activity, ArrowRight, CarFront, Cpu, Download, Server } from 'lucide-react'
@@ -14,9 +21,18 @@ import healthcareImage from '../assets/image/Home/home-section-07.webp'
 import consumerImage from '../assets/image/Home/home-section-08.webp'
 import industriesBackdrop from '../assets/image/Home/home-section-09.webp'
 
+// Stable indexes generate the decorative circuit traces without repeated markup.
+
 const valueTraceSquares = Array.from({ length: 20 }, (_, index) => index)
 
+/**
+ * @param {Object} props
+ * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ */
+
 export default function Home({ setCurrentPage }) {
+  // One observer toggles section entrance classes and keeps the hero visible immediately.
+
   useEffect(() => {
     const sections = document.querySelectorAll('.home-page-container > section')
 
@@ -44,8 +60,12 @@ export default function Home({ setCurrentPage }) {
       observer.observe(section)
     })
 
+    // Disconnect on unmount to prevent callbacks against detached sections.
+
     return () => observer.disconnect()
   }, [])
+
+  /** Navigates through the application shell and resets the destination scroll position. */
 
   const openPage = (page) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -55,6 +75,8 @@ export default function Home({ setCurrentPage }) {
 
   return (
     <main className="home-page-container">
+      {/* Primary value proposition and engineering consultation actions */}
+
       <section className="home-hero" aria-labelledby="home-hero-title">
         <div className="home-hero-glow" aria-hidden="true" />
         <div className="home-hero-shell">
@@ -79,6 +101,8 @@ export default function Home({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* Industries that rely on VConnectTech engineering */}
+
       <section className="home-trust-section home-animated-section home-animate-trust" aria-labelledby="home-trust-title">
         <div className="home-trust-shell">
           <h2 id="home-trust-title">Trusted Engineering Partner for Industry Pioneers</h2>
@@ -91,6 +115,8 @@ export default function Home({ setCurrentPage }) {
           </div>
         </div>
       </section>
+
+      {/* Differentiators across the silicon-to-software development stack */}
 
       <section className="home-value-section home-animated-section home-animate-value" aria-labelledby="home-value-title">
         <img className="home-value-image" src={valueSectionImage} alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -107,6 +133,8 @@ export default function Home({ setCurrentPage }) {
           </div>
         </div>
       </section>
+
+      {/* Core VLSI, embedded systems, and Edge AI capabilities */}
 
       <section className="home-capabilities-section home-animated-section home-animate-capabilities" aria-labelledby="home-capabilities-title">
         <div className="home-capabilities-shell">
@@ -153,6 +181,8 @@ export default function Home({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* Available engineering engagement models */}
+
       <section className="home-engagement-section home-animated-section home-animate-engagement" aria-labelledby="home-engagement-title">
         <div className="home-engagement-shell">
           <div className="home-engagement-heading">
@@ -169,6 +199,8 @@ export default function Home({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* High-reliability industries served by the company */}
+
       <section className="home-industries-section home-animated-section home-animate-industries" aria-labelledby="home-industries-title">
         <div className="home-industries-shell">
           <header className="home-industries-heading">
@@ -183,6 +215,8 @@ export default function Home({ setCurrentPage }) {
           </div>
         </div>
       </section>
+
+      {/* Final technical consultation call to action */}
 
       <section className="home-final-cta home-animated-section home-animate-final-cta" aria-labelledby="home-final-cta-title">
         <img className="home-final-cta-backdrop" src={industriesBackdrop} alt="" aria-hidden="true" loading="lazy" decoding="async" />

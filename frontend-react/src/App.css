@@ -1,3 +1,9 @@
+/*
+ * Application Shell Styles
+ *
+ * Keeps the React root in a full-height vertical layout.
+ */
+
 #root {
   min-height: 100vh;
   display: flex;

@@ -1,3 +1,10 @@
+/**
+ * Technologies Page
+ *
+ * Documents supported engineering domains, platforms, tools, standards,
+ * ecosystem capabilities, downloadable material, and FAQs.
+ */
+
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -44,6 +51,8 @@ const domainMotionConfig = {
 
 
 
+/** Renders the complete technology-domain and engineering-standards page. */
+
 export default function Technologies() {
   const rootRef = useRef(null);
   const domainAnimationRef = useRef({
@@ -57,6 +66,9 @@ export default function Technologies() {
   const [activeFaqIndex, setActiveFaqIndex] = useState(0);
 
   const toggleCard = (key) => { };
+
+  // Interpolate each domain section from its configured entrance pose according
+  // to scroll progress, with a static fallback for reduced-motion visitors.
 
   useEffect(() => {
     const root = rootRef.current;
@@ -238,6 +250,9 @@ export default function Technologies() {
     reducedMotion.addEventListener("change", handleReducedMotion);
     domainImages.forEach((image) => image.addEventListener("load", handleResize));
 
+    // Remove global listeners, image listeners, frames, and inline motion styles
+    // so revisiting the page starts from a clean state.
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -258,6 +273,9 @@ export default function Technologies() {
     };
   }, []);
 
+  // Build the ecosystem and standards entrance sequences with shared
+  // ScrollTriggers that replay consistently in both scroll directions.
+
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -266,12 +284,14 @@ export default function Technologies() {
     const triggers = [];
 
     // 4. Ecosystem scroll animation: fanning-out entrance
+
     const ecoSec = root.querySelector(".techpg-ecosystem-sec");
     if (ecoSec) {
       const ecoHeader = ecoSec.querySelector(".techpg-sec-head");
       const ecoCards = ecoSec.querySelectorAll(".techpg-ecosystem-card");
 
       // Initial hide to prevent flash
+
       gsap.set(ecoCards, { opacity: 0 });
 
       if (ecoHeader) {
@@ -304,16 +324,19 @@ export default function Technologies() {
       if (ecoCards.length === 3) {
         const playEcoCards = () => {
           // Left card slides in from left with negative rotation
+
           gsap.fromTo(ecoCards[0],
             { x: -60, y: 30, opacity: 0, rotationY: -15, transformPerspective: 1000 },
             { x: 0, y: 0, opacity: 1, rotationY: 0, duration: 0.85, ease: "power2.out", clearProps: "all" }
           );
           // Center card slides straight up
+
           gsap.fromTo(ecoCards[1],
             { y: 60, opacity: 0, scale: 0.95 },
             { y: 0, opacity: 1, scale: 1, duration: 0.85, ease: "power2.out", delay: 0.1, clearProps: "all" }
           );
           // Right card slides in from right with positive rotation
+
           gsap.fromTo(ecoCards[2],
             { x: 60, y: 30, opacity: 0, rotationY: 15, transformPerspective: 1000 },
             { x: 0, y: 0, opacity: 1, rotationY: 0, duration: 0.85, ease: "power2.out", delay: 0.2, clearProps: "all" }
@@ -337,6 +360,7 @@ export default function Technologies() {
     }
 
     // 5. Standards scroll animation: split panel sliding and staggered grid zoom
+
     const stdSec = root.querySelector(".techpg-standards-sec");
     if (stdSec) {
       const stdHeader = stdSec.querySelector(".techpg-sec-head");
@@ -345,6 +369,7 @@ export default function Technologies() {
       const leftItems = stdLeft ? stdLeft.querySelectorAll(".techpg-standards-left-item") : [];
 
       // Initial hide to prevent flash
+
       gsap.set([stdLeft, ...leftItems, ...stdRightCards], { opacity: 0 });
 
       if (stdHeader) {
@@ -377,16 +402,19 @@ export default function Technologies() {
       if (stdLeft && stdRightCards.length > 0) {
         const playStdElements = () => {
           // Left panel slides from left with a Y-axis tilt
+
           gsap.fromTo(stdLeft,
             { x: -80, opacity: 0, rotateY: 20, transformPerspective: 1000 },
             { x: 0, opacity: 1, rotateY: 0, duration: 1.0, ease: "power3.out", clearProps: "all" }
           );
           // Stagger inner sub-items of the left panel
+
           gsap.fromTo(leftItems,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power2.out", delay: 0.45, clearProps: "all" }
           );
           // Right cards swing/rotate in staggered order with elastic back ease
+
           gsap.fromTo(stdRightCards,
             { rotateX: 35, rotateY: -20, y: 50, z: -100, opacity: 0, transformPerspective: 1200 },
             { rotateX: 0, rotateY: 0, y: 0, z: 0, opacity: 1, duration: 1.2, stagger: 0.12, ease: "back.out(1.2)", delay: 0.25, clearProps: "all" }
@@ -409,11 +437,16 @@ export default function Technologies() {
       }
     }
 
+    // Destroy triggers on unmount to avoid duplicate callbacks after navigation.
+
     return () => {
       triggers.forEach((trigger) => trigger.kill());
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  // Reveal ordinary content once as it enters the viewport, while providing
+  // an immediate fallback when IntersectionObserver is unavailable.
 
   useEffect(() => {
     const root = rootRef.current;
@@ -434,8 +467,13 @@ export default function Technologies() {
     );
 
     root.querySelectorAll(".techpg-reveal:not(.in)").forEach((element) => observer.observe(element));
+    // Disconnect the observer so it no longer retains section elements.
+
     return () => observer.disconnect();
   }, []);
+
+  // Ease the decorative background blobs toward pointer movement and suspend
+  // frame work while their page container is outside the viewport.
 
   useEffect(() => {
     const root = rootRef.current;
@@ -488,6 +526,8 @@ export default function Technologies() {
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
 
+    // Stop pointer tracking and release animation resources during navigation.
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       if (observer) {
@@ -502,6 +542,7 @@ export default function Technologies() {
   return (
     <main className="techpg-page" ref={rootRef}>
       {/* Shared Gradient Defs for Domain Symbols */}
+
       <svg width="0" height="0" style={{ position: "absolute" }}>
         <defs>
           <linearGradient id="domain-symbol-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -521,6 +562,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 1: HERO SECTION
          ========================================== */}
+
       <section className="techpg-hero techpg-tech-hero" id="top">
         <div className="techpg-hero-grid techpg-container">
           <div className="techpg-hero-left">
@@ -597,6 +639,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 2: END-TO-END COVERAGE
          ========================================== */}
+
       <section className="techpg-coverage-sec" id="coverage">
         <div className="techpg-container">
           <div className="techpg-sec-head techpg-reveal">
@@ -686,6 +729,7 @@ export default function Technologies() {
 
       {/* =========          DOMAINS INTRO HEADER
           ========================================== */}
+
       <section className="techpg-domains-header-sec">
         <div className="techpg-container">
           <div className="techpg-domains-header techpg-reveal">
@@ -701,6 +745,7 @@ export default function Technologies() {
 
       {/* =========          SECTION 3: SEMICONDUCTOR DOMAIN
           ========================================== */}
+
       <section className="techpg-domains-sec" id="semiconductor">
         <div className="techpg-container">
           <div className="techpg-domain-row techpg-reveal">
@@ -729,6 +774,7 @@ export default function Technologies() {
               <div className="techpg-domain-grid">
 
                 {/* Card 1: Architecture & System Design */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-arch"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-arch")}
@@ -759,6 +805,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 2: Modeling & Virtual Platforms */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-model"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-model")}
@@ -789,6 +836,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 3: RTL Design */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-rtl"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-rtl")}
@@ -819,6 +867,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 4: Verification */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-verify"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-verify")}
@@ -848,6 +897,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 5: FPGA & Prototyping */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-fpga"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-fpga")}
@@ -885,6 +935,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 6: Physical Design & Signoff */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-physical"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-physical")}
@@ -914,6 +965,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 7: EDA Ecosystem */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["semi-eda"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("semi-eda")}
@@ -951,6 +1003,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 4: EMBEDDED SYSTEMS DOMAIN
          ========================================== */}
+
       <section className="techpg-domains-sec" id="embedded">
         <div className="techpg-container">
           <div className="techpg-domain-row techpg-reveal">
@@ -980,6 +1033,7 @@ export default function Technologies() {
               <div className="techpg-domain-grid">
 
                 {/* Card 1: Processor Platforms */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-platforms"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-platforms")}
@@ -1017,6 +1071,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 2: Operating Systems */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-os"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-os")}
@@ -1047,6 +1102,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 3: Programming Languages */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-languages"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-languages")}
@@ -1076,6 +1132,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 4: BSP & Driver Development */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-drivers"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-drivers")}
@@ -1112,6 +1169,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 5: Middleware Development */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-middleware"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-middleware")}
@@ -1142,6 +1200,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 6: Connectivity & Communication */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-connectivity"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-connectivity")}
@@ -1171,6 +1230,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 7: Wireless Technologies */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-wireless"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-wireless")}
@@ -1202,6 +1262,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 8: Cloud & IoT */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["embed-cloud"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("embed-cloud")}
@@ -1238,6 +1299,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 5: AUTOMOTIVE SAFETY & SYSTEMS DOMAIN
          ========================================== */}
+
       <section className="techpg-domains-sec" id="automotive">
         <div className="techpg-container">
           <div className="techpg-domain-row techpg-reveal">
@@ -1266,6 +1328,7 @@ export default function Technologies() {
               <div className="techpg-domain-grid">
 
                 {/* Card 1: Functional Safety */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-platforms"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-platforms")}
@@ -1296,6 +1359,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 2: Vehicle Communication */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-comm"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-comm")}
@@ -1328,6 +1392,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 3: Diagnostics & Vehicle Services */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-diag"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-diag")}
@@ -1356,6 +1421,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 4: Automotive Software Platforms */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-safety"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-safety")}
@@ -1387,6 +1453,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 5: Automotive Process Standards */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-standards"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-standards")}
@@ -1419,6 +1486,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 6: Requirements Engineering */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["auto-reqs"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("auto-reqs")}
@@ -1458,6 +1526,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 6: EDGE AI & TINYML DOMAIN
          ========================================== */}
+
       <section className="techpg-domains-sec" id="edgeai">
         <div className="techpg-container">
           <div className="techpg-domain-row techpg-reveal">
@@ -1488,6 +1557,7 @@ export default function Technologies() {
               <div className="techpg-domain-grid">
 
                 {/* Card 1: Computer Vision */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-vision"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-vision")}
@@ -1517,6 +1587,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 2: AI Frameworks */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-frameworks"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-frameworks")}
@@ -1549,6 +1620,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 3: Edge AI Optimization */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-opt"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-opt")}
@@ -1578,6 +1650,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 4: Hardware Acceleration */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-acceleration"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-acceleration")}
@@ -1606,6 +1679,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 5: Edge AI Platforms */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-platforms"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-platforms")}
@@ -1637,6 +1711,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Card 6: TinyML & Embedded AI */}
+
                 <div
                   className={`techpg-domain-card ${activeCards["edge-tinyml"] ? "expanded" : ""}`}
                   onClick={() => toggleCard("edge-tinyml")}
@@ -1683,6 +1758,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 6: DEVELOPMENT & ENGINEERING ECOSYSTEM (Standalone Section)
          ========================================== */}
+
       <section className="techpg-ecosystem-sec" id="ecosystem">
         <div className="techpg-container">
 
@@ -1701,6 +1777,7 @@ export default function Technologies() {
           <div className="techpg-ecosystem-grid techpg-reveal">
 
             {/* Card 1: Collaboration & Configuration Management */}
+
             <div className="techpg-ecosystem-card">
               <div className="techpg-ecosystem-card-header">
                 <div className="techpg-ecosystem-card-icon">
@@ -1721,6 +1798,7 @@ export default function Technologies() {
             </div>
 
             {/* Card 2: CI/CD & DevOps */}
+
             <div className="techpg-ecosystem-card">
               <div className="techpg-ecosystem-card-header">
                 <div className="techpg-ecosystem-card-icon">
@@ -1739,6 +1817,7 @@ export default function Technologies() {
             </div>
 
             {/* Card 3: Engineering Simulation & Analysis */}
+
             <div className="techpg-ecosystem-card">
               <div className="techpg-ecosystem-card-header">
                 <div className="techpg-ecosystem-card-icon">
@@ -1764,6 +1843,7 @@ export default function Technologies() {
       {/* ==========================================
          SECTION 7: INDUSTRY STANDARDS & COMPLIANCE (Standalone Section)
          ========================================== */}
+
       <section className="techpg-standards-sec" id="standards">
         <div className="techpg-container">
 
@@ -1782,6 +1862,7 @@ export default function Technologies() {
           <div className="techpg-standards-grid techpg-reveal">
 
             {/* Left Column: Big Showcase Card (Engineering Governance) */}
+
             <div className="techpg-standards-left-panel">
               <div className="techpg-standards-left-header">
                 <div className="techpg-standards-left-icon">
@@ -1832,9 +1913,11 @@ export default function Technologies() {
             </div>
 
             {/* Right Column: 5 Bento-style Cards */}
+
             <div className="techpg-standards-right-grid">
 
               {/* Card 1: ISO 26262 */}
+
               <div className="techpg-standards-card">
                 <div className="techpg-standards-card-header-row">
                   <div className="techpg-standards-card-icon-box">
@@ -1852,6 +1935,7 @@ export default function Technologies() {
               </div>
 
               {/* Card 2: ASPICE */}
+
               <div className="techpg-standards-card">
                 <div className="techpg-standards-card-header-row">
                   <div className="techpg-standards-card-icon-box">
@@ -1870,6 +1954,7 @@ export default function Technologies() {
               </div>
 
               {/* Card 3: AUTOSAR */}
+
               <div className="techpg-standards-card">
                 <div className="techpg-standards-card-header-row">
                   <div className="techpg-standards-card-icon-box">
@@ -1890,6 +1975,7 @@ export default function Technologies() {
               </div>
 
               {/* Card 4: IEEE Standards */}
+
               <div className="techpg-standards-card">
                 <div className="techpg-standards-card-header-row">
                   <div className="techpg-standards-card-icon-box">
@@ -1910,6 +1996,7 @@ export default function Technologies() {
               </div>
 
               {/* Card 5: AMBA Specifications (Span 2 - Accent Gradient Card) */}
+
               <div className="techpg-standards-card techpg-standards-card-wide techpg-standards-card-accent">
                 <div className="techpg-standards-card-header-row">
                   <div className="techpg-standards-card-icon-box-white">

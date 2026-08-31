@@ -1,6 +1,14 @@
+/*
+ * Hackathon Page Styles
+ *
+ * Controls the program hero, participation sections, engineering journey,
+ * prizes, benefits, registration, FAQs, animations, and responsive behavior.
+ */
+
 /* ==========================================
    GLOBAL STYLES, VARIABLES & UTILITIES
    ========================================== */
+
 :root {
   --paper: #F8FBFF;
   --paper-raised: #FFFFFF;
@@ -115,6 +123,7 @@ section[id] {
 }
 
 /* Scroll progress bar */
+
 .progress-bar {
   position: fixed;
   top: 0;
@@ -127,6 +136,7 @@ section[id] {
 }
 
 /* Reveal-on-scroll */
+
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -140,6 +150,7 @@ section[id] {
 }
 
 /* Section scaffolding */
+
 section {
   padding: 96px 0;
   position: relative;
@@ -204,6 +215,7 @@ section {
 }
 
 /* Base Headings & Typography System */
+
 h1,
 h2,
 h3 {
@@ -261,6 +273,7 @@ h2.section-title {
 }
 
 /* Bracket card */
+
 .brk {
   position: relative;
   border: 1px solid rgba(155, 183, 216, .5);
@@ -302,6 +315,7 @@ h2.section-title {
 /* ==========================================
    1. HERO SECTION
    ========================================== */
+
 .hero {
   min-height: calc(100vh - var(--hackathon-header-height));
   min-height: calc(100svh - var(--hackathon-header-height));
@@ -570,6 +584,7 @@ h2.section-title {
 /* ==========================================
    2. HERO JOURNEY STAGES
    ========================================== */
+
 .build-stack {
   position: relative;
   top: 15px;
@@ -771,6 +786,7 @@ h2.section-title {
 }
 
 /* Buttons */
+
 .btn {
   font-family: 'JetBrains Mono';
   font-size: 14px;
@@ -816,6 +832,7 @@ h2.section-title {
 /* ==========================================
    3. HERO STATS
    ========================================== */
+
 .trace-wrap {
   margin-top: 63px;
   position: relative;
@@ -867,6 +884,7 @@ h2.section-title {
 /* ==========================================
    4. ABOUT THE BOOTCAMP
    ========================================== */
+
 #about {
   overflow: hidden;
   isolation: isolate;
@@ -919,6 +937,7 @@ h2.section-title {
 }
 
 /* 2x2 Feature Cards Grid */
+
 .about-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -940,6 +959,7 @@ h2.section-title {
 }
 
 /* Staggered Scroll Reveal for Feature Cards */
+
 .about-copy.reveal .about-feature-card {
   opacity: 0;
   transform: translateY(24px) scale(0.95);
@@ -1028,6 +1048,7 @@ h2.section-title {
 }
 
 /* Right Visual Frame Scroll Reveal */
+
 .about-visual.reveal {
   opacity: 0;
   transform: translateX(40px) scale(0.96);
@@ -1151,6 +1172,7 @@ h2.section-title {
 }
 
 /* Photos */
+
 .section-photo {
   width: 100%;
   height: 100%;
@@ -1184,6 +1206,7 @@ h2.section-title {
 /* ==========================================
    5. WHO CAN JOIN
    ========================================== */
+
 #who {
   overflow: hidden;
   border-top: 1px solid var(--line);
@@ -1429,6 +1452,7 @@ h2.section-title {
 /* ==========================================
    6. MODES OF PARTICIPATION
    ========================================== */
+
 #modes {
   border-bottom: 1px solid var(--line);
   background: var(--section-surface);
@@ -1851,6 +1875,7 @@ h2.section-title {
 }
 
 /* Static participation path */
+
 #modes .modes-title {
   max-width: none;
   margin: 0;
@@ -1884,6 +1909,7 @@ h2.section-title {
 }
 
 /* Staggered Scroll Reveal for Modes Cards */
+
 .modes-flow.reveal .mode-summary:first-child {
   opacity: 0;
   transform: translateX(-40px) scale(0.96);
@@ -2173,6 +2199,7 @@ h2.section-title {
 /* ==========================================
    7. INNOVATION DOMAINS
    ========================================== */
+
 #domains {
   overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -2208,6 +2235,7 @@ h2.section-title {
 }
 
 /* LEFT side hero card animation (Edge AI) */
+
 .domain-card.featured.reveal {
   opacity: 0;
   transform: translateX(-54px) scale(0.96);
@@ -2224,6 +2252,7 @@ h2.section-title {
 }
 
 /* RIGHT side grid cards animation (Cards 2 - 7) */
+
 .domain-card:not(.featured).reveal {
   opacity: 0;
   transform: translateY(32px) scale(0.96);
@@ -2443,6 +2472,7 @@ h2.section-title {
 /* ==========================================
    8. YOUR JOURNEY
    ========================================== */
+
 #journey {
   overflow: hidden;
   background: var(--section-surface);
@@ -2985,6 +3015,7 @@ h2.section-title {
 }
 
 /* Why / Career */
+
 #why {
   overflow: hidden;
   min-height: 941px;
@@ -3002,6 +3033,7 @@ h2.section-title {
 /* ==========================================
    9. PROGRAM TIMELINE
    ========================================== */
+
 :root {
   --roadmap-navy: #071d49;
   --roadmap-blue: #2858e6;
@@ -3297,6 +3329,7 @@ h2.section-title {
 /* ==========================================
    10. PROGRAM PRIZES
    ========================================== */
+
 .prizes-section {
   position: relative;
   width: 100%;
@@ -3314,6 +3347,7 @@ h2.section-title {
 }
 
 /* Top Pill Badge */
+
 .prizes-pill-badge {
   display: inline-flex;
   align-items: center;
@@ -3337,6 +3371,7 @@ h2.section-title {
 }
 
 /* Headings & Subtitles */
+
 .prizes-title {
   margin: 0 auto;
   color: #0f172a;
@@ -3367,6 +3402,7 @@ h2.section-title {
 }
 
 /* 3 Podium Cards Grid Stage */
+
 .prize-stage {
   display: grid;
   grid-template-columns: 1fr 1.08fr 1fr;
@@ -3378,6 +3414,7 @@ h2.section-title {
 }
 
 /* Cards Base */
+
 .prize-award-card {
   position: relative;
   display: flex;
@@ -3399,6 +3436,7 @@ h2.section-title {
 }
 
 /* Gold Winner Card (Middle) */
+
 .prize-award-card.is-winner {
   border: 1.5px solid #fde047;
   background: #ffffff;
@@ -3414,6 +3452,7 @@ h2.section-title {
 }
 
 /* Top Circle Badges */
+
 .top-badge-circle {
   width: 52px;
   height: 52px;
@@ -3441,6 +3480,7 @@ h2.section-title {
 }
 
 /* Rank Label Wrappers */
+
 .rank-label-wrap {
   display: flex;
   align-items: center;
@@ -3476,6 +3516,7 @@ h2.section-title {
 }
 
 /* Prize Amounts */
+
 .prize-amount {
   font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: clamp(30px, 2.6vw, 36px);
@@ -3492,6 +3533,7 @@ h2.section-title {
 }
 
 /* Graphic Wrappers & Podium Images */
+
 .podium-graphic-wrap {
   position: relative;
   width: 100%;
@@ -3531,6 +3573,7 @@ h2.section-title {
 /* ==========================================
    11. REWARDS AND BENEFITS
    ========================================== */
+
 .prizes-perks-row {
   display: flex;
   flex-wrap: wrap;
@@ -3686,6 +3729,7 @@ h2.section-title {
 /* ==========================================
    12. WHY JOIN
    ========================================== */
+
 #why .fig-head {
   margin-bottom: 21px;
 }
@@ -4153,6 +4197,7 @@ h2.section-title {
 /* ==========================================
    13. CAREER OPPORTUNITIES
    ========================================== */
+
 #career {
   position: relative;
   padding: clamp(72px, 7vw, 104px) 0;
@@ -4349,6 +4394,7 @@ h2.section-title {
 }
 
 /* Register */
+
 #register {
   background: var(--section-surface);
 }
@@ -4356,6 +4402,7 @@ h2.section-title {
 /* ==========================================
    14. REGISTRATION CTA
    ========================================== */
+
 #register {
   position: relative;
   padding: clamp(64px, 6vw, 96px) 0;
@@ -4647,6 +4694,7 @@ h2.section-title {
 }
 
 /* FAQ */
+
 #faq {
   padding-top: clamp(60px, 8vw, 100px);
   padding-bottom: clamp(60px, 8vw, 100px);
@@ -4664,6 +4712,7 @@ h2.section-title {
 /* ==========================================
    15. FAQ SECTION
    ========================================== */
+
 .faq-item {
   border-top: 1px solid var(--line, #cbd5e1);
   position: relative;
@@ -4756,6 +4805,7 @@ h2.section-title {
    Hackathon Typography System
    Keeps every section on the site-loaded font stack.
    =========================================================== */
+
 .hackathon-page,
 .hackathon-page p,
 .hackathon-page li,
@@ -4921,6 +4971,7 @@ h2.section-title {
 }
 
 /* Responsive Prizes Section */
+
 @media (max-width: 960px) {
   .prize-stage {
     grid-template-columns: 1fr;

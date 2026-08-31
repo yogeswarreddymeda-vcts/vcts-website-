@@ -1,3 +1,10 @@
+/**
+ * Contact Page
+ *
+ * Provides company contact channels, inquiry form guidance,
+ * office locations, operating hours, and map destinations.
+ */
+
 import {
   Building2,
   Clock3,
@@ -15,6 +22,8 @@ import vizagImage from '../assets/image/Contact/visakhapatnam.webp'
 
 const hyderabadLocationUrl = 'https://www.google.com/maps/place/VConnecTech+Systems/@17.4418347,78.3758634,62m/data=!3m1!1e3!4m6!3m5!1s0x3bcb930038fa06a1:0x473ca079d63401c8!8m2!3d17.4419942!4d78.3762469!16s%2Fg%2F11whlhpcg_?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D'
 const vizagLocationUrl = 'https://maps.app.goo.gl/hPqE2XTUW2RXk9Qk6?g_st=ic'
+
+// Office metadata drives both location cards and their external map destinations.
 
 const locations = [
   {
@@ -37,7 +46,14 @@ const locations = [
   },
 ]
 
+/** Renders contact details, the inquiry form, and regional office cards. */
+
 export default function Contact() {
+  /**
+   * Converts the inquiry fields into an encoded email draft while preserving
+   * optional contact details when supplied.
+   */
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget)
@@ -51,8 +67,12 @@ export default function Contact() {
 
   return (
     <main className="contact-page">
+      {/* Contact introduction, direct channels, and inquiry form */}
+
       <section className="contact-top" aria-labelledby="contact-title">
         <div className="contact-shell contact-top-grid">
+          {/* Company contact details and response expectations */}
+
           <section className="contact-introduction">
             <p className="contact-eyebrow">Contact VConnecTech</p>
             <h1 id="contact-title">Let&apos;s build<br />what&apos;s next<span>.</span></h1>
@@ -78,11 +98,13 @@ export default function Contact() {
               <li>
                 <span className="contact-direct-row">
                   <span className="contact-direct-icon"><Clock3 aria-hidden="true" /></span>
-                  <strong>Monday – Saturday, 9:00 AM – 6:00 PM</strong>
+                  <strong>Monday – Friday, 9:00 AM – 6:00 PM</strong>
                 </span>
               </li>
             </ul>
           </section>
+
+          {/* Email-backed inquiry form */}
 
           <section className="contact-form-card" aria-labelledby="contact-form-title">
             <h2 id="contact-form-title">Start a conversation</h2>
@@ -120,6 +142,8 @@ export default function Contact() {
           </section>
         </div>
       </section>
+
+      {/* Regional offices with map previews and external directions */}
 
       <section className="contact-locations" aria-labelledby="contact-locations-title">
         <div className="contact-shell">

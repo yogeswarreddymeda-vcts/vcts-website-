@@ -1,3 +1,14 @@
+/*
+ * Home Page Styles
+ *
+ * Defines the homepage hero, trust indicators, value cards, capabilities,
+ * engagement models, industries, calls to action, and section animations.
+ */
+
+/* =========================================================
+   1. Page foundation and shared treatments
+========================================================= */
+
 .home-page-container {
   min-height: 80vh;
   background: #f5f9ff;
@@ -5,6 +16,10 @@
 }
 
 .home-gradient-text { color: transparent; background: linear-gradient(110deg, #075ee6 0%, #0788f0 52%, #04b9df 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* =========================================================
+   2. Hero introduction and engineering artwork
+========================================================= */
 
 .home-hero {
   position: relative;
@@ -98,7 +113,10 @@
 
 .home-hero h1 strong {
   color: #0b7bf0;
-  -webkit-text-fill-color: currentColor;
+  background: linear-gradient(135deg, #0b7bf0 0%, #00d2ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
 
@@ -202,6 +220,8 @@
   }
 }
 
+/* The initial reveal staggers hero copy while the scan travels across the artwork. */
+
 @keyframes home-hero-reveal {
   from { opacity: 0; transform: translate3d(0, 14px, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -213,6 +233,10 @@
   68% { opacity: 0; transform: translate3d(210px, -12px, 0) rotate(-5deg); }
   100% { opacity: 0; transform: translate3d(210px, -12px, 0) rotate(-5deg); }
 }
+
+/* =========================================================
+   3. Trust indicators
+========================================================= */
 
 .home-trust-section {
   position: relative;
@@ -281,6 +305,10 @@
 @media (hover: hover) {
   .home-trust-pillar svg:hover { color: #c7efff; filter: drop-shadow(0 5px 7px rgba(84, 198, 255, 0.55)); transform: translateY(-2px) scale(1.16); }
 }
+
+/* =========================================================
+   4. Value proposition
+========================================================= */
 
 .home-value-section {
   position: relative;
@@ -372,6 +400,10 @@
 .home-value-card h3 { margin: 0 0 14px; color: #0665ee; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.35; text-transform: uppercase; }
 .home-value-card p { margin: 0; color: #173e70; font-size: 14px; line-height: 1.7; }
 
+/* =========================================================
+   5. Engineering capabilities
+========================================================= */
+
 .home-capabilities-section {
   position: relative;
   overflow: hidden;
@@ -417,6 +449,10 @@
 .home-capability-more:hover { gap: 11px; color: #092653; }
 .home-capability-more:focus-visible { outline: 2px solid #075ee6; outline-offset: 4px; }
 
+/* =========================================================
+   6. Engagement models
+========================================================= */
+
 .home-engagement-section {
   position: relative;
   overflow: hidden;
@@ -440,6 +476,10 @@
 .home-engagement-card h3 { margin: 0 0 15px; color: #092653; font-family: 'Space Grotesk', sans-serif; font-size: 17px; line-height: 1.25; }
 .home-engagement-card p { margin: 0; color: #234675; font-size: 14px; line-height: 1.6; }
 
+/* =========================================================
+   7. Industries served
+========================================================= */
+
 .home-industries-section { position: relative; overflow: hidden; padding: 100px 24px 120px; border-top: 1px solid #c7d6e5; background: #f3f6f9; color: #071b3d; }
 .home-industries-section::before { content: ''; position: absolute; inset: 0; z-index: 0; opacity: 0.42; pointer-events: none; background-image: radial-gradient(rgba(99, 116, 139, 0.2) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
 .home-industries-shell { position: relative; z-index: 1; width: min(1410px, 100%); margin: 0 auto; }
@@ -462,6 +502,10 @@
 .home-industry-card:hover .home-industry-overlay { background: rgba(2, 17, 34, 0.34); backdrop-filter: blur(7px); }
 .home-industry-card:hover .home-industry-overlay p { max-height: 150px; opacity: 1; transform: translate3d(0, 0, 0); }
 
+/* =========================================================
+   8. Final call to action
+========================================================= */
+
 .home-final-cta { position: relative; overflow: hidden; min-height: 510px; display: grid; place-items: center; padding: 92px 24px; background: #062d55; color: #fff; text-align: center; }
 .home-final-cta-backdrop { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; filter: brightness(0.86); pointer-events: none; }
 .home-final-cta-content { position: relative; z-index: 1; width: min(900px, 100%); }
@@ -473,6 +517,12 @@
 .home-final-cta-button--primary { background: #075ee6; color: #fff; box-shadow: 0 10px 24px rgba(7, 94, 230, 0.24); }
 .home-final-cta-button--primary:hover { background: #004fcf; box-shadow: 0 14px 28px rgba(7, 94, 230, 0.32); }
 .home-final-cta-button--secondary { border-color: #2478b7; background: rgba(241, 248, 255, 0.88); color: #0b3761; }
+
+/* =========================================================
+   9. Viewport entrance animations
+========================================================= */
+
+/* Motion is opt-in so visitors requesting reduced motion see stable content. */
 
 @media (prefers-reduced-motion: no-preference) {
   .home-animate-trust:not(.is-visible) .home-trust-shell { opacity: 0; transform: translate3d(0, 22px, 0); }
@@ -579,6 +629,10 @@
 @keyframes home-chip-border-flow { from { background-position: 0 0, 0 0; } to { background-position: 0 0, 220% 0; } }
 @keyframes home-final-copy { from { opacity: 0; transform: translate3d(0, 14px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
 
+/* =========================================================
+   10. Tablet responsive behavior
+========================================================= */
+
 @media (max-width: 980px) {
   .home-hero { min-height: 100svh; padding: 64px 0 28px; }
   .home-hero-shell { position: static; grid-template-columns: 1fr; align-items: stretch; width: min(100% - 48px, 720px); min-height: calc(100svh - 92px); gap: 25px; }
@@ -590,7 +644,7 @@
   .home-hero-copy p { max-width: 600px; margin-right: auto; margin-left: auto; font-size: 15px; line-height: 1.65; }
   .home-hero-actions { justify-content: center; margin-top: auto; padding-top: 28px; }
   .home-hero-art { inset: 0; width: 100%; height: 100%; transform: none; }
-  .home-hero-art img { object-position: center; opacity: 1; }
+  .home-hero-art img { object-position: center bottom; opacity: 1; transform: scale(1.18); transform-origin: center bottom; }
   .home-value-section { min-height: 0; padding: 82px 32px 110px; }
   .home-value-image { width: 100%; height: 100%; opacity: 0.48; object-position: center top; }
   .home-value-shell { left: 0; width: min(720px, 100%); }
@@ -613,6 +667,7 @@
 }
 
 /* Dedicated iPad Pro portrait layout (1024px CSS viewport). */
+
 @media (min-width: 981px) and (max-width: 1100px) {
   .home-hero { min-height: calc(100svh - 82px); padding: 108px 0 34px; }
   .home-hero-shell { position: static; grid-template-columns: 1fr; align-items: stretch; width: min(100% - 80px, 900px); min-height: calc(100svh - 224px); gap: 28px; }
@@ -649,15 +704,19 @@
   .home-engagement-shell { width: min(920px, 100%); }
 }
 
+/* =========================================================
+   11. Mobile responsive behavior
+========================================================= */
+
 @media (max-width: 720px) {
-  .home-hero { min-height: 100svh; padding: 64px 0 28px; }
-  .home-hero-shell { position: static; grid-template-columns: 1fr; align-items: stretch; width: min(100% - 36px, 560px); min-height: calc(100svh - 92px); gap: 25px; }
+  .home-hero { min-height: 100svh; padding: 108px 0 28px; }
+  .home-hero-shell { position: static; grid-template-columns: 1fr; align-items: stretch; width: min(100% - 24px, 560px); min-height: calc(100svh - 136px); gap: 25px; }
   .home-hero-copy { left: 0; display: flex; flex-direction: column; width: 100%; max-width: 560px; margin: 0 auto; padding: 0; text-align: center; }
   .home-hero-copy > * { opacity: 1; animation: none; }
   .home-hero-art::after { display: none; animation: none; }
-  .home-hero-eyebrow { justify-content: center; }
-  .home-hero h1 { max-width: 500px; margin-right: auto; margin-left: auto; font-size: clamp(36px, 9vw, 48px); line-height: 1.02; }
-  .home-hero-copy p { max-width: 500px; margin-right: auto; margin-left: auto; font-size: 14px; line-height: 1.6; }
+  .home-hero-eyebrow { justify-content: center; font-size: clamp(19px, 5vw, 22px); }
+  .home-hero h1 { max-width: 100%; margin-right: auto; margin-left: auto; font-size: clamp(37px, 9.25vw, 49px); line-height: 1.02; }
+  .home-hero-copy p { max-width: 500px; margin-right: auto; margin-left: auto; font-size: 16px; line-height: 1.65; }
   .home-hero-actions { justify-content: center; margin-top: auto; padding-top: 28px; }
   .home-hero-art { inset: 0; width: 100%; height: 100%; transform: none; }
   .home-hero-art img { object-position: center; opacity: 1; }
@@ -707,6 +766,8 @@
   .home-final-cta-button { width: 100%; }
 }
 
+/* Keep industry descriptions available on devices without hover input. */
+
 @media (hover: none) {
   .home-industry-overlay { background: rgba(2, 17, 34, 0.24); }
   .home-industry-overlay p { max-height: 150px; opacity: 1; transform: none; }
@@ -722,9 +783,13 @@
 }
 
 @media (max-width: 440px) {
-  .home-hero-actions { flex-direction: column; align-items: stretch; }
-  .home-hero-button { width: 100%; }
+  .home-hero-actions { flex-direction: column; align-items: center; }
+  .home-hero-button { width: min(100%, 340px); }
 }
+
+/* =========================================================
+   12. Reduced-motion accessibility
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .home-page-container *, .home-page-container *::before, .home-page-container *::after { animation: none !important; transition: none !important; }

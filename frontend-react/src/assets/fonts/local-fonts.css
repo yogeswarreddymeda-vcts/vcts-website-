@@ -1,4 +1,12 @@
+/*
+ * Local Font Faces
+ *
+ * Declares the locally bundled font files and supported Unicode ranges
+ * used across the website.
+ */
+
 /* latin-ext */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -9,6 +17,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -19,6 +28,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -29,6 +39,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -39,6 +50,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -49,6 +61,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -59,6 +72,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -69,6 +83,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -79,6 +94,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -89,6 +105,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -99,6 +116,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -109,6 +127,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -119,6 +138,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -129,6 +149,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -139,6 +160,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -149,6 +171,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -159,6 +182,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -169,6 +193,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -179,6 +204,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -189,6 +215,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -199,6 +226,7 @@
 }
 
 /* latin-ext */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
@@ -209,6 +237,7 @@
 }
 
 /* latin */
+
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;

@@ -1,5 +1,18 @@
+/*
+ * Site Header Styles
+ *
+ * Defines the fixed navigation, desktop mega menus, mobile drawer,
+ * active states, interactions, and responsive breakpoints.
+ */
+
+/* =========================================================
+   1. Shared navigation tokens and header foundation
+========================================================= */
+
 :root {
-  --header-height: 70px;
+  --header-banner-height: 28px;
+  --header-nav-height: 70px;
+  --header-height: calc(var(--header-banner-height) + var(--header-nav-height));
   --header-container: 1240px;
   --header-navy: #071b3d;
   --header-blue: #1677d2;
@@ -24,6 +37,63 @@
   box-sizing: border-box;
 }
 
+.header-certification {
+  position: relative;
+  z-index: 5;
+  height: var(--header-banner-height);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #075ee6, #0788f0 55%, #04b9df);
+  color: #12161b;
+  font-size: 12px;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.header-certification-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: header-certification-scroll 14s linear infinite;
+  will-change: transform;
+}
+
+.header-certification-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 52px;
+  padding-left: 52px;
+}
+
+.header-certification-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+}
+
+.header-certification-track span::after {
+  width: 5px;
+  height: 5px;
+  margin-left: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .7);
+  content: '';
+}
+
+@keyframes header-certification-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =========================================================
+   2. Desktop primary navigation
+========================================================= */
+
 .header-container {
   width: min(calc(100% - 48px), var(--header-container));
   margin: 0 auto;
@@ -32,7 +102,7 @@
 .primary-nav {
   position: relative;
   z-index: 4;
-  height: var(--header-height);
+  height: var(--header-nav-height);
   background: #fff;
   border-bottom: 1px solid var(--header-line);
   box-shadow: 0 2px 9px rgba(7, 27, 61, 0.025);
@@ -268,6 +338,10 @@
 .secondary-nav button.is-active::after {
   opacity: 1;
 }
+
+/* =========================================================
+   3. Desktop mega menus
+========================================================= */
 
 .mega-menu {
   position: relative;
@@ -516,6 +590,10 @@
 }
 
 .mobile-menu-button,
+/* =========================================================
+   4. Mobile navigation drawer
+========================================================= */
+
 .mobile-drawer {
   display: none;
 }
@@ -525,8 +603,12 @@
   outline-offset: 3px;
 }
 
+/* =========================================================
+   5. Tablet and mobile navigation behavior
+========================================================= */
+
 @media (max-width: 1119px) {
-  :root { --header-height: 68px; }
+  :root { --header-nav-height: 68px; }
 
   .header-container {
     width: min(calc(100% - 40px), var(--header-container));
@@ -691,11 +773,17 @@
   }
 }
 
+/* Compact mobile controls preserve usable touch targets. */
+
 @media (max-width: 520px) {
   .header-container { width: calc(100% - 30px); }
   .brand-logo { height: 36px; }
   .mobile-drawer { padding-right: 15px; padding-left: 15px; }
 }
+
+/* =========================================================
+   6. Reduced-motion accessibility
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .site-header *,

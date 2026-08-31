@@ -1,3 +1,14 @@
+/*
+ * About Page Styles
+ *
+ * Defines the About page foundation, hero, company story, purpose panels,
+ * leadership profiles, milestones, gallery, CTA, animations, and responsive behavior.
+ */
+
+/* =========================================================
+   1. Page foundation and shared layout
+========================================================= */
+
 .about-page {
   --about-blue: #0667ed;
   --about-blue-dark: #0452c8;
@@ -6,7 +17,7 @@
   --about-border: #dce7f3;
   --about-logo-edge: max(24px, calc((100vw - 1400px) / 2));
   overflow: hidden;
-  padding-top: 70px;
+  padding-top: var(--header-height, 98px);
   background: #fff;
   color: var(--about-navy);
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -20,6 +31,10 @@
   width: min(calc(100% - 48px), 1400px);
   margin: 0 auto;
 }
+
+/* =========================================================
+   2. About hero
+========================================================= */
 
 .about-hero {
   position: relative;
@@ -149,6 +164,10 @@
   border-radius: 50%;
   background: #2488ff;
 }
+
+/* =========================================================
+   3. Company story and engineering capabilities
+========================================================= */
 
 .about-who {
   position: relative;
@@ -368,6 +387,10 @@
 .about-highlight-card h3 { margin: 27px 0 9px; font-family: 'Space Grotesk', sans-serif; font-size: 21px; letter-spacing: -.025em; }
 .about-highlight-card p { margin: 0; color: var(--about-copy); font-size: 13px; line-height: 1.5; }
 
+/* =========================================================
+   4. Mission and vision
+========================================================= */
+
 .about-purpose {
   padding: 56px 0 64px;
   border-top: 1px solid #d5e2ef;
@@ -515,6 +538,10 @@
 .about-purpose-card-blue > span::before { content: '02 / '; }
 .about-purpose-card p { position: relative; z-index: 2; max-width: 480px; margin: 0; color: #f0f5fc; font-size: clamp(17px, 1.12vw, 19px); line-height: 1.55; }
 .about-purpose-card-blue p { color: #eef4fb; }
+
+/* =========================================================
+   5. Founder message
+========================================================= */
 
 .about-founder-message {
   padding: 0;
@@ -671,6 +698,10 @@
   height: 16px;
   stroke-width: 1.8;
 }
+
+/* =========================================================
+   6. Leadership profiles and team
+========================================================= */
 
 .about-leadership-intro {
   padding: 100px 0 48px;
@@ -1006,6 +1037,10 @@
 .about-team-copy > p:not(.about-section-number) { max-width: 980px; margin: 24px auto 0; color: var(--about-copy); font-size: 16px; line-height: 1.72; }
 .about-team-copy strong { color: var(--about-navy); }
 
+/* =========================================================
+   7. Achievement carousel
+========================================================= */
+
 .about-achievements {
   padding: 0;
   background: #070c13;
@@ -1075,6 +1110,8 @@
   content: '';
   pointer-events: none;
 }
+
+/* Reintroduce each milestone cleanly when the active slide changes. */
 
 @keyframes about-slide-in {
   from { opacity: .4; transform: translateX(12px); }
@@ -1230,6 +1267,10 @@
   background: #178dff;
 }
 
+/* =========================================================
+   8. Workplace gallery
+========================================================= */
+
 .about-gallery {
   padding: 105px 0 110px;
   background: #fff;
@@ -1271,6 +1312,8 @@
   background: #fff;
   animation: about-gallery-slide-in 560ms cubic-bezier(.22, 1, .36, 1) both;
 }
+
+/* Fade image changes without moving the gallery frame or controls. */
 
 @keyframes about-gallery-slide-in {
   from { opacity: .45; }
@@ -1410,6 +1453,10 @@
   transform: translateY(-2px) scale(1.07);
 }
 
+/* =========================================================
+   9. Contact call to action
+========================================================= */
+
 .about-cta { padding: 78px 0; background: #eef5fd; }
 
 .about-cta-inner {
@@ -1430,6 +1477,10 @@
 .about-cta a { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; min-height: 52px; gap: 11px; padding: 0 23px; border-radius: 7px; background: #0b70f2; color: #fff; font-size: 12px; font-weight: 800; text-decoration: none; box-shadow: 0 12px 25px rgba(0,77,190,.3); transition: transform 180ms ease, background 180ms ease; }
 .about-cta a:hover { background: #1680ff; transform: translateY(-2px); }
 .about-cta a svg { width: 17px; height: 17px; }
+
+/* =========================================================
+   10. Tablet responsive behavior
+========================================================= */
 
 @media (max-width: 900px) {
   .about-hero, .about-hero-inner { min-height: 570px; }
@@ -1495,6 +1546,10 @@
   .about-gallery-slide { height: 500px; }
   .about-cta-inner { align-items: flex-start; flex-direction: column; }
 }
+
+/* =========================================================
+   11. Mobile responsive behavior
+========================================================= */
 
 @media (max-width: 640px) {
   .about-page { padding-top: 68px; }
@@ -1575,13 +1630,20 @@
   .about-cta a { width: 100%; }
 }
 
+/* =========================================================
+   12. Reduced-motion accessibility
+========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .about-page *,
   .about-page *::before,
   .about-page *::after { scroll-behavior: auto !important; transition: none !important; }
 }
 
-/* Who we are — technical editorial treatment */
+/* =========================================================
+   13. Who We Are editorial refinements
+========================================================= */
+
 .about-who {
   padding: 96px 0 92px;
   background: #f2f7ff;
@@ -1635,6 +1697,7 @@
 }
 
 /* Shared treatment for every small uppercase section label. */
+
 .about-eyebrow,
 .about-section-number,
 .about-founder-message-kicker,
@@ -1716,6 +1779,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* Preserve the editorial reveal only when motion is allowed. */
 
 @media (prefers-reduced-motion: no-preference) {
   .about-who .about-section-intro.scroll-reveal-item {
@@ -1812,6 +1877,8 @@
   line-height: 1.55;
 }
 
+/* Collapse the editorial layout for tablet widths. */
+
 @media (max-width: 900px) {
   .about-who .about-section-intro { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; row-gap: 35px; }
   .about-who .about-who-heading,
@@ -1821,6 +1888,8 @@
   .about-who .about-highlight-card { min-height: 105px; }
 }
 
+/* Stack the editorial content and image on small screens. */
+
 @media (max-width: 640px) {
   .about-who { padding: 72px 0 68px; }
   .about-who .about-who-heading h2 { font-size: clamp(31px, 10vw, 42px); }
@@ -1829,7 +1898,10 @@
   .about-who .about-highlights { margin-top: 24px; }
 }
 
-/* Who we are — circular engineering infographic */
+/* =========================================================
+   14. Circular engineering infographic
+========================================================= */
+
 .about-who {
   position: relative;
   overflow: hidden;
@@ -2012,6 +2084,8 @@
   line-height: 1.5;
 }
 
+/* Apply infographic transitions only when motion is allowed. */
+
 @media (prefers-reduced-motion: no-preference) {
   .about-who-content,
   .about-who-image,
@@ -2019,6 +2093,8 @@
     transition: opacity 700ms cubic-bezier(.22, 1, .36, 1), transform 800ms cubic-bezier(.22, 1, .36, 1);
   }
 }
+
+/* Adjust the three-column infographic for compact desktops. */
 
 @media (max-width: 1280px) {
   .about-who-layout {
@@ -2034,6 +2110,8 @@
   .about-who .about-highlight-card h3 { font-size: 14px; }
   .about-who .about-highlight-card p { font-size: 11px; }
 }
+
+/* Move capability cards below the image at tablet widths. */
 
 @media (max-width: 940px) {
   .about-who {
@@ -2068,6 +2146,8 @@
   .about-who .about-highlight-card::after { display: none; }
 }
 
+/* Stack the infographic into a single mobile column. */
+
 @media (max-width: 760px) {
   .about-who { padding: 66px 0 70px; }
   .about-who-layout { grid-template-columns: 1fr; gap: 42px; }
@@ -2089,7 +2169,8 @@
   }
 }
 
-/* Final coordinated infographic layout: image, arc, dots and labels share one stage. */
+/* Coordinate the image, arc, connection points, and labels on one stage. */
+
 .about-who-layout {
   grid-template-columns: minmax(0, .84fr) minmax(620px, 1.16fr);
   gap: 20px;
@@ -2213,6 +2294,8 @@
   font-size: 11px;
 }
 
+/* Compress the coordinated stage on smaller desktop displays. */
+
 @media (max-width: 1180px) {
   .about-who-layout {
     grid-template-columns: minmax(0, .72fr) minmax(590px, 1.28fr);
@@ -2231,6 +2314,8 @@
   .about-who-visual .about-highlight-card p { font-size: 10px; }
 }
 
+/* Stack the copy above the coordinated stage on tablets. */
+
 @media (max-width: 940px) {
   .about-who-layout {
     grid-template-columns: 1fr;
@@ -2247,6 +2332,8 @@
     justify-self: center;
   }
 }
+
+/* Replace absolute capability positioning with mobile rows. */
 
 @media (max-width: 640px) {
   .about-who-visual {
@@ -2292,7 +2379,10 @@
   .about-who-visual .about-highlight-card h3 { white-space: normal; }
 }
 
-/* Who We Are — responsive SVG engineering visual */
+/* =========================================================
+   15. Responsive SVG engineering visual
+========================================================= */
+
 .about-who {
   padding: 88px 0 92px;
   background: #fbfdff;
@@ -2453,6 +2543,8 @@
   line-height: 1.4;
 }
 
+/* Give the SVG visual a full row below the copy on compact desktops. */
+
 @media (max-width: 1250px) {
   .about-who-layout {
     grid-template-columns: 1fr;
@@ -2481,6 +2573,8 @@
     font-size: clamp(12px, 1.5vw, 14px);
   }
 }
+
+/* Convert orbit labels into accessible stacked mobile content. */
 
 @media (max-width: 767px) {
   .about-who {
@@ -2564,6 +2658,8 @@
     font-size: 13px;
   }
 }
+
+/* Keep infographic content visible without translated motion. */
 
 @media (prefers-reduced-motion: reduce) {
   .about-who-arc-path {

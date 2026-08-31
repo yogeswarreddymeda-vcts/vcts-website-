@@ -1,3 +1,10 @@
+/**
+ * Embedded Systems Page
+ *
+ * Presents embedded engineering capabilities, project work, engagement paths,
+ * frequently asked questions, and supporting GSAP interactions.
+ */
+
 import React from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,6 +14,7 @@ import EmbeddedImages from "../assets/image/Embedded/emi.js";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============ PROJECT DETAILS DATA ============ */
+
 const PROJECT_DETAILS = {
   "Industrial IoT": {
     tag: "Industrial IoT",
@@ -60,6 +68,7 @@ const PROJECT_DETAILS = {
 /* ============ END PROJECT DETAILS DATA ============ */
 
 /* ============ SERVICES DATA ============ */
+
 const SERVICES_DATA = [
   {
     letter: "A",
@@ -215,6 +224,15 @@ const TABS_ACCENTS = ["#1c75bc", "#0ea5e9", "#06b6d4"];
 /* ============ END SERVICES DATA ============ */
 
 /* ============ SERVICE DIAGRAM COMPONENT ============ */
+
+/**
+ * Renders the animated technical diagram used within an embedded-service card.
+ *
+ * @param {Object} props
+ * @param {string} props.letter - Service identifier shown in the diagram.
+ * @param {string} props.accent - Accent color used by diagram elements.
+ */
+
 function ServiceDiagram({ letter, accent }) {
   const horizontalLines = Array.from({ length: 6 }).map((_, i) => (
     <line key={`h-${i}`} x1="0" y1={40 + i * 44} x2="400" y2={40 + i * 44} />
@@ -274,6 +292,7 @@ function ServiceDiagram({ letter, accent }) {
   );
 }
 /* ============ FAQ DATA ============ */
+
 const FAQ_DATA = [
   {
     q: "Can VConnectTech support a project from concept through production?",
@@ -303,6 +322,9 @@ const FAQ_DATA = [
 /* ============ END FAQ DATA ============ */
 
 /* ============ MAIN COMPONENT ============ */
+
+/** Renders the complete Embedded Systems service page and its interactions. */
+
 export default function Embedded() {
   const [activeService, setActiveService] = React.useState("A");
   const [counts, setCounts] = React.useState({ phase: 0, capability: 0 });
@@ -319,12 +341,14 @@ export default function Embedded() {
   const isAlignedRef = React.useRef(false);
 
   /* ============ GSAP SCRAMBLE & SCROLL ALIGNMENT ANIMATION ============ */
+
   React.useEffect(() => {
     const cards = gsap.utils.toArray(".embpg-work-item");
     const innerCards = gsap.utils.toArray(".embpg-work-item-inner");
     if (!cards.length) return;
 
     // Store random offsets per card so they stay consistent on reverse
+
     const randomOffsets = cards.map(() => ({
       x: gsap.utils.random(-140, 140),
       y: gsap.utils.random(80, 130),
@@ -332,6 +356,7 @@ export default function Embedded() {
     }));
 
     // 1. Initial State: Scrambled, slightly blurred, but visible
+
     cards.forEach((card, i) => {
       gsap.set(card, {
         x: randomOffsets[i].x,
@@ -348,6 +373,7 @@ export default function Embedded() {
     const startFloating = () => {
       if (!isAlignedRef.current) return;
       // Clear existing tweens to avoid duplicates
+
       floatTweens.forEach((t) => t.kill());
       gsap.killTweensOf(innerCards);
       floatTweens = innerCards.map((innerCard, index) => {
@@ -370,6 +396,7 @@ export default function Embedded() {
     };
 
     // 2. Play Alignment animation forward when entering, reverse when leaving
+
     const alignForward = () => {
       if (isAlignedRef.current) return;
       isAlignedRef.current = true;
@@ -410,6 +437,7 @@ export default function Embedded() {
     };
 
     // Use invalidateOnRefresh so trigger recalculates after services pin adds scroll height
+
     const trigger = ScrollTrigger.create({
       trigger: ".embpg-work-section",
       start: "top 80%",
@@ -422,6 +450,8 @@ export default function Embedded() {
       onLeaveBack: () => scatterBack(),
     });
 
+    // Remove scrolling, resizing, and media-query work when this sequence unmounts.
+
     return () => {
       trigger.kill();
       floatTweens.forEach((t) => t.kill());
@@ -433,6 +463,7 @@ export default function Embedded() {
   /* ============ END GSAP SCRAMBLE & SCROLL ALIGNMENT ANIMATION ============ */
 
   /* ============ HERO X-RAY MASK EFFECT ============ */
+
   React.useEffect(() => {
     const stage = stageRef.current;
     const overImg = overImgRef.current;
@@ -557,6 +588,8 @@ export default function Embedded() {
     }
     animationFrameId = requestAnimationFrame(loop);
 
+    // Cancel the X-ray frame loop and listeners before the hero is detached.
+
     return () => {
       window.removeEventListener("resize", sizeStage);
       if (hasHover) {
@@ -577,16 +610,19 @@ export default function Embedded() {
   /* ============ END HERO X-RAY MASK EFFECT ============ */
 
   /* ============ GSAP HERO INTRO ANIMATION ============ */
+
   React.useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
     // 1. Initial fade-in of wrappers to prevent layout flashing
+
     tl.to(".embpg-hero-eyebrow, .embpg-hero-display-title, .embpg-hero-lede-para, .embpg-hero-stats-row, .embpg-hero-action-buttons, .embpg-hero-mask-visual", {
       opacity: 1,
       duration: 0.05
     });
 
     // 2. Staggered sliding entrance animations
+
     tl.fromTo(".embpg-hero-eyebrow",
       { y: 25, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.1 },
@@ -642,12 +678,15 @@ export default function Embedded() {
       "-=1.6"
     );
 
+    // Destroy the hero timeline and delayed callbacks to prevent stale animation work.
+
     return () => {
       tl.kill();
     };
   }, []);
 
   /* ============ SERVICES GSAP SCROLL PINNING & TAB CYCLING ============ */
+
   React.useEffect(() => {
     const card = glassCardRef.current;
     if (!card) return;
@@ -671,8 +710,12 @@ export default function Embedded() {
           setActiveService(SERVICES_DATA[idx].letter);
         }
       });
+      // Kill the scoped trigger whenever the active media-query branch changes.
+
       return () => trigger.kill();
     });
+
+    // Revert matchMedia styles and triggers when leaving the services section.
 
     return () => mm.revert();
   }, []);
@@ -682,16 +725,20 @@ export default function Embedded() {
 
 
   /* ============ MOUSE TRACKING ============ */
+
   React.useEffect(() => {
     const handleMouseMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    // Detach the global pointer listener when the page unmounts.
+
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
   /* ============ END MOUSE TRACKING ============ */
 
   /* ============ SCROLL REVEAL OBSERVER ============ */
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     const observer = new IntersectionObserver(
@@ -709,11 +756,14 @@ export default function Embedded() {
     const elements = document.querySelectorAll(".reveal:not(.embpg-work-item)");
     elements.forEach((el) => observer.observe(el));
 
+    // Disconnect the observer so it releases all revealed elements.
+
     return () => observer.disconnect();
   }, []);
   /* ============ END SCROLL REVEAL OBSERVER ============ */
 
   /* ============ BACKGROUND CANVAS ANIMATION ============ */
+
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -793,6 +843,8 @@ export default function Embedded() {
 
     draw();
 
+    // Stop the canvas loop and resize listener when its background is removed.
+
     return () => {
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
@@ -801,6 +853,7 @@ export default function Embedded() {
   /* ============ END BACKGROUND CANVAS ANIMATION ============ */
 
   /* ============ TAB CLICK HANDLER ============ */
+
   const handleTabClick = (letter) => {
     const idx = SERVICES_DATA.findIndex((s) => s.letter === letter);
     if (idx === -1) return;
@@ -808,6 +861,7 @@ export default function Embedded() {
     const trigger = ScrollTrigger.getById("services-trigger");
     if (trigger && window.innerWidth > 990) {
       // Calculate scroll position corresponding to the index
+
       const proportion = idx / (SERVICES_DATA.length - 1);
       const targetScroll = trigger.start + proportion * 1200;
 
@@ -817,12 +871,14 @@ export default function Embedded() {
       });
     } else {
       // Fallback for mobile
+
       setActiveService(letter);
     }
   };
   /* ============ END TAB CLICK HANDLER ============ */
 
   /* ============ CARD INTERACTIVE SPOTLIGHT HANDLER ============ */
+
   const handleCardMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -838,6 +894,7 @@ export default function Embedded() {
     <div className="embpg-embedded-page">
 
       {/* ============ BACKGROUND LAYER ============ */}
+
       <div className="embpg-bg-layer" aria-hidden="true">
         <canvas ref={canvasRef} className="embpg-bg-canvas" />
         <div className="embpg-noise" />
@@ -892,6 +949,7 @@ export default function Embedded() {
       {/* ============ END HERO SECTION ============ */}
 
       {/* ============ MARQUEE SECTION ============ */}
+
       <div className="embpg-marquee" aria-hidden="true">
         <div className="embpg-marquee-track">
           <span>MCU</span><i>·</i>
@@ -925,6 +983,7 @@ export default function Embedded() {
       {/* ============ END MARQUEE SECTION ============ */}
 
       {/* ============ SERVICES SECTION ============ */}
+
       <div ref={scrollContainerRef} className="embpg-services-scroll-container">
         <section className="embpg-section embpg-services" id="capabilities">
           <div className="container container-narrow mb-4">
@@ -1062,6 +1121,7 @@ export default function Embedded() {
       {/* ============ END SERVICES SECTION ============ */}
 
       {/* ============ WORK SECTION ============ */}
+
       <section className="embpg-section embpg-work-section" id="work">
         <div className="container">
           <div className="embpg-section-head reveal center">
@@ -1188,6 +1248,7 @@ export default function Embedded() {
       {/* ============ END WORK SECTION ============ */}
 
       {/* ============ CTA SECTION ============ */}
+
       <section className="embpg-cta" id="cta">
         <div className="container reveal">
           <h2 className="display-2">
@@ -1217,6 +1278,7 @@ export default function Embedded() {
       {/* ============ END CTA SECTION ============ */}
 
       {/* ============ PLAIN CARD SECTION ============ */}
+
       <section className="embpg-plain-card-section">
         <div className="container container-narrow mb-4">
           <div className="embpg-section-head reveal center">
@@ -1248,6 +1310,7 @@ export default function Embedded() {
       {/* ============ END PLAIN CARD SECTION ============ */}
 
       {/* ============ FAQ SECTION ============ */}
+
       <section className="embpg-faq-section" id="faq">
         <div className="container">
 
@@ -1298,6 +1361,7 @@ export default function Embedded() {
       {/* ============ END FAQ SECTION ============ */}
 
       {/* ============ PROJECT DETAIL MODAL ============ */}
+
       {activeProject && (
         <div className="embpg-project-detail-overlay active" onClick={() => setActiveProject(null)}>
           <div className="embpg-project-detail-drawer" onClick={(e) => e.stopPropagation()}>

@@ -1,3 +1,10 @@
+/*
+ * Technologies Page Styles
+ *
+ * Controls domain coverage, technology cards, ecosystem tools, standards,
+ * brochure and FAQ sections, technical animations, and responsive behavior.
+ */
+
 :root {
   --bg: #eaf6ff;
   --paper: #f7fbff;
@@ -143,6 +150,7 @@
 }
 
 /* SECTION 01: Hero Section */
+
 .techpg-hero {
   display: flex;
   align-items: center;
@@ -605,6 +613,7 @@
 }
 
 /* SECTION 02: End-to-End Technology Coverage */
+
 .techpg-coverage-sec {
   position: relative;
   padding: clamp(80px, 10vw, 140px) 0;
@@ -645,6 +654,7 @@
 }
 
 /* Timeline */
+
 .techpg-timeline {
   position: relative;
   margin: 0 auto 96px;
@@ -656,6 +666,7 @@
   position: absolute;
   top: 22px;
   /* centered vertically relative to the 44px outer circle */
+
   left: 60px;
   right: 60px;
   height: 2px;
@@ -696,6 +707,7 @@
 }
 
 /* Color styling per step (unified to theme) */
+
 .techpg-timeline-step {
   display: flex;
   flex-direction: column;
@@ -722,6 +734,7 @@
 
 .techpg-timeline.in .techpg-step-dot-outer {
   /* Synced dot pulse animation */
+
   animation: techpg-dot-pulse 6s linear infinite;
   animation-delay: calc(0.257s + var(--step-index) * 0.857s);
 }
@@ -796,6 +809,7 @@
 }
 
 /* Callout Box */
+
 .techpg-callout-box {
   background: #f4f9fd;
   border: 1px solid rgba(11, 123, 240, 0.12);
@@ -846,6 +860,7 @@
 }
 
 /* Responsiveness */
+
 @media (max-width: 900px) {
   .techpg-timeline-line {
     top: 40px;
@@ -915,6 +930,7 @@
 }
 
 /* Premium Entrance Animations for Technologies Hero Section */
+
 .techpg-hero-left .techpg-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -959,6 +975,7 @@
    ========================================== */
 
 /* Domains Header Section */
+
 .techpg-domains-header-sec {
   padding: clamp(60px, 6vw, 90px) 0 0 0;
   text-align: center;
@@ -999,6 +1016,7 @@
 }
 
 /* Domain section wrapper */
+
 .techpg-domains-sec {
   padding: clamp(60px, 8vw, 100px) 0;
   position: relative;
@@ -1006,6 +1024,7 @@
 }
 
 /* Alternating border dividers for sections to create clear visual break-points */
+
 #embedded,
 #edgeai {
   background: transparent;
@@ -1014,6 +1033,7 @@
 }
 
 /* Row holds sticky left block, cards grid right */
+
 .techpg-domain-row {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -1024,6 +1044,7 @@
 }
 
 /* Sticky domain left header column */
+
 .techpg-domain-left {
   position: sticky;
   top: 110px;
@@ -1036,6 +1057,7 @@
   display: flex;
   align-items: flex-start;
   /* Align symbol box with the first line of the title */
+
   gap: 18px;
   margin-bottom: 20px;
 }
@@ -1045,6 +1067,7 @@
   height: clamp(54px, 5.5vw, 64px);
   border-radius: 14px;
   /* Refined corner radius for smaller scale */
+
   background: linear-gradient(135deg, rgba(11, 123, 240, 0.06) 0%, rgba(0, 210, 255, 0.06) 100%);
   border: 1px solid rgba(11, 123, 240, 0.15);
   display: flex;
@@ -1054,6 +1077,7 @@
   box-shadow: 0 8px 20px rgba(11, 123, 240, 0.04);
   margin-top: 4px;
   /* Align perfectly with cap-height of the first line */
+
 }
 
 .techpg-domain-symbol-svg {
@@ -1125,6 +1149,7 @@
 }
 
 /* Automotive lead visual: composed to match the large editorial reference */
+
 #automotive .techpg-domain-row {
   grid-template-columns: 1fr 2fr;
   gap: clamp(40px, 6vw, 100px);
@@ -1205,6 +1230,7 @@
 }
 
 /* Semiconductor lead visual mirrors the Automotive editorial treatment */
+
 #semiconductor .techpg-domain-left {
   max-width: 680px;
 }
@@ -1258,6 +1284,7 @@
 }
 
 /* Embedded lead visual mirrors the Automotive editorial treatment */
+
 #embedded .techpg-domain-left {
   max-width: 680px;
 }
@@ -1309,6 +1336,7 @@
 }
 
 /* Edge AI lead visual mirrors the Automotive editorial treatment */
+
 #edgeai .techpg-domain-left {
   max-width: 680px;
 }
@@ -1375,6 +1403,7 @@
 }
 
 /* Right column card grid (2-column layout on desktop) */
+
 .techpg-domain-right {
   display: flex;
   flex-direction: column;
@@ -1387,6 +1416,7 @@
 }
 
 /* Card Styles (Always Open) */
+
 .techpg-domain-card {
   background: #ffffff;
   border: 1px solid rgba(126, 169, 207, 0.22);
@@ -1413,6 +1443,7 @@
 }
 
 /* Card Header (Icon, Title & Indicators) */
+
 .techpg-card-header {
   display: flex;
   align-items: center;
@@ -1482,6 +1513,7 @@
 }
 
 /* Card Body & Tags (Always Open) */
+
 .techpg-domain-card .techpg-card-body {
   display: grid;
   grid-template-rows: 1fr;
@@ -1495,6 +1527,7 @@
   gap: 8px;
   padding-top: 18px;
   /* space between header and body when expanded */
+
   opacity: 1;
 }
 
@@ -1517,6 +1550,7 @@
 }
 
 /* Automotive card area uses a reference-style bento mosaic */
+
 #automotive .techpg-domain-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(168px, auto);
@@ -1597,6 +1631,7 @@
 /* ==========================================
    RESPONSIVENESS FOR DOMAINS
    ========================================== */
+
 @media (max-width: 1024px) {
   .techpg-domain-row {
     grid-template-columns: 1fr;
@@ -1696,6 +1731,7 @@
 /* ==========================================
    STANDALONE ECOSYSTEM SECTION
    ========================================== */
+
 .techpg-ecosystem-sec {
   padding: clamp(80px, 8vw, 120px) 0;
   position: relative;
@@ -1815,6 +1851,7 @@
 /* ==========================================
    SECTION 7: INDUSTRY STANDARDS & COMPLIANCE
    ========================================== */
+
 .techpg-standards-sec {
   padding: clamp(80px, 8vw, 120px) 0;
   position: relative;
@@ -1832,6 +1869,7 @@
 }
 
 /* Left Panel: Light Glassmorphic Blue Showcase */
+
 .techpg-standards-left-panel {
   grid-column: span 5;
   background: linear-gradient(135deg, rgba(11, 123, 240, 0.04) 0%, rgba(0, 210, 255, 0.01) 100%);
@@ -1983,6 +2021,7 @@
 }
 
 /* Right Grid: Light Bento Cards */
+
 .techpg-standards-right-grid {
   grid-column: span 7;
   display: grid;
@@ -2106,6 +2145,7 @@
 }
 
 /* Card 5 Accent styles */
+
 .techpg-standards-card-accent {
   background: linear-gradient(135deg, #0b7bf0 0%, #0056b3 100%);
   border: 1px solid transparent;
@@ -2193,6 +2233,7 @@
 }
 
 /* Responsive Rules for Standards */
+
 @media (max-width: 1024px) {
   .techpg-standards-grid {
     grid-template-columns: 1fr;
@@ -2228,6 +2269,7 @@
 /* ==========================================
    SECTION 8: WHY OUR TECHNOLOGY DEPTH MATTERS (3D ISOMETRIC ENGINE SHOWCASE - LIGHT THEME)
    ========================================== */
+
 .techpg-depth-matters-sec {
   position: relative;
   background: linear-gradient(180deg, #f8fafc 0%, #edf4fa 100%);
@@ -2258,6 +2300,7 @@
 }
 
 /* Left Column Styling */
+
 .techpg-depth-left-col {
   display: flex;
   flex-direction: column;
@@ -2437,6 +2480,7 @@
 }
 
 /* Right Column: 3D Engine */
+
 .techpg-depth-right-col {
   display: flex;
   align-items: center;
@@ -2491,6 +2535,7 @@
 }
 
 /* Central Silicon Microchip */
+
 .techpg-wafer-chip {
   position: absolute;
   width: 68px;
@@ -2526,6 +2571,7 @@
 }
 
 /* Wafer Status Indicator */
+
 .techpg-wafer-status {
   position: absolute;
   bottom: 20px;
@@ -2554,6 +2600,7 @@
 }
 
 /* Active Wafer Glow States */
+
 .wafer-semiconductor.active {
   border-color: #0b7bf0;
   background: rgba(255, 255, 255, 0.85);
@@ -2655,6 +2702,7 @@
 }
 
 /* Mobile responsive layout */
+
 @media (max-width: 991px) {
   .techpg-depth-matters-sec {
     padding: 80px 0;
@@ -2685,10 +2733,12 @@
   .techpg-depth-right-col {
     display: none;
     /* Hide 3D engine container on mobile */
+
   }
 }
 
 /* Chrome & Edge Autofill Fix across all form fields */
+
 .techpg-page input:-webkit-autofill,
 .techpg-page input:-webkit-autofill:hover,
 .techpg-page input:-webkit-autofill:focus,
@@ -2700,6 +2750,7 @@
 }
 
 /* ============ CTA ============ */
+
 .techpg-cta {
   scroll-margin-top: 90px;
   padding: clamp(90px, 10vw, 150px) 0;
@@ -2923,6 +2974,7 @@
 }
 
 /* ============ BROCHURE SECTION ============ */
+
 .techpg-brochure-section {
   padding: clamp(60px, 8vw, 100px) 0;
   background: linear-gradient(180deg, #edf5fd 0%, #ffffff 100%);
@@ -2934,6 +2986,7 @@
   grid-template-columns: 58% 42%;
   background: #f0f6ff;
   /* Soft light sky-blue background */
+
   border: 1px solid rgba(30, 107, 230, 0.12);
   border-radius: 16px;
   overflow: hidden;
@@ -2958,6 +3011,7 @@
   margin: 0 0 15px 0;
   color: #0f172a;
   /* Dark navy */
+
 }
 
 .techpg-brochure-title em {
@@ -2967,6 +3021,7 @@
   background-clip: text;
   color: transparent;
   /* Vibrant brand blue gradient color */
+
 }
 
 .techpg-brochure-description {
@@ -2975,6 +3030,7 @@
   line-height: 1.6;
   color: #475569;
   /* Muted dark gray */
+
   margin: 0 0 25px 0;
   max-width: 580px;
 }
@@ -3048,6 +3104,7 @@
 }
 
 /* ============ FAQ SECTION ============ */
+
 .techpg-faq-section {
   padding-top: clamp(60px, 8vw, 100px);
   padding-bottom: clamp(40px, 6vw, 60px);
@@ -3151,6 +3208,7 @@
 }
 
 /* CSS Grid height animation wrapper */
+
 .techpg-faq-answer-wrapper {
   display: grid;
   grid-template-rows: 0fr;
@@ -3184,6 +3242,7 @@
    ========================================================================== */
 
 /* --- Domain 2 (Embedded) & Domain 4 (Edge AI): Ice-Blue Background & White Tags --- */
+
 #embedded .techpg-domain-card,
 #edgeai .techpg-domain-card {
   background: #f4f9fd;
@@ -3223,6 +3282,7 @@
 }
 
 /* Embedded Systems bento card mosaic */
+
 #embedded .techpg-domain-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(160px, auto);
@@ -3370,6 +3430,7 @@
 }
 
 /* Semiconductor Engineering bento card mosaic */
+
 #semiconductor .techpg-domain-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(160px, auto);
@@ -3491,6 +3552,7 @@
 }
 
 /* Technology Domains scroll motion: transforms are owned by one RAF loop. */
+
 .techpg-domains-sec .techpg-domain-row.techpg-reveal {
   opacity: 1;
   transform: none;

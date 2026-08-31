@@ -1,6 +1,15 @@
+/**
+ * Site Header
+ *
+ * Renders desktop and mobile navigation, accessible mega menus,
+ * and client-side navigation for the complete website.
+ */
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import './Header.css';
 import logo from '../../assets/image/header_footer_img/header_logo.webp';
+
+// Primary engineering destinations displayed in desktop and mobile menus.
 
 const services = [
   {
@@ -43,6 +52,12 @@ const ArrowRight = ({ className = '' }) => (
     <path d="M3 9h12M10.5 4.5 15 9l-4.5 4.5" />
   </svg>
 );
+
+/**
+ * @param {Object} props
+ * @param {string} props.currentPage - Identifier for the currently rendered page.
+ * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ */
 
 export default function Header({ currentPage, setCurrentPage }) {
   const headerRef = useRef(null);
@@ -88,7 +103,7 @@ export default function Header({ currentPage, setCurrentPage }) {
     openTimerRef.current = window.setTimeout(() => {
       setMegaOpen(false);
       setCompanyOpen(true);
-      setActiveCompanyCategory(currentPage === 'careers' ? 'careers' : 'about');
+      setActiveCompanyCategory(currentPage === 'careers' || currentPage.startsWith('career-') ? 'careers' : 'about');
     }, 120);
   };
 
@@ -100,6 +115,8 @@ export default function Header({ currentPage, setCurrentPage }) {
       setCompanyOpen(false);
     }, 150);
   };
+
+  // Close navigation overlays for outside interaction, Escape, or browser history changes.
 
   useEffect(() => {
     const handlePointerDown = (event) => {
@@ -116,6 +133,8 @@ export default function Header({ currentPage, setCurrentPage }) {
     document.addEventListener('keydown', handleKeyDown);
     window.addEventListener('popstate', handlePopState);
 
+    // Remove global listeners and delayed menu actions when the header unmounts.
+
     return () => {
       document.removeEventListener('pointerdown', handlePointerDown);
       document.removeEventListener('keydown', handleKeyDown);
@@ -124,14 +143,20 @@ export default function Header({ currentPage, setCurrentPage }) {
     };
   }, [clearTimers, closeAll]);
 
+  // Lock document scrolling only while the mobile navigation drawer is open.
+
   useEffect(() => {
     if (!mobileOpen) return undefined;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    // Restore the body's prior overflow value when the drawer closes.
+
     return () => {
       document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
+
+  /** Closes all menus, updates the active page, and resets its scroll position. */
 
   const navigate = (event, page) => {
     event.preventDefault();
@@ -146,7 +171,8 @@ export default function Header({ currentPage, setCurrentPage }) {
   };
 
   const whatWeDoActive = ['vlsi', 'embedded', 'edgeai', 'technologies'].includes(currentPage);
-  const companyActive = ['about', 'careers'].includes(currentPage);
+  const careersActive = currentPage === 'careers' || currentPage.startsWith('career-');
+  const companyActive = currentPage === 'about' || careersActive;
   return (
     <header
       className="site-header"
@@ -157,6 +183,21 @@ export default function Header({ currentPage, setCurrentPage }) {
         if (!event.currentTarget.contains(event.relatedTarget)) closeMenusWithDelay();
       }}
     >
+      <div className="header-certification" aria-label="VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified).">
+        <div className="header-certification-track" aria-hidden="true">
+          <div className="header-certification-group">
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+          </div>
+          <div className="header-certification-group">
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Persistent brand, desktop navigation, and account action */}
+
       <nav className="primary-nav" aria-label="Primary navigation">
         <div className="header-container primary-nav-inner">
           <a
@@ -257,6 +298,8 @@ export default function Header({ currentPage, setCurrentPage }) {
       </nav>
 
       <div className={`mega-shell company-mega-shell ${companyOpen ? 'is-open' : ''}`} id="company-menu">
+        {/* Company mega menu for About and Careers destinations */}
+
         <section className="mega-menu" aria-label="Company menu">
           <div className="header-container mega-menu-grid">
             <nav className="mega-index" aria-label="Company category">
@@ -264,7 +307,7 @@ export default function Header({ currentPage, setCurrentPage }) {
                 <span>About Us</span>
                 <ArrowRight />
               </button>
-              <button type="button" className={activeCompanyCategory === 'careers' ? 'is-active' : ''} aria-current={currentPage === 'careers' ? 'page' : undefined} onMouseEnter={() => setActiveCompanyCategory('careers')} onFocus={() => setActiveCompanyCategory('careers')} onClick={(event) => navigate(event, 'careers')}>
+              <button type="button" className={activeCompanyCategory === 'careers' ? 'is-active' : ''} aria-current={careersActive ? 'page' : undefined} onMouseEnter={() => setActiveCompanyCategory('careers')} onFocus={() => setActiveCompanyCategory('careers')} onClick={(event) => navigate(event, 'careers')}>
                 <span>Careers</span>
                 <ArrowRight />
               </button>
@@ -313,6 +356,8 @@ export default function Header({ currentPage, setCurrentPage }) {
       </div>
 
       <div className={`mega-shell ${megaOpen ? 'is-open' : ''}`} id="what-we-do-menu">
+        {/* Engineering-services and technologies mega menu */}
+
         <section className="mega-menu" aria-label="What We Do menu">
           <div className="header-container mega-menu-grid">
             <nav className="mega-index" aria-label="What We Do categories">
@@ -372,6 +417,8 @@ export default function Header({ currentPage, setCurrentPage }) {
       </div>
 
       <div className={`mobile-drawer ${mobileOpen ? 'is-open' : ''}`} id="mobile-navigation">
+        {/* Collapsible navigation rendered below the desktop breakpoint */}
+
         <nav className="mobile-nav" aria-label="Mobile navigation">
           <a href="/" aria-current={currentPage === 'home' ? 'page' : undefined} onClick={(event) => navigate(event, 'home')}>Home</a>
 
@@ -386,7 +433,7 @@ export default function Header({ currentPage, setCurrentPage }) {
             </button>
             <div className={`mobile-accordion-panel ${mobileSection === 'company' ? 'is-open' : ''}`} id="mobile-company-menu">
               <a href="/about" aria-current={currentPage === 'about' ? 'page' : undefined} onClick={(event) => navigate(event, 'about')}>About Us</a>
-              <a href="/careers" aria-current={currentPage === 'careers' ? 'page' : undefined} onClick={(event) => navigate(event, 'careers')}>Careers</a>
+              <a href="/careers" aria-current={careersActive ? 'page' : undefined} onClick={(event) => navigate(event, 'careers')}>Careers</a>
               <a href="#" onClick={(event) => navigate(event, null)}>Blog</a>
             </div>
           </div>

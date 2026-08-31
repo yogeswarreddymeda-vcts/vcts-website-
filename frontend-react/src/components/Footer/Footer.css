@@ -1,8 +1,16 @@
+/*
+ * Site Footer Styles
+ *
+ * Controls footer columns, brand and social areas, navigation links,
+ * contact details, legal content, and responsive stacking.
+ */
+
 .site-footer {
   width: 100%;
   box-sizing: border-box;
   padding: 54px 36px 18px;
-  /* Reduced bottom padding to shift copyright text down */
+  /* Compact bottom spacing keeps the legal bar visually anchored. */
+
   background-color: #000e23;
   background-image: radial-gradient(circle at 80% 20%, #041630 0%, #000e23 60%);
   background-repeat: no-repeat;
@@ -10,35 +18,15 @@
   background-size: cover;
   color: #ffffff;
   /* Changed text color to white */
+
   font-size: 15px;
   /* Increased base font size to 16px */
+
   line-height: 1.5;
   text-align: left;
   position: relative;
   overflow: hidden;
   border-top: 1px solid #0f172a;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../../assets/image/header_footer_img/footer_wave_pattern.webp');
-  background-repeat: no-repeat;
-  background-position: left calc(100% - 55px);
-  background-size: 700px auto;
-  opacity: 0.35;
-  mix-blend-mode: screen;
-  filter: contrast(1.45) brightness(0.8);
-  /* Adjusted opacity to ensure text is fully legible */
-  z-index: 1;
-  pointer-events: none;
-  /* Seamless radial mask starting from bottom-left corner to fade edges completely */
-  mask-image: radial-gradient(circle at left bottom, black 0%, rgba(0, 0, 0, 0.85) 30%, transparent 60%);
-  -webkit-mask-image: radial-gradient(circle at left bottom, black 0%, rgba(0, 0, 0, 0.85) 30%, transparent 60%);
 }
 
 .site-footer * {
@@ -73,16 +61,17 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 4px;
+  cursor: pointer;
 }
 
 .footer-logo-img {
-  height: 85px;
-  width: auto;
   display: block;
-  object-fit: contain;
+  width: auto;
+  height: 85px;
   margin-top: -24px;
-  margin-left: -60px;
   margin-bottom: -16px;
+  margin-left: -60px;
+  object-fit: contain;
 }
 
 .footer-description {
@@ -105,6 +94,7 @@
 .social-icon {
   width: 40px;
   /* Match reference size */
+
   height: 40px;
   border: none;
   border-radius: 6px;
@@ -113,9 +103,11 @@
   justify-content: center;
   color: #ffffff;
   /* White icon inside */
+
   text-decoration: none;
   background: #0a369d;
   /* Solid blue background */
+
   transition: all 0.3s ease;
 }
 
@@ -129,6 +121,7 @@
 .social-icon svg {
   width: 18px;
   /* Match reference icon size */
+
   height: 18px;
   fill: currentColor;
 }
@@ -136,6 +129,7 @@
 .column-title {
   color: #f1f5f9;
   /* Bright near-white for column headings */
+
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px 0;
@@ -177,6 +171,7 @@
 .links-list a {
   color: #ffffff;
   /* White color before and after hover transition */
+
   text-decoration: none;
   display: flex;
   justify-content: space-between;
@@ -186,11 +181,13 @@
   width: 100%;
   max-width: 220px;
   /* Constrain alignment to keep chevrons close to text */
+
 }
 
 .links-list a:hover {
   color: #ffffff;
   /* Keep same color on hover */
+
   padding-left: 4px;
 }
 
@@ -244,24 +241,6 @@
 
 .contact-list a:hover {
   color: #ffffff !important;
-}
-
-.map-bg {
-  margin-top: 15px;
-  opacity: 0.85;
-  background-image: url('../../assets/image/header_footer_img/footer_map_v3.webp');
-  width: 100%;
-  max-width: 340px;
-  height: 140px;
-  background-size: contain;
-  background-position: left center;
-  background-repeat: no-repeat;
-  filter: brightness(0.6);
-  transition: opacity 0.3s ease;
-}
-
-.map-bg:hover {
-  opacity: 1;
 }
 
 .footer-bottom {
@@ -330,6 +309,7 @@
     padding: 0;
     border-right: none !important;
     /* Hide dividers when wrapping */
+
   }
 
   .footer-brand {
@@ -351,6 +331,7 @@
   .site-footer {
     padding: 50px 24px 15px 24px;
     /* Reduced bottom padding for mobile */
+
   }
 
   .footer-grid {

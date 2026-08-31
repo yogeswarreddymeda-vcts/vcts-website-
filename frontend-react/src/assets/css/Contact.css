@@ -1,8 +1,19 @@
+/*
+ * Contact Page Styles
+ *
+ * Defines the inquiry layout, direct contact channels, form controls,
+ * office cards, map previews, and responsive presentation.
+ */
+
+/* =========================================================
+   1. Page foundation and shared utilities
+========================================================= */
+
 .contact-page {
   --contact-blue: #0565e8;
   --contact-navy: #071b46;
   --contact-copy: #334a70;
-  padding-top: 70px;
+  padding-top: var(--header-height, 98px);
   background: #fff;
   color: var(--contact-navy);
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -29,6 +40,10 @@
   width: min(calc(100% - 48px), 1180px);
   margin: 0 auto;
 }
+
+/* =========================================================
+   2. Contact introduction and direct channels
+========================================================= */
 
 .contact-top {
   position: relative;
@@ -135,6 +150,10 @@
 
 .contact-direct-icon svg { width: 16px; height: 16px; stroke-width: 1.8; }
 
+/* =========================================================
+   3. Inquiry form
+========================================================= */
+
 .contact-form-card {
   display: flex;
   min-height: 520px;
@@ -238,6 +257,10 @@
 }
 
 .contact-submit svg { width: 17px; height: 17px; stroke-width: 1.7; }
+
+/* =========================================================
+   4. Office locations and map previews
+========================================================= */
 
 .contact-locations {
   padding: 34px 0 30px;
@@ -426,6 +449,10 @@
 
 .contact-location-actions .contact-map-button svg { width: 14px; height: 14px; stroke-width: 1.8; }
 
+/* =========================================================
+   5. Tablet responsive behavior
+========================================================= */
+
 @media (max-width: 900px) {
   .contact-top { padding: 38px 0 48px; }
   .contact-top-grid { grid-template-columns: 1fr; gap: 34px; }
@@ -435,8 +462,10 @@
   .contact-location-grid { grid-template-columns: 1fr; }
 }
 
+/* Mobile layout stacks office content and expands form controls. */
+
 @media (max-width: 640px) {
-  .contact-page { padding-top: 68px; }
+  .contact-page { padding-top: var(--header-height, 96px); }
   .contact-shell { width: min(calc(100% - 30px), 1180px); }
   .contact-introduction h1 { font-size: clamp(45px, 14vw, 60px); }
   .contact-form-card { min-height: 500px; padding: 23px 18px 20px; }
@@ -448,6 +477,10 @@
   .contact-location-actions .contact-map-button { width: 100%; }
   .contact-locations-heading i { width: 34px; }
 }
+
+/* =========================================================
+   6. Reduced-motion accessibility
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .contact-page *,

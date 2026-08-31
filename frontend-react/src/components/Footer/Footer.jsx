@@ -1,5 +1,17 @@
+/**
+ * Site Footer
+ *
+ * Provides company information, navigation groups, service links,
+ * industry links, contact details, and legal information.
+ */
+
 import logo from '../../assets/image/header_footer_img/footer_logo.webp';
 import './Footer.css';
+
+/**
+ * @param {Object} props
+ * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ */
 
 export default function Footer({ setCurrentPage }) {
   return (
@@ -7,14 +19,23 @@ export default function Footer({ setCurrentPage }) {
       <div className="footer-content">
         <div className="footer-grid">
 
-          {/* Column 1: Brand Logo & Socials */}
+          {/* Company identity and social channels */}
+
           <section className="footer-brand" aria-label="Company information">
             <div
               className="footer-logo"
-              style={{ cursor: 'pointer' }}
+              role="button"
+              tabIndex="0"
               onClick={() => {
                 setCurrentPage('home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setCurrentPage('home');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
               }}
             >
               <img src={logo} alt="VConnectTech Logo" className="footer-logo-img" decoding="async" />
@@ -35,7 +56,8 @@ export default function Footer({ setCurrentPage }) {
             </div>
           </section>
 
-          {/* Column 2: Quick Links */}
+          {/* Primary website navigation */}
+
           <nav className="footer-column" aria-label="Quick links">
             <h3 className="column-title">
               <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
@@ -132,7 +154,8 @@ export default function Footer({ setCurrentPage }) {
             </ul>
           </nav>
 
-          {/* Column 3: Our Services */}
+          {/* Engineering service destinations */}
+
           <nav className="footer-column" aria-label="Services">
             <h3 className="column-title">
               <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
@@ -178,7 +201,8 @@ export default function Footer({ setCurrentPage }) {
             </ul>
           </nav>
 
-          {/* Column 4: Industries */}
+          {/* Industries served by the company */}
+
           <nav className="footer-column" aria-label="Industries">
             <h3 className="column-title">
               <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
@@ -194,7 +218,8 @@ export default function Footer({ setCurrentPage }) {
             </ul>
           </nav>
 
-          {/* Column 5: Contact Us */}
+          {/* Direct contact information */}
+
           <address className="footer-column footer-contact" aria-label="Contact Us">
             <h3 className="column-title">
               <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
@@ -214,11 +239,11 @@ export default function Footer({ setCurrentPage }) {
                 <span>VConnecTech Systems<br />4th floor, Plot No:6, Sector-3, HUDA Techno Enclave, Madhapur, Hyderabad, Telangana, India - 500081</span>
               </li>
             </ul>
-            <div className="map-bg"></div>
           </address>
         </div>
 
-        {/* Bottom bar */}
+        {/* Legal information and policy links */}
+
         <div className="footer-bottom">
           <p>&copy; 2026 VConnect Tech Systems Pvt. Ltd. All Rights Reserved.</p>
           <div className="footer-bottom-links">

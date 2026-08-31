@@ -1,3 +1,10 @@
+/**
+ * About Page
+ *
+ * Presents the company story, engineering capabilities, mission and vision,
+ * leadership profiles, achievements, workplace gallery, and contact CTA.
+ */
+
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
@@ -15,6 +22,8 @@ import missionImage from '../assets/image/about/mission_img.png'
 import visionImage from '../assets/image/about/vision_img.png'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Engineering capabilities displayed around the Who We Are visual.
 
 const highlights = [
   {
@@ -34,6 +43,8 @@ const highlights = [
   },
 ]
 
+// Leadership profiles rendered in the engineering-leadership section.
+
 const leaders = [
   {
     name: 'Venkata Rajesh',
@@ -43,12 +54,16 @@ const leaders = [
   },
 ]
 
+// Milestones displayed by the achievement carousel in chronological order.
+
 const achievements = [
   { year: '2021', title: 'Agri India Hackathon Finalist', description: 'Recognized among the top finalists for a smart irrigation solution using IoT and intelligent field monitoring.', image: missionImage },
   { year: '2022', title: 'Embedded Product Innovation', description: 'Completed a major embedded product milestone by taking a connected system from architecture through validation.', image: sectionThreeImage },
   { year: '2023', title: 'Semiconductor Design Milestone', description: 'Delivered a complex design and verification program with a strong focus on quality and first-pass success.', image: heroImage },
   { year: '2024', title: 'Engineering Excellence Recognition', description: 'Celebrated our multidisciplinary team for dependable delivery, collaboration, and technology innovation.', image: teamImage },
 ]
+
+// Image and accessibility metadata used by the workplace gallery.
 
 const galleryItems = [
   { image: teamImage, title: 'The VCTS Team', alt: 'VConnectTech Systems team gathering' },
@@ -58,18 +73,37 @@ const galleryItems = [
   { image: heroImage, title: 'Semiconductor Innovation', alt: 'Semiconductor engineering and validation equipment' },
 ]
 
+/**
+ * Renders the complete About page and its interactive carousels.
+ *
+ * @param {Object} props
+ * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ */
+
 export default function About({ setCurrentPage }) {
   const [achievementSlide, setAchievementSlide] = useState(0)
   const [gallerySlide, setGallerySlide] = useState(0)
   const aboutPageRef = useRef(null)
+  // Stores the touch origin without causing a render during swipe gestures.
+
   const galleryTouchStart = useRef(null)
+  // Scopes the circular capability animation to the Who We Are visual.
+
   const whoVisualRef = useRef(null)
   const activeAchievement = achievements[achievementSlide]
   const activeGalleryItem = galleryItems[gallerySlide]
 
+  // Build the Who We Are sequence in reading order: copy, photo,
+  // engineering arc, connection points, and capability labels.
+
   useEffect(() => {
     const visual = whoVisualRef.current
+    // Skip translated motion when the visitor requests reduced motion.
+
     if (!visual || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    // Scope GSAP selectors and animations to this visual so they cannot
+    // affect similarly named elements elsewhere in the application.
 
     const context = gsap.context(() => {
       const section = visual.closest('.about-who')
@@ -147,70 +181,63 @@ export default function About({ setCurrentPage }) {
         )
     }, visual)
 
+    // Revert GSAP styles and ScrollTriggers on unmount to avoid stale references.
+
     return () => context.revert()
   }, [])
 
+  // Run a single coordinated hero entrance while keeping the headline
+  // together as one readable block.
+
   useEffect(() => {
-    const page = aboutPageRef.current
-    const hero = page?.querySelector('.about-hero')
+    const hero = aboutPageRef.current?.querySelector('.about-hero')
+    // Keep the static hero visible when reduced motion is preferred.
+
     if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
 
-    const context = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: hero,
-          start: 'top 86%',
-          end: 'bottom 14%',
-          toggleActions: 'restart reverse restart reverse',
-        },
-      })
+    // The scoped timeline settles the image, grid, and copy without
+    // leaking inline animation styles outside the hero.
 
-      timeline
-        .fromTo(
-          '.about-hero-image',
-          { scale: 1.1, xPercent: 2.5, filter: 'brightness(.72)' },
-          { scale: 1, xPercent: 0, filter: 'brightness(1)', duration: 1.35, ease: 'power3.out', immediateRender: false },
-        )
-        .fromTo(
-          '.about-hero-grid',
-          { opacity: 0 },
-          { opacity: 0.12, duration: 0.8, ease: 'power1.out', immediateRender: false },
-          0.12,
-        )
-        .fromTo(
-          '.about-eyebrow',
-          { opacity: 0, x: -34, letterSpacing: '.3em' },
-          { opacity: 1, x: 0, letterSpacing: '.13em', duration: 0.58, ease: 'power2.out', immediateRender: false },
-          0.18,
-        )
-        .fromTo(
-          '.about-hero-title-line',
-          { opacity: 0, y: 58, clipPath: 'inset(0 0 100% 0)' },
-          {
-            opacity: 1,
-            y: 0,
-            clipPath: 'inset(0 0 0% 0)',
-            duration: 0.72,
-            stagger: 0.13,
-            ease: 'power3.out',
-            immediateRender: false,
-          },
-          0.23,
-        )
-        .fromTo(
-          '.about-hero-values > *',
-          { opacity: 0, y: 18, scale: 0.85 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(1.7)', immediateRender: false },
-          0.72,
-        )
+    const context = gsap.context(() => {
+      gsap.set('.about-hero-image', { autoAlpha: 0.72, scale: 1.045 })
+      gsap.set('.about-hero-grid', { opacity: 0 })
+      gsap.set('.about-hero-copy', { autoAlpha: 0, y: 30 })
+
+      gsap.timeline()
+        .to('.about-hero-image', {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 1.35,
+          ease: 'sine.out',
+        })
+        .to('.about-hero-grid', {
+          opacity: 0.12,
+          duration: 1.1,
+          ease: 'sine.out',
+        }, 0.05)
+        .to('.about-hero-copy', {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.95,
+          ease: 'power2.out',
+        }, 0.2)
     }, hero)
+
+    // Remove timeline-owned inline styles when the page unmounts.
 
     return () => context.revert()
   }, [])
 
+  // Animate the remaining page sections as they enter or leave the viewport,
+  // reversing the travel direction when the visitor scrolls upward.
+
   useEffect(() => {
     const page = aboutPageRef.current
+    // Reduced-motion visitors receive the normal document flow without transforms.
+
     if (!page || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    // One GSAP context owns all section triggers and centralizes cleanup.
 
     const context = gsap.context(() => {
       const sections = Array.from(page.children).filter(
@@ -261,6 +288,8 @@ export default function About({ setCurrentPage }) {
       })
     }, page)
 
+    // Revert every generated ScrollTrigger to prevent duplicate callbacks after remounting.
+
     return () => context.revert()
   }, [])
 
@@ -284,6 +313,11 @@ export default function About({ setCurrentPage }) {
     galleryTouchStart.current = event.touches[0].clientX
   }
 
+  /**
+   * Converts a horizontal swipe into gallery navigation and clears the
+   * stored touch position after each completed gesture.
+   */
+
   const handleGalleryTouchEnd = (event) => {
     if (galleryTouchStart.current === null) return
 
@@ -295,6 +329,11 @@ export default function About({ setCurrentPage }) {
     galleryTouchStart.current = null
   }
 
+  /**
+   * Uses the existing client-side navigation callback for the Contact page
+   * and resets the viewport so the destination opens from its beginning.
+   */
+
   const openContact = (event) => {
     event.preventDefault()
     setCurrentPage('contact')
@@ -303,6 +342,11 @@ export default function About({ setCurrentPage }) {
 
   return (
     <main className="about-page" ref={aboutPageRef}>
+      {/* =========================================================
+          About Hero
+          Introduces VConnectTech Systems and its engineering values.
+      ========================================================= */}
+
       <section className="about-hero" aria-labelledby="about-hero-title">
         <img
           className="about-hero-image"
@@ -311,6 +355,8 @@ export default function About({ setCurrentPage }) {
         />
         <div className="about-hero-grid" aria-hidden="true" />
         <div className="about-shell about-hero-inner">
+          {/* Hero heading and core company values */}
+
           <div className="about-hero-copy">
             <p className="about-eyebrow">About VConnectTech Systems</p>
             <h1 id="about-hero-title">
@@ -332,8 +378,15 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Who We Are
+          Explains the company and visualizes its engineering capabilities.
+      ========================================================= */}
+
       <section className="about-who" aria-labelledby="about-who-title">
         <div className="about-shell about-who-layout">
+          {/* Company introduction and product-development experience */}
+
           <div className="about-who-content">
             <div className="about-who-heading">
               <p className="about-section-number">Who We Are</p>
@@ -354,6 +407,8 @@ export default function About({ setCurrentPage }) {
               </p>
             </div>
           </div>
+
+          {/* Circular engineering visual and capability labels */}
 
           <div className="about-who-visual" ref={whoVisualRef}>
             <div className="about-who-orbit-stage">
@@ -395,12 +450,19 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Mission and Vision
+          Defines the company purpose through two complementary panels.
+      ========================================================= */}
+
       <section className="about-purpose" aria-labelledby="about-purpose-title">
         <div className="about-shell">
           <div className="about-purpose-heading scroll-reveal-item">
             <p className="about-section-number">Our Purpose</p>
             <h2 id="about-purpose-title">Mission &amp; Vision</h2>
           </div>
+
+          {/* Mission and vision image panels */}
 
           <div className="about-purpose-grid">
             <article className="about-purpose-card scroll-reveal-item" data-index="01">
@@ -417,6 +479,11 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Leadership Introduction
+          Frames the experience represented by the leadership profiles.
+      ========================================================= */}
+
       <section className="about-leadership-intro" aria-labelledby="about-leadership-title">
         <div className="about-shell">
           <header className="about-leadership-heading scroll-reveal-item">
@@ -429,11 +496,18 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Founder Message
+          Shares the founder's engineering philosophy and profile.
+      ========================================================= */}
+
       <section
         className="about-founder-message"
         aria-labelledby="about-founder-message-title"
       >
         <div className="about-shell about-founder-message-inner scroll-reveal-item">
+          {/* Founder message, signature, and professional profile */}
+
           <div className="about-founder-message-copy">
             <p className="about-founder-message-kicker">A message from <span>our Founder &amp; CEO</span></p>
             <h2 id="about-founder-message-title">Engineering ideas into impact.<br /><span>Building what&apos;s next.</span></h2>
@@ -455,6 +529,8 @@ export default function About({ setCurrentPage }) {
               </span>
             </div>
           </div>
+          {/* Reserved founder portrait area */}
+
           <figure className="about-founder-message-image">
             <div className="about-portrait-placeholder" role="img" aria-label="Founder portrait placeholder">
               <span>Founder portrait</span>
@@ -463,8 +539,15 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Engineering Leadership and Team
+          Presents leadership experience and the multidisciplinary team.
+      ========================================================= */}
+
       <section className="about-leadership" aria-labelledby="about-leadership-title">
         <div className="about-shell">
+          {/* Leadership profiles sourced from the centralized data */}
+
           {leaders.map((leader) => (
             <article
               className="about-leader-showcase scroll-reveal-item"
@@ -490,6 +573,8 @@ export default function About({ setCurrentPage }) {
             </article>
           ))}
 
+          {/* Team introduction and engineering-group image */}
+
           <article className="about-team-card scroll-reveal-item">
             <div className="about-team-copy">
               <p className="about-section-number">Meet Our Team</p>
@@ -507,9 +592,16 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Achievements
+          Provides carousel navigation through company milestones.
+      ========================================================= */}
+
       <section className="about-achievements" aria-label="Our achievements">
         <div className="about-shell">
           <div className="about-achievement-slider scroll-reveal-item">
+            {/* Previous control and active milestone content */}
+
             <button className="about-achievement-arrow about-achievement-arrow-left" type="button" onClick={showPreviousAchievement} aria-label="Show previous achievement">
               <ChevronLeft aria-hidden="true" />
             </button>
@@ -528,6 +620,8 @@ export default function About({ setCurrentPage }) {
             <button className="about-achievement-arrow about-achievement-arrow-right" type="button" onClick={showNextAchievement} aria-label="Show next achievement">
               <ChevronRight aria-hidden="true" />
             </button>
+            {/* Direct milestone selection controls */}
+
             <div className="about-achievement-dots" aria-label="Choose an achievement">
               {achievements.map((achievement, index) => (
                 <button
@@ -544,6 +638,11 @@ export default function About({ setCurrentPage }) {
         </div>
       </section>
 
+      {/* =========================================================
+          Workplace Gallery
+          Shows the team, engineering environment, and project imagery.
+      ========================================================= */}
+
       <section className="about-gallery" aria-labelledby="about-gallery-title">
         <div className="about-shell">
           <header className="about-gallery-heading scroll-reveal-item">
@@ -553,6 +652,8 @@ export default function About({ setCurrentPage }) {
             </div>
             <p>A look at our people, engineering environment, and the technologies we work with.</p>
           </header>
+          {/* Swipe-enabled gallery with arrows and thumbnail navigation */}
+
           <div
             className="about-gallery-slider scroll-reveal-item"
             onTouchStart={handleGalleryTouchStart}
@@ -569,6 +670,8 @@ export default function About({ setCurrentPage }) {
             <button className="about-gallery-arrow about-gallery-arrow-right" type="button" onClick={showNextGalleryItem} aria-label="Show next gallery image">
               <ChevronRight aria-hidden="true" />
             </button>
+            {/* Thumbnail controls support click, hover, and keyboard focus */}
+
             <div className="about-gallery-thumbnails" aria-label="Choose a gallery image">
               {galleryItems.map((item, index) => (
                 <button
@@ -588,6 +691,11 @@ export default function About({ setCurrentPage }) {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          Contact Call to Action
+          Directs visitors with engineering needs to the Contact page.
+      ========================================================= */}
 
       <section className="about-cta" aria-labelledby="about-cta-title">
         <div className="about-shell about-cta-inner scroll-reveal-item">

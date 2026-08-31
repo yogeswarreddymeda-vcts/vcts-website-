@@ -1,4 +1,12 @@
+/*
+ * Edge AI Page Styles
+ *
+ * Defines the capability hero, ecosystem, delivery journey, service cards,
+ * engagement sections, FAQs, technical motion, and responsive behavior.
+ */
+
 /* ============ GLOBAL VARIABLES & BASE ============ */
+
 .eaipg-edgeai-page {
   width: 100%;
   --sky-50: #f0f7ff;
@@ -160,6 +168,7 @@
 /* ============ END GLOBAL VARIABLES & BASE ============ */
 
 /* ============ BACKGROUND LAYER ============ */
+
 .eaipg-edgeai-page .bg-layer {
   position: fixed;
   inset: 0;
@@ -261,6 +270,7 @@
 /* ============ END BACKGROUND LAYER ============ */
 
 /* ============ HERO SECTION ============ */
+
 .edega-hero-section {
   position: relative;
   width: 100%;
@@ -354,6 +364,7 @@
 }
 
 /* Line mask typography reveal for Edge AI */
+
 .edega-title-line {
   display: inline-block;
   overflow: hidden;
@@ -717,6 +728,7 @@
 /* ============ END HERO SECTION ============ */
 
 /* ============ TICKER SECTION ============ */
+
 .edega-ticker-section {
   width: 100%;
   border-block: 1px solid rgba(15, 58, 133, 0.08);
@@ -773,6 +785,7 @@
 /* ============ END TICKER SECTION ============ */
 
 /* ============ ECOSYSTEM SECTION ============ */
+
 .edega-ecosystem-section {
   background-color: transparent;
   width: 100%;
@@ -1158,6 +1171,7 @@
 /* ============ END ECOSYSTEM SECTION ============ */
 
 /* ============ JOURNEY SECTION ============ */
+
 .edega-journey-section {
   background-color: transparent;
   width: 100%;
@@ -1510,6 +1524,7 @@
 /* ============ END JOURNEY SECTION ============ */
 
 /* ============ SERVICES SECTION ============ */
+
 .edega-services-section {
   background-color: transparent;
   width: 100%;
@@ -1801,6 +1816,7 @@
 /* ============ END SERVICES SECTION ============ */
 
 /* ============ CTA SECTION ============ */
+
 .eaipg-edgeai-page .embpg-cta {
   padding: clamp(60px, 8vw, 110px) 0;
   background: linear-gradient(135deg, rgba(10, 36, 86, 0.95) 0%, rgba(15, 58, 133, 0.92) 50%, rgba(21, 80, 184, 0.9) 100%);
@@ -2035,6 +2051,7 @@
 /* ============ END CTA SECTION ============ */
 
 /* ============ PLAIN CARD SECTION ============ */
+
 .eaipg-edgeai-page .embpg-plain-card-section {
   padding: 80px 0;
   width: 100%;
@@ -2218,6 +2235,7 @@
 /* ============ END PLAIN CARD SECTION ============ */
 
 /* ============ FAQ SECTION ============ */
+
 .eaipg-edgeai-page .embpg-faq-section {
   position: relative;
   z-index: 10;
@@ -2393,6 +2411,7 @@
 
 
 /* VLSI-aligned FAQ layout */
+
 .eaipg-edgeai-page .embpg-faq-section {
   height: auto;
   padding: clamp(40px, 6vw, 80px) 0 clamp(28px, 4vw, 44px);

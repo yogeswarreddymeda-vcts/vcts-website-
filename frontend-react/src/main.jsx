@@ -1,3 +1,9 @@
+/**
+ * Client Entry Point
+ *
+ * Mounts the React application into the root document element under Strict Mode.
+ */
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'

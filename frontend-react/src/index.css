@@ -1,4 +1,12 @@
-/* BRAND COLOR PALETTE */
+/*
+ * Global Styles
+ *
+ * Provides brand tokens, document defaults, accessibility utilities,
+ * and shared reveal behavior used throughout the application.
+ */
+
+/* Brand color palette */
+
 :root {
     --bg-pure-white: #FFFFFF;
     --bg-off-white: #F8FAFC;
@@ -40,6 +48,7 @@ body {
 /* ========================================================
            1. ADVANCED KINETIC TEXT REVEAL BLOCKS
            ======================================================== */
+
 .kinetic-reveal-container {
     overflow: hidden;
     display: block;
@@ -80,6 +89,7 @@ body {
 /* ========================================================
            2. VIEWPORT OBSERVER ENTRANCE MOTOR
            ======================================================== */
+
 .scroll-reveal-item {
     opacity: 0;
     transform: translate3d(0, 25px, 0);

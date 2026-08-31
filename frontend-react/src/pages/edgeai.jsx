@@ -1,3 +1,10 @@
+/**
+ * Edge AI Page
+ *
+ * Presents edge-intelligence capabilities, platform ecosystem, delivery journey,
+ * engineering services, engagement guidance, and frequently asked questions.
+ */
+
 import React from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,6 +21,7 @@ import edasB from "../assets/image/edgeai/edaservice_img/edas_b.webp";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============ FAQ DATA ============ */
+
 const FAQ_DATA = [
   {
     q: "Can VConnectTech support an Edge AI project from hardware selection through deployment?",
@@ -42,12 +50,17 @@ const FAQ_DATA = [
 ];
 /* ============ END FAQ DATA ============ */
 
+/** Renders the complete Edge AI capability page and its interactive visuals. */
+
 export default function EdgeAI() {
   const tiltRef = React.useRef(null);
   const rootRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const [activeFaq, setActiveFaq] = React.useState(null);
   const [formSent, setFormSent] = React.useState(false);
+
+  // Reveal the hero in reading order, then clear temporary GSAP transforms
+  // so the settled layout remains controlled by the stylesheet.
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,8 +97,13 @@ export default function EdgeAI() {
       .to(".edega-hero-stats", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.3")
       .to(".edega-ticker-section", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.25");
 
+    // Stop the timeline on unmount so it cannot retain detached hero elements.
+
     return () => heroTL.kill();
   }, []);
+
+  // Draw the pointer-responsive network background and resize its canvas
+  // whenever the viewport dimensions change.
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
@@ -147,7 +165,6 @@ export default function EdgeAI() {
         }
       });
 
-      /* Background connecting lines removed as requested */
 
       nodes.forEach((n) => {
         bctx.beginPath();
@@ -172,6 +189,9 @@ export default function EdgeAI() {
       animation: gsap.fromTo(canvas, { opacity: 0 }, { opacity: 1, ease: "none" })
     });
 
+    // Release global listeners, animation frames, and ScrollTrigger state
+    // when the page is no longer mounted.
+
     return () => {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", resizeBg);
@@ -179,6 +199,9 @@ export default function EdgeAI() {
       if (fadeST) fadeST.kill();
     };
   }, []);
+
+  // Reveal ecosystem cards together, then let them drift apart as the
+  // section leaves the viewport to create a continuous scroll sequence.
 
   React.useEffect(() => {
     const revealWrappers = gsap.utils.toArray(".edega-ecosystem-card-wrapper");
@@ -237,6 +260,8 @@ export default function EdgeAI() {
       invalidateOnRefresh: true
     });
 
+    // Kill section triggers and tweens to prevent duplicate animations on remount.
+
     return () => {
       revealTrigger.kill();
       exitTrigger.kill();
@@ -245,6 +270,9 @@ export default function EdgeAI() {
       driftCards.forEach(c => gsap.killTweensOf(c));
     };
   }, []);
+
+  // Coordinate the desktop services morph while preserving a reset path
+  // for smaller viewports and recalculating geometry after resize.
 
   React.useEffect(() => {
     const isMobile = window.innerWidth <= 1024;
@@ -304,6 +332,8 @@ export default function EdgeAI() {
           gsap.to(cards, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" });
         }
       });
+      // Destroy mobile-only triggers when the media-query scope is reverted.
+
       return () => { headerST.kill(); mobileST.kill(); };
     }
 
@@ -705,6 +735,8 @@ export default function EdgeAI() {
     };
     window.addEventListener("resize", debouncedResize);
 
+    // Remove resize work and destroy the morph timelines before unmounting.
+
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(resizeTimer);
@@ -715,6 +747,9 @@ export default function EdgeAI() {
       clearAll();
     };
   }, []);
+
+  // Pin the delivery journey, synchronize each step with scroll progress,
+  // and type the matching diagnostic line into the terminal panel.
 
   React.useEffect(() => {
     const section = document.getElementById("edega-journey-section");
@@ -819,6 +854,7 @@ export default function EdgeAI() {
       const t = STEP_START + idx * STEP_GAP;
 
       // Animate pipeline dot movement to this step node
+
       scrubTL.to(pipelineDot, {
         y: () => getDotY(idx),
         duration: idx === 0 ? 0.2 : 0.8,
@@ -826,6 +862,7 @@ export default function EdgeAI() {
       }, t);
 
       // Reveal each timeline step one by one on scroll
+
       scrubTL.to(step, {
         opacity: 1,
         y: 0,
@@ -881,6 +918,8 @@ export default function EdgeAI() {
       });
     }
 
+    // Clear typing intervals and GSAP resources so no background work survives navigation.
+
     return () => {
       activeIntervals.forEach(clearInterval);
       headerST.kill();
@@ -895,6 +934,8 @@ export default function EdgeAI() {
       });
     };
   }, []);
+
+  // Apply restrained pointer tilt to the engagement visual on pointer devices.
 
   React.useEffect(() => {
     const tilt = tiltRef.current;
@@ -915,11 +956,15 @@ export default function EdgeAI() {
     parent.addEventListener("mousemove", onMouseMove);
     parent.addEventListener("mouseleave", onMouseLeave);
 
+    // Detach pointer listeners when the visual leaves the document.
+
     return () => {
       parent.removeEventListener("mousemove", onMouseMove);
       parent.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
+
+  // Observe generic reveal elements once and stop observing each item after activation.
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -937,8 +982,13 @@ export default function EdgeAI() {
     const elements = document.querySelectorAll(".reveal");
     elements.forEach((el) => observer.observe(el));
 
+    // Disconnect the observer to release its references to page elements.
+
     return () => observer.disconnect();
   }, []);
+
+  // Ease decorative blobs toward the pointer while pausing the animation
+  // whenever the page is not visible.
 
   React.useEffect(() => {
     const root = rootRef.current;
@@ -991,6 +1041,8 @@ export default function EdgeAI() {
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
 
+    // Stop pointer tracking and animation frames when the page unmounts.
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       if (observer) {
@@ -1013,6 +1065,7 @@ export default function EdgeAI() {
       </div>
 
       {/* ============ HERO SECTION ============ */}
+
       <section className="edega-hero-section">
         <div className="edega-hero-container">
           <div className="edega-hero-grid">
@@ -1100,6 +1153,7 @@ export default function EdgeAI() {
       {/* ============ END HERO SECTION ============ */}
 
       {/* ============ ECOSYSTEM SECTION ============ */}
+
       <section className="edega-ecosystem-section">
         <div className="edega-section-container">
           <div className="edega-section-header">
@@ -1213,6 +1267,7 @@ export default function EdgeAI() {
       {/* ============ END ECOSYSTEM SECTION ============ */}
 
       {/* ============ JOURNEY SECTION ============ */}
+
       <section className="edega-journey-section" id="edega-journey-section">
         <div className="edega-section-container">
           <div className="edega-section-header" id="edega-journey-header">
@@ -1302,6 +1357,7 @@ export default function EdgeAI() {
       {/* ============ END JOURNEY SECTION ============ */}
 
       {/* ============ SERVICES SECTION ============ */}
+
       <section className="edega-services-section">
         <div className="edega-section-container">
           <div className="edega-section-header">
@@ -1415,6 +1471,7 @@ export default function EdgeAI() {
       {/* ============ END SERVICES SECTION ============ */}
 
       {/* ============ CTA SECTION ============ */}
+
       <section className="embpg-cta" id="cta">
         <div className="container reveal">
           <h2 className="display-2">
@@ -1444,6 +1501,7 @@ export default function EdgeAI() {
       {/* ============ END CTA SECTION ============ */}
 
       {/* ============ PLAIN CARD SECTION ============ */}
+
       <section className="embpg-plain-card-section">
         <div className="container container-narrow mb-4">
           <div className="embpg-section-head reveal center">
@@ -1475,6 +1533,7 @@ export default function EdgeAI() {
       {/* ============ END PLAIN CARD SECTION ============ */}
 
       {/* ============ FAQ SECTION ============ */}
+
       <section className="embpg-faq-section" id="faq">
         <div className="container">
           <div className="embpg-faq-header-grid">

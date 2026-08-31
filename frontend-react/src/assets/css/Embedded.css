@@ -1,6 +1,14 @@
+/*
+ * Embedded Systems Page Styles
+ *
+ * Defines embedded-service layouts, diagrams, case studies, interactions,
+ * modal presentation, animations, and responsive behavior.
+ */
+
 @import url('../fonts/local-fonts.css');
 
 /* ============ GLOBAL VARIABLES & BASE ============ */
+
 .embpg-embedded-page {
   --sky-50: #f0f7ff;
   --sky-100: #e0efff;
@@ -73,6 +81,7 @@
 /* ============ END GLOBAL VARIABLES & BASE ============ */
 
 /* ============ BACKGROUND LAYER ============ */
+
 .embpg-embedded-page .embpg-bg-layer {
   position: absolute;
   inset: 0;
@@ -101,6 +110,7 @@
 /* ============ END BACKGROUND LAYER ============ */
 
 /* ============ TYPOGRAPHY ============ */
+
 .embpg-embedded-page .display {
   font-family: var(--display);
   font-weight: 600;
@@ -202,6 +212,7 @@
 /* ============ END TYPOGRAPHY ============ */
 
 /* ============ HERO SECTION ============ */
+
 .embpg-embedded-page .embpg-hero-section {
   position: relative;
   min-height: calc(100vh - 85px);
@@ -247,6 +258,7 @@
 }
 
 /* Futuristic Ambient Greyish Blue Glow behind Left Side Text */
+
 .embpg-embedded-page .embpg-hero-copy-wrap::before {
   content: "";
   position: absolute;
@@ -583,6 +595,7 @@
 /* ============ END HERO SECTION ============ */
 
 /* ============ MARQUEE SECTION ============ */
+
 .embpg-embedded-page .embpg-marquee {
   border-block: 1px solid var(--hair);
   overflow: hidden;
@@ -625,6 +638,7 @@
 /* ============ END MARQUEE SECTION ============ */
 
 /* ============ SECTIONS (SHARED) ============ */
+
 .embpg-embedded-page .embpg-section {
   padding: clamp(72px, 10vw, 140px) 0;
   position: relative;
@@ -678,6 +692,7 @@
 /* ============ END SECTIONS (SHARED) ============ */
 
 /* ============ SERVICES SECTION ============ */
+
 .embpg-embedded-page .embpg-services-scroll-container {
   position: relative;
   margin-top: 120px;
@@ -1083,6 +1098,7 @@
 /* ============ END SERVICES SECTION ============ */
 
 /* ============ WORK SECTION ============ */
+
 .embpg-embedded-page .embpg-work-section {
   padding-top: 160px;
 }
@@ -1300,6 +1316,7 @@
 /* ============ END WORK SECTION ============ */
 
 /* ============ CTA SECTION ============ */
+
 .embpg-embedded-page .embpg-cta {
   padding: clamp(80px, 10vw, 140px) 0;
   background: linear-gradient(135deg, rgba(10, 36, 86, 0.95) 0%, rgba(15, 58, 133, 0.92) 50%, rgba(21, 80, 184, 0.9) 100%);
@@ -1524,6 +1541,7 @@
 /* ============ END CTA SECTION ============ */
 
 /* ============ REVEAL ANIMATIONS ============ */
+
 .embpg-embedded-page .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -1554,6 +1572,7 @@
 /* ============ END REVEAL ANIMATIONS ============ */
 
 /* ============ HERO ENTRANCE SETUP (GSAP PREPARATION) ============ */
+
 .embpg-embedded-page .embpg-hero-eyebrow,
 .embpg-embedded-page .embpg-hero-display-title,
 .embpg-embedded-page .embpg-hero-lede-para,
@@ -1566,6 +1585,7 @@
 /* ============ END HERO ENTRANCE SETUP ============ */
 
 /* ============ PROJECT DETAIL DRAWER ============ */
+
 .embpg-embedded-page .embpg-project-detail-overlay {
   position: fixed;
   inset: 0;
@@ -1751,6 +1771,7 @@
 /* ============ END PROJECT DETAIL DRAWER ============ */
 
 /* ============ REDUCED MOTION ============ */
+
 @media(prefers-reduced-motion: reduce) {
   .embpg-embedded-page * {
     animation: none !important;
@@ -1776,6 +1797,7 @@
 }
 
 /* ============ PLAIN CARD SECTION ============ */
+
 .embpg-embedded-page .embpg-plain-card-section {
   padding: 80px 0;
   width: 100%;
@@ -1938,6 +1960,7 @@
 }
 
 /* ============ FAQ SECTION ============ */
+
 .embpg-embedded-page .embpg-faq-section {
   position: relative;
   z-index: 10;
@@ -2068,6 +2091,7 @@
 }
 
 /* Responsive Styles for FAQ */
+
 @media (max-width: 990px) {
   .embpg-embedded-page .embpg-faq-section {
     padding: 60px 0;
@@ -2099,6 +2123,7 @@
   }
 }
 /* VLSI-aligned FAQ layout */
+
 .embpg-embedded-page .embpg-faq-section {
   height: auto;
   padding: clamp(40px, 6vw, 80px) 0 clamp(28px, 4vw, 44px);

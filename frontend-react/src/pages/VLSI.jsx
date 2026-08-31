@@ -1,3 +1,10 @@
+/**
+ * VLSI Page
+ *
+ * Presents semiconductor engineering services, process capabilities,
+ * engagement options, brochure access, and frequently asked questions.
+ */
+
 import { Fragment, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "../assets/css/VLSI.css";
@@ -7,6 +14,7 @@ const imageUrl = (fileName) => new URL(`../assets/image/VLSI/${fileName}`, impor
 // ==========================================
 // 1. HERO SECTION DATA & CONSTANTS
 // ==========================================
+
 const heroData = {
   eyebrow: "Semiconductor Engineering",
   titleLine1: "End-to-End",
@@ -40,6 +48,7 @@ const heroData = {
 // ==========================================
 // 2. MARQUEE BANNER SECTION DATA & COMPONENTS
 // ==========================================
+
 const marqueeItems = [
   "RISC-V & ARM",
   "SystemC & TLM",
@@ -56,6 +65,8 @@ const marqueeItems = [
   "2.5D / 3D Packaging",
   "Silicon Bring-Up",
 ];
+
+/** Renders the continuously repeated semiconductor service marquee. */
 
 function Marquee() {
   const loop = [...marqueeItems, ...marqueeItems];
@@ -77,6 +88,7 @@ function Marquee() {
 // ==========================================
 // 3. CAPABILITIES SECTION DATA & COMPONENTS
 // ==========================================
+
 const phases = [
   { id: "frontend", label: "Front-End Design" },
   { id: "backend", label: "Back-End Design" },
@@ -290,6 +302,14 @@ const allServices = [
   ...services.postsilicon
 ];
 
+/**
+ * Renders one lifecycle service card and its active visual state.
+ *
+ * @param {Object} props
+ * @param {Object} props.service - Service content and supporting imagery.
+ * @param {boolean} props.isActive - Whether the card is centered in the viewport.
+ */
+
 function ServiceCard({ service, isActive }) {
   return (
     <article className={`service-card ${service.cardClass} ${isActive ? "is-active" : ""}`}>
@@ -311,6 +331,7 @@ function ServiceCard({ service, isActive }) {
 // ==========================================
 // 4. FAQ SECTION DATA & COMPONENTS
 // ==========================================
+
 const faqItems = [
   {
     q: "Can VCTS support a project from architecture through production?",
@@ -337,6 +358,8 @@ const faqItems = [
     a: "Send a short project brief, target technology or platform, current design phase, schedule expectations, and support areas needed. VCTS can then scope the work and align the right engineering plan."
   }
 ];
+
+/** Renders the complete VLSI service page and its scroll-driven lifecycle. */
 
 export default function Vlsi() {
   const rootRef = useRef(null);
@@ -369,6 +392,8 @@ export default function Vlsi() {
     }, 1000);
   };
 
+  // Add the compact navigation treatment after the page begins scrolling.
+
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return undefined;
@@ -379,8 +404,12 @@ export default function Vlsi() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
+    // Remove the global listener when the VLSI page unmounts.
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Animate background blobs only while their layer is visible.
 
   useEffect(() => {
     const root = rootRef.current;
@@ -433,6 +462,8 @@ export default function Vlsi() {
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
 
+    // Stop pointer and visibility observers before the decorative layer is detached.
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       if (observer) {
@@ -443,6 +474,8 @@ export default function Vlsi() {
       }
     };
   }, []);
+
+  // Coordinate the hero entrance and one-time viewport reveals for later content.
 
   useEffect(() => {
     const root = rootRef.current;
@@ -456,6 +489,7 @@ export default function Vlsi() {
     }
 
     // Set initial states for clean vertical text entrance & image lens zoom
+
     gsap.set(".vlsipg-eyebrow", { opacity: 0, y: 12 });
     gsap.set(".vlsipg-line-inner", { opacity: 0, yPercent: 110 });
     gsap.set(".vlsipg-lede", { opacity: 0, y: 16 });
@@ -494,6 +528,8 @@ export default function Vlsi() {
 
     if (!("IntersectionObserver" in window)) {
       root?.querySelectorAll(".vlsipg-reveal").forEach((element) => element.classList.add("in"));
+      // Stop the hero timeline when no reveal observer was created.
+
       return () => heroTL.kill();
     }
 
@@ -510,11 +546,15 @@ export default function Vlsi() {
 
     root.querySelectorAll(".vlsipg-reveal:not(.vlsipg-hero *):not(.in)").forEach((element) => observer.observe(element));
 
+    // Disconnect reveal observation and destroy the hero timeline on navigation.
+
     return () => {
       heroTL.kill();
       observer.disconnect();
     };
   }, []);
+
+  // Apply pointer-responsive perspective to the hero image on capable devices.
 
   useEffect(() => {
     const tilt = tiltRef.current;
@@ -535,22 +575,28 @@ export default function Vlsi() {
     parent.addEventListener("mousemove", onMouseMove);
     parent.addEventListener("mouseleave", onMouseLeave);
 
+    // Detach pointer listeners when the tilted artwork leaves the page.
+
     return () => {
       parent.removeEventListener("mousemove", onMouseMove);
       parent.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 
-  /* ============ MOUSE TRACKING ============ */
+  /* Track the pointer position shared by the background canvas simulation. */
+
   useEffect(() => {
     const handleMouseMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    // Remove the pointer listener shared with the background simulation.
+
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  /* ============ BACKGROUND CANVAS ANIMATION ============ */
+  /* Render and resize the interactive semiconductor network background. */
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -609,6 +655,7 @@ export default function Vlsi() {
       const mouse = mouseRef.current;
 
       // Draw subtle background circuit grid
+
       ctx.strokeStyle = "rgba(15, 58, 133, 0.02)";
       ctx.lineWidth = 0.5;
       const gridSize = 80;
@@ -695,6 +742,8 @@ export default function Vlsi() {
 
     animationFrameId = requestAnimationFrame(draw);
 
+    // Cancel drawing and resizing work before the canvas is removed.
+
     return () => {
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
@@ -734,7 +783,10 @@ export default function Vlsi() {
     };
   };
 
-  // Re-compute geometry whenever activeIndex changes because changing active states may affect widths/offsets
+  // Recompute geometry after active-card styling changes dimensions or offsets.
+  // Synchronize desktop scroll progress, mobile horizontal scrolling,
+  // lifecycle tabs, active cards, and responsive geometry.
+
   useEffect(() => {
     computeGeometry();
   }, [activeIndex]);
@@ -754,6 +806,7 @@ export default function Vlsi() {
 
     const handleGridScroll = () => {
       // Only run on mobile
+
       const isDesktop = window.innerWidth >= 1025;
       if (isDesktop) return;
 
@@ -825,12 +878,14 @@ export default function Vlsi() {
       const isScrollingUp = currentScroll < prevScroll;
 
       // Cancel skipping if scrolling direction becomes down
+
       if (!isScrollingUp && isSkippingUpRef.current) {
         isSkippingUpRef.current = false;
         grid.classList.remove("transitioning-back");
       }
 
       // Detect entering the capabilities scroll section from the bottom (scrolling up)
+
       if (isScrollingUp && !isSkippingUpRef.current && !isNavigatingRef.current && prevScroll >= end && currentScroll < end) {
         isSkippingUpRef.current = true;
         grid.classList.add("transitioning-back");
@@ -842,6 +897,7 @@ export default function Vlsi() {
       }
 
       // If we are currently skipping up, force translate to start (first card) and don't animate
+
       if (isSkippingUpRef.current) {
         const { startTranslation } = geometryRef.current;
         grid.style.transform = `translate3d(${-startTranslation}px, 0, 0)`;
@@ -876,6 +932,7 @@ export default function Vlsi() {
       grid.style.transform = `translate3d(${-translation}px, 0, 0)`;
 
       // If programmatically navigating, lock active index updates to prevent layout-shift race conditions
+
       if (isNavigatingRef.current) return;
 
       const viewportCenter = window.innerWidth / 2;
@@ -929,7 +986,8 @@ export default function Vlsi() {
       handleGridScroll();
     };
 
-    // Initial calculation and scroll handling
+    // Initialize geometry before subscribing to scroll and resize events.
+
     computeGeometry();
     lastScrollYRef.current = window.scrollY;
     handleWindowScroll();
@@ -940,6 +998,8 @@ export default function Vlsi() {
     window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("scrollend", handleScrollEnd, { passive: true });
     grid.addEventListener("scrollend", handleScrollEnd, { passive: true });
+
+    // Remove all global and grid listeners and clear delayed navigation state.
 
     return () => {
       window.removeEventListener("scroll", handleWindowScroll);
@@ -1045,6 +1105,7 @@ export default function Vlsi() {
 
       const previousScrollBehavior = document.documentElement.style.scrollBehavior;
       // eslint-disable-next-line react-hooks/immutability
+
       document.documentElement.style.scrollBehavior = "auto";
       window.scrollTo({
         top: targetScroll,
@@ -1069,6 +1130,7 @@ export default function Vlsi() {
     setActivePhase(phaseId);
 
     // Scroll to the first card index of the selected phase
+
     let targetIndex = 0;
     if (phaseId === "backend") targetIndex = 4;
     else if (phaseId === "postsilicon") targetIndex = 8;
@@ -1090,6 +1152,8 @@ export default function Vlsi() {
         <div className="blob blob-4" />
         <div className="noise" />
       </div>
+
+      {/* Semiconductor value proposition and hero imagery */}
 
       <section className="vlsipg-hero" id="top">
         <div className="vlsipg-hero-grid container">
@@ -1155,7 +1219,11 @@ export default function Vlsi() {
         </div>
       </section>
 
+      {/* Repeating service-category marquee */}
+
       <Marquee />
+
+      {/* Scroll-driven semiconductor lifecycle service cards */}
 
       <section className="section capabilities capabilities-scroll-container" id="capabilities" ref={scrollSectionRef}>
         <div
@@ -1213,6 +1281,8 @@ export default function Vlsi() {
         </div>
       </section>
 
+      {/* Project inquiry and email capture */}
+
       <section className="cta" id="cta">
         <div className="container vlsipg-reveal">
           <h2 className="vlsipg-display-2">
@@ -1240,6 +1310,8 @@ export default function Vlsi() {
         </div>
       </section>
 
+      {/* Semiconductor capability brochure */}
+
       <section className="brochure-section">
         <div className="container">
           <div className="brochure-card vlsipg-reveal">
@@ -1265,6 +1337,8 @@ export default function Vlsi() {
           </div>
         </div>
       </section>
+
+      {/* Frequently asked engagement questions */}
 
       <section className="section faq-section" id="faq">
         <div className="container">

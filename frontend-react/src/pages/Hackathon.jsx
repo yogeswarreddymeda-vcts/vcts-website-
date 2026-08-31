@@ -1,3 +1,10 @@
+/**
+ * Hackathon Page
+ *
+ * Describes the engineering challenge program, participation modes, domains,
+ * journey, prizes, benefits, registration, and frequently asked questions.
+ */
+
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
@@ -27,6 +34,7 @@ import {
 } from 'lucide-react'
 
 // Assets
+
 import imgIdea from '../assets/image/Hackathon/hero-idea.webp'
 import imgPrototype from '../assets/image/Hackathon/hero-prototype.webp'
 import imgProduct from '../assets/image/Hackathon/hero-product.webp'
@@ -54,8 +62,12 @@ import '../assets/css/Hackathon.css'
 // ==========================================
 // SHARED UTILITIES & HOOKS
 // ==========================================
+
 function useScrollReveal(threshold = 0.12, selector = '.reveal', activeClass = 'in') {
   const ref = useRef(null)
+
+  // Toggle reveal classes as matching descendants enter and leave the viewport,
+  // with an immediate fallback for browsers without IntersectionObserver.
 
   useEffect(() => {
     const el = ref.current
@@ -81,6 +93,8 @@ function useScrollReveal(threshold = 0.12, selector = '.reveal', activeClass = '
 
     const items = el.querySelectorAll(selector)
     items.forEach((item) => observer.observe(item))
+    // Disconnect on unmount so the observer releases all descendant references.
+
     return () => observer.disconnect()
   }, [threshold, selector, activeClass])
 
@@ -90,6 +104,7 @@ function useScrollReveal(threshold = 0.12, selector = '.reveal', activeClass = '
 // ==========================================
 // 1. HERO SECTION
 // ==========================================
+
 function HeroMain() {
   return (
     <div>
@@ -118,6 +133,7 @@ function HeroMain() {
 // ==========================================
 // 2. HERO JOURNEY STAGES
 // ==========================================
+
 function HeroJourneyStages() {
   return (
     <div className="build-stack" aria-hidden="true">
@@ -140,6 +156,7 @@ function HeroJourneyStages() {
 // ==========================================
 // 3. HERO STATS
 // ==========================================
+
 function HeroStats() {
   return (
     <div className="trace-wrap reveal">
@@ -165,6 +182,8 @@ function HeroStats() {
   )
 }
 
+/** Renders the hackathon introduction, journey graphic, and key program metrics. */
+
 function HeroSection() {
   const sectionRef = useScrollReveal(0.08)
 
@@ -184,6 +203,9 @@ function HeroSection() {
 // ==========================================
 // 4. ABOUT THE BOOTCAMP
 // ==========================================
+
+/** Explains the program purpose and participation value. */
+
 function AboutSection() {
   const ref = useScrollReveal(0.12)
 
@@ -272,6 +294,7 @@ function AboutSection() {
 // ==========================================
 // 5. WHO CAN JOIN
 // ==========================================
+
 const whoCards = [
   {
     icon: <GraduationCap className="icon" aria-hidden="true" strokeWidth={1.6} />,
@@ -294,6 +317,8 @@ const whoCards = [
     items: ['Innovators', 'Startup Founders / Makers', 'Researchers'],
   },
 ]
+
+/** Lists the participant profiles for whom the program is designed. */
 
 function WhoSection() {
   const ref = useScrollReveal(0.12)
@@ -322,6 +347,9 @@ function WhoSection() {
 // ==========================================
 // 6. MODES OF PARTICIPATION
 // ==========================================
+
+/** Compares the available participation and collaboration modes. */
+
 function ModesSection() {
   const ref = useScrollReveal(0.12)
 
@@ -387,6 +415,7 @@ function ModesSection() {
 // ==========================================
 // 7. INNOVATION DOMAINS
 // ==========================================
+
 const domains = [
   { id: 'edge-ai', title: 'Edge AI', img: imgEdgeAI, alt: 'Edge AI vision sensor inspecting a component', featured: true },
   { id: 'smart-retail', title: 'Smart Retail', img: imgSmartRetail, alt: 'Sensor-equipped smart retail shelf' },
@@ -396,6 +425,8 @@ const domains = [
   { id: 'automation', title: 'Industrial Automation', img: imgAutomation, alt: 'Industrial robotic arm handling precision components' },
   { id: 'product-eng', title: 'Product Engineering', img: imgProductEng, alt: 'Product engineers reviewing a hardware prototype' },
 ]
+
+/** Presents the engineering domains available to hackathon teams. */
 
 function DomainsSection() {
   const ref = useScrollReveal(0.12)
@@ -424,6 +455,7 @@ function DomainsSection() {
 // ==========================================
 // 8. YOUR JOURNEY
 // ==========================================
+
 const steps = [
   { num: '01', label: 'Registration', desc: 'Sign up individually or as a team to enter.', icon: 'registration', left: '6%', top: '84%', iconTop: '71%' },
   { num: '02', label: 'Abstract Submission', desc: 'Submit problem statement & solution summary.', icon: 'abstract', left: '20%', top: '74%', iconTop: '61%' },
@@ -470,16 +502,22 @@ function SummaryIcon({ type }) {
   return <Icon {...common} />
 }
 
+/** Visualizes the participant journey from application through completion. */
+
 function JourneySection() {
   const ref = useScrollReveal(0.12)
   const [activeStepIndex, setActiveStepIndex] = useState(7)
   const [userInteracted, setUserInteracted] = useState(false)
+
+  // Advance the journey automatically until direct interaction gives the visitor control.
 
   useEffect(() => {
     if (userInteracted) return
     const timer = setInterval(() => {
       setActiveStepIndex((prev) => (prev + 1) % steps.length)
     }, 2800)
+    // Clear the interval whenever interaction state changes or the section unmounts.
+
     return () => clearInterval(timer)
   }, [userInteracted])
 
@@ -587,6 +625,7 @@ function JourneySection() {
 // ==========================================
 // 9. PROGRAM TIMELINE
 // ==========================================
+
 const roadmapWeeks = Array.from({ length: 16 }, (_, index) => index + 1)
 
 const roadmapRows = [
@@ -596,6 +635,8 @@ const roadmapRows = [
   { title: 'Innovation Bootcamp', duration: '10 weeks', start: 8, span: 8, range: '8–15' },
   { title: 'Grand Finale', duration: '1 week', start: 16, span: 1, range: '16', isFinale: true },
 ]
+
+/** Presents the program timeline and milestone sequence. */
 
 function RoadmapSection() {
   const ref = useScrollReveal(0.12)
@@ -645,6 +686,7 @@ function RoadmapSection() {
 // ==========================================
 // 10. PROGRAM PRIZES
 // ==========================================
+
 function ProgramPrizes() {
   return (
     <>
@@ -715,6 +757,7 @@ function ProgramPrizes() {
 // ==========================================
 // 11. REWARDS AND BENEFITS
 // ==========================================
+
 function RewardsAndBenefits() {
   return (
     <div className="prizes-perks-row prizes-reveal" aria-label="Program benefits">
@@ -746,6 +789,8 @@ function RewardsAndBenefits() {
   )
 }
 
+/** Combines program prizes, rewards, and participant benefits. */
+
 function PrizesSection() {
   const sectionRef = useScrollReveal(0.1, '.prizes-reveal', 'is-visible')
 
@@ -762,6 +807,7 @@ function PrizesSection() {
 // ==========================================
 // 12. WHY JOIN
 // ==========================================
+
 const engineeringTeam = imgTeam
 const workshopImage = whyGroupImage
 const projectImage = whySketchImage
@@ -779,6 +825,17 @@ const whyIcons = {
   prize: <Trophy aria-hidden="true" strokeWidth={1.8} />,
 }
 
+/**
+ * Renders one illustrated reason to join the program.
+ *
+ * @param {Object} props
+ * @param {string} props.className - Optional visual variant.
+ * @param {React.ReactNode} props.icon - Decorative feature icon.
+ * @param {string} props.title - Feature heading.
+ * @param {string} props.image - Supporting image source.
+ * @param {string} props.imagePosition - Optional image focal position.
+ */
+
 function FeatureCard({ className = '', icon, title, image, imagePosition }) {
   return (
     <article className={`why-feature-card ${className} reveal`}>
@@ -790,6 +847,8 @@ function FeatureCard({ className = '', icon, title, image, imagePosition }) {
     </article>
   )
 }
+
+/** Presents the principal benefits of joining the hackathon. */
 
 function WhyJoinSection() {
   const ref = useScrollReveal(0.1)
@@ -849,6 +908,7 @@ function WhyJoinSection() {
 // ==========================================
 // 13. CAREER OPPORTUNITIES
 // ==========================================
+
 const careerFeats = [
   { title: 'Full-Time Employment', icon: <BriefcaseBusiness className="icon" aria-hidden="true" strokeWidth={1.6} /> },
   { title: 'Internships', icon: <GraduationCap className="icon" aria-hidden="true" strokeWidth={1.6} /> },
@@ -857,6 +917,8 @@ const careerFeats = [
   { title: 'Future Hiring Pipeline', icon: <TrendingUp className="icon" aria-hidden="true" strokeWidth={1.6} /> },
   { title: 'Talent Pool', icon: <UsersRound className="icon" aria-hidden="true" strokeWidth={1.6} /> },
 ]
+
+/** Connects successful participation with future career opportunities. */
 
 function CareerSection() {
   const ref = useScrollReveal(0.12)
@@ -909,6 +971,7 @@ function CareerSection() {
 // ==========================================
 // 14. REGISTRATION CTA
 // ==========================================
+
 const QrSvg = () => (
   <svg width="140" height="140" viewBox="0 0 140 140">
     <rect width="140" height="140" fill="#fff" />
@@ -931,6 +994,8 @@ const QrSvg = () => (
     </g>
   </svg>
 )
+
+/** Provides registration details and primary enrollment actions. */
 
 function RegisterSection() {
   const ref = useScrollReveal(0.12)
@@ -987,6 +1052,7 @@ function RegisterSection() {
 // ==========================================
 // 15. FAQ SECTION
 // ==========================================
+
 const faqs = [
   { q: 'Who can participate?', a: 'Final-year students, recent graduates, working professionals, and technology enthusiasts.' },
   { q: 'Is there any registration fee?', a: 'Registration is free. If a fee applies for your track, it will be confirmed during registration.' },
@@ -995,6 +1061,8 @@ const faqs = [
   { q: 'Is offline attendance mandatory?', a: 'Yes. All participants must attend the Grand Finale and Final Evaluation in person.' },
   { q: 'Will I receive a certificate?', a: 'Yes. Eligible participants receive certificates based on their participation and performance.' },
 ]
+
+/** Renders expandable answers to common participant questions. */
 
 function FaqSection() {
   const [activeFaqIndex, setActiveFaqIndex] = useState(0)
@@ -1038,6 +1106,9 @@ function FaqSection() {
 // ==========================================
 // MAIN HACKATHON PAGE COMPONENT
 // ==========================================
+
+/** Composes every hackathon section into the complete program page. */
+
 export default function Hackathon() {
   return (
     <main className="hackathon-page">
