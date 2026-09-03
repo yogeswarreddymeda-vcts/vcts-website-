@@ -30,6 +30,7 @@ import {
   UserRound,
   UsersRound,
 } from 'lucide-react'
+import EngineeringTeam from '../components/EngineeringTeam/EngineeringTeam.jsx'
 
 // Assets
 
@@ -41,11 +42,6 @@ import buildArchitectureImage from '../assets/image/Hackathon/build-stage-archit
 import buildDesignImage from '../assets/image/Hackathon/build-stage-design.png'
 import buildPrototypeImage from '../assets/image/Hackathon/build-stage-prototype.png'
 import buildImpactImage from '../assets/image/Hackathon/build-stage-impact.png'
-import engineeringTeamImage from '../assets/image/Hackathon/team-crossfunctional-nobg.png'
-import engineeringEmbeddedImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 06_12_15 PM (2).png'
-import engineeringFpgaImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 06_12_14 PM (1).png'
-import engineeringBoardImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 06_12_18 PM (4).png'
-import engineeringProductImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 06_12_16 PM (3).png'
 import imgTeam from '../assets/image/Hackathon/engineering-team.webp'
 import imgProductEng from '../assets/image/Hackathon/domain-product-engineering.webp'
 import focusDomainsShowcase from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 11_57_03 AM.png'
@@ -341,96 +337,63 @@ function WhoSection() {
 // 6. WHAT WE ENGINEER
 // ==========================================
 
-function EngineeringShowcase() {
-  const ref = useScrollReveal(0.08, '.engineering-showcase__animate', 'is-visible')
+
+const engineeringCapabilities = [
+  {
+    title: 'Embedded Systems & Firmware',
+    description: 'Build dependable embedded platforms from low-level firmware through complete system integration.',
+    tags: ['Embedded Firmware', 'BSP & Device Drivers', 'RTOS & Middleware', 'System Integration'],
+    icon: Settings,
+  },
+  {
+    title: 'FPGA Design & Verification',
+    description: 'Design, verify, and validate programmable hardware for demanding real-world applications.',
+    tags: ['FPGA Design (RTL)', 'Verification & Validation', 'IP Development', 'High-Speed Interfaces'],
+    icon: Box,
+  },
+  {
+    title: 'Board Design & Hardware Engineering',
+    description: 'Take electronics from schematic and PCB design through prototype bring-up and validation.',
+    tags: ['Schematic & PCB Design', 'Power & Signal Integrity', 'Prototyping', 'Hardware Validation'],
+    icon: FlaskConical,
+  },
+  {
+    title: 'System & Product Engineering',
+    description: 'Turn engineering concepts into integrated, tested, and product-ready solutions.',
+    tags: ['System Architecture', 'Prototype Development', 'Integration & Testing', 'Productization Support'],
+    icon: Target,
+  },
+]
+
+/** Presents the four engineering capabilities as a concise card grid. */
+
+function EngineeringCapabilityCards() {
+  const ref = useScrollReveal(0.12, '.engineering-capabilities__reveal', 'is-visible')
 
   return (
-    <section id="engineering-showcase" ref={ref} className="engineering-showcase" aria-label="What We Engineer at VConnectTech Systems">
-      <h2 className="sr-only">What We Engineer</h2>
-      <svg className="engineering-showcase__artwork" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Four engineering capabilities connected by a cross-functional team">
-        <desc>Four engineering disciplines connected around a cross-functional team.</desc>
-        <defs>
-          <filter id="engineering-ribbon-shadow" x="-15%" y="-25%" width="130%" height="160%"><feDropShadow dx="0" dy="7" stdDeviation="9" floodColor="#173963" floodOpacity=".12" /></filter>
-          <clipPath id="engineering-embedded-clip"><path d="M0 0 H49 C193 83 370 200 629 333 C510 409 322 505 0 548 Z" /></clipPath>
-          <clipPath id="engineering-fpga-clip"><path d="M1672 0 H1623 C1478 83 1300 200 1044 333 C1162 409 1350 505 1672 548 Z" /></clipPath>
-          <clipPath id="engineering-board-clip"><path d="M0 620 C130 610 250 579 346 542 L676 772 C558 857 419 913 269 941 H0 Z" /></clipPath>
-          <clipPath id="engineering-product-clip"><path d="M1672 620 C1542 610 1421 579 1314 542 L982 772 C1101 857 1241 913 1403 941 H1672 Z" /></clipPath>
-          <path id="engineering-embedded-copy" d="M108 559 C264 545 443 486 594 391" />
-          <path id="engineering-fpga-copy" d="M1078 389 C1229 486 1408 545 1564 559" />
-          <path id="engineering-board-copy" d="M374 913 C478 873 567 822 648 766" />
-          <path id="engineering-system-copy" d="M1024 767 C1106 824 1195 874 1298 914" />
-        </defs>
-
-        <rect width="1672" height="941" fill="#fff" />
-
-        <g className="engineering-showcase__photos" aria-hidden="true">
-          <g className="engineering-showcase__photo engineering-showcase__photo--left engineering-showcase__animate" clipPath="url(#engineering-embedded-clip)">
-            <image href={engineeringEmbeddedImage} x="0" y="0" width="650" height="548" preserveAspectRatio="xMidYMid slice" />
-            <path d="M0 0 H49 C193 83 370 200 629 333 C510 409 322 505 0 548 Z" />
-          </g>
-          <g className="engineering-showcase__photo engineering-showcase__photo--right engineering-showcase__animate" clipPath="url(#engineering-fpga-clip)">
-            <image href={engineeringFpgaImage} x="1022" y="0" width="650" height="548" preserveAspectRatio="xMidYMid slice" />
-            <path d="M1672 0 H1623 C1478 83 1300 200 1044 333 C1162 409 1350 505 1672 548 Z" />
-          </g>
-          <g className="engineering-showcase__photo engineering-showcase__photo--left engineering-showcase__photo--lower engineering-showcase__animate" clipPath="url(#engineering-board-clip)">
-            <image href={engineeringBoardImage} x="0" y="542" width="676" height="399" preserveAspectRatio="xMidYMid slice" />
-            <path d="M0 620 C130 610 250 579 346 542 L676 772 C558 857 419 913 269 941 H0 Z" />
-          </g>
-          <g className="engineering-showcase__photo engineering-showcase__photo--right engineering-showcase__photo--lower engineering-showcase__animate" clipPath="url(#engineering-product-clip)">
-            <image href={engineeringProductImage} x="982" y="542" width="690" height="399" preserveAspectRatio="xMidYMid slice" />
-            <path d="M1672 620 C1542 610 1421 579 1314 542 L982 772 C1101 857 1241 913 1403 941 H1672 Z" />
-          </g>
-        </g>
-
-        <g className="engineering-showcase__ribbons engineering-showcase__animate" filter="url(#engineering-ribbon-shadow)" aria-hidden="true">
-          <path className="engineering-showcase__ribbon engineering-showcase__ribbon--left" d="M44 0 C196 84 374 205 629 333 C532 397 429 458 330 504 C236 548 127 578 0 588 V610 C136 599 253 568 353 522 C457 474 565 410 675 335 C566 252 397 137 214 29 L165 0 Z" fill="#fff" />
-          <path className="engineering-showcase__ribbon engineering-showcase__ribbon--right" d="M1628 0 C1477 84 1299 205 1044 333 C1140 397 1244 458 1342 504 C1437 548 1545 578 1672 588 V610 C1536 599 1419 568 1319 522 C1215 474 1107 410 997 335 C1106 252 1275 137 1458 29 L1507 0 Z" fill="#fff" />
-          <path className="engineering-showcase__ribbon engineering-showcase__ribbon--left engineering-showcase__ribbon--lower" d="M346 542 L676 772 C568 852 461 907 357 941 H268 C395 904 508 844 628 767 L326 556 Z" fill="#fff" />
-          <path className="engineering-showcase__ribbon engineering-showcase__ribbon--right engineering-showcase__ribbon--lower" d="M1314 542 L982 772 C1091 852 1198 907 1314 941 H1404 C1277 904 1164 844 1044 767 L1334 556 Z" fill="#fff" />
-        </g>
-
-        <image className="engineering-showcase__team-image engineering-showcase__animate engineering-showcase__animate--team" href={engineeringTeamImage} x="526" y="250" width="620" height="266" preserveAspectRatio="xMidYMid meet" aria-hidden="true" />
-
-        <g className="engineering-showcase__body-copy engineering-showcase__animate engineering-showcase__animate--copy">
-          <g fill="#fff">
-            <rect x="32" y="264" width="28" height="3" fill="#087df2" />
-            <text className="engineering-showcase__heading" x="32" y="305" fontSize="25" fontWeight="700">Embedded Systems</text><text className="engineering-showcase__heading" x="32" y="337" fontSize="25" fontWeight="700">&amp; Firmware</text>
-            <text x="32" y="372" fontSize="15" fontWeight="500">Build dependable embedded platforms</text><text x="32" y="395" fontSize="15" fontWeight="500">from low-level firmware through</text><text x="32" y="418" fontSize="15" fontWeight="500">complete system integration.</text>
-            <rect x="1612" y="264" width="28" height="3" fill="#087df2" />
-            <text className="engineering-showcase__heading" x="1640" y="305" fontSize="25" fontWeight="700" textAnchor="end">FPGA Design</text><text className="engineering-showcase__heading" x="1640" y="337" fontSize="25" fontWeight="700" textAnchor="end">&amp; Verification</text>
-            <text x="1640" y="372" fontSize="15" fontWeight="500" textAnchor="end">Design, verify, and validate</text><text x="1640" y="395" fontSize="15" fontWeight="500" textAnchor="end">programmable hardware for</text><text x="1640" y="418" fontSize="15" fontWeight="500" textAnchor="end">demanding real-world applications.</text>
-            <rect x="32" y="682" width="28" height="3" fill="#087df2" />
-            <text className="engineering-showcase__heading" x="32" y="720" fontSize="25" fontWeight="700">Board Design &amp;</text><text className="engineering-showcase__heading" x="32" y="752" fontSize="25" fontWeight="700">Hardware Engineering</text>
-            <text x="32" y="788" fontSize="15" fontWeight="500">Take electronics from schematic and</text><text x="32" y="811" fontSize="15" fontWeight="500">PCB design through prototype bring-up</text><text x="32" y="834" fontSize="15" fontWeight="500">and validation.</text>
-            <rect x="1612" y="682" width="28" height="3" fill="#087df2" />
-            <text className="engineering-showcase__heading" x="1640" y="720" fontSize="25" fontWeight="700" textAnchor="end">System &amp; Product</text><text className="engineering-showcase__heading" x="1640" y="752" fontSize="25" fontWeight="700" textAnchor="end">Engineering</text>
-            <text x="1640" y="788" fontSize="15" fontWeight="500" textAnchor="end">Turn engineering concepts into</text><text x="1640" y="811" fontSize="15" fontWeight="500" textAnchor="end">integrated, tested, and</text><text x="1640" y="834" fontSize="15" fontWeight="500" textAnchor="end">product-ready solutions.</text>
-          </g>
-
-          <g className="engineering-showcase__technical-copy" fill="#062653" fontSize="10.4" fontWeight="500"><text textLength="460" lengthAdjust="spacingAndGlyphs"><textPath href="#engineering-embedded-copy">● Embedded Firmware • BSP &amp; Device Drivers • RTOS &amp; Middleware • System Integration</textPath></text><text textLength="460" lengthAdjust="spacingAndGlyphs"><textPath href="#engineering-fpga-copy">● FPGA Design (RTL) • Verification &amp; Validation • IP Development • High-Speed Interfaces</textPath></text><text textLength="265" lengthAdjust="spacingAndGlyphs"><textPath href="#engineering-board-copy">● Power &amp; Signal Integrity • Prototyping • Hardware Validation</textPath></text><text textLength="265" lengthAdjust="spacingAndGlyphs"><textPath href="#engineering-system-copy">● System Architecture • Prototype Development • Integration &amp; Testing</textPath></text></g>
-
-          <text className="engineering-showcase__heading" x="836" y="565" fill="#062653" fontSize="20" fontWeight="700" textAnchor="middle">Cross-functional team</text>
-          <text x="836" y="592" fill="#62718b" fontSize="15" fontWeight="500" textAnchor="middle">Balanced teams of 5–8 members</text>
-          <g fill="none" stroke="#087df2" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <g transform="translate(657 625)"><rect x="10" y="10" width="25" height="25" rx="2" /><path d="M16 5v6m7-6v6m7-6v6m7 5h6m-6 8h6m-6 8h6M16 35v6m7-6v6m7-6v6M5 16h6m-6 8h6m-6 8h6" /><rect x="18" y="18" width="9" height="9" /></g>
-            <g transform="translate(732 625)"><rect x="6" y="8" width="34" height="28" rx="3" /><path d="m17 18-5 5 5 5m12-10 5 5-5 5m-7 3 4-16" /></g>
-            <g transform="translate(808 625)"><path d="m23 6 15 8v18l-15 8-15-8V14zM8 14l15 8 15-8M23 22v18" /></g>
-            <g transform="translate(883 625)"><rect x="9" y="10" width="31" height="31" rx="3" /><path d="M17 6v8m15-8v8M15 21h19m-19 7h12m-12 6h8" /></g>
-            <g transform="translate(959 625)"><path d="M8 40h34M12 40V26h8v14m5 0V18h8v22m5 0V8h8v32" /></g>
-          </g>
-          <g className="engineering-showcase__technical-copy" fill="#062653" fontSize="11" fontWeight="500" textAnchor="middle"><text x="680" y="684">Hardware</text><text x="755" y="684">Software</text><text x="831" y="684">Product</text><text x="906" y="684">Project</text><text x="982" y="684">Business</text></g>
-          <text className="engineering-showcase__display" x="836" y="128" fill="#062653" fontSize="64" fontWeight="700" textAnchor="middle" letterSpacing="-2.3">What We <tspan fill="#087df2">Engineer</tspan></text>
-          <text className="engineering-showcase__heading" x="836" y="184" fill="#062653" fontSize="27" fontWeight="700" textAnchor="middle">At VConnectTech Systems.</text>
-        </g>
-      </svg>
-
-      <div className="engineering-showcase__mobile">
-        <h2 className="engineering-showcase__animate">What We <span>Engineer</span></h2><p className="engineering-showcase__animate">At VConnectTech Systems.</p>
-        <article className="engineering-showcase__animate"><img src={engineeringEmbeddedImage} alt="" aria-hidden="true" /><h3>Embedded Systems &amp; Firmware</h3><p>Build dependable embedded platforms from low-level firmware through complete system integration.</p><p className="engineering-showcase__capabilities">Embedded Firmware • BSP &amp; Device Drivers • RTOS &amp; Middleware • System Integration</p></article>
-        <article className="engineering-showcase__animate"><img src={engineeringFpgaImage} alt="" aria-hidden="true" /><h3>FPGA Design &amp; Verification</h3><p>Design, verify, and validate programmable hardware for demanding real-world applications.</p><p className="engineering-showcase__capabilities">FPGA Design (RTL) • Verification &amp; Validation • IP Development • High-Speed Interfaces</p></article>
-        <div className="engineering-showcase__mobile-team engineering-showcase__animate"><img src={engineeringTeamImage} alt="A cross-functional engineering team collaborating around a table" /><h3>Cross-functional team</h3><p>Balanced teams of 5–8 members</p></div>
-        <article className="engineering-showcase__animate"><img src={engineeringBoardImage} alt="" aria-hidden="true" /><h3>Board Design &amp; Hardware Engineering</h3><p>Take electronics from schematic and PCB design through prototype bring-up and validation.</p><p className="engineering-showcase__capabilities">Power &amp; Signal Integrity • Prototyping • Hardware Validation</p></article>
-        <article className="engineering-showcase__animate"><img src={engineeringProductImage} alt="" aria-hidden="true" /><h3>System &amp; Product Engineering</h3><p>Turn engineering concepts into integrated, tested, and product-ready solutions.</p><p className="engineering-showcase__capabilities">System Architecture • Prototype Development • Integration &amp; Testing</p></article>
+    <section id="engineering-showcase" ref={ref} className="engineering-capabilities" aria-labelledby="engineering-capabilities-title">
+      <div className="engineering-capabilities__container">
+        <header className="engineering-capabilities__heading engineering-capabilities__reveal">
+          <h2 id="engineering-capabilities-title">What We <span>Engineer</span></h2>
+          <p>At VConnectTech Systems.</p>
+        </header>
+        <div className="engineering-capabilities__grid">
+          {engineeringCapabilities.map(({ title, description, tags, icon: Icon }, index) => (
+            <article className="engineering-capability-card engineering-capabilities__reveal" key={title} style={{ '--card-order': index }}>
+              <div className="engineering-capability-card__icon" aria-hidden="true">
+                <Icon strokeWidth={1.8} />
+              </div>
+              <div className="engineering-capability-card__content">
+                <h3>{title}</h3>
+                <span className="engineering-capability-card__rule" aria-hidden="true" />
+                <p>{description}</p>
+                <ul aria-label={`${title} capabilities`}>
+                  {tags.map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -1036,7 +999,8 @@ export default function Hackathon() {
       <HeroSection />
       <AboutSection />
       <WhoSection />
-      <EngineeringShowcase />
+      <EngineeringCapabilityCards />
+      <EngineeringTeam />
       <DomainsSection />
       <JourneySection />
       <OutcomesSection />

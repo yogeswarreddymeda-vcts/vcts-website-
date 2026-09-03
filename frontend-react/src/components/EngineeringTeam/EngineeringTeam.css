@@ -1,0 +1,552 @@
+.engineering-team {
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0 clamp(16px, 2vw, 32px);
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--section-surface, #ffffff);
+  --team-navy: var(--ink, #061d46);
+  --team-blue: var(--green, #0868e8);
+}
+
+.engineering-team__viewport {
+  width: min(100%, 1320px);
+  margin-inline: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.engineering-team__canvas {
+  position: relative;
+  width: 100%;
+  min-width: 900px;
+  aspect-ratio: 1672 / 942;
+  overflow: hidden;
+  container-type: inline-size;
+  box-sizing: border-box;
+  background: var(--section-surface, #ffffff);
+  color: var(--team-navy);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --team-artwork-gap: clamp(20px, 2cqw, 28px);
+}
+
+.engineering-team__intro {
+  position: absolute;
+  z-index: 2;
+  top: 4.75%;
+  left: 50%;
+  width: max-content;
+  max-width: 80%;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.engineering-team__intro h2 {
+  margin: 0;
+  color: var(--team-navy);
+  font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+  font-size: clamp(38px, 4.25cqw, 56px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.08;
+}
+
+.engineering-team__intro > span {
+  display: block;
+  width: 3.15cqw;
+  height: .2cqw;
+  margin: 1cqw auto .85cqw;
+  background: var(--team-blue);
+}
+
+.engineering-team__intro p {
+  margin: 0;
+  color: #334563;
+  font-size: clamp(16px, 1.35cqw, 18px);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.7;
+}
+
+.engineering-team__artwork {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: translateY(var(--team-artwork-gap));
+}
+
+.engineering-team__connectors {
+  fill: var(--team-blue);
+  stroke: var(--team-blue);
+  stroke-width: 1.35;
+  vector-effect: non-scaling-stroke;
+}
+
+.engineering-team__connectors path {
+  fill: none;
+}
+
+.engineering-team__count {
+  position: absolute;
+  top: calc(77.75% + var(--team-artwork-gap));
+  left: 3.55%;
+  color: var(--team-blue);
+}
+
+.engineering-team__count strong,
+.engineering-team__count span,
+.engineering-team__role strong,
+.engineering-team__role span {
+  display: block;
+}
+
+.engineering-team__count strong {
+  font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+  font-size: 7.75cqw;
+  font-weight: 700;
+  letter-spacing: -.07em;
+  line-height: .82;
+}
+
+.engineering-team__count span {
+  margin-top: .5cqw;
+  color: var(--team-navy);
+  font-size: 2.05cqw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.engineering-team__role {
+  position: absolute;
+  top: calc(83.45% + var(--team-artwork-gap));
+  margin: 0;
+  font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(15px, 1.3cqw, 17px);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.35;
+}
+
+.engineering-team__role strong {
+  color: var(--team-blue);
+}
+
+.engineering-team__role span {
+  color: var(--team-navy);
+}
+
+.engineering-team__role--hardware { left: 23.05%; }
+.engineering-team__role--software { left: 37.45%; }
+.engineering-team__role--product { left: 52.45%; }
+.engineering-team__role--project { left: 67.65%; }
+.engineering-team__role--sales { left: 82.05%; }
+
+.engineering-team__statement {
+  position: absolute;
+  z-index: 2;
+  top: 5.25%;
+  right: 2.85%;
+  bottom: 5.15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.45cqw;
+  color: #334563;
+}
+
+.engineering-team__statement span {
+  width: .2cqw;
+  height: 2.35cqw;
+  flex: none;
+  background: var(--team-blue);
+}
+
+.engineering-team__statement p {
+  margin: 0;
+  font-size: clamp(16px, 1.35cqw, 18px);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.7;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+}
+
+.engineering-team__mobile {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .engineering-team__canvas { width: 900px; }
+}
+
+@media (max-width: 767px) {
+  .engineering-team {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .engineering-team__viewport {
+    display: none;
+  }
+
+  .engineering-team__mobile {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 943 / 1900;
+    overflow: hidden;
+    container-type: inline-size;
+    background: var(--section-surface, #ffffff);
+    color: var(--team-navy);
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .engineering-team__mobile-intro {
+    position: absolute;
+    z-index: 2;
+    top: 2.05%;
+    left: 50%;
+    width: 84%;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .engineering-team__mobile-intro h2 {
+    margin: 0;
+    color: var(--team-navy);
+    font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+    font-size: clamp(38px, 6.65cqw, 56px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.12;
+  }
+
+  .engineering-team__mobile-intro > span {
+    display: block;
+    width: 6.25cqw;
+    height: .55cqw;
+    margin: 2.15cqw auto 2.25cqw;
+    background: var(--team-blue);
+  }
+
+  .engineering-team__mobile-intro p {
+    margin: 0;
+    color: #334563;
+    font-size: clamp(15.5px, 2.15cqw, 18px);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.65;
+    word-spacing: normal;
+  }
+
+  .engineering-team__mobile-artwork {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .engineering-team__mobile-connectors {
+    fill: var(--team-blue);
+    stroke: var(--team-blue);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .engineering-team__mobile-connectors path {
+    fill: none;
+  }
+
+  .engineering-team__mobile-role {
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(14px, 2.2cqw, 17px);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.35;
+    word-spacing: normal;
+  }
+
+  .engineering-team__mobile-role strong,
+  .engineering-team__mobile-role span {
+    display: block;
+  }
+
+  .engineering-team__mobile-role strong {
+    color: var(--team-blue);
+  }
+
+  .engineering-team__mobile-role span {
+    margin-top: .3cqw;
+    color: var(--team-navy);
+  }
+
+  .engineering-team__mobile-role--hardware { top: 56.2cqw; left: 63.9%; }
+  .engineering-team__mobile-role--software { top: 82.3cqw; left: 63.9%; }
+  .engineering-team__mobile-role--product { top: 110cqw; left: 63.9%; }
+  .engineering-team__mobile-role--project { top: 155.8cqw; left: 10.85%; }
+  .engineering-team__mobile-role--sales { top: 155.8cqw; left: 42.85%; }
+
+  .engineering-team__mobile-count {
+    position: absolute;
+    top: 164.7cqw;
+    left: 9.75%;
+  }
+
+  .engineering-team__mobile-count strong,
+  .engineering-team__mobile-count span {
+    display: block;
+  }
+
+  .engineering-team__mobile-count strong {
+    color: var(--team-blue);
+    font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+    font-size: clamp(64px, 13.4cqw, 112px);
+    font-weight: 700;
+    letter-spacing: -.075em;
+    line-height: .86;
+  }
+
+  .engineering-team__mobile-count span {
+    margin-top: .55cqw;
+    color: var(--team-navy);
+    font-size: clamp(22px, 4cqw, 32px);
+    font-weight: 700;
+    letter-spacing: -.035em;
+    line-height: 1;
+  }
+
+  .engineering-team__mobile-statement {
+    position: absolute;
+    right: 8%;
+    top: 185.4cqw;
+    bottom: auto;
+    left: 10.1%;
+    margin: 0;
+    color: #334563;
+    font-size: clamp(15.5px, 2.15cqw, 18px);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.65;
+    word-spacing: normal;
+  }
+}
+
+/* The team assembles in order as the section enters the viewport. */
+
+.engineering-team__role--hardware,
+.engineering-team__mobile-role--hardware { --role-order: 0; }
+
+.engineering-team__role--software,
+.engineering-team__mobile-role--software { --role-order: 1; }
+
+.engineering-team__role--product,
+.engineering-team__mobile-role--product { --role-order: 2; }
+
+.engineering-team__role--project,
+.engineering-team__mobile-role--project { --role-order: 3; }
+
+.engineering-team__role--sales,
+.engineering-team__mobile-role--sales { --role-order: 4; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .engineering-team__intro h2,
+  .engineering-team__mobile-intro h2 {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .engineering-team__intro > span,
+  .engineering-team__mobile-intro > span {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .engineering-team__intro p,
+  .engineering-team__mobile-intro p {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .engineering-team.is-visible .engineering-team__intro h2,
+  .engineering-team.is-visible .engineering-team__mobile-intro h2 {
+    animation: team-copy-rise .72s cubic-bezier(.16, 1, .3, 1) .05s both;
+  }
+
+  .engineering-team.is-visible .engineering-team__intro > span,
+  .engineering-team.is-visible .engineering-team__mobile-intro > span {
+    animation: team-rule-draw .6s cubic-bezier(.16, 1, .3, 1) .28s both;
+  }
+
+  .engineering-team.is-visible .engineering-team__intro p,
+  .engineering-team.is-visible .engineering-team__mobile-intro p {
+    animation: team-copy-rise .68s cubic-bezier(.16, 1, .3, 1) .38s both;
+  }
+
+  .engineering-team__letter {
+    opacity: 0;
+    transform: translateY(34px) scale(.94);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .engineering-team.is-visible .engineering-team__letter {
+    animation: team-letter-assemble .9s cubic-bezier(.16, 1, .3, 1)
+      calc(.45s + var(--team-order) * .14s) both;
+  }
+
+  .engineering-team__connectors path,
+  .engineering-team__mobile-connectors path {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+  }
+
+  .engineering-team.is-visible .engineering-team__connectors path,
+  .engineering-team.is-visible .engineering-team__mobile-connectors path {
+    animation: team-connector-draw .8s ease-out 1.05s both;
+  }
+
+  .engineering-team__connectors circle,
+  .engineering-team__mobile-connectors circle {
+    opacity: 0;
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .engineering-team.is-visible .engineering-team__connectors circle,
+  .engineering-team.is-visible .engineering-team__mobile-connectors circle {
+    animation: team-dot-pop .4s cubic-bezier(.34, 1.56, .64, 1) 1.7s both;
+  }
+
+  .engineering-team__role,
+  .engineering-team__mobile-role {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .engineering-team.is-visible .engineering-team__role,
+  .engineering-team.is-visible .engineering-team__mobile-role {
+    animation: team-copy-rise .55s cubic-bezier(.16, 1, .3, 1)
+      calc(1.35s + var(--role-order) * .08s) both;
+  }
+
+  .engineering-team__count,
+  .engineering-team__mobile-count {
+    opacity: 0;
+    transform: translateY(18px) scale(.9);
+    transform-origin: left bottom;
+  }
+
+  .engineering-team.is-visible .engineering-team__count,
+  .engineering-team.is-visible .engineering-team__mobile-count {
+    animation: team-count-land .72s cubic-bezier(.34, 1.56, .64, 1) 1.72s both;
+  }
+
+  .engineering-team__statement,
+  .engineering-team__mobile-statement {
+    opacity: 0;
+  }
+
+  .engineering-team.is-visible .engineering-team__statement,
+  .engineering-team.is-visible .engineering-team__mobile-statement {
+    animation: team-statement-enter .7s cubic-bezier(.16, 1, .3, 1) 1.85s both;
+  }
+
+  .engineering-team__statement > span {
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+
+  .engineering-team.is-visible .engineering-team__statement > span {
+    animation: team-vertical-rule .55s ease-out 2.1s both;
+  }
+}
+
+@keyframes team-copy-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes team-rule-draw {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes team-letter-assemble {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(.94);
+    filter: saturate(.45) blur(5px);
+  }
+  65% { filter: saturate(1.08) blur(0); }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: saturate(1) blur(0);
+  }
+}
+
+@keyframes team-connector-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes team-dot-pop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes team-count-land {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes team-statement-enter {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes team-vertical-rule {
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engineering-team__intro *,
+  .engineering-team__mobile-intro *,
+  .engineering-team__letter,
+  .engineering-team__connectors *,
+  .engineering-team__mobile-connectors *,
+  .engineering-team__role,
+  .engineering-team__mobile-role,
+  .engineering-team__count,
+  .engineering-team__mobile-count,
+  .engineering-team__statement,
+  .engineering-team__mobile-statement {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
