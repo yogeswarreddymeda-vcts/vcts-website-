@@ -10,10 +10,23 @@ import './Footer.css';
 
 /**
  * @param {Object} props
- * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ * @param {(page: string, targetId?: string) => void} props.setCurrentPage - Updates the active client-side page and optional section target.
  */
 
 export default function Footer({ setCurrentPage }) {
+  const navigate = (event, page) => {
+    event.preventDefault();
+    if (!page) return;
+    setCurrentPage(page, 'top');
+  };
+
+  const navigatePage = (event, page) => {
+    event.preventDefault();
+    if (!page) return;
+    setCurrentPage(page);
+  };
+
+
   return (
     <footer className="site-footer" data-testid="site-footer">
       <div className="footer-content">
@@ -26,15 +39,10 @@ export default function Footer({ setCurrentPage }) {
               className="footer-logo"
               role="button"
               tabIndex="0"
-              onClick={() => {
-                setCurrentPage('home');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onClick={(event) => navigatePage(event, 'home')}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault();
-                  setCurrentPage('home');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  navigatePage(event, 'home');
                 }
               }}
             >
@@ -47,11 +55,11 @@ export default function Footer({ setCurrentPage }) {
               <a href="#" className="social-icon" aria-label="LinkedIn">
                 <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
               </a>
-              <a href="#" className="social-icon" aria-label="Twitter">
-                <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+              <a href="#" className="social-icon" aria-label="X">
+                <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" /></svg>
               </a>
-              <a href="#" className="social-icon" aria-label="YouTube">
-                <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+              <a href="#" className="social-icon" aria-label="Instagram">
+                <svg fill="currentColor" viewBox="0 0 448 512" width="18" height="18"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141Zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7Zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8Zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1S3.3 127.5 1.5 163.4c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8ZM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1Z" /></svg>
               </a>
             </div>
           </section>
@@ -65,13 +73,9 @@ export default function Footer({ setCurrentPage }) {
             </h3>
             <ul className="links-list">
               <li>
-                <a 
+                <a
                   href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('home');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'home')}
                 >
                   Home <span className="chevron">&gt;</span>
                 </a>
@@ -79,37 +83,15 @@ export default function Footer({ setCurrentPage }) {
               <li>
                 <a
                   href="/about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('about');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'about')}
                 >
                   About Us <span className="chevron">&gt;</span>
                 </a>
               </li>
               <li>
-                <a 
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('home');
-                    setTimeout(() => {
-                      document.getElementById('our-services')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 50);
-                  }}
-                >
-                  Services <span className="chevron">&gt;</span>
-                </a>
-              </li>
-              <li>
                 <a
                   href="/technologies"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('technologies');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'technologies')}
                 >
                   Technologies <span className="chevron">&gt;</span>
                 </a>
@@ -117,11 +99,7 @@ export default function Footer({ setCurrentPage }) {
               <li>
                 <a
                   href="/hackathon"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('hackathon');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'hackathon')}
                 >
                   Hackathon <span className="chevron">&gt;</span>
                 </a>
@@ -130,11 +108,7 @@ export default function Footer({ setCurrentPage }) {
               <li>
                 <a
                   href="/careers"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('careers');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'careers')}
                 >
                   Careers <span className="chevron">&gt;</span>
                 </a>
@@ -142,11 +116,7 @@ export default function Footer({ setCurrentPage }) {
               <li>
                 <a
                   href="/contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('contact');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(event) => navigatePage(event, 'contact')}
                 >
                   Contact Us <span className="chevron">&gt;</span>
                 </a>
@@ -163,37 +133,25 @@ export default function Footer({ setCurrentPage }) {
             </h3>
             <ul className="links-list">
               <li>
-                <a 
-                  href="/vlsi"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('vlsi');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a
+                  href="/vlsi#top"
+                  onClick={(event) => navigate(event, 'vlsi')}
                 >
                   VLSI Engineering <span className="chevron">&gt;</span>
                 </a>
               </li>
               <li>
-                <a 
-                  href="/embedded"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('embedded');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a
+                  href="/embedded#top"
+                  onClick={(event) => navigate(event, 'embedded')}
                 >
                   Embedded Engineering <span className="chevron">&gt;</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="/edgeai"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setCurrentPage('edgeai');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  href="/edgeai#top"
+                  onClick={(event) => navigate(event, 'edgeai')}
                 >
                   Edge AI Engineering <span className="chevron">&gt;</span>
                 </a>
@@ -233,10 +191,6 @@ export default function Footer({ setCurrentPage }) {
               <li>
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                 <a href="tel:+917032305762">+91 7032305762</a>
-              </li>
-              <li>
-                <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <span>VConnecTech Systems<br />4th floor, Plot No:6, Sector-3, HUDA Techno Enclave, Madhapur, Hyderabad, Telangana, India - 500081</span>
               </li>
             </ul>
           </address>

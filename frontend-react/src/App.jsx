@@ -52,15 +52,29 @@ const getCurrentRoutePage = () => {
 
 function App() {
   const [currentPage, setCurrentPageState] = useState(getCurrentRoutePage);
+  const [navigationRequest, setNavigationRequest] = useState(() => ({
+    key: 0,
+    targetId: window.location.hash.slice(1) || null,
+  }));
 
-  /** Updates the visible page and synchronizes the browser history entry. */
+  /** Updates the visible page, URL, and optional post-render section target. */
 
-  const setCurrentPage = useCallback((page) => {
+  const setCurrentPage = useCallback((page, targetId = null) => {
+    window.dispatchEvent(new CustomEvent('vcts:navigation-start'));
+
     const nextPath = routePaths[page] || '/';
+    const nextHash = targetId ? `#${targetId}` : '';
+    const nextUrl = `${nextPath}${nextHash}`;
     setCurrentPageState(page);
+    setNavigationRequest((request) => ({
+      key: request.key + 1,
+      targetId,
+    }));
 
     if (window.location.pathname !== nextPath) {
-      window.history.pushState({ page }, '', nextPath);
+      window.history.pushState({ page, targetId }, '', nextUrl);
+    } else if (window.location.hash !== nextHash) {
+      window.history.replaceState({ page, targetId }, '', nextUrl);
     }
   }, []);
 
@@ -70,16 +84,10 @@ function App() {
     const handlePopState = (event) => {
       setCurrentPageState(getCurrentRoutePage());
       const returnTarget = event.state?.returnTo || window.location.hash.slice(1);
-
-      if (returnTarget) {
-        window.requestAnimationFrame(() => {
-          window.requestAnimationFrame(() => {
-            document.getElementById(returnTarget)?.scrollIntoView({ behavior: 'auto', block: 'start' });
-          });
-        });
-      } else {
-        window.scrollTo({ top: 0 });
-      }
+      setNavigationRequest((request) => ({
+        key: request.key + 1,
+        targetId: returnTarget || null,
+      }));
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -94,18 +102,52 @@ function App() {
     sessionStorage.setItem('vcts_current_page', currentPage);
   }, [currentPage]);
 
-  // Resolve section hashes after the active React page has mounted.
+  // App owns post-navigation scrolling. Keep this immediate and non-smooth so
+  // page-specific scroll effects cannot intercept the route transition.
 
   useEffect(() => {
-    const targetId = window.location.hash.slice(1);
-    if (!targetId) return undefined;
+    const target = navigationRequest.targetId
+      ? document.getElementById(navigationRequest.targetId)
+      : null;
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
 
-    const frame = window.requestAnimationFrame(() => {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo({
+      top: target
+        ? target.getBoundingClientRect().top + window.scrollY
+        : 0,
+      left: 0,
+      behavior: 'auto'
+    });
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+
+    // Give mount-time effects one frame to settle, then correct one position
+    // change without starting another navigation loop.
+    const correctionFrame = requestAnimationFrame(() => {
+      const currentTarget = navigationRequest.targetId
+        ? document.getElementById(navigationRequest.targetId)
+        : null;
+      const expectedTop = currentTarget
+        ? currentTarget.getBoundingClientRect().top + window.scrollY
+        : 0;
+
+      if (Math.abs(window.scrollY - expectedTop) > 1) {
+        const correctionScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo({
+          top: currentTarget
+            ? currentTarget.getBoundingClientRect().top + window.scrollY
+            : 0,
+          left: 0,
+          behavior: 'auto'
+        });
+        document.documentElement.style.scrollBehavior = correctionScrollBehavior;
+      }
     });
 
-    return () => window.cancelAnimationFrame(frame);
-  }, [currentPage]);
+    return () => cancelAnimationFrame(correctionFrame);
+  }, [currentPage, navigationRequest]);
+
 
   // Maintain shared section-reveal classes for pages that use the global animation contract.
 
@@ -169,7 +211,7 @@ function App() {
     <>
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {currentPage === 'home' && <Home setCurrentPage={setCurrentPage} />}
-      {currentPage === 'vlsi' && <VLSI />}
+      {currentPage === 'vlsi' && <VLSI navigationRequest={navigationRequest} />}
       {currentPage === 'embedded' && <Embedded />}
       {currentPage === 'edgeai' && <EdgeAI />}
       {currentPage === 'technologies' && <Technologies />}

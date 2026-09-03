@@ -11,13 +11,13 @@ import { Activity, ArrowRight, CarFront, Cpu, Download, Server } from 'lucide-re
 import heroImage from '../assets/image/Home/home-hero-hardware.webp'
 import heroMobileImage from '../assets/image/Home/home-hero-hardware-mobile.webp'
 import valueSectionImage from '../assets/image/Home/home-section-01.webp'
-import capabilityVlsiImage from '../assets/image/Home/home-section-02.webp'
-import capabilityEmbeddedImage from '../assets/image/Home/home-section-03.webp'
-import capabilityEdgeAiImage from '../assets/image/Home/home-section-04.webp'
+import capabilityVlsiImage from '../assets/image/Home/capability-vlsi-wafer-fabrication.png'
+import capabilityEmbeddedImage from '../assets/image/Home/capability-embedded-systems-board.png'
+import capabilityEdgeAiImage from '../assets/image/Home/capability-edge-ai-surveillance.png'
 import engagementImage from '../assets/image/Home/unnamed.webp'
-import automotiveImage from '../assets/image/Home/home-section-05.webp'
-import industrialImage from '../assets/image/Home/home-section-06.webp'
-import healthcareImage from '../assets/image/Home/home-section-07.webp'
+import automotiveImage from '../assets/image/Home/industry-automotive-mobility.png'
+import industrialImage from '../assets/image/Home/industry-industrial-smart-factory.png'
+import healthcareImage from '../assets/image/Home/industry-healthcare-wearable.png'
 import consumerImage from '../assets/image/Home/home-section-08.webp'
 import industriesBackdrop from '../assets/image/Home/home-section-09.webp'
 
@@ -208,10 +208,10 @@ export default function Home({ setCurrentPage }) {
             <p>Our core technologies are deployed across harsh environments, regulated spaces, and ultra-high-reliability markets.</p>
           </header>
           <div className="home-industries-grid">
-            <article className="home-industry-card home-industry-card--wide" style={{ '--industry-image': `url(${automotiveImage})` }}><img className="home-industry-card-image" src={automotiveImage} alt="Automotive engineering vehicle" loading="lazy" decoding="async" /><div className="home-industry-overlay"><div className="home-industry-label">Automotive &amp; Mobility</div><p>Designing functional safety into ADAS, intelligent cabin tracking, and high-compute electronic control units (ECUs).</p></div></article>
-            <article className="home-industry-card" style={{ '--industry-image': `url(${industrialImage})` }}><div className="home-industry-overlay"><div className="home-industry-label">Industrial IoT &amp; Smart Factories</div><p>Powering predictive maintenance, localized computer vision for automated quality control, and robotic control systems.</p></div></article>
-            <article className="home-industry-card" style={{ '--industry-image': `url(${healthcareImage})` }}><div className="home-industry-overlay"><div className="home-industry-label">Healthcare &amp; Life Sciences</div><p>Engineering low-power, regulatory-compliant wearable medical monitors and real-time biosensor processing devices.</p></div></article>
-            <article className="home-industry-card home-industry-card--wide-bottom" style={{ '--industry-image': `url(${consumerImage})` }}><div className="home-industry-overlay"><div className="home-industry-label">Consumer &amp; Smart Spaces</div><p>Creating battery-optimized smart home hubs, secure edge cameras, and context-aware consumer electronics.</p></div></article>
+            <article className="home-industry-card home-industry-card--wide" style={{ '--industry-image': `url("${automotiveImage}")` }}><img className="home-industry-card-image" src={automotiveImage} alt="Automotive engineering vehicle" loading="lazy" decoding="async" /><div className="home-industry-overlay"><div className="home-industry-label">Automotive &amp; Mobility</div><p>Designing functional safety into ADAS, intelligent cabin tracking, and high-compute electronic control units (ECUs).</p></div></article>
+            <article className="home-industry-card" style={{ '--industry-image': `url("${industrialImage}")` }}><div className="home-industry-overlay"><div className="home-industry-label">Industrial IoT &amp; Smart Factories</div><p>Powering predictive maintenance, localized computer vision for automated quality control, and robotic control systems.</p></div></article>
+            <article className="home-industry-card" style={{ '--industry-image': `url("${healthcareImage}")` }}><div className="home-industry-overlay"><div className="home-industry-label">Healthcare &amp; Life Sciences</div><p>Engineering low-power, regulatory-compliant wearable medical monitors and real-time biosensor processing devices.</p></div></article>
+            <article className="home-industry-card home-industry-card--wide-bottom" style={{ '--industry-image': `url("${consumerImage}")` }}><div className="home-industry-overlay"><div className="home-industry-label">Consumer &amp; Smart Spaces</div><p>Creating battery-optimized smart home hubs, secure edge cameras, and context-aware consumer electronics.</p></div></article>
           </div>
         </div>
       </section>

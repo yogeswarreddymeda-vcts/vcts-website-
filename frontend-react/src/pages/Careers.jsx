@@ -350,7 +350,7 @@ export default function Careers({ setCurrentPage }) {
       <section ref={generalApplicationRef} className="careers-general">
         <div className="careers-shell careers-general-inner">
           <div><p className="careers-eyebrow">Keep in touch</p><h2>Didn't Find the <span>Right Role?</span></h2></div>
-          <div><p>We're always interested in meeting talented people. Send us your profile and we'll keep you in mind for future opportunities.</p><a className="careers-button careers-button--light" href="/careers/students" onClick={(event) => navigateToCareerPath(event, 'career-students')}>Send Your Resume <Send /></a></div>
+          <div><p>We're always interested in meeting talented people. Send us your profile and we'll keep you in mind for future opportunities.</p><a className="careers-button careers-button--light" href="mailto:hr@vconnectech.in?subject=General%20Application">Send Your Resume <Send /></a></div>
         </div>
       </section>
 

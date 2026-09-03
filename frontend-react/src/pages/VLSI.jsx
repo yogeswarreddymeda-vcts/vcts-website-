@@ -361,7 +361,7 @@ const faqItems = [
 
 /** Renders the complete VLSI service page and its scroll-driven lifecycle. */
 
-export default function Vlsi() {
+export default function Vlsi({ navigationRequest }) {
   const rootRef = useRef(null);
   const tiltRef = useRef(null);
   const scrollSectionRef = useRef(null);
@@ -379,8 +379,49 @@ export default function Vlsi() {
   const [activeFaqIndex, setActiveFaqIndex] = useState(0);
   const isNavigatingRef = useRef(false);
   const navigationTimeoutRef = useRef(null);
+  const isRouteNavigationRef = useRef(false);
   const isSkippingUpRef = useRef(false);
   const lastScrollYRef = useRef(0);
+
+  const isAtHeroPosition = () => {
+    const hero = rootRef.current?.querySelector(".vlsipg-hero");
+    if (!hero) return false;
+
+    const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+    return Math.abs(window.scrollY - heroTop) <= 1;
+  };
+
+  const releaseNavigationLock = () => {
+    isRouteNavigationRef.current = false;
+    isNavigatingRef.current = false;
+    isSkippingUpRef.current = false;
+    lastScrollYRef.current = window.scrollY;
+    gridRef.current?.classList.remove("transitioning-back");
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+      navigationTimeoutRef.current = null;
+    }
+  };
+
+  const startRouteNavigationLock = () => {
+    isRouteNavigationRef.current = true;
+    isNavigatingRef.current = true;
+    isSkippingUpRef.current = false;
+    lastScrollYRef.current = 0;
+    gridRef.current?.classList.remove("transitioning-back");
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+      navigationTimeoutRef.current = null;
+    }
+
+    // The App scroll runs after this page mounts. Release only once that
+    // immediate route scroll has actually reached the hero.
+    requestAnimationFrame(() => {
+      if (isRouteNavigationRef.current && isAtHeroPosition()) {
+        releaseNavigationLock();
+      }
+    });
+  };
 
   const startNavigationLock = () => {
     isNavigatingRef.current = true;
@@ -391,6 +432,24 @@ export default function Vlsi() {
       isNavigatingRef.current = false;
     }, 1000);
   };
+
+  // Coordinate with the application shell before it performs a route scroll.
+
+  useEffect(() => {
+    const handleNavigationStart = () => startRouteNavigationLock();
+
+    window.addEventListener("vcts:navigation-start", handleNavigationStart);
+    return () => window.removeEventListener("vcts:navigation-start", handleNavigationStart);
+  }, []);
+
+  // A newly mounted VLSI page cannot receive the synchronous event dispatched
+  // by the previous page, so carry the navigation request into this instance.
+
+  useEffect(() => {
+    if (navigationRequest?.key > 0 || navigationRequest?.targetId === "top") {
+      startRouteNavigationLock();
+    }
+  }, [navigationRequest?.key, navigationRequest?.targetId]);
 
   // Add the compact navigation treatment after the page begins scrolling.
 
@@ -480,8 +539,6 @@ export default function Vlsi() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return undefined;
-
-    window.scrollTo(0, 0);
 
     const heroFigure = root.querySelector(".vlsipg-hero-figure");
     if (heroFigure) {
@@ -796,6 +853,8 @@ export default function Vlsi() {
     if (!grid) return;
 
     const handleScrollEnd = () => {
+      if (isRouteNavigationRef.current) return;
+
       isNavigatingRef.current = false;
       isSkippingUpRef.current = false;
       grid.classList.remove("transitioning-back");
@@ -867,6 +926,15 @@ export default function Vlsi() {
       const container = scrollSectionRef.current;
       if (!container || !grid) return;
 
+      // Application navigation owns the route scroll. Do not let the
+      // capabilities section interpret that movement as an upward skip.
+      if (isRouteNavigationRef.current) {
+        if (isAtHeroPosition()) {
+          releaseNavigationLock();
+        }
+        return;
+      }
+
       const rect = container.getBoundingClientRect();
       const start = rect.top + window.scrollY;
       const end = start + container.clientHeight - window.innerHeight;
@@ -886,7 +954,14 @@ export default function Vlsi() {
 
       // Detect entering the capabilities scroll section from the bottom (scrolling up)
 
-      if (isScrollingUp && !isSkippingUpRef.current && !isNavigatingRef.current && prevScroll >= end && currentScroll < end) {
+      if (
+        isScrollingUp
+        && !isSkippingUpRef.current
+        && !isNavigatingRef.current
+        && prevScroll >= end
+        && currentScroll >= start
+        && currentScroll < end
+      ) {
         isSkippingUpRef.current = true;
         grid.classList.add("transitioning-back");
         startNavigationLock();
@@ -987,11 +1062,17 @@ export default function Vlsi() {
     };
 
     // Initialize geometry before subscribing to scroll and resize events.
+    // Defer the initial scroll-position read to a rAF so the browser flushes
+    // any pending scrollTo(0, 0) call first. Initialising lastScrollYRef to 0
+    // prevents the first scroll event from thinking we're scrolled way down.
 
     computeGeometry();
-    lastScrollYRef.current = window.scrollY;
-    handleWindowScroll();
-    handleGridScroll();
+    lastScrollYRef.current = 0;
+    requestAnimationFrame(() => {
+      lastScrollYRef.current = window.scrollY;
+      handleWindowScroll();
+      handleGridScroll();
+    });
 
     window.addEventListener("scroll", handleWindowScroll, { passive: true });
     grid.addEventListener("scroll", handleGridScroll, { passive: true });
@@ -1305,7 +1386,7 @@ export default function Vlsi() {
             <button type="submit">{formSent ? "Sent · we'll be in touch" : "Talk to us →"}</button>
           </form>
           <div className="cta-alt">
-            or write directly to <a href="mailto:hello@vconnectech.com">hello@vconnectech.com</a>
+            or write directly to <a href="mailto:hr@vconnectech.in">hr@vconnectech.in</a>
           </div>
         </div>
       </section>

@@ -10,3 +10,40 @@
   flex-direction: column;
   background: #f8fafc;
 }
+
+/* Keep primary hero headings consistent across public pages. */
+
+#root .home-hero h1,
+#root .about-hero-copy h1,
+#root .contact-introduction h1,
+#root .techpg-tech-hero .techpg-display,
+#root .vlsipg-hero .vlsipg-display,
+#root .embpg-embedded-page .embpg-hero-display-title,
+#root .edega-hero-title,
+#root .hackathon-page .hero h1,
+#root .careers-hero h1 {
+  font-size: clamp(76px, 7vw, 96px);
+  line-height: .9;
+}
+
+#root .hackathon-page .hero .lede {
+  color: rgba(255, 255, 255, .88);
+  font-size: clamp(16px, 1.35vw, 21px);
+  font-weight: 400;
+  line-height: 1.48;
+}
+
+@media (max-width: 640px) {
+  #root .home-hero h1,
+  #root .about-hero-copy h1,
+  #root .contact-introduction h1,
+  #root .techpg-tech-hero .techpg-display,
+  #root .vlsipg-hero .vlsipg-display,
+  #root .embpg-embedded-page .embpg-hero-display-title,
+  #root .edega-hero-title,
+  #root .hackathon-page .hero h1,
+  #root .careers-hero h1 {
+    font-size: clamp(55px, 17vw, 76px);
+    line-height: .9;
+  }
+}

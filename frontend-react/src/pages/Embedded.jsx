@@ -1271,7 +1271,7 @@ export default function Embedded() {
             <button type="submit">{formSent ? "Sent · we'll be in touch" : "Talk to us →"}</button>
           </form>
           <div className="embpg-cta-alt">
-            or write directly to <a href="mailto:hello@vconnectech.com">hello@vconnectech.com</a>
+            or write directly to <a href="mailto:hr@vconnectech.in">hr@vconnectech.in</a>
           </div>
         </div>
       </section>

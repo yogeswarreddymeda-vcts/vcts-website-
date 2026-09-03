@@ -174,7 +174,7 @@ export default function CareerPortal({ mode, setCurrentPage }) {
       `Resume selected: ${form.get('resume')?.name || 'Not provided'} (please attach to this email)`,
     ].join('\n'))
 
-    window.location.href = `mailto:careers@vconnecttech.com?subject=${encodeURIComponent('Student / Graduate Application')}&body=${body}`
+    window.location.href = `mailto:hr@vconnectech.in?subject=${encodeURIComponent('Student / Graduate Application')}&body=${body}`
   }
 
   const isStudentPage = mode === 'students'
@@ -281,7 +281,7 @@ export default function CareerPortal({ mode, setCurrentPage }) {
                       <div><span>Compensation</span><strong>{job.compensation}</strong></div>
                       <div><span>Experience</span><strong>{job.experience}</strong></div>
                     </div>
-                    <div className="careers-job-card-side"><a className="careers-apply-button" href={`mailto:careers@vconnecttech.com?subject=${encodeURIComponent(`Application: ${job.title}`)}`}>Apply Now <ArrowRight /></a></div>
+                    <div className="careers-job-card-side"><a className="careers-apply-button" href={`mailto:hr@vconnectech.in?subject=${encodeURIComponent(`Application: ${job.title}`)}`}>Apply Now <ArrowRight /></a></div>
                   </article>
                 )) : <p className="careers-empty">No roles match your search yet. Try another keyword or browse all positions.</p>}
               </div>

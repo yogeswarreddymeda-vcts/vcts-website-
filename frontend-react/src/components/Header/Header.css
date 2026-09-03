@@ -10,7 +10,7 @@
 ========================================================= */
 
 :root {
-  --header-banner-height: 28px;
+  --header-banner-height: 38px;
   --header-nav-height: 70px;
   --header-height: calc(var(--header-banner-height) + var(--header-nav-height));
   --header-container: 1240px;
@@ -44,9 +44,10 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: linear-gradient(90deg, #075ee6, #0788f0 55%, #04b9df);
-  color: #12161b;
-  font-size: 12px;
+  background: var(--header-blue);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: normal;
   line-height: 1;
   text-transform: none;
@@ -55,9 +56,9 @@
 
 .header-certification-track {
   display: flex;
-  width: max-content;
   align-items: center;
-  animation: header-certification-scroll 14s linear infinite;
+  width: max-content;
+  animation: header-certification-scroll 24s linear infinite;
   will-change: transform;
 }
 
@@ -126,7 +127,7 @@
 .brand-logo {
   display: block;
   width: auto;
-  height: 43px;
+  height: 58px;
   object-fit: contain;
 }
 
@@ -620,7 +621,7 @@
   }
 
   .brand-logo {
-    height: 40px;
+    height: 54px;
   }
 
   .brand-link {
@@ -777,7 +778,7 @@
 
 @media (max-width: 520px) {
   .header-container { width: calc(100% - 30px); }
-  .brand-logo { height: 36px; }
+  .brand-logo { height: 54px; }
   .mobile-drawer { padding-right: 15px; padding-left: 15px; }
 }
 

@@ -1066,7 +1066,7 @@ export default function EdgeAI() {
 
       {/* ============ HERO SECTION ============ */}
 
-      <section className="edega-hero-section">
+      <section className="edega-hero-section" id="top">
         <div className="edega-hero-container">
           <div className="edega-hero-grid">
             <div className="edega-hero-left">
@@ -1494,7 +1494,7 @@ export default function EdgeAI() {
             <button type="submit">{formSent ? "Sent · we'll be in touch" : "Talk to us →"}</button>
           </form>
           <div className="embpg-cta-alt">
-            or write directly to <a href="mailto:hello@vconnectech.com">hello@vconnectech.com</a>
+            or write directly to <a href="mailto:hr@vconnectech.in">hr@vconnectech.in</a>
           </div>
         </div>
       </section>

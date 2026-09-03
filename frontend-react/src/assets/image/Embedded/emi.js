@@ -1,5 +1,5 @@
-import embBeforeImg from "./icons/emb_before(2).webp";
-import embAfterImg from "./icons/emb_after(2).webp";
+import embBeforeImg from "./icons/emb_before.webp";
+import embAfterImg from "./icons/emb_after.webp";
 import embIndustryImg from "./icons/emb_industry.webp";
 import embHomeImg from "./icons/emb_home.webp";
 import embWatchImg from "./icons/emb_watch.webp";
@@ -43,4 +43,3 @@ export default class EmbeddedImages {
   static m10 = embM10Img;
   static brochb = embBrochbImg;
 }
-

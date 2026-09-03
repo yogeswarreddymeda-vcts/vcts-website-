@@ -14,7 +14,7 @@ import logo from '../../assets/image/header_footer_img/header_logo.webp';
 const services = [
   {
     page: 'vlsi',
-    href: '/vlsi',
+    href: '/vlsi#top',
     label: 'VLSI Engineering',
     eyebrow: 'VLSI ENGINEERING',
     title: 'End-to-End Silicon Engineering',
@@ -23,7 +23,7 @@ const services = [
   },
   {
     page: 'embedded',
-    href: '/embedded',
+    href: '/embedded#top',
     label: 'Embedded Engineering',
     eyebrow: 'EMBEDDED ENGINEERING',
     title: 'Reliable Embedded Systems',
@@ -32,7 +32,7 @@ const services = [
   },
   {
     page: 'edgeai',
-    href: '/edgeai',
+    href: '/edgeai#top',
     label: 'Edge AI Engineering',
     eyebrow: 'EDGE AI ENGINEERING',
     title: 'Intelligence at the Edge',
@@ -56,7 +56,7 @@ const ArrowRight = ({ className = '' }) => (
 /**
  * @param {Object} props
  * @param {string} props.currentPage - Identifier for the currently rendered page.
- * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
+ * @param {(page: string, targetId?: string) => void} props.setCurrentPage - Updates the active client-side page and optional section target.
  */
 
 export default function Header({ currentPage, setCurrentPage }) {
@@ -162,8 +162,8 @@ export default function Header({ currentPage, setCurrentPage }) {
     event.preventDefault();
     closeAll();
     if (!page) return;
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    const targetId = services.some((service) => service.page === page) ? 'top' : null;
+    setCurrentPage(page, targetId);
   };
 
   const toggleMobileSection = (section) => {
