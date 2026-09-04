@@ -8,6 +8,8 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
+  BriefcaseBusiness,
+  GraduationCap,
   ImageIcon,
   Send,
   Sparkles,
@@ -46,77 +48,29 @@ const lifeTiles = [
   { title: 'Celebrations', rotate: -2, y: 6 },
 ]
 
-/** Renders the fixed-ratio careers path selector used inside this page. */
+/** Renders the compact career-path selector used inside this page. */
 
-function VctsHero({ onStudentsApply, onProfessionalsApply }) {
+function CareerPathSelector({ onStudentsApply, onProfessionalsApply }) {
   return (
-    <div className="vcts-hero-root">
-      {/* Desktop and tablet use one uniformly scaled composition. */}
-      <div className="hero-wrapper">
-        <div className="hero-canvas">
-          <svg className="headline-svg" width="1568" height="609" viewBox="0 0 1568 609" aria-hidden="true">
-            <g transform="translate(500,306) rotate(90)">
-              <text x="0" y="0" textAnchor="middle" dominantBaseline="middle" textLength="520" lengthAdjust="spacingAndGlyphs" fontFamily="Anton, Impact, sans-serif" fontSize="138" fill="none" stroke="#8bbaf4" strokeWidth="1.6">
-                STUDENTS
-              </text>
-            </g>
-            <text x="947" y="306" textAnchor="middle" dominantBaseline="middle" textLength="455" lengthAdjust="spacingAndGlyphs" fontFamily="Anton, Impact, sans-serif" fontSize="172" fill="#0b1e52">
-              PROFESSIONALS
-            </text>
-          </svg>
-
-          <div className="el card-left" aria-hidden="true" />
-          <div className="el notch-left" aria-hidden="true" />
-          <span className="el arrow-left" aria-hidden="true">
-            <svg viewBox="0 0 225 20" preserveAspectRatio="none">
-              <line x1="0" y1="10" x2="214" y2="10" stroke="#17b3ad" strokeWidth="1.6" strokeLinecap="round" />
-              <path d="M200 3 L214 10 L200 17" fill="none" stroke="#17b3ad" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-          <div className="el title-left">Students &amp; Graduates</div>
-          <a className="el apply-left" href="/careers/students" onClick={onStudentsApply}>Apply now</a>
-
-          <p className="el question">Where would you like to begin your journey with VCTS?</p>
-
-          <div className="el notch-right" aria-hidden="true" />
-          <div className="el card-right" aria-hidden="true" />
-          <span className="el arrow-right" aria-hidden="true">
-            <svg viewBox="0 0 230 20" preserveAspectRatio="none">
-              <line x1="0" y1="10" x2="219" y2="10" stroke="#6f9bf0" strokeWidth="1.6" strokeLinecap="round" />
-              <path d="M205 3 L219 10 L205 17" fill="none" stroke="#6f9bf0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-          <div className="el title-right">Experienced Professionals</div>
-          <a className="el apply-right" href="/careers/experienced" onClick={onProfessionalsApply}>Apply now</a>
-        </div>
+    <div className="careers-path-selector">
+      <div className="careers-path-prompt">
+        <span>Choose your path</span>
+        <p>Where would you like to begin your journey with VCTS?</p>
       </div>
-
-      {/* Mobile uses real stacked cards instead of shrinking the desktop canvas. */}
-      <div className="hero-mobile">
-        <p className="m-question">Where would you like to begin your journey with VCTS?</p>
-
-        <div className="m-card left">
-          <span className="m-arrow" aria-hidden="true">
-            <svg viewBox="0 0 170 20" preserveAspectRatio="none">
-              <line x1="0" y1="10" x2="155" y2="10" stroke="#17b3ad" strokeWidth="1.6" />
-              <path d="M147 3 L158 10 L147 17" fill="none" stroke="#17b3ad" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-          <div className="m-title">Students &amp; Graduates</div>
-          <a className="m-apply" href="/careers/students" onClick={onStudentsApply}>Apply now</a>
-        </div>
-
-        <div className="m-card right">
-          <span className="m-arrow" aria-hidden="true">
-            <svg viewBox="0 0 170 20" preserveAspectRatio="none">
-              <line x1="0" y1="10" x2="155" y2="10" stroke="#6f9bf0" strokeWidth="1.6" />
-              <path d="M147 3 L158 10 L147 17" fill="none" stroke="#6f9bf0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-          <div className="m-title">Experienced Professionals</div>
-          <a className="m-apply" href="/careers/experienced" onClick={onProfessionalsApply}>Apply now</a>
-        </div>
-      </div>
+      <nav className="careers-path-options" aria-label="Career paths">
+        <a className="careers-path-option" href="/careers/students" onClick={onStudentsApply}>
+          <span className="careers-path-number">01</span>
+          <span className="careers-path-icon"><GraduationCap aria-hidden="true" /></span>
+          <span className="careers-path-label">Students &amp; Graduates</span>
+          <span className="careers-path-cta">Apply now <ArrowRight aria-hidden="true" /></span>
+        </a>
+        <a className="careers-path-option" href="/careers/experienced" onClick={onProfessionalsApply}>
+          <span className="careers-path-number">02</span>
+          <span className="careers-path-icon"><BriefcaseBusiness aria-hidden="true" /></span>
+          <span className="careers-path-label">Experienced Professionals</span>
+          <span className="careers-path-cta">Apply now <ArrowRight aria-hidden="true" /></span>
+        </a>
+      </nav>
     </div>
   )
 }
@@ -337,12 +291,12 @@ export default function Careers({ setCurrentPage }) {
           </div>
         </div>
 
-        {/* Full-width kinetic typography connects both career destinations. */}
-
-        <VctsHero
-          onStudentsApply={(event) => navigateToCareerPath(event, 'career-students')}
-          onProfessionalsApply={(event) => navigateToCareerPath(event, 'career-experienced')}
-        />
+        <div className="careers-shell">
+          <CareerPathSelector
+            onStudentsApply={(event) => navigateToCareerPath(event, 'career-students')}
+            onProfessionalsApply={(event) => navigateToCareerPath(event, 'career-experienced')}
+          />
+        </div>
       </section>
 
       {/* General application prompt for candidates without a matching role */}

@@ -1309,21 +1309,6 @@ body {
     mask-composite: intersect;
 }
 
-/* Card H: light card blending */
-
-.service-card.card-h .service-card__bg img {
-    opacity: 1;
-    mix-blend-mode: multiply;
-    -webkit-mask-image:
-        linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 18%, rgba(0, 0, 0, 0.58) 42%, rgba(0, 0, 0, 1) 68%);
-    mask-image:
-        linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 18%, rgba(0, 0, 0, 0.58) 42%, rgba(0, 0, 0, 1) 68%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
-}
-
 /* Card I: light card blending */
 
 .service-card.card-i .service-card__bg img {
@@ -1393,7 +1378,6 @@ body {
 .service-card.card-e .service-card__bg img,
 .service-card.card-f .service-card__bg img,
 .service-card.card-g .service-card__bg img,
-.service-card.card-h .service-card__bg img,
 .service-card.card-i .service-card__bg img,
 .service-card.card-j .service-card__bg img,
 .service-card.card-k .service-card__bg img,
@@ -1423,7 +1407,6 @@ body {
     .service-card.card-d .service-card__bg img,
     .service-card.card-e .service-card__bg img,
     .service-card.card-g .service-card__bg img,
-    .service-card.card-h .service-card__bg img,
     .service-card.card-i .service-card__bg img,
     .service-card.card-k .service-card__bg img,
     .service-card.card-l .service-card__bg img {
@@ -1464,7 +1447,6 @@ body {
     .service-card.card-d .service-card__bg img,
     .service-card.card-e .service-card__bg img,
     .service-card.card-g .service-card__bg img,
-    .service-card.card-h .service-card__bg img,
     .service-card.card-i .service-card__bg img,
     .service-card.card-k .service-card__bg img,
     .service-card.card-l .service-card__bg img {

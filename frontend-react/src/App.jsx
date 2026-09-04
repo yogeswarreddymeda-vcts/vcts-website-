@@ -5,20 +5,24 @@
  * active page component, and footer without a routing dependency.
  */
 
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import Header from './components/Header/Header.jsx'
 import Home from './pages/Home.jsx'
-import VLSI from './pages/VLSI.jsx'
-import Embedded from './pages/Embedded.jsx'
-import EdgeAI from './pages/edgeai.jsx'
-import Technologies from './pages/Technologies.jsx'
-import Hackathon from './pages/Hackathon.jsx'
-import Contact from './pages/Contact.jsx'
-import About from './pages/About.jsx'
-import Careers from './pages/Careers.jsx'
-import CareerPortal from './pages/CareerPortal.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css'
+
+// Load feature-heavy pages only when they are visited. This keeps their code,
+// styles, and asset dependency graphs out of the initial home-page download.
+
+const VLSI = lazy(() => import('./pages/VLSI.jsx'))
+const Embedded = lazy(() => import('./pages/Embedded.jsx'))
+const EdgeAI = lazy(() => import('./pages/edgeai.jsx'))
+const Technologies = lazy(() => import('./pages/Technologies.jsx'))
+const Hackathon = lazy(() => import('./pages/Hackathon.jsx'))
+const Contact = lazy(() => import('./pages/Contact.jsx'))
+const About = lazy(() => import('./pages/About.jsx'))
+const Careers = lazy(() => import('./pages/Careers.jsx'))
+const CareerPortal = lazy(() => import('./pages/CareerPortal.jsx'))
 
 // Canonical URL-to-page mapping used by navigation and browser history.
 
@@ -155,12 +159,16 @@ function App() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reducedMotion) {
-      // Immediately reveal all content for reduced-motion visitors.
+      const revealContent = () => {
+        document.querySelectorAll('.scroll-reveal-item').forEach(el => el.classList.add('active'));
+        document.querySelectorAll('.enterprise-row-section').forEach(el => el.classList.add('text-revealed'));
+        document.querySelectorAll('.hero-reveal').forEach(el => el.classList.add('active-reveal'));
+      };
 
-      document.querySelectorAll('.scroll-reveal-item').forEach(el => el.classList.add('active'));
-      document.querySelectorAll('.enterprise-row-section').forEach(el => el.classList.add('text-revealed'));
-      document.querySelectorAll('.hero-reveal').forEach(el => el.classList.add('active-reveal'));
-      return;
+      revealContent();
+      const contentObserver = new MutationObserver(revealContent);
+      contentObserver.observe(document.getElementById('root'), { childList: true, subtree: true });
+      return () => contentObserver.disconnect();
     }
 
     // One observer controls the shared section-reveal state.
@@ -178,8 +186,6 @@ function App() {
       rootMargin: '0px 0px -60px 0px'
     });
 
-    document.querySelectorAll('.scroll-reveal-item').forEach(item => scanObserver.observe(item));
-
     // A separate observer coordinates text timing inside enterprise cards.
 
     const textRevealObserver = new IntersectionObserver((entries) => {
@@ -195,32 +201,56 @@ function App() {
       rootMargin: '0px 0px -80px 0px'
     });
 
-    document.querySelectorAll('.enterprise-row-section').forEach(card => {
-      textRevealObserver.observe(card);
-    });
+    const observedRevealItems = new WeakSet();
+    const observedEnterpriseCards = new WeakSet();
+
+    const observePageContent = () => {
+      document.querySelectorAll('.scroll-reveal-item').forEach((item) => {
+        if (observedRevealItems.has(item)) return;
+        observedRevealItems.add(item);
+        scanObserver.observe(item);
+      });
+
+      document.querySelectorAll('.enterprise-row-section').forEach((card) => {
+        if (observedEnterpriseCards.has(card)) return;
+        observedEnterpriseCards.add(card);
+        textRevealObserver.observe(card);
+      });
+    };
+
+    observePageContent();
+
+    // Lazy route chunks mount after this effect. Observe DOM additions so their
+    // reveal elements are registered as soon as the new page is rendered.
+
+    const contentObserver = new MutationObserver(observePageContent);
+    contentObserver.observe(document.getElementById('root'), { childList: true, subtree: true });
 
     // Disconnect both observers before rebuilding them for another page.
 
     return () => {
       scanObserver.disconnect();
       textRevealObserver.disconnect();
+      contentObserver.disconnect();
     };
   }, [currentPage]);
 
   return (
     <>
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {currentPage === 'home' && <Home setCurrentPage={setCurrentPage} />}
-      {currentPage === 'vlsi' && <VLSI navigationRequest={navigationRequest} />}
-      {currentPage === 'embedded' && <Embedded />}
-      {currentPage === 'edgeai' && <EdgeAI />}
-      {currentPage === 'technologies' && <Technologies />}
-      {currentPage === 'hackathon' && <Hackathon />}
-      {currentPage === 'contact' && <Contact />}
-      {currentPage === 'about' && <About setCurrentPage={setCurrentPage} />}
-      {currentPage === 'careers' && <Careers setCurrentPage={setCurrentPage} />}
-      {currentPage === 'career-students' && <CareerPortal mode="students" setCurrentPage={setCurrentPage} />}
-      {currentPage === 'career-experienced' && <CareerPortal mode="experienced" setCurrentPage={setCurrentPage} />}
+      <Suspense fallback={<main className="route-loading" aria-label="Loading page"><span /></main>}>
+        {currentPage === 'home' && <Home setCurrentPage={setCurrentPage} />}
+        {currentPage === 'vlsi' && <VLSI navigationRequest={navigationRequest} />}
+        {currentPage === 'embedded' && <Embedded />}
+        {currentPage === 'edgeai' && <EdgeAI />}
+        {currentPage === 'technologies' && <Technologies />}
+        {currentPage === 'hackathon' && <Hackathon />}
+        {currentPage === 'contact' && <Contact />}
+        {currentPage === 'about' && <About setCurrentPage={setCurrentPage} />}
+        {currentPage === 'careers' && <Careers setCurrentPage={setCurrentPage} />}
+        {currentPage === 'career-students' && <CareerPortal mode="students" setCurrentPage={setCurrentPage} />}
+        {currentPage === 'career-experienced' && <CareerPortal mode="experienced" setCurrentPage={setCurrentPage} />}
+      </Suspense>
       <Footer setCurrentPage={setCurrentPage} />
     </>
   );

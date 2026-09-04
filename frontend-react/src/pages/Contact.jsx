@@ -157,7 +157,7 @@ export default function Contact() {
             {locations.map((location) => (
               <article className="contact-location-card" key={location.city}>
                 <div className="contact-location-art">
-                  <img src={location.image} alt={location.alt} />
+                  <img src={location.image} alt={location.alt} loading="lazy" decoding="async" />
                 </div>
                 <div className="contact-location-copy">
                   <span className="contact-location-eyebrow">{location.officeType}</span>
@@ -172,8 +172,8 @@ export default function Contact() {
                     <iframe
                       src={location.mapEmbedUrl}
                       title={`${location.city} office map`}
-                      loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
+                      loading="lazy"
                     />
                     <a
                       className="contact-map-attribution"

@@ -16,10 +16,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../assets/css/About.css'
 import teamImage from '../assets/image/about/Curved image.jpeg'
-import heroImage from '../assets/image/about/hero_image.png'
-import sectionThreeImage from '../assets/image/about/exec-bb0ffd4a-f6a0-462b-96be-c9c4fea60e89.png'
-import missionImage from '../assets/image/about/purpose-mission-engineering-lab.png'
-import visionImage from '../assets/image/about/purpose-vision-connected-city.png'
+import heroImage from '../assets/image/about/hero_image.webp'
+import sectionThreeImage from '../assets/image/about/exec-bb0ffd4a-f6a0-462b-96be-c9c4fea60e89.webp'
+import missionImage from '../assets/image/about/purpose-mission-engineering-lab.webp'
+import visionImage from '../assets/image/about/purpose-vision-connected-city.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 

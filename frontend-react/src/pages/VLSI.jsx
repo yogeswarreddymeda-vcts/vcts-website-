@@ -28,7 +28,7 @@ const heroData = {
       labelLine2: "phases"
     },
     {
-      value: "12",
+      value: "11",
       labelLine1: "Core engineering",
       labelLine2: "capabilities"
     }
@@ -209,23 +209,6 @@ const services = {
         "Timing Closure",
       ],
     },
-    {
-      letter: "H",
-      cardClass: "card-h",
-      title: "Timing, Power, Signoff & Tapeout Support",
-      desc: "Delivering tape-out-ready designs through comprehensive timing, reliability, and physical signoff analysis.",
-      image: "chip_card_h_hover.webp",
-      hoverImage: "s8.webp",
-      items: [
-        "Static Timing Analysis (STA)",
-        "Power Integrity & EM/IR-Drop Analysis",
-        "Signal Integrity Analysis",
-        "Physical Verification (DRC/LVS/ERC)",
-        "Design for Manufacturability (DFM) & Metal Fill",
-        "Logic Equivalence Checking (LEC)",
-        "Tape-Out Readiness & Support",
-      ],
-    },
   ],
   postsilicon: [
     {
@@ -301,6 +284,18 @@ const allServices = [
   ...services.backend,
   ...services.postsilicon
 ];
+
+const phaseStartIndexes = {
+  frontend: 0,
+  backend: services.frontend.length,
+  postsilicon: services.frontend.length + services.backend.length,
+};
+
+const getPhaseForServiceIndex = (index) => {
+  if (index >= phaseStartIndexes.postsilicon) return "postsilicon";
+  if (index >= phaseStartIndexes.backend) return "backend";
+  return "frontend";
+};
 
 /**
  * Renders one lifecycle service card and its active visual state.
@@ -902,12 +897,7 @@ export default function Vlsi({ navigationRequest }) {
         setCenteredIndex(nearestIndex);
       }
 
-      let currentPhase = "frontend";
-      if (nearestIndex >= 8) {
-        currentPhase = "postsilicon";
-      } else if (nearestIndex >= 4) {
-        currentPhase = "backend";
-      }
+      const currentPhase = getPhaseForServiceIndex(nearestIndex);
       if (currentPhase !== activePhaseRef.current) {
         activePhaseRef.current = currentPhase;
         setActivePhase(currentPhase);
@@ -1042,13 +1032,7 @@ export default function Vlsi({ navigationRequest }) {
         setCenteredIndex(nearestIndex);
       }
 
-      let currentPhase = "frontend";
-      const phaseIndex = nearestIndex;
-      if (phaseIndex >= 8) {
-        currentPhase = "postsilicon";
-      } else if (phaseIndex >= 4) {
-        currentPhase = "backend";
-      }
+      const currentPhase = getPhaseForServiceIndex(nearestIndex);
       if (currentPhase !== activePhaseRef.current) {
         activePhaseRef.current = currentPhase;
         setActivePhase(currentPhase);
@@ -1100,12 +1084,7 @@ export default function Vlsi({ navigationRequest }) {
     centeredIndexRef.current = index;
     setCenteredIndex(index);
 
-    let currentPhase = "frontend";
-    if (index >= 8) {
-      currentPhase = "postsilicon";
-    } else if (index >= 4) {
-      currentPhase = "backend";
-    }
+    const currentPhase = getPhaseForServiceIndex(index);
 
     if (currentPhase !== activePhaseRef.current) {
       activePhaseRef.current = currentPhase;
@@ -1212,9 +1191,7 @@ export default function Vlsi({ navigationRequest }) {
 
     // Scroll to the first card index of the selected phase
 
-    let targetIndex = 0;
-    if (phaseId === "backend") targetIndex = 4;
-    else if (phaseId === "postsilicon") targetIndex = 8;
+    const targetIndex = phaseStartIndexes[phaseId] ?? 0;
 
     activeIndexRef.current = targetIndex;
     setActiveIndex(targetIndex);

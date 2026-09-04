@@ -3904,8 +3904,8 @@ h2.section-title {
 .career-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
+  min-height: 78px;
+  padding: 16px 20px;
   border-radius: 16px;
   background: #ffffff;
   border: 1.5px solid rgba(210, 230, 255, 0.75);
@@ -3947,23 +3947,6 @@ h2.section-title {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.25;
-}
-
-.career-card-chevron {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #eff6ff;
-  color: #0868e8;
-  flex-shrink: 0;
-  margin-left: 8px;
-  transition: transform .25s ease;
-}
-
-.career-card:hover .career-card-chevron {
-  transform: translateX(2px);
 }
 
 .career-visual-col {

@@ -12,7 +12,6 @@ import {
   BriefcaseBusiness,
   CalendarDays,
   Check,
-  ChevronRight,
   ClipboardPenLine,
   FileText,
   FlaskConical,
@@ -35,16 +34,16 @@ import EngineeringTeam from '../components/EngineeringTeam/EngineeringTeam.jsx'
 // Assets
 
 import imgMentors from '../assets/image/Hackathon/mentors-makerspace.webp'
-import heroBackgroundImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 03_45_46 PM.png'
-import buildMainProductImage from '../assets/image/Hackathon/build-main-product-showcase.png'
-import buildIdeaImage from '../assets/image/Hackathon/build-stage-idea.png'
-import buildArchitectureImage from '../assets/image/Hackathon/build-stage-architecture.png'
-import buildDesignImage from '../assets/image/Hackathon/build-stage-design.png'
-import buildPrototypeImage from '../assets/image/Hackathon/build-stage-prototype.png'
-import buildImpactImage from '../assets/image/Hackathon/build-stage-impact.png'
+import heroBackgroundImage from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 03_45_46 PM.webp'
+import buildMainProductImage from '../assets/image/Hackathon/build-main-product-showcase.webp'
+import buildIdeaImage from '../assets/image/Hackathon/build-stage-idea.webp'
+import buildArchitectureImage from '../assets/image/Hackathon/build-stage-architecture.webp'
+import buildDesignImage from '../assets/image/Hackathon/build-stage-design.webp'
+import buildPrototypeImage from '../assets/image/Hackathon/build-stage-prototype.webp'
+import buildImpactImage from '../assets/image/Hackathon/build-stage-impact.webp'
 import imgTeam from '../assets/image/Hackathon/engineering-team.webp'
 import imgProductEng from '../assets/image/Hackathon/domain-product-engineering.webp'
-import focusDomainsShowcase from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 11_57_03 AM.png'
+import focusDomainsShowcase from '../assets/image/Hackathon/ChatGPT Image Sep 2, 2026, 11_57_03 AM.webp'
 import mountainImage from '../assets/image/Hackathon/journey-mountain.webp'
 import whyPrototypeImage from '../assets/image/Hackathon/Why_join_car.webp'
 import whyNetworkingImage from '../assets/image/Hackathon/why_join_communication.webp'
@@ -854,9 +853,6 @@ function CareerSection() {
                     <span className="career-card-icon">{f.icon}</span>
                     <span className="career-card-title">{f.title}</span>
                   </div>
-                  <span className="career-card-chevron" aria-hidden="true">
-                    <ChevronRight size={14} strokeWidth={2.5} />
-                  </span>
                 </div>
               ))}
             </div>

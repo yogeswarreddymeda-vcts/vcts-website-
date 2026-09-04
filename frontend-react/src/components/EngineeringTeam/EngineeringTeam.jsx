@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import hardwareImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_45 PM (1).png'
-import softwareImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_45 PM (2).png'
-import productImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_46 PM (3).png'
-import managementImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_46 PM (4).png'
+import hardwareImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_45 PM (1).webp'
+import softwareImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_45 PM (2).webp'
+import productImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_46 PM (3).webp'
+import managementImage from '../../assets/image/Hackathon/ChatGPT Image Sep 3, 2026, 02_13_46 PM (4).webp'
 import './EngineeringTeam.css'
 
 /** Displays the five disciplines that form each cross-functional team. */
