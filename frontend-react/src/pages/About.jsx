@@ -2,7 +2,7 @@
  * About Page
  *
  * Presents the company story, engineering capabilities, mission and vision,
- * leadership profiles, achievements, workplace gallery, and contact CTA.
+ * leadership profiles, workplace gallery, and contact CTA.
  */
 
 import { useEffect, useRef, useState } from 'react'
@@ -10,7 +10,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Trophy,
 } from 'lucide-react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -20,6 +19,10 @@ import heroImage from '../assets/image/about/hero_image.webp'
 import sectionThreeImage from '../assets/image/about/exec-bb0ffd4a-f6a0-462b-96be-c9c4fea60e89.webp'
 import missionImage from '../assets/image/about/purpose-mission-engineering-lab.webp'
 import visionImage from '../assets/image/about/purpose-vision-connected-city.webp'
+import galleryImg1 from '../assets/image/about/DSC01138.JPG'
+import galleryImg2 from '../assets/image/about/DSC01330.JPG'
+import galleryImg3 from '../assets/image/about/DSC01344.JPG'
+import galleryImg4 from '../assets/image/about/DSC01402.JPG'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -54,34 +57,23 @@ const leaders = [
   },
 ]
 
-// Milestones displayed by the achievement carousel in chronological order.
-
-const achievements = [
-  { year: '2021', title: 'Agri India Hackathon Finalist', description: 'Recognized among the top finalists for a smart irrigation solution using IoT and intelligent field monitoring.', image: missionImage },
-  { year: '2022', title: 'Embedded Product Innovation', description: 'Completed a major embedded product milestone by taking a connected system from architecture through validation.', image: sectionThreeImage },
-  { year: '2023', title: 'Semiconductor Design Milestone', description: 'Delivered a complex design and verification program with a strong focus on quality and first-pass success.', image: heroImage },
-  { year: '2024', title: 'Engineering Excellence Recognition', description: 'Celebrated our multidisciplinary team for dependable delivery, collaboration, and technology innovation.', image: teamImage },
-]
-
 // Image and accessibility metadata used by the workplace gallery.
 
 const galleryItems = [
-  { image: teamImage, title: 'The VCTS Team', alt: 'VConnectTech Systems team gathering' },
-  { image: sectionThreeImage, title: 'Engineering in Action', alt: 'Engineer working on an electronic system board' },
-  { image: missionImage, title: 'Product Development', alt: 'Electronics product development workspace' },
-  { image: visionImage, title: 'Connected Technology', alt: 'Connected technology and engineering systems' },
-  { image: heroImage, title: 'Semiconductor Innovation', alt: 'Semiconductor engineering and validation equipment' },
+  { image: galleryImg1, alt: 'Engineers working on electronic camera and system board' },
+  { image: galleryImg2, alt: 'Electronics testing and circuit inspection in laboratory' },
+  { image: galleryImg3, alt: 'Hardware testing and circuit design workbench' },
+  { image: galleryImg4, alt: 'Hardware engineering and system validation setup' },
 ]
 
 /**
- * Renders the complete About page and its interactive carousels.
+ * Renders the complete About page and its interactive gallery.
  *
  * @param {Object} props
  * @param {(page: string) => void} props.setCurrentPage - Updates the active client-side page.
  */
 
 export default function About({ setCurrentPage }) {
-  const [achievementSlide, setAchievementSlide] = useState(0)
   const [gallerySlide, setGallerySlide] = useState(0)
   const aboutPageRef = useRef(null)
   // Stores the touch origin without causing a render during swipe gestures.
@@ -90,7 +82,6 @@ export default function About({ setCurrentPage }) {
   // Scopes the circular capability animation to the Who We Are visual.
 
   const whoVisualRef = useRef(null)
-  const activeAchievement = achievements[achievementSlide]
   const activeGalleryItem = galleryItems[gallerySlide]
 
   // Build the Who We Are sequence in reading order: copy, photo,
@@ -293,14 +284,6 @@ export default function About({ setCurrentPage }) {
     return () => context.revert()
   }, [])
 
-  const showPreviousAchievement = () => {
-    setAchievementSlide((current) => (current - 1 + achievements.length) % achievements.length)
-  }
-
-  const showNextAchievement = () => {
-    setAchievementSlide((current) => (current + 1) % achievements.length)
-  }
-
   const showPreviousGalleryItem = () => {
     setGallerySlide((current) => (current - 1 + galleryItems.length) % galleryItems.length)
   }
@@ -344,7 +327,7 @@ export default function About({ setCurrentPage }) {
     <main className="about-page" ref={aboutPageRef}>
       {/* =========================================================
           About Hero
-          Introduces VConnectTech Systems and its engineering values.
+          Introduces VConnecTech Systems and its engineering values.
       ========================================================= */}
 
       <section className="about-hero" aria-labelledby="about-hero-title">
@@ -358,7 +341,7 @@ export default function About({ setCurrentPage }) {
           {/* Hero heading and core company values */}
 
           <div className="about-hero-copy">
-            <p className="about-eyebrow">About VConnectTech Systems</p>
+            <p className="about-eyebrow">About VConnecTech Systems</p>
             <h1 id="about-hero-title">
               <span className="about-hero-title-line">
                 Built From <span className="about-hero-passion">Passion</span>
@@ -394,7 +377,7 @@ export default function About({ setCurrentPage }) {
             </div>
             <div className="about-who-copy">
               <p>
-                VConnectTech Systems is a <strong>systems engineering company based in India</strong>, delivering
+                VConnecTech Systems is a <strong>systems engineering company based in India</strong>, delivering
                 high-quality engineering solutions for complex technology challenges.
               </p>
               <p>
@@ -512,12 +495,12 @@ export default function About({ setCurrentPage }) {
             <p className="about-founder-message-kicker">A message from <span>our Founder &amp; CEO</span></p>
             <h2 id="about-founder-message-title">Engineering ideas into impact.<br /><span>Building what&apos;s next.</span></h2>
             <blockquote>
-              <p>At VConnectTech, we believe technology has the power to transform businesses and enrich lives. My mission is to build a company where great people come together to solve meaningful problems and create solutions that shape a better tomorrow.</p>
+              <p>At VConnecTech, we believe technology has the power to transform businesses and enrich lives. My mission is to build a company where great people come together to solve meaningful problems and create solutions that shape a better tomorrow.</p>
               <p>We don&apos;t chase trends. We focus on what matters — innovation with purpose, engineering with excellence, and partnerships built on trust.</p>
             </blockquote>
             <div className="about-founder-signature">
               <strong>Srikanth Neelam</strong>
-              <span>Founder &amp; CEO, VConnectTech</span>
+              <span>Founder &amp; CEO, VConnecTech</span>
             </div>
             <div className="about-founder-profile">
               <p>
@@ -586,55 +569,9 @@ export default function About({ setCurrentPage }) {
               </p>
             </div>
             <div className="about-team-image">
-              <img src={teamImage} alt="VConnectTech Systems multidisciplinary engineering team" />
+              <img src={teamImage} alt="VConnecTech Systems multidisciplinary engineering team" />
             </div>
           </article>
-        </div>
-      </section>
-
-      {/* =========================================================
-          Achievements
-          Provides carousel navigation through company milestones.
-      ========================================================= */}
-
-      <section className="about-achievements" aria-label="Our achievements">
-        <div className="about-shell">
-          <div className="about-achievement-slider scroll-reveal-item">
-            {/* Previous control and active milestone content */}
-
-            <button className="about-achievement-arrow about-achievement-arrow-left" type="button" onClick={showPreviousAchievement} aria-label="Show previous achievement">
-              <ChevronLeft aria-hidden="true" />
-            </button>
-            <article className="about-achievement-slide" key={activeAchievement.year} aria-live="polite">
-              <div className="about-achievement-title">
-                <p>Our Achievements</p>
-                <h2>Recognition &amp; Milestones</h2>
-              </div>
-              <div className="about-achievement-copy">
-                <div className="about-achievement-year"><span><Trophy aria-hidden="true" /></span>{activeAchievement.year}</div>
-                <h3>{activeAchievement.title}</h3>
-                <p>{activeAchievement.description}</p>
-              </div>
-              <img src={activeAchievement.image} alt="" />
-            </article>
-            <button className="about-achievement-arrow about-achievement-arrow-right" type="button" onClick={showNextAchievement} aria-label="Show next achievement">
-              <ChevronRight aria-hidden="true" />
-            </button>
-            {/* Direct milestone selection controls */}
-
-            <div className="about-achievement-dots" aria-label="Choose an achievement">
-              {achievements.map((achievement, index) => (
-                <button
-                  className={index === achievementSlide ? 'active' : ''}
-                  type="button"
-                  key={achievement.year}
-                  onClick={() => setAchievementSlide(index)}
-                  aria-label={`Show ${achievement.year} achievement`}
-                  aria-current={index === achievementSlide ? 'true' : undefined}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -660,9 +597,8 @@ export default function About({ setCurrentPage }) {
             onTouchEnd={handleGalleryTouchEnd}
           >
             <span className="about-gallery-count">{gallerySlide + 1} / {galleryItems.length}</span>
-            <figure className="about-gallery-slide" key={activeGalleryItem.title} aria-live="polite">
+            <figure className="about-gallery-slide" key={gallerySlide} aria-live="polite">
               <img src={activeGalleryItem.image} alt={activeGalleryItem.alt} />
-              <figcaption>{activeGalleryItem.title}</figcaption>
             </figure>
             <button className="about-gallery-arrow about-gallery-arrow-left" type="button" onClick={showPreviousGalleryItem} aria-label="Show previous gallery image">
               <ChevronLeft aria-hidden="true" />
@@ -677,11 +613,11 @@ export default function About({ setCurrentPage }) {
                 <button
                   className={index === gallerySlide ? 'active' : ''}
                   type="button"
-                  key={item.title}
+                  key={index}
                   onClick={() => setGallerySlide(index)}
                   onMouseEnter={() => setGallerySlide(index)}
                   onFocus={() => setGallerySlide(index)}
-                  aria-label={`Show ${item.title}`}
+                  aria-label={`Show gallery slide ${index + 1}`}
                   aria-current={index === gallerySlide ? 'true' : undefined}
                 >
                   <img src={item.image} alt="" />

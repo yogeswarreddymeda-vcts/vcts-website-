@@ -139,20 +139,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 46px;
-  padding: 0 17px;
+  gap: 14px;
+  min-height: 58px;
+  max-width: 100%;
+  padding: 14px 26px;
   border: 1px solid transparent;
   border-radius: 6px;
   font: inherit;
-  font-size: 11px;
+  font-size: 16px;
+  line-height: 1.4;
   font-weight: 800;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .home-hero-button:hover { transform: translateY(-2px); }
-.home-hero-button svg { width: 16px; height: 16px; }
+.home-hero-button svg { width: 20px; height: 20px; flex-shrink: 0; }
 .home-hero-button--primary { background: #075ee6; box-shadow: 0 10px 22px rgba(7, 94, 230, 0.22); color: #fff; }
 .home-hero-button--primary:hover { background: #004fcf; box-shadow: 0 14px 26px rgba(7, 94, 230, 0.3); }
 .home-hero-button--secondary { border-color: #2675e9; background: rgba(255, 255, 255, 0.48); color: #0759df; }
@@ -341,7 +343,6 @@
 }
 
 .home-value-copy { max-width: 760px; }
-.home-value-eyebrow { display: inline-block; margin: 0 0 18px; color: #0665ee; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .home-value-copy h2 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(38px, 4.2vw, 58px); font-weight: 700; letter-spacing: -0.06em; line-height: 1.08; }
 .home-value-copy p { max-width: 720px; margin: 26px 0 0; color: #234675; font-size: 15px; line-height: 1.75; }
 
@@ -450,6 +451,8 @@
 .home-capability-more svg { width: 13px; height: 13px; }
 .home-capability-more:hover { gap: 11px; color: #092653; }
 .home-capability-more:focus-visible { outline: 2px solid #075ee6; outline-offset: 4px; }
+.home-capability-more:disabled { cursor: default; }
+.home-capability-more:disabled:hover { gap: 7px; color: #075ee6; }
 
 /* =========================================================
    6. Engagement models
@@ -465,6 +468,7 @@
 
 .home-engagement-shell { width: min(1050px, 100%); margin: 0 auto; }
 .home-engagement-heading { display: grid; grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.1fr); gap: 55px; align-items: start; }
+.home-engagement-kicker { display: block; margin-bottom: 14px; color: #075ee6; font-size: 11px; font-weight: 800; letter-spacing: .14em; line-height: 1.5; text-transform: uppercase; }
 .home-engagement-heading h2 { max-width: 430px; margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(38px, 4.4vw, 54px); letter-spacing: -0.05em; line-height: 1.2; }
 .home-engagement-heading p { margin: 35px 0 0; color: #234675; font-size: 17px; line-height: 1.7; }
 .home-engagement-image { height: 205px; margin: 49px 0 44px; overflow: hidden; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); background: #5d88b3; }
@@ -679,7 +683,6 @@
   .home-hero h1 { max-width: 900px; margin-right: auto; margin-left: auto; font-size: clamp(60px, 7vw, 76px); line-height: 1.02; }
   .home-hero-copy p { max-width: 780px; margin-right: auto; margin-left: auto; font-size: 20px; line-height: 1.6; }
   .home-hero-actions { justify-content: center; margin-top: auto; padding-top: 30px; }
-  .home-hero-button { min-height: 52px; padding-right: 22px; padding-left: 22px; font-size: 13px; }
   .home-hero-art { inset: 0; width: 100%; height: 100%; aspect-ratio: auto; transform: none; }
   .home-hero-art::after { display: none; animation: none; }
   .home-hero-art img { object-fit: cover; object-position: center; opacity: 1; -webkit-mask-image: none; mask-image: none; }
@@ -781,7 +784,6 @@
   .home-hero-eyebrow { font-size: 20px; }
   .home-hero h1 { font-size: clamp(46px, 8vw, 60px); line-height: 1.02; }
   .home-hero-copy p { max-width: 650px; font-size: 18px; line-height: 1.6; }
-  .home-hero-button { font-size: 12px; }
 }
 
 @media (max-width: 440px) {

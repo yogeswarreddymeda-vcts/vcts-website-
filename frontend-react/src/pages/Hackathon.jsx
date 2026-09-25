@@ -20,7 +20,6 @@ import {
   Megaphone,
   Monitor,
   Mountain,
-  RefreshCw,
   Settings,
   Sparkles,
   Target,
@@ -53,8 +52,10 @@ import whySketchImage from '../assets/image/Hackathon/why_join_sketch.webp'
 import imgGoldTrophyPodium from '../assets/image/Hackathon/gold_trophy_podium.webp'
 import imgSilverTrophyPodium from '../assets/image/Hackathon/silver_trophy_podium.webp'
 import imgBronzeTrophyPodium from '../assets/image/Hackathon/bronze_trophy_podium.webp'
-import qrCodeImg from '../assets/image/qr_code.webp'
+import qrCodeImg from '../assets/image/qu1.webp'
 import '../assets/css/Hackathon.css'
+
+const registrationUrl = 'https://docs.google.com/forms/d/1nnBQpB98BdhGOzty5amZDDyz1y1WTlItw1qluxSioMg/viewform?pli=1&ts=6aaa8a48&edit_requested=true'
 
 // ==========================================
 // SHARED UTILITIES & HOOKS
@@ -113,7 +114,7 @@ function HeroMain() {
         <span className="hero-impact-line">Real Impact.</span>
       </h1>
       <p className="lede">
-        A two-month cross-functional engineering challenge that turns ideas into working solutions. We provide the resources, infrastructure, and mentorship you build the impact.
+        A roughly three-month cross-functional engineering challenge that turns ideas into working solutions. We provide the resources, infrastructure, and mentorship you build the impact.
       </p>
     </div>
   )
@@ -145,7 +146,7 @@ function HeroStats() {
       <div className="stats-strip">
         <div className="stat">
           <CalendarDays aria-hidden="true" />
-          <div><div className="lbl">Development period</div><div className="num">2 months</div></div>
+          <div><div className="lbl">Total duration</div><div className="num">Approximately 3 months</div></div>
         </div>
         <div className="stat">
           <UsersRound aria-hidden="true" />
@@ -156,8 +157,8 @@ function HeroStats() {
           <div><div className="lbl">Project selection</div><div className="num">Based on quality and feasibility</div></div>
         </div>
         <div className="stat">
-          <RefreshCw aria-hidden="true" />
-          <div><div className="lbl">Program frequency</div><div className="num">Once every 3 or 6 months</div></div>
+          <CalendarDays aria-hidden="true" />
+          <div><div className="lbl">Registration closes</div><div className="num">September 30</div></div>
         </div>
       </div>
     </div>
@@ -205,7 +206,7 @@ function AboutSection() {
             <p className="about-tagline">From concept to real-world impact.</p>
 
             <p className="about-lede">
-              The VConnecTech Engineering Marathon is an open innovation program where individuals submit ideas and selected teams turn them into real, working prototypes. We provide the tools, infrastructure, expert guidance, and ecosystem support to help you build from concept to demo in two months.
+              The VConnecTech Engineering Marathon is an open innovation program where individuals submit ideas and selected teams turn them into real, working prototypes. We provide the tools, infrastructure, expert guidance, and ecosystem support to help you build from concept to demo in roughly three months, from the September 30 registration deadline to final demos on December 10–20.
             </p>
 
             <div className="about-cards-grid">
@@ -431,18 +432,18 @@ function DomainsSection() {
 // ==========================================
 
 const steps = [
-  { num: '01', label: 'Idea Submission', desc: 'Submit your problem, solution, concept, and expected impact.', icon: 'abstract', left: '6%', top: '84%', iconTop: '71%' },
-  { num: '02', label: 'Screening', desc: 'Ideas are evaluated for value, feasibility, innovation, and impact.', icon: 'report', left: '20%', top: '74%', iconTop: '61%' },
-  { num: '03', label: 'Team Formation', desc: 'Cross-functional teams are formed around selected projects.', icon: 'presentation', left: '32%', top: '66%', iconTop: '53%' },
-  { num: '04', label: 'Enablement', desc: 'We provide resources, tools, infrastructure, and mentorship.', icon: 'bootcamp', left: '45%', top: '56%', iconTop: '43%' },
-  { num: '05', label: 'Build & Develop', desc: 'Build, integrate, test, and validate during the two-month Engineering Marathon.', icon: 'prototype', left: '60%', top: '46%', iconTop: '33%' },
-  { num: '06', label: 'Final Demo', desc: 'Present a live demo for engineering, product, business, and jury validation.', icon: 'demo', left: '76%', top: '32%', iconTop: '19%' },
-  { num: '07', label: 'Recognition & Next Steps', desc: 'Unlock awards, opportunities, incubation, or potential pilot projects.', icon: 'hired', left: '88%', top: '20%', final: true },
+  { num: '01', label: 'Registration & Idea Submission', date: 'Due September 30', desc: 'Submit your problem, solution, concept, and expected impact.', icon: 'abstract', left: '6%', top: '84%', iconTop: '71%' },
+  { num: '02', label: 'Shortlist Announced', date: 'October 10', desc: 'Ideas are evaluated for value, feasibility, innovation, and impact. Shortlisted teams advance to the detailed proposal round.', icon: 'report', left: '20%', top: '74%', iconTop: '61%' },
+  { num: '03', label: 'Detailed Proposal Development', date: 'October 10 – November 10', desc: 'Develop and present your technical architecture, implementation plan, resources, and business case to the jury.', icon: 'presentation', left: '32%', top: '66%', iconTop: '53%' },
+  { num: '04', label: 'Implementation Shortlist', date: 'Around November 10', desc: 'The jury selects the top 20 teams to advance to implementation.', icon: 'bootcamp', left: '45%', top: '56%', iconTop: '43%' },
+  { num: '05', label: 'Implementation & Hardware Demo Build', date: 'November 10 – December 10', desc: 'Build, integrate, test, and validate a working hardware demo during one month of hands-on development.', icon: 'prototype', left: '60%', top: '46%', iconTop: '33%' },
+  { num: '06', label: 'Final Demo', date: 'December 10–20', desc: 'Present a live demo for engineering, product, business, and jury validation.', icon: 'demo', left: '76%', top: '32%', iconTop: '19%' },
+  { num: '07', label: 'Recognition & Next Steps', date: 'December 10–20', desc: 'Winner announced at Demo Day, with recognition and potential opportunities for top performers.', icon: 'hired', left: '88%', top: '20%', final: true },
 ]
 
 const summary = [
   { value: '7', label: 'Journey Stages', icon: 'summit' },
-  { value: '2', label: 'Months to Build', icon: 'target' },
+  { value: '≈3', label: 'Months Overall', icon: 'target' },
   { value: '5–8', label: 'Team Members', icon: 'opportunities' },
   { value: 'Impact', label: 'The Destination', icon: 'trophy' },
 ]
@@ -504,7 +505,7 @@ function JourneySection() {
       <div className="wrap">
         <h2 className="section-title reveal">Your <span className="title-hl">Journey</span></h2>
         <p className="section-tagline reveal">One problem. One team. Real impact.</p>
-        <p className="lede reveal">Move from idea submission and screening through team formation, enablement, hands-on development, a final demo, and meaningful next steps.</p>
+        <p className="lede reveal">Register by September 30, develop your detailed proposal from October 10 to November 10, build from November 10 to December 10, and present your final demo on December 10–20.</p>
 
         <div className="journey-layout" style={{ marginTop: '40px' }}>
           <div className="journey-copy">
@@ -521,6 +522,7 @@ function JourneySection() {
                     <div className="j-num">{step.num}</div>
                     <div className="j-body">
                       <h3>{step.label}</h3>
+                      <p className="j-desc"><strong>{step.date}</strong></p>
                       {step.desc && <p className="j-desc">{step.desc}</p>}
                     </div>
                   </div>
@@ -952,13 +954,13 @@ function RegisterSection() {
                 Ready to <span className="register-title-hl">build the future?</span>
               </h2>
               <p className="register-lede">
-                Bring your idea. Join the Engineering Marathon. Let’s engineer impact together.
+                Bring your idea. Join the Engineering Marathon. Let’s engineer impact together. Registration &amp; Idea Submission closes September 30.
               </p>
 
 
 
               <div className="register-cta-wrap">
-                <a href="mailto:marathon@vconnectechsystems.com?subject=Engineering%20Marathon%20Registration" className="register-btn-primary">
+                <a href={registrationUrl} className="register-btn-primary" target="_blank" rel="noreferrer">
                   <span>Register Now</span>
                   <ArrowRight className="register-btn-arrow" aria-hidden="true" strokeWidth={2.2} />
                 </a>
@@ -966,7 +968,7 @@ function RegisterSection() {
             </div>
 
             <div className="register-qr-col">
-              <div className="register-qr-card">
+              <a className="register-qr-card" href={registrationUrl} target="_blank" rel="noreferrer" aria-label="Open Engineering Marathon registration form">
                 <div className="qr-img-wrapper">
                   <img src={qrCodeImg} alt="Register QR Code" className="qr-code-img" decoding="async" />
                 </div>
@@ -974,7 +976,7 @@ function RegisterSection() {
                   <span className="pulse-dot" aria-hidden="true" />
                   <span>SCAN TO REGISTER</span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

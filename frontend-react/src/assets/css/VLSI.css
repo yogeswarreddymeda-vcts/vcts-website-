@@ -1744,6 +1744,21 @@ body {
     color: transparent
 }
 
+.vlsi-page .cta .container {
+    max-width: 1160px;
+    container-type: inline-size;
+}
+
+.vlsi-page .cta .vlsipg-display-2 {
+    font-size: min(60px, 5.1cqw);
+    line-height: 1.15;
+}
+
+.vlsipg-cta-title-line {
+    display: block;
+    white-space: nowrap;
+}
+
 .cta p {
     color: rgba(255, 255, 255, .75);
     max-width: 60ch;

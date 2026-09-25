@@ -1344,9 +1344,8 @@ export default function Vlsi({ navigationRequest }) {
       <section className="cta" id="cta">
         <div className="container vlsipg-reveal">
           <h2 className="vlsipg-display-2">
-            Have a custom silicon project that needs
-            <br />
-            <em>real</em> engineering underneath it?
+            <span className="vlsipg-cta-title-line">Have a custom silicon project that needs</span>{' '}
+            <span className="vlsipg-cta-title-line"><em>real</em> engineering underneath it?</span>
           </h2>
           <p>
             We take on a small, deliberate number of engagements each quarter. Tell us what you're

@@ -37,6 +37,57 @@
   box-sizing: border-box;
 }
 
+.marathon-poster-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(3, 17, 42, .82);
+  backdrop-filter: blur(8px);
+}
+
+.marathon-poster-dialog {
+  position: relative;
+  overflow: hidden;
+  width: min(720px, calc(100vw - 40px));
+  max-height: calc(100dvh - 40px);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .42);
+}
+
+.marathon-poster-dialog img {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 40px);
+  object-fit: contain;
+}
+
+.marathon-poster-close {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 50%;
+  background: rgba(4, 27, 66, .9);
+  color: #fff;
+  cursor: pointer;
+  font: 300 30px/1 Arial, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+}
+
+.marathon-poster-close:hover { background: #1677d2; }
+.marathon-poster-close:focus-visible { outline: 3px solid #73b9ff; outline-offset: 3px; }
+
 .header-certification {
   position: relative;
   z-index: 5;

@@ -143,7 +143,7 @@ export default function Header({ currentPage, setCurrentPage }) {
     };
   }, [clearTimers, closeAll]);
 
-  // Lock document scrolling only while the mobile navigation drawer is open.
+  // Lock document scrolling while the mobile navigation drawer is open.
 
   useEffect(() => {
     if (!mobileOpen) return undefined;
@@ -183,15 +183,15 @@ export default function Header({ currentPage, setCurrentPage }) {
         if (!event.currentTarget.contains(event.relatedTarget)) closeMenusWithDelay();
       }}
     >
-      <div className="header-certification" aria-label="VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified).">
+      <div className="header-certification" aria-label="VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management system certified).">
         <div className="header-certification-track" aria-hidden="true">
           <div className="header-certification-group">
-            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
-            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management system certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management system certified)</span>
           </div>
           <div className="header-certification-group">
-            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
-            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management system certified)</span>
+            <span>VConnecTech Systems Private Limited is ISO 9001:2015 (Quality management system certified)</span>
           </div>
         </div>
       </div>
@@ -262,7 +262,7 @@ export default function Header({ currentPage, setCurrentPage }) {
               aria-current={currentPage === 'hackathon' ? 'page' : undefined}
               onClick={(event) => navigate(event, 'hackathon')}
             >
-              Hackathon
+              Marathon
             </a>
             <a
               className={`desktop-nav-link ${currentPage === 'contact' ? 'is-active' : ''}`}
@@ -459,11 +459,12 @@ export default function Header({ currentPage, setCurrentPage }) {
             </div>
           </div>
 
-          <a href="/hackathon" aria-current={currentPage === 'hackathon' ? 'page' : undefined} onClick={(event) => navigate(event, 'hackathon')}>Hackathon</a>
+          <a href="/hackathon" aria-current={currentPage === 'hackathon' ? 'page' : undefined} onClick={(event) => navigate(event, 'hackathon')}>Marathon</a>
           <a href="/contact" aria-current={currentPage === 'contact' ? 'page' : undefined} onClick={(event) => navigate(event, 'contact')}>Contact Us</a>
           <a className="mobile-login-link" href="#" onClick={(event) => navigate(event, null)}>Log In <ArrowRight /></a>
         </nav>
       </div>
+
     </header>
   );
 }

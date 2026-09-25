@@ -5,6 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['meda-yogeswar-reddy']
+    allowedHosts: ['meda-yogeswar-reddy'],
+    proxy: {
+      '/api': 'http://127.0.0.1:8001'
+    }
   }
 })

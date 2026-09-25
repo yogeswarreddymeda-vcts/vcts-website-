@@ -7,7 +7,7 @@
 
 import '../assets/css/Home.css'
 import { useEffect } from 'react'
-import { Activity, ArrowRight, CarFront, Cpu, Download, Server } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import heroImage from '../assets/image/Home/home-hero-hardware.webp'
 import heroMobileImage from '../assets/image/Home/home-hero-hardware-mobile.webp'
 import valueSectionImage from '../assets/image/Home/home-section-01.webp'
@@ -89,7 +89,6 @@ export default function Home({ setCurrentPage }) {
             <p>Best-in-class engineering for complex systems, intelligent products, and real-world applications.</p>
             <div className="home-hero-actions">
               <button type="button" className="home-hero-button home-hero-button--primary" onClick={() => openPage('contact')}>Talk to an Engineering Architect <ArrowRight aria-hidden="true" /></button>
-              <button type="button" className="home-hero-button home-hero-button--secondary" onClick={() => openPage('technologies')}>Download Capabilities Deck <Download aria-hidden="true" /></button>
             </div>
           </div>
           <div className="home-hero-art" aria-hidden="true">
@@ -101,28 +100,12 @@ export default function Home({ setCurrentPage }) {
         </div>
       </section>
 
-      {/* Industries that rely on VConnectTech engineering */}
-
-      <section className="home-trust-section home-animated-section home-animate-trust" aria-labelledby="home-trust-title">
-        <div className="home-trust-shell">
-          <h2 id="home-trust-title">Trusted Engineering Partner for Industry Pioneers</h2>
-          <p>Powering mission-critical electronics across Semiconductor, Automotive, Industrial IoT,<br className="home-trust-break" /> and MedTech sectors.</p>
-          <div className="home-trust-pillars">
-            <div className="home-trust-pillar"><Cpu aria-hidden="true" /><span>Semiconductor</span></div>
-            <div className="home-trust-pillar"><CarFront aria-hidden="true" /><span>Automotive</span></div>
-            <div className="home-trust-pillar"><Server aria-hidden="true" /><span>Industrial IoT</span></div>
-            <div className="home-trust-pillar"><Activity aria-hidden="true" /><span>MedTech</span></div>
-          </div>
-        </div>
-      </section>
-
       {/* Differentiators across the silicon-to-software development stack */}
 
       <section className="home-value-section home-animated-section home-animate-value" aria-labelledby="home-value-title">
         <img className="home-value-image" src={valueSectionImage} alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <div className="home-value-shell">
           <div className="home-value-copy">
-            <span className="home-value-eyebrow">Why VConnectTech?</span>
             <h2 id="home-value-title">Unified Engineering Across the<br className="home-value-break" /> Silicon and Software <span className="home-gradient-text">Stack</span></h2>
             <p>Traditional product development fails due to fragmented vendors. We close the gap by owning the entire hardware, firmware, and intelligence pipeline under one roof.</p>
           </div>
@@ -148,7 +131,7 @@ export default function Home({ setCurrentPage }) {
               <div className="home-capability-media"><img src={capabilityVlsiImage} alt="VLSI and silicon engineering hardware" loading="lazy" decoding="async" /><span>01</span></div>
               <div className="home-capability-content">
                 <div className="home-capability-category">Category 01</div>
-                <h3>VLSI &amp; Silicon Engineering</h3>
+                <h3>Silicon Engineering</h3>
                 <div className="home-capability-item"><h4>ASIC &amp; RTL Design</h4><p>End-to-end front-end architecture, IP core development, and SoC design integration.</p></div>
                 <div className="home-capability-item"><h4>Advanced Verification</h4><p>Robust UVM and SystemVerilog environments to ensure functional accuracy and zero-defect silicon.</p></div>
                 <div className="home-capability-item"><h4>FPGA Prototyping</h4><p>High-speed emulation, post-silicon validation, and hardware acceleration targeting major FPGA platforms.</p></div>
@@ -159,7 +142,7 @@ export default function Home({ setCurrentPage }) {
               <div className="home-capability-media"><img src={capabilityEmbeddedImage} alt="Embedded systems architecture hardware" loading="lazy" decoding="async" /><span>02</span></div>
               <div className="home-capability-content">
                 <div className="home-capability-category">Category 02</div>
-                <h3>Embedded Systems Architecture</h3>
+                <h3>Systems Architecture</h3>
                 <div className="home-capability-item"><h4>Hardware &amp; PCB Design</h4><p>High-speed, multi-layer digital board layouts optimized for thermal management and low-power constraints.</p></div>
                 <div className="home-capability-item"><h4>Firmware &amp; RTOS</h4><p>Custom bootloaders, low-level device drivers, and real-time operating system optimization for microcontrollers and microprocessors.</p></div>
                 <div className="home-capability-item"><h4>Secure IoT Connectivity</h4><p>Implementation of highly secure, ultra-low-latency communication protocols including BLE, Wi-Fi, 5G, and Thread.</p></div>
@@ -186,7 +169,10 @@ export default function Home({ setCurrentPage }) {
       <section className="home-engagement-section home-animated-section home-animate-engagement" aria-labelledby="home-engagement-title">
         <div className="home-engagement-shell">
           <div className="home-engagement-heading">
-            <h2 id="home-engagement-title">Flexible Engagement <span className="home-gradient-text">Frameworks</span></h2>
+            <div>
+              <span className="home-engagement-kicker">How We Can Work Together</span>
+              <h2 id="home-engagement-title">Flexible Engagement <span className="home-gradient-text">Frameworks</span></h2>
+            </div>
             <p>Whether you need standalone engineering services, ready-to-use IP, or a completely built product, we adapt to your operational workflow.</p>
           </div>
           <div className="home-engagement-image"><img src={engagementImage} alt="Production line with circuit board hardware" loading="lazy" decoding="async" /></div>
@@ -225,7 +211,6 @@ export default function Home({ setCurrentPage }) {
           <p>Whether you need to clear a complex chip verification bottleneck or build an entirely new intelligent device, our engineering architects are ready to assist.</p>
           <div className="home-final-cta-actions">
             <button type="button" className="home-final-cta-button home-final-cta-button--primary" onClick={() => openPage('contact')}>Schedule a Technical Consultation</button>
-            <button type="button" className="home-final-cta-button home-final-cta-button--secondary" onClick={() => openPage('contact')}>Contact Our Sales Team</button>
           </div>
         </div>
       </section>

@@ -52,13 +52,10 @@ export default function Footer({ setCurrentPage }) {
               Engineering intelligent systems through semiconductor design and verification services for a smarter tomorrow.
             </p>
             <div className="social-links">
-              <a href="#" className="social-icon" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/vconnectech-systems-private-limited/?originalSubdomain=in" className="social-icon" aria-label="VConnecTech Systems on LinkedIn" target="_blank" rel="noreferrer">
                 <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
               </a>
-              <a href="#" className="social-icon" aria-label="X">
-                <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" /></svg>
-              </a>
-              <a href="#" className="social-icon" aria-label="Instagram">
+              <a href="https://www.instagram.com/vconnectechsystems/" className="social-icon" aria-label="VConnecTech Systems on Instagram" target="_blank" rel="noreferrer">
                 <svg fill="currentColor" viewBox="0 0 448 512" width="18" height="18"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141Zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7Zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8Zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1S3.3 127.5 1.5 163.4c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8ZM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1Z" /></svg>
               </a>
             </div>
@@ -101,7 +98,7 @@ export default function Footer({ setCurrentPage }) {
                   href="/hackathon"
                   onClick={(event) => navigatePage(event, 'hackathon')}
                 >
-                  Hackathon <span className="chevron">&gt;</span>
+                  Marathon <span className="chevron">&gt;</span>
                 </a>
               </li>
               <li><a href="#">Industries <span className="chevron">&gt;</span></a></li>

@@ -10,13 +10,16 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   GraduationCap,
-  ImageIcon,
   Send,
   Sparkles,
   Target,
   TrendingUp,
   UsersRound,
 } from 'lucide-react'
+import tileLearning from '../assets/image/about/DSC01138.JPG'
+import tileEngineering from '../assets/image/careers/trip-vcon-1.jpeg'
+import tileTeamwork from '../assets/image/about/Curved image.jpeg'
+import tileCelebrations from '../assets/image/about/HCL team (2).JPG'
 import '../assets/css/Careers.css'
 import engineeringTeam from '../assets/image/about/Curved image.jpeg'
 import teamTripOne from '../assets/image/careers/trip-vcon-1.jpeg'
@@ -25,9 +28,9 @@ import teamTripTwo from '../assets/image/careers/trip-vcon-2.jpeg'
 // Team photography displayed by the automatic hero carousel.
 
 const heroSlides = [
-  { src: teamTripOne, label: 'VCTS team gathering' },
-  { src: teamTripTwo, label: 'VCTS team outing' },
-  { src: engineeringTeam, label: 'VCTS engineering team' },
+  { src: teamTripOne, label: 'VConnectech team gathering' },
+  { src: teamTripTwo, label: 'VConnectech team outing' },
+  { src: engineeringTeam, label: 'VConnectech engineering team' },
 ]
 
 // Employee benefits retain their intended visual order and grid placement.
@@ -42,10 +45,10 @@ const benefits = [
 // Placeholder tiles preserve the supporting gallery labels and tilt values.
 
 const lifeTiles = [
-  { title: 'Learning', rotate: -3, y: 0 },
-  { title: 'Engineering', rotate: 2.5, y: 14 },
-  { title: 'Teamwork', rotate: 2, y: -10 },
-  { title: 'Celebrations', rotate: -2, y: 6 },
+  { title: 'Learning', rotate: -3, y: 0, image: tileLearning },
+  { title: 'Engineering', rotate: 2.5, y: 14, image: tileEngineering },
+  { title: 'Teamwork', rotate: 2, y: -10, image: tileTeamwork },
+  { title: 'Celebrations', rotate: -2, y: 6, image: tileCelebrations },
 ]
 
 /** Renders the compact career-path selector used inside this page. */
@@ -55,7 +58,7 @@ function CareerPathSelector({ onStudentsApply, onProfessionalsApply }) {
     <div className="careers-path-selector">
       <div className="careers-path-prompt">
         <span>Choose your path</span>
-        <p>Where would you like to begin your journey with VCTS?</p>
+        <p>Where would you like to begin your journey with VConnectech?</p>
       </div>
       <nav className="careers-path-options" aria-label="Career paths">
         <a className="careers-path-option" href="/careers/students" onClick={onStudentsApply}>
@@ -181,14 +184,16 @@ export default function Careers({ setCurrentPage }) {
         </div>
         <div className="careers-hero-overlay" />
         <div className="careers-shell careers-hero-inner">
-          <p className="careers-eyebrow">Careers at VCTS</p>
-          <h1>Join us on our path to <span>excellence.</span></h1>
-          <p className="careers-hero-lede">Let’s innovate and grow together!</p>
-          <div className="careers-actions">
-            <button type="button" className="careers-hero-apply" onClick={() => scrollTo('open-positions')}>
-              <span>Apply now</span>
-              <span className="careers-hero-apply-icon"><ArrowRight aria-hidden="true" /></span>
-            </button>
+          <div className="careers-hero-copy">
+            <p className="careers-eyebrow">Careers at VConnectech</p>
+            <h1>Join us on our path to <span>excellence.</span></h1>
+            <p className="careers-hero-lede">Let’s innovate and grow together!</p>
+            <div className="careers-actions">
+              <button type="button" className="careers-hero-apply" onClick={() => scrollTo('open-positions')}>
+                <span>Apply now</span>
+                <span className="careers-hero-apply-icon"><ArrowRight aria-hidden="true" /></span>
+              </button>
+            </div>
           </div>
         </div>
         <div className="careers-hero-pagination" aria-label="Choose hero image" role="group">
@@ -210,9 +215,9 @@ export default function Careers({ setCurrentPage }) {
       <section ref={whyJoinRef} className="careers-section careers-why" id="why-join">
         <div className="careers-shell">
           <div className="careers-section-heading">
-            <p className="careers-eyebrow">Why join VCTS?</p>
+            <p className="careers-eyebrow">Why join VConnectech?</p>
             <h2>Great Work Starts With <span>Great People.</span></h2>
-            <p>At VCTS, we believe in giving people the opportunity to learn, contribute, take on challenges, and grow.</p>
+            <p>At VConnectech, we believe in giving people the opportunity to learn, contribute, take on challenges, and grow.</p>
           </div>
           <div className="careers-benefits-grid">
             {benefits.map(({ title, description, icon: Icon, className }) => (
@@ -233,17 +238,27 @@ export default function Careers({ setCurrentPage }) {
       <section ref={lifeAtVctsRef} className="careers-section careers-life" id="life-at-vcts">
         <div className="careers-shell">
           <div className="careers-section-heading careers-section-heading--center">
-            <p className="careers-eyebrow">Life at VCTS</p>
+            <p className="careers-eyebrow">Life at VConnectech</p>
             <h2>People. Ideas. <span>Possibilities.</span></h2>
             <p>A place where people collaborate, share ideas, take on challenges, and grow together.</p>
           </div>
           <div className="careers-life-grid">
             <figure className="careers-life-tile careers-life-tile--large">
+              {/* Default image always present */}
               <img
-                className="careers-life-image"
+                className={`careers-life-image careers-life-image--default${hoveredLifeTile === null ? ' careers-life-image--active' : ''}`}
                 src={engineeringTeam}
-                alt="The VConnectTech Systems engineering team"
+                alt="The VConnectech Systems engineering team"
               />
+              {/* Per-tile images cross-fade in on hover */}
+              {lifeTiles.map((tile, index) => (
+                <img
+                  key={tile.title}
+                  className={`careers-life-image careers-life-image--hover${hoveredLifeTile === index ? ' careers-life-image--active' : ''}`}
+                  src={tile.image}
+                  alt={tile.title}
+                />
+              ))}
             </figure>
             <div className="careers-life-supporting">
               {lifeTiles.map((tile, index) => {
@@ -268,10 +283,12 @@ export default function Careers({ setCurrentPage }) {
                           : '9px 14px 26px rgba(18, 22, 27, .15), 2px 5px 9px rgba(18, 22, 27, .08)',
                       }}
                     >
-                    <ImageIcon aria-hidden="true" />
-                    <strong>Add image</strong>
+                      <img
+                        className="careers-life-card-img"
+                        src={tile.image}
+                        alt={tile.title}
+                      />
                     </div>
-                    <figcaption>{tile.title}</figcaption>
                   </figure>
                 )
               })}

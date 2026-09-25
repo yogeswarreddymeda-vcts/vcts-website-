@@ -906,10 +906,12 @@ export default function Embedded() {
           <div className="embpg-hero-copy-wrap">
             <p className="embpg-hero-eyebrow">
               <span className="embpg-blue-dot"></span>
-              EMBEDDED ENGINEERING
+              SYSTEM ENGINEERING
             </p>
             <h1 className="embpg-hero-display-title">
-              The quiet <span className="embpg-blue-highlight">intelligence</span> inside every <span className="embpg-blue-highlight">connected product.</span>
+              <span className="embpg-hero-title-line">The quiet <span className="embpg-blue-highlight">intelligence</span></span>{' '}
+              <span className="embpg-hero-title-line">inside every</span>{' '}
+              <span className="embpg-hero-title-line"><span className="embpg-blue-highlight">connected product.</span></span>
             </h1>
             <p className="embpg-hero-lede-para">
               We design the hardware, firmware, connectivity and validation systems that let ambitious products ship on time — and stay working, quietly, for a decade.
@@ -918,8 +920,8 @@ export default function Embedded() {
               <a href="#capabilities" className="embpg-hero-btn-primary">
                 Explore Services <span className="embpg-arrow">→</span>
               </a>
-              <a href="#contact" className="embpg-hero-btn-ghost">
-                Talk to an engineer <span className="embpg-arrow">→</span>
+              <a href="#work" className="embpg-hero-btn-ghost">
+                Explore Systems <span className="embpg-arrow">→</span>
               </a>
             </div>
             <div className="embpg-hero-stats-row">
@@ -1127,10 +1129,10 @@ export default function Embedded() {
           <div className="embpg-section-head reveal center">
 
             <h2 className="display-2">
-              Industries We've <span className="embpg-blue-highlight">Engineered</span> For
+              System <span className="embpg-blue-highlight">Engineering</span>
             </h2>
             <p className="embpg-section-subtitle">
-              Delivering robust embedded solutions across diverse sectors—from high-reliability aerospace to high-volume automotive platforms.
+              Delivering robust system engineering solutions across diverse sectors—from high-reliability aerospace to high-volume automotive platforms.
             </p>
           </div>
           <div className="embpg-work-grid">
@@ -1252,9 +1254,8 @@ export default function Embedded() {
       <section className="embpg-cta" id="cta">
         <div className="container reveal">
           <h2 className="display-2">
-            Have a custom silicon project that needs
-            <br />
-            <em>real</em> engineering underneath it?
+            <span className="embpg-cta-title-line">Have a custom silicon project that needs</span>{' '}
+            <span className="embpg-cta-title-line"><em>real</em> engineering underneath it?</span>
           </h2>
           <p>
             We take on a small, deliberate number of engagements each quarter. Tell us what you're
@@ -1305,6 +1306,23 @@ export default function Embedded() {
               <img src={EmbeddedImages.brochure} alt="Embedded Engineering Capability Brochure visual" decoding="async" />
             </div>
           </div>
+          <div className="embpg-plain-horizontal-card embpg-plain-horizontal-card--reversed reveal">
+            <div className="embpg-brochure-card-content">
+              <h3 className="embpg-brochure-card-heading">
+                Download our <span className="embpg-blue-highlight">System Solutions</span> Capability Brochure
+              </h3>
+              <p className="embpg-brochure-card-subtext">
+                Explore our system engineering capabilities, from hardware and firmware to connectivity, integration, testing, and production support.
+              </p>
+              <a href="/brochures/system-solutions.pdf" download="VConnectTech-System-Solutions.pdf" className="embpg-brochure-download-link" aria-label="Download System Solutions Capability Brochure (PDF)">
+                <span className="vlsipg-btn__label">Download Brochure</span>
+                <span className="vlsipg-btn__icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <div className="embpg-brochure-visual">
+              <img src={EmbeddedImages.brochure} alt="Hardware platform for integrated system solutions" decoding="async" />
+            </div>
+          </div>
         </div>
       </section>
       {/* ============ END PLAIN CARD SECTION ============ */}
@@ -1317,8 +1335,8 @@ export default function Embedded() {
           <div className="embpg-faq-header-grid">
             <div className="embpg-faq-header-left">
               <h2 className="display-2 embpg-questions-title">
-                Questions before <br />
-                we <span className="embpg-blue-highlight">start engineering?</span>
+                Answers before <br />
+                <em className="embpg-blue-highlight">we start engineering</em>
               </h2>
             </div>
             <p className="embpg-faq-note">A quick view of common questions about our Embedded Engineering engagements.</p>

@@ -248,6 +248,7 @@
 
 .embpg-embedded-page .embpg-hero-copy-wrap {
   position: relative;
+  container-type: inline-size;
   width: 135%;
   z-index: 10;
   display: flex;
@@ -386,14 +387,19 @@
   }
 }
 
-.embpg-embedded-page .embpg-hero-display-title {
+#root .embpg-embedded-page .embpg-hero-display-title {
   font-family: var(--display);
-  font-size: clamp(38px, 5.2vw, 76px);
+  font-size: min(88px, 9.4cqw);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: #0f172a;
   margin-bottom: 0;
+}
+
+.embpg-embedded-page .embpg-hero-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .embpg-embedded-page .embpg-blue-highlight {
@@ -1396,13 +1402,20 @@
 .embpg-embedded-page .embpg-cta .container {
   position: relative;
   z-index: 1;
-  max-width: 820px;
+  max-width: 1160px;
+  container-type: inline-size;
 }
 
 .embpg-embedded-page .embpg-cta .display-2 {
-  font-size: clamp(32px, 4.2vw, 60px);
+  font-size: min(60px, 5.1cqw);
+  line-height: 1.15;
   color: #fff;
   margin-bottom: 20px;
+}
+
+.embpg-embedded-page .embpg-cta-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .embpg-embedded-page .embpg-cta .display-2 em {
@@ -1815,6 +1828,10 @@
   box-shadow: 0 10px 30px rgba(30, 107, 230, 0.05);
 }
 
+.embpg-embedded-page .embpg-plain-horizontal-card + .embpg-plain-horizontal-card {
+  margin-top: 28px;
+}
+
 .embpg-embedded-page .embpg-brochure-card-content {
   display: flex;
   flex-direction: column;
@@ -1915,6 +1932,27 @@
   display: block;
   mask-image: linear-gradient(to right, transparent 0%, #000 35%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 35%);
+}
+
+.embpg-embedded-page .embpg-plain-horizontal-card--reversed .embpg-brochure-visual img {
+  transform: scaleX(-1);
+}
+
+@media (min-width: 991px) {
+  .embpg-embedded-page .embpg-plain-horizontal-card--reversed {
+    grid-template-columns: 42% 58%;
+  }
+
+  .embpg-embedded-page .embpg-plain-horizontal-card--reversed .embpg-brochure-visual {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .embpg-embedded-page .embpg-plain-horizontal-card--reversed .embpg-brochure-card-content {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
 }
 
 @media (max-width: 990px) {

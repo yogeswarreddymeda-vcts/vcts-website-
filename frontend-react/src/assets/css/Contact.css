@@ -180,6 +180,20 @@
   gap: 10px;
 }
 
+.contact-submit:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+.contact-submission-status {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contact-submission-status--success { color: #146c43; }
+.contact-submission-status--error { color: #b42318; }
+
 .contact-field {
   display: grid;
   grid-template-columns: 22px minmax(0, 1fr);
@@ -219,6 +233,85 @@
 .contact-field input { height: 43px; }
 .contact-field input::placeholder,
 .contact-field textarea::placeholder { color: #7c899d; opacity: 1; }
+
+/* Phone field with inline country dial-code selector. */
+
+.contact-field--phone {
+  grid-template-columns: 20px 76px minmax(0, 1fr);
+  column-gap: 10px;
+  min-height: 48px;
+  padding-right: 16px;
+  border-radius: 9px;
+}
+
+.contact-country-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 76px;
+  height: 36px;
+  border: 1px solid #dce8f5;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #f8fbff, #eef6ff);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-country-select svg {
+  position: absolute;
+  right: 9px;
+  width: 13px;
+  height: 13px;
+  color: #2676d2;
+  pointer-events: none;
+  stroke-width: 2;
+}
+
+.contact-country-code {
+  width: 100%;
+  height: 100%;
+  padding: 0 27px 0 11px;
+  border: 0;
+  outline: 0;
+  appearance: none;
+  background: transparent;
+  color: var(--contact-blue);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contact-country-select:hover {
+  border-color: #b9d3f3;
+  background: #edf5ff;
+}
+
+.contact-country-select:focus-within {
+  border-color: #6ca8f8;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(5, 101, 232, .08);
+}
+
+.contact-field--phone input {
+  height: 46px;
+  padding: 0 2px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: .01em;
+  transition: color 180ms ease;
+}
+
+.contact-field-error {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.contact-field--phone { align-self: center; }
 
 .contact-message-field {
   align-items: start;
